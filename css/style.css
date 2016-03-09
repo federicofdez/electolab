@@ -1,0 +1,51 @@
+/* background-color: #f8f8f8;
+   emphasis-color1: #009688;
+   emphasis-color2: #b5f6e3;
+*/
+
+body {
+	background-color: #f8f8f8;
+}
+
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+}
+
+.navbar-header a img {
+	float: left;
+	width: 20px;
+    height: 20px;
+}
+.navbar-header a span{
+	margin-left: 20px;
+	font-size: 30px;
+}
+
+main .navbar {
+	min-height: 0px;
+	margin-bottom: 0px;
+	border: 0px;
+}
+
+#main-content {
+	background-color: white;
+	border-left: 1px #dddddd solid;
+	border-right: 1px #dddddd solid;
+	border-bottom: 1px #dddddd solid;
+	height: 400px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #5e5e5e;
+}
+
+.footer p {
+	margin: 20px 0;
+	color: white;
+}
