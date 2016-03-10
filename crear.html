@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>Crear escenario</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../HTML/folder/lib/bootstrap-colorselector-0.2.0/css/bootstrap-colorselector.css" />
+
 </head>
     
 <body>
@@ -71,7 +73,18 @@
                                         <tr>
                                           <th scope="row"><h5>XX</h5></th>
                                           <td><h5>Partido 1</h5></td>
-                                          <td><h5>Text</h5></td>
+                                          <td>
+                                            <select id="colorselector">
+                                                <option value="87" data-color="#FF4500">orangered</option>
+                                                <option value="78" data-color="#8000FF">purple</option>
+                                                <option value="78" data-color="#2E64FE">darkblue</option>
+                                                <option value="78" data-color="#FF0000">red</option>
+                                                <option value="78" data-color="#01DF01">green</option>
+                                                <option value="78" data-color="#FFFF00">yellow</option>
+                                                <option value="78" data-color="#FE2EF7">pink</option>
+                                                <option value="78" data-color="#151515">black</option>
+                                            </select>  
+                                          </td>
                                           <td><h5>Todas</h5></td>
                                         </tr>
                                       </tbody>
@@ -349,9 +362,12 @@
     <script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/dropdown.js"></script>
+        <script src="../../HTML/folder/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js"></script>
+
 
     <script>
-        function addPartido() {
+            $('#colorselector').colorselector();            
+            function addPartido() {
             var table = document.getElementById("partidosTable");
             var row = table.insertRow();
             var cell1 = row.insertCell(0);
@@ -362,7 +378,8 @@
             cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
             cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
             cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
-                }   
+                }  
+         
     </script>
 </body>
 </html>
