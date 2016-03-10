@@ -37,14 +37,15 @@ main .navbar {
 }
 
 .footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #5e5e5e;
+  position: fixed;
+  bottom: 0px;
+  left:0px;
 }
-
 .footer p {
 	margin: 20px 0;
 	color: white;
