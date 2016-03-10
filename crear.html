@@ -1,166 +1,131 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+    
+<body>
+    <header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img src="img/logo_electolab.png" alt="Logo" />
+						<span>ElectoLab</span>
+					</a>
+				</div>
 
-        <title>ElectoLab</title>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+	</header>
+    
+    <main>
+		<div class="container">
+			<nav class="navbar">                  
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#">Crear escenario</a></li>
+					<li><a href="#">Simular escenario</a></li>
+					<li><a href="#">Foros de discusión</a></li>
+				</ul>
+			</nav>
+			<div class="container-fluid" id="main-content">
+                <h2>Introduzca los parámetros del escenario a simular</h2>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Partidos políticos</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">Introduzca los partidos políticos que se presentan a la elecciones</div>
+                            <div>
+                                <table class="table table-hover" id="partidosTable">
+                                    <thead>
+                                        <tr>
+                                          <th class="col-lg-3">Siglas</th>
+                                          <th class="col-lg-3">Nombre</th>
+                                          <th class="col-lg-3">Color</th>
+                                          <th class="col-lg-3">N. CCAA</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row"><h5>XX</h5></th>
+                                          <td><h5>Partido 1</h5></td>
+                                          <td><h5>Text</h5></td>
+                                          <td><h5>Todas</h5></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                <button onclick="addPartido()" type="button" class="btn btn-default">Añadir partido</button>
+                            </div>
+                        </div>
+                    </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Sistema electoral</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">Configure el formato de sistema electoral:</div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Votos</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">Introduzca los votos de cada partido por circunscripción:</div>
+                    </div>
+                </div> 
+                </div>
+			</div>
+		</div>
+	</main>
 
-        <!-- Bootstrap core CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <footer class="footer">
+		<div class="container">
+			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
+		</div>
+	</footer>
         
-    </head>
-    <body>
-        <section>
-<div class="container">
-  <h2>Introduzca los parámetros del escenario a simular</h2>
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Partidos políticos</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body">Introduzca los partidos políticos que se presentan a la elecciones</div>
-        <div>
-            <table class="table table-hover" id="partidosTable">
-  <thead>
-    <tr>
-      <th class="col-lg-3">Siglas</th>
-      <th class="col-lg-3">Nombre</th>
-      <th class="col-lg-3">Color</th>
-      <th class="col-lg-3">N. CCAA</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"><h5>XX</h5></th>
-      <td><h5>Partido 1</h5></td>
-      <td><h5>Text</h5></td>
-      <td><h5>Todas</h5></td>
-    </tr>
-
-  </tbody>
-</table>
-            <button onclick="addPartido()" type="button" class="btn btn-default">Añadir partido</button>
-          </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Sistema electoral</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">Configure el formato de sistema electoral:</div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Votos</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Introduzca los votos de cada partido por circunscripción:</div>
-            <div class="panel-group" id="accordion3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion3" href="#collapse31">Andalucía</a>
-        </h4>
-      </div>
-      <div id="collapse31" class="panel-collapse collapse in">
-        <div class="panel-body"></div>
-        <div>
-            <table class="table table-hover" id="partidosTable">
-  <thead>
-    <tr>
-      <th class="col-lg-3">Circunscripción</th>
-      <th class="col-lg-3">Partido</th>
-      <th class="col-lg-3">Votos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"><h5>Almería</h5></th>
-      <td><h5>Partido 1</h5></td>
-      <td><h5>XXXX</h5></td>
-    </tr>
-
-  </tbody>
-</table>
-          </div>
-      </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion3" href="#collapse32">Aragón</a>
-        </h4>
-      </div>
-      <div id="collapse32" class="panel-collapse collapse">
-        <div class="panel-body"></div>
-          <table class="table table-hover" id="partidosTable">
-  <thead>
-    <tr>
-      <th class="col-lg-3">Circunscripción</th>
-      <th class="col-lg-3">Partido</th>
-      <th class="col-lg-3">Votos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"><h5>Huesca</h5></th>
-      <td><h5>Partido 1</h5></td>
-      <td><h5>XXXX</h5></td>
-    </tr>
-
-  </tbody>
-</table>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion3" href="#collapse33">Cantabria</a>
-        </h4>
-      </div>
-      <div id="collapse33" class="panel-collapse collapse">
-        <div class="panel-body"></div>
-      </div>
-    </div>
-  </div>
-      </div>
-    </div>
-  </div> 
-</div>
-        
-        
-
-        </section>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script>
-function addPartido() {
-    var table = document.getElementById("partidosTable");
-    var row = table.insertRow();
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
-    cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
-    cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
-    cell4.innerHTML = "  <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='#'>Otro</a></li><li><a href='#'>Otro más</a</li></ul>";
-
-
-}    
- 
-</script>
-    </body>
-
+        function addPartido() {
+            var table = document.getElementById("partidosTable");
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
+            cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
+            cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
+            cell4.innerHTML = "  <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='#'>Otro</a></li><li><a href='#'>Otro más</a</li></ul>";
+                }   
+    </script>
+</body>
 </html>
