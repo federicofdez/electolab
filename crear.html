@@ -42,7 +42,7 @@
 			<nav class="navbar">                  
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#">Crear escenario</a></li>
-					<li><a href="#">Simular escenario</a></li>
+					<li><a href="simular.html">Simular escenario</a></li>
 					<li><a href="#">Foros de discusión</a></li>
 				</ul>
 			</nav>
@@ -83,17 +83,44 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Sistema electoral</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Sistema de proporcionalidad y circuscripciones</a>
                         </h4>
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">Configure el formato de sistema electoral:</div>
+                        <div class="row">
+                            <div class="col-lg-3" style="margin-top: 7px;"> Sistema de proporcionalidad </div>
+                            <div class="dropdown col-lg-2">
+                                <button class="btn btn-default dropdown-toggle sistema" type="button" data-toggle="dropdown">D'Hondt
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dhont" href="#">D'Hondt</a></li>
+                                    <li><a class="sainte" href="#">Sainte-Lagüe</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
+                            <div class="dropdown col-lg-2">
+                                <button class="btn btn-default dropdown-toggle circunscripciones" type="button" data-toggle="dropdown">Provincias
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="provincias" href="#">Provincias</a></li>
+                                    <li><a class="comunidades" href="#">Comunidades autónomas</a></li>
+                                    <li><a class="espana" href="#">España</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-lg-3" style="margin-top: 7px;"> % escaños para la mayoria absoluta </div>
+                            <div class="form-group col-lg-1">
+                                    <input type="number" class="form-control col-lg-1" placeholder="50">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Votos</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Reparto de votos y escaños</a>
                         </h4>
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
@@ -104,57 +131,95 @@
                                             <th class="col-lg-3">Circunscripción</th>
                                             <th class="col-lg-3">Partido1</th>
                                             <th class="col-lg-3">Partido2</th>
-                                            <th class="col-lg-3">Partido3</th>
-                                            <th class="col-lg-3">Partido4</th>
-                                            <th class="col-lg-3">Partido5</th>
-                                            <th class="col-lg-3">Partido6</th>
-                                            <th class="col-lg-3">Partido7</th>
-                                            <th class="col-lg-3">Partido8</th>
-                                            
+                                            <th class="col-lg-3">Escaños</th>                                          
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row"><h5>Álava</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Albacete</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
+
                                         </tr>
                                         <tr>
-                                            <th scope="row"><h5>Álicante</h5></th>
+                                            <th scope="row"><h5>Álicante</h5>
+                                            </th><th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Álmería</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Ásturias</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Ávila</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Badajoz</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Barcelona</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Burgos</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Cáceres</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Cádiz</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Cantabria</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Castellón</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Ceuta</h5></th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th> <input type='text' class='form-control'</th>
+                                            <th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th> 
                                         </tr>
                                         <tr>
                                             <th scope="row"><h5>Ciudad Real</h5></th>
@@ -284,6 +349,8 @@
         
     <script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/dropdown.js"></script>
+
     <script>
         function addPartido() {
             var table = document.getElementById("partidosTable");
@@ -295,7 +362,7 @@
             cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
             cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
             cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
-            cell4.innerHTML = "  <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='#'>Otro</a></li><li><a href='#'>Otro más</a</li></ul>";
+            cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
                 }   
     </script>
 </body>

@@ -33,7 +33,7 @@ main .navbar {
 	border-left: 1px #dddddd solid;
 	border-right: 1px #dddddd solid;
 	border-bottom: 1px #dddddd solid;
-	height: 400px;
+	height: contain;
 }
 
 .footer {
