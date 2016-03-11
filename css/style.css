@@ -58,20 +58,6 @@ button.btn.btn-default.s{
 	margin-left: 70px;
 }
 
-div img.mapa {
-	max-width: 350px;
-	max-height: 210px;
-	margin-left: 180px;
-}
-div img.diagrama {
-	max-width: 350px;
-	max-height: 210px;
-	margin-left: 100px;
-}
-
-div h3{
-	text-align: center;
-}
 
 .col-centered{
     float: none;

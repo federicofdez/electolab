@@ -42,9 +42,9 @@
 
 			<nav class="navbar">
 				<ul class="nav nav-tabs">
-					<li ><a href="#">Crear escenario</a></li>
-					<li class="active"><a href="#">Simular escenario</a></li>
-					<li><a href="#">Foros de discusión</a></li>
+					<li ><a href="crear.html">Crear escenario</a></li>
+					<li class="active"><a href="simular.html">Simular escenario</a></li>
+					<li><a href="foro.html">Foros de discusión</a></li>
 				</ul>
 			</nav>
 			<div class="container-fluid" id="main-content">
@@ -52,7 +52,7 @@
 				<div class="row" style="margin-top: 20px;">
 					<div class="col-lg-3" style="margin-top: 7px;"> Sistema de proporcionalidad </div>
 					<div class="dropdown col-lg-2">
-						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">D'Hondt
+						<button class="btn btn-default dropdown-toggle sistema" type="button" data-toggle="dropdown">D'Hondt
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu">
@@ -63,28 +63,97 @@
 					<span>
 						<div class="col-lg-3" style="margin-top: 7px;">% escaños para la mayoria absoluta</div>
 						<div class="form-group col-lg-1">
-							<input type="number" class="form-control col-lg-1" placeholder="50">
+							<input type="number" class="form-control col-lg-1" placeholder="50" min="0" max="100">
 						</div>
 					</span>
 					<div class="col-lg-3">
-						<button type="button" class="btn btn-default s">Volver a simular</button>
+						<button type="button" class="btn btn-success s" data-toggle="modal" data-target="#volversimular">Cambiar simular</button>
 					</div>
 				</div>
-				<div class="row" style="margin-top: 3px;">
-					<div class="col-lg-6">
-						<h3>Partido más Votado</h3>
-						<img class="mapa" src="img/mapa.jpeg" alt="Grafica España">
+				<div class="col-lg-12 center-block" id="editarsimular" style="margin-top: 18px; "></div>
+				<div class="container">
+				<div class="row" style="margin-top: 3px; margin-top: 5px;">
+					<div class="col-lg-5">
+						<h3 class="text-center">Mapa de partido ganador</h3>
+						<img class="map center-block" src="img/mapa.jpeg" width="350" height="220">
 					</div>
-					<div class="col-lg-6">
-						<h3>Distribución de escaños en el Congreso</h3>
-						<img  class="diagrama" src="img/diagramaqueso.png" alt="Distribución de escaños en el Congreso">
+					<div class="col-lg-7">
+						<h3 class="text-center">Distribución de escaños en el Congreso</h3>
+						<img  class="diagram center-block" src="img/diagramaqueso.png" width="350" height="220">
 					</div>
 				</div>
-				<div class="col-lg-3 col-centered" style="margin-top:20px;">
-					<button class="btn btn-info" data-toggle="modal" data-target="#popupInforme">Generar informe</button>
+					<div class="row" style="margin-top: 3px; margin-top: 5px;">
+						<div class="col-lg-5">
+							<h3 class="text-center">Partido más Votado</h3>
+							<img class="center-block" src="img/graf1.jpg" width="240" height="220">
+						</div>
+						<div class="col-lg-7">
+							<h3 class="text-center">Gráfica votos</h3>
+							<img  class="diagrama center-block" src="img/graf2.jpeg" width="298" height="220">
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default" style="margin-top: 15px;">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Resultado simulación</a>
+						</h4>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse">
+						<div class="panel-body">Resultado</div>
+						<table class="table table-hover" id="partidosTable">
+							<thead>
+							<tr>
+								<th class="col-lg-3">Partido</th>
+								<th class="col-lg-3">Votos</th>
+								<th class="col-lg-3">Representación</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<th scope="row"><h5>PartidoXX</h5></th>
+								<th> <input type='text' class='form-control' value="1.000.0000"></th>
+								<th> <input type='text' class='form-control' value="20"></th>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-lg-12" style="padding-bottom: 40px;">
+					<button class="btn btn-info center-block" data-toggle="modal" data-target="#popupInforme">Generar informe</button>
+				</div>
+			</div>
+				<div style="padding: 80px;"></div>
+			</div>
+		</div>
+
+
+		<!-- Modal VolverSimular--> <div class="modal fade" id="volversimular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Cerrar</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Cambiar los parametros de la simulación</h4>
+				</div>
+				<div id="informe" class="modal-body">
+					<div class="text-center">
+
+						<h4>¿Como puede hacerlo?</h4>
+						<h5>Pequeñas modificaciones(Editar aqui)</h5>
+						<h5>Grandes cambios(Volver a crear)</h5>
+						<button type="button" class="btn btn-danger" id="botoncrear"  data-dismiss="modal">Volver a crear</button>
+						<button type="button" class="btn btn-warning" id="botoneditar"  data-dismiss="modal">Editar aqui</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
 		<!-- Modal Escenario--> <div class="modal fade" id="popupInforme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -119,5 +188,6 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/dropdown.js"></script>
+	<script type="text/javascript" src="./js/cambiarsimulacio.js"></script>
 </body>
 </html>

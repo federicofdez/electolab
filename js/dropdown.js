@@ -25,4 +25,8 @@ $(document).ready(function(){
         $(".circunscripciones").html('España <span class="caret caret-up"></span>');
     });
 
+    $("#botoncrear").on('click', function () {
+         location.href="./crear.html"
+    });
+
 });
