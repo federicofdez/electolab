@@ -1,92 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Simular</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+	<title>Simular</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo_electolab.png" alt="Logo" />
-                    <span>ElectoLab</span>
-                </a>
-            </div>
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img src="img/logo_electolab.png" alt="Logo" />
+						<span>ElectoLab</span>
+					</a>
+				</div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-</header>
-<main>
-    <div class="container">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+	</header>
+	<main>
+		<div class="container">
 
-        <nav class="navbar">
-            <ul class="nav nav-tabs">
-                <li ><a href="#">Crear escenario</a></li>
-                <li class="active"><a href="#">Simular escenario</a></li>
-                <li><a href="#">Foros de discusión</a></li>
-            </ul>
-        </nav>
-        <div class="container-fluid" id="main-content">
-            <h1>Resultado de la simulación</h1>
-            <div class="row" style="margin-top: 20px;">
-                   <div class="col-lg-3" style="margin-top: 7px;"> Sistema de proporcionalidad </div>
-                <div class="dropdown col-lg-2">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">D'Hondt
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dhont" href="#">D'Hondt</a></li>
-                            <li><a class="sainte" href="#">Sainte-Lagüe</a></li>
-                        </ul>
-                </div>
-                    <span>
-                  <div class="col-lg-3" style="margin-top: 7px;">% escaños para la mayoria absoluta</div>
-                    <div class="form-group col-lg-1">
-                    <input type="number" class="form-control col-lg-1" placeholder="50">
-                    </div>
-                    </span>
-                <div class="col-lg-3">
-                    <button type="button" class="btn btn-default s">Volver a simular</button>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 3px;">
-                <div class="col-lg-6">
-                    <h3>Partido más Votado</h3>
-                    <img class="mapa" src="img/mapa.jpeg" alt="Grafica España">
-                </div>
-                <div class="col-lg-6">
-                    <h3>Distribución de escaños en el Congreso</h3>
-                    <img  class="diagrama" src="img/diagramaqueso.png" alt="Distribución de escaños en el Congreso">
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-<footer class="footer">
-    <div class="container">
-        <p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
-    </div>
-</footer>
-<script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./js/dropdown.js"></script>
+			<nav class="navbar">
+				<ul class="nav nav-tabs">
+					<li ><a href="#">Crear escenario</a></li>
+					<li class="active"><a href="#">Simular escenario</a></li>
+					<li><a href="#">Foros de discusión</a></li>
+				</ul>
+			</nav>
+			<div class="container-fluid" id="main-content">
+				<h1>Resultado de la simulación</h1>
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-lg-3" style="margin-top: 7px;"> Sistema de proporcionalidad </div>
+					<div class="dropdown col-lg-2">
+						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">D'Hondt
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dhont" href="#">D'Hondt</a></li>
+							<li><a class="sainte" href="#">Sainte-Lagüe</a></li>
+						</ul>
+					</div>
+					<span>
+						<div class="col-lg-3" style="margin-top: 7px;">% escaños para la mayoria absoluta</div>
+						<div class="form-group col-lg-1">
+							<input type="number" class="form-control col-lg-1" placeholder="50">
+						</div>
+					</span>
+					<div class="col-lg-3">
+						<button type="button" class="btn btn-default s">Volver a simular</button>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 3px;">
+					<div class="col-lg-6">
+						<h3>Partido más Votado</h3>
+						<img class="mapa" src="img/mapa.jpeg" alt="Grafica España">
+					</div>
+					<div class="col-lg-6">
+						<h3>Distribución de escaños en el Congreso</h3>
+						<img  class="diagrama" src="img/diagramaqueso.png" alt="Distribución de escaños en el Congreso">
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
+		</div>
+	</footer>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/dropdown.js"></script>
 </body>
 </html>
