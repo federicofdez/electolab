@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-colorselector.css" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 
 
 </head>
@@ -43,7 +43,7 @@
 
 	<main>
 		<div class="container">
-			<nav class="navbar">                  
+			<nav class="navbar">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#">Crear escenario</a></li>
 					<li><a href="simular.html">Simular escenario</a></li>
@@ -70,17 +70,17 @@
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script>
-		var progress = setInterval(function() {
-			var $bar = $('.progress-bar');
-			var $progreso= $bar.attr('aria-valuenow');  
-			$progreso = parseInt($progreso) + 10 ;
-			console.log($progreso);
-			$('.progress-bar').css('width', $progreso + '%').attr('aria-valuenow', $progreso); 
-			if($progreso === 110) {
-				clearInterval(progress);
-				window.location="simular.html";	
-			}
-		}, 500);
+	var progress = setInterval(function() {
+		var $bar = $('.progress-bar');
+		var $progreso= $bar.attr('aria-valuenow');
+		$progreso = parseInt($progreso) + 10 ;
+		console.log($progreso);
+		$('.progress-bar').css('width', $progreso + '%').attr('aria-valuenow', $progreso);
+		if($progreso === 110) {
+			clearInterval(progress);
+			window.location="simular.html";
+		}
+	}, 500);
 	</script>
 </body>
 </html>
