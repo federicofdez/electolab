@@ -34,6 +34,7 @@ main .navbar {
 	border-right: 1px #dddddd solid;
 	border-bottom: 1px #dddddd solid;
 	height: contain;
+	min-height: 400px;
 }
 
 .footer {
@@ -71,3 +72,5 @@ div img.diagrama {
 div h3{
 	text-align: center;
 }
+
+
