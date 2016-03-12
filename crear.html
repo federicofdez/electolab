@@ -91,7 +91,8 @@
 										</tr>
 									</tbody>
 								</table>
-								<button onclick="addPartido()" type="button" class="btn btn-default">Añadir partido</button>
+								<button onclick="addPartido()" type="button" class="btn btn-default center-block">Añadir partido</button>
+								<div style="padding: 5px;"></div>
 							</div>
 						</div>
 					</div>
@@ -104,7 +105,7 @@
 						<div id="collapse2" class="panel-collapse collapse">
 							<div class="panel-body">Configure el formato de sistema electoral:</div>
 							<div class="row">
-								<div class="col-lg-3" style="margin-top: 7px;"> Sistema de proporcionalidad </div>
+								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad </div>
 								<div class="dropdown col-lg-2">
 									<button class="btn btn-default dropdown-toggle sistema" type="button" data-toggle="dropdown">D'Hondt
 										<span class="caret"></span>
@@ -119,16 +120,16 @@
 									<button class="btn btn-default dropdown-toggle circunscripciones" type="button" data-toggle="dropdown">Provincias
 										<span class="caret"></span>
 									</button>
-									<ul class="dropdown-menu">
+									<ul class="dropdown-menu" >
 										<li><a class="provincias" href="#">Provincias</a></li>
 										<li><a class="comunidades" href="#">Comunidades autónomas</a></li>
 										<li><a class="espana" href="#">España</a></li>
 
 									</ul>
 								</div>
-								<div class="col-lg-3" style="margin-top: 7px;"> % escaños para la mayoria absoluta </div>
-								<div class="form-group col-lg-1">
-									<input type="number" class="form-control col-lg-1" placeholder="50">
+								<div class="col-lg-3 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta </div>
+								<div class="form-group col-lg-1 center-block">
+									<input type="number" class="form-control col-lg-1 center-block" placeholder="50" style="margin-top: 18px;">
 								</div>
 							</div>
 						</div>
@@ -153,206 +154,334 @@
 								<tbody>
 									<tr>
 										<th scope="row"><h5>Álava</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Albacete</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 
 									</tr>
 									<tr>
 										<th scope="row"><h5>Álicante</h5>
-										</th><th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										</th><th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Álmería</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Ásturias</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Ávila</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Badajoz</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Barcelona</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Burgos</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Cáceres</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Cádiz</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Cantabria</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Castellón</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Ceuta</h5></th>
-										<th> <input type='text' class='form-control'</th>
-										<th> <input type='text' class='form-control'</th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
 										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Ciudad Real</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Córdoba</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Cuenca</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Gerona</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Granada</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Guadalajara</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Guipúzcoa</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Huelva</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Huesca</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Jaén</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>La coruña</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>La Rioja</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Las Palmas</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>León</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Lérida</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Lugo</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Madrid</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Málaga</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Melilla</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Murcia</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Navarra</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Orense</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Palencia</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Pontevedra</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Salamanca</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Santa Cruz de Tenerife</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Segovia</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Sevilla</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Soria</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Tarragona</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Teruel</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Toledo</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Valencia</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Valladolid</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Vizcaya</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Zamora</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 									<tr>
 										<th scope="row"><h5>Zaragoza</h5></th>
+										<th> <input type='text' class='form-control'></th>
+										<th> <input type='text' class='form-control'></th>
+										<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 									</tr>
 								</tbody>
+							</table>
+							<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">
+								<thead> <tr>
+									<th class="col-lg-3 center-block">Computación total</th>
+									<th class="col-lg-3 center-block">Total de Votos</th>
+									<th class="col-lg-3 center-block">Total de Circunscripciones</th>
+									<th class="col-lg-3 center-block">Total de Escaños</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<th scope="row"><h5>SimulacioXX</h5></th>
+									<th><input type='text' class='form-control' placeholder="1.000.000"></th>
+									<th> <input type='text' class='form-control' placeholder="54"></th>
+									<th> <input type='text' class='form-control ' placeholder="340"></th>
+								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
-				<a href="carga.html" class="btn btn-info" role="button">Simular escenario</a>
+				<a href="carga.html" class="btn btn-info center-block" role="button">Simular escenario</a>
+				<div style="padding: 40px;"></div>
 			</div>
 		</div>
 	</main>

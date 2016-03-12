@@ -33,14 +33,17 @@ $("#botoneditar").on('click', function () {
         '<select id="colorselector">' +
         '<option value="87" data-color="#FF4500">orangered</option>' +
         '<option value="78" data-color="#8000FF">purple</option>' +
-        '<option value="78" data-color="#2E64FE">darkblue</option>' +
-        '<option value="78" data-color="#FF0000">red</option>' +
-        '<option value="78" data-color="#01DF01">green</option>' +
-        '<option value="78" data-color="#FFFF00">yellow</option>' +
-        '<option value="78" data-color="#FE2EF7">pink</option>' +
-        '<option value="78" data-color="#151515">black</option>' +
+        '<option value="13" data-color="#2E64FE">darkblue</option>' +
+        '<option value="15" data-color="#FF0000">red</option>' +
+        '<option value="32" data-color="#01DF01">green</option>' +
+        '<option value="42" data-color="#FFFF00">yellow</option>' +
+        '<option value="47" data-color="#FE2EF7">pink</option>' +
+        '<option value="123" data-color="#151515">black</option>' +
         '</select>' +
         '</td>' +
+        '<script>'+
+        '$("#colorselector").colorselector();'+
+        '</script>' +
         '<td><h5>Todas</h5></td>' +
         '</tr>' +
         '</tbody>' +
@@ -396,6 +399,22 @@ $("#botoneditar").on('click', function () {
         '<th class="form-group"><input type="number" class="form-control"max="350" min="0" ></th>'+
         '</tr>'+
         '</tbody>'+
+        '</table>'+
+        '<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">'+
+        '<thead> <tr>'+
+        '<th class="col-lg-3 center-block">Computación total</th>'+
+        '<th class="col-lg-3 center-block">Total de Votos</th>'+
+        '<th class="col-lg-3 center-block">Total de Circunscripciones</th>'+
+        '<th class="col-lg-3 center-block">Total de Escaños</th>'+
+        '</tr>'+
+        '</thead>'+
+        '<tbody>'+
+        '<tr>'+
+        '<th scope="row"><h5>SimulacioXX</h5></th>'+
+        '<th><input type="text" class="form-control" placeholder="1.000.000"></th>'+
+        '<th> <input type="text" class="form-control" placeholder="54"></th>'+
+        '<th> <input type="text" class="form-control" placeholder="340"></th>'+
+        '</tr>'+
         '</table>'+
         '</div>'+
         '</div>'+
