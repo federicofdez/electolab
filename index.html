@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>ElectoLab</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
@@ -30,29 +30,77 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
+						<li><a href="Registrar.html"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
+						<li><a href="Iniciar%20sesion.html"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
 		</nav>
 	</header>
 	<main>
-		<div class="container">
+        
+	<div class="container">
 
 			<nav class="navbar">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#">Crear escenario</a></li>
-					<li><a href="#">Simular escenario</a></li>
-					<li><a href="#">Foros de discusión</a></li>
+					<li><a href="crear.html">Crear escenario</a></li>
+					<li><a href="simular.html">Simular escenario</a></li>
+					<li><a href="foro.html">Foros de discusión</a></li>
 				</ul>
 			</nav>
 			<div class="container-fluid" id="main-content">
-				<h1>My First Bootstrap Page</h1>
-				<p>This is some text.</p>
+                <div class="panel panel-info col-lg-12" style="min-height:150px">
+  <div class="panel-heading">
+    <h3 class="panel-title">     ¿Qué es ElectoLab?
+</h3>
+  </div>
+  <div class="panel-body">
+		ElectoLab es una aplicación que le permitirá realizar simulaciones electorales, en la cual usted será el que ponga las normas. 
+  </div>
+</div>
+                <div class="panel panel-info col-lg-6" style="min-height:150px">
+  <div class="panel-heading">
+    <h3 class="panel-title">    ¿Qué puedo elegir con ElectoLab?
+</h3>
+  </div>
+  <div class="panel-body">
+Elige los partidos que se presentan, los votos que obtendrán, las circunscripciones en las que se presentan, el sistema de proporcionalidad y los escaños por circunscripción.  </div>
+</div>
+                <div class="panel panel-info col-lg-6" style="min-height:150px">
+  <div class="panel-heading">
+    <h3 class="panel-title">    ¿Cómo veré los resultados?
+</h3>
+  </div>
+  <div class="panel-body">
+Con todo lo que haya introducido nosotros generaremos un mapa con la distribución de los votos, un gráfico del congreso y el número de votos   </div>
+</div>
+                <div class="panel panel-info col-lg-6" style="min-height:150px">
+  <div class="panel-heading">
+    <h3 class="panel-title">    ¿Podré exportar esos resultados?
+</h3>
+  </div>
+  <div class="panel-body">
+Con tan solo un click podrá generar un informe con la simulación realizada.  </div>
+</div>
+                <div class="panel panel-info col-lg-6" style="min-height:150px">
+  <div class="panel-heading">
+    <h3 class="panel-title">  ¿Qué más me puede ofrecer ElectoLab?
+</h3>
+  </div>
+  <div class="panel-body">
+		Regístrese con su correo y su grupo de trabajo para poder comentar las simulaciones que hagas con su grupo.
+  </div>
+</div>
+
+<div class="buttons text-center">
+      <button type="submit" class="btn btn-info">Crear escenario nuevo</button> <button type="submit" class="btn btn-info">Cargar escenario previo</button>
+    </div>
 			</div>
 		</div>
+
+
 	</main>
+    
 	<footer class="footer">
 		<div class="container">
 			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
