@@ -46,6 +46,7 @@ main .navbar {
   position: fixed;
   bottom: 0px;
   left:0px;
+	display: none;
 }
 .footer p {
 	margin: 20px 0;
@@ -69,4 +70,8 @@ font-size: 20px;
 margin-bottom:7px;  
     color:black;
 }
+
+.license{
+    margin-top:20px;
+    
 }

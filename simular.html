@@ -51,9 +51,9 @@
 			<div class="container-fluid" id="main-content">
 				<h1>Resultado de la simulación</h1>
 				<div class="row" style="margin-top: 20px;">
-					<div class="col-lg-3" style="margin-top: 7px;"> <p class="text-center">Sistema de proporcionalidad</p></div>
+					<div class="col-lg-3" style="margin-top: 7px;"> <p class="text-center">Sistema proporcionalidad</p></div>
 					<div class="dropdown col-lg-2">
-						<button class="btn btn-default dropdown-toggle sistema" type="button" data-toggle="dropdown">D'Hondt
+						<button class="btn btn-default dropdown-toggle sistema center-block" type="button" data-toggle="dropdown">D'Hondt
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu">
@@ -62,15 +62,31 @@
 						</ul>
 					</div>
 					<span>
-						<div class="col-lg-3" style="margin-top: 7px;"><p class="text-center">% escaños para la mayoria absoluta</p></div>
+						<div class="col-lg-2" style="margin-top: 7px;"><p class="text-center" > % Mayoria absoluta</p></div>
 						<div class="form-group col-lg-1">
 							<input type="number" class="form-control col-lg-1" placeholder="50" min="0" max="100">
 						</div>
 					</span>
-					<div class="col-lg-3">
-						<button type="button" class="btn btn-success s" data-toggle="modal" data-target="#volversimular">Cambiar simular</button>
+					<div class="col-lg-2"><p class="text-center">Circunscripciones</p></div>
+					<div class="dropdown col-lg-2">
+						<button class="btn btn-default dropdown-toggle circunscripciones center-block" type="button" data-toggle="dropdown">Provincias
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" >
+							<li><a class="provincias" href="#">Provincias</a></li>
+							<li><a class="comunidades" href="#">Comunidades autónomas</a></li>
+							<li><a class="espana" href="#">España</a></li>
+						</ul>
 					</div>
 				</div>
+				<div class="row" style="margin-top: 15px;">
+					<div class="col-lg-6">
+						<button type="button" class="btn btn-info volversimular center-block" data-toggle="modal" data-target="#volversimular">Volver a Simular</button>
+					</div>
+					<div class="col-lg-6">
+						<button type="button" class="btn btn-info center-block" id="botoncrear">Editar Simulación</button>
+					</div>
+					</div>
 				<div class="col-lg-12 center-block" id="editarsimular" style="margin-top: 18px; "></div>
 				<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
@@ -124,37 +140,12 @@
 					<button class="btn btn-info center-block" data-toggle="modal" data-target="#popupInforme">Generar informe</button>
 				</div>
 			</div>
-				<div style="padding: 80px;"></div>
+				<div style="padding: 20px;"></div>
 			</div>
 		</div>
 
 
-		<!-- Modal VolverSimular--> <div class="modal fade" id="volversimular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span>
-						<span class="sr-only">Cerrar</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Cambiar los parametros de la simulación</h4>
-				</div>
-				<div id="informe" class="modal-body">
-					<div class="text-center">
 
-						<h4>¿Como puede hacerlo?</h4>
-						<h5>Pequeñas modificaciones(Editar aqui)</h5>
-						<h5>Grandes cambios(Volver a crear)</h5>
-						<button type="button" class="btn btn-danger" id="botoncrear"  data-dismiss="modal">Volver a crear</button>
-						<button type="button" class="btn btn-warning" id="botoneditar"  data-dismiss="modal">Editar aqui</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 		<!-- Modal Escenario--> <div class="modal fade" id="popupInforme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
