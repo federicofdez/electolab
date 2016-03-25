@@ -14,6 +14,22 @@
 #states .active {
   fill: orange;
 }
+.state.Barcelona{
+  fill:red;
+}
+.state.Madrid{
+  fill:blue;
+}
+.state.Álava{
+  fill:blue;
+}
+.state.Palmas{
+  fill:blue;
+}
+.state.Zaragoza{
+  fill:purple;
+}
+
 
 #state-borders {
   fill: none;
@@ -55,7 +71,7 @@ svg.append("rect")
 
 var g = svg.append("g");
 
-d3.json("./json/spain.json", function(error, us) {
+d3.json("json/states_esp.topo.json", function(error, us) {
   if (error) throw error;
 
   g.append("g")
@@ -63,6 +79,7 @@ d3.json("./json/spain.json", function(error, us) {
     .selectAll("path")
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
+        .attr("class",function(d){console.log(d.properties.name);return "state " + d.properties.name;})
       .attr("d", path)
       .on("click", clicked);
 
@@ -70,6 +87,13 @@ d3.json("./json/spain.json", function(error, us) {
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
+
+ /*svg.selectAll(".state")
+   .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("path")
+    .attr("class",function(d){console.log(d.properties.name);return "state " + d.properties.name;})
+    .attr("d",path);*/
+
 });
 
 function clicked(d) {
