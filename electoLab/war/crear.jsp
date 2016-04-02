@@ -149,7 +149,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="carga.html" class="btn btn-info center-block" role="button">Simular escenario</a>
+				<a href="/simular" class="btn btn-info center-block" role="button">Simular escenario</a>
 				<div style="padding: 40px;"></div>
 			</div>
 		</div>
