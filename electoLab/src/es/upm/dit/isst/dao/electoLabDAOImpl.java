@@ -6,9 +6,16 @@ import java.util.List;
 import es.upm.dit.isst.model.Escenario;
 
 public class electoLabDAOImpl implements electoLabDAO {
+	private static electoLabDAOImpl instance;
 
 	public electoLabDAOImpl() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public static electoLabDAOImpl getInstance(){
+		if(instance == null)
+			instance = new electoLabDAOImpl();
+		return instance;
 	}
 
 	@Override
