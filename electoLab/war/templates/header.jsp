@@ -1,4 +1,3 @@
-
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -19,7 +18,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="Registrar.html"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
-						<li><a href="Iniciar%20sesion.html"><span class="glyphicon glyphicon-log-in"></span>  Iniciar sesión</a></li>
+						<li><a href='<c:url value="${url}"/>'<span class="glyphicon glyphicon-log-in"></span> <c:out value="${urlLinktext}"/></a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->

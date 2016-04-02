@@ -15,7 +15,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
-
+@SuppressWarnings("serial")
 public class crearServlet extends HttpServlet {
 	 private String[] provincias = {"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
 	            		                	"Cádiz","Cantabria","Castellón","Ceuta","Ciudad Real","Córdoba","Cuenca","Gerona","Granada","Guadalajara",
@@ -38,7 +38,7 @@ public class crearServlet extends HttpServlet {
 		if(req.getUserPrincipal() != null){
 			user = req.getUserPrincipal().getName();
 			url = userService.createLogoutURL(req.getRequestURI());
-			urlLinktext = "Logout";
+			urlLinktext = user + " :Logout";
 		}
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
@@ -47,11 +47,6 @@ public class crearServlet extends HttpServlet {
 		
 		
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
-		//dao.delete("test@example.com");
-
-		//dao.create("test@example.com", "suTitulo", "Hola 2", "Jambrina@Jambrina.com", "Huecas@Huecas.com", "", 2);
-		
-		//Inicialización TFG
 		req.getSession().setAttribute("provincias", provincias);
 		req.getSession().setAttribute("electores", electores);
 
