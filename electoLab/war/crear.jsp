@@ -110,7 +110,7 @@
 						</div>
 						<div id="collapse3" class="panel-collapse collapse">
 							<div class="panel-body">Introduzca los votos de cada partido por circunscripción:</div>
-							<table class="table table-hover" id="partidosTable">
+							<table class="table table-hover" id="votosTable">
 								<thead>
 									<tr>
 										<th class="col-lg-3"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
@@ -185,6 +185,8 @@
 	}
         
     $('[data-toggle="tooltip"]').tooltip(); 
+    
+
 </script>
 
 </body>
