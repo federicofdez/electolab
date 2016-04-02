@@ -41,8 +41,8 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th scope="row"><h5>XX</h5></th>
-											<td><h5>Partido 1</h5></td>
+											<th scope="row"><input type='text' class='form-control'></th>
+											<td><input type='text' class='form-control'></td>
 											<td>
 												<select id="colorselector">
 													<option value="87" data-color="#FF4500">orangered</option>
@@ -115,8 +115,7 @@
 									<tr>
 										<th class="col-lg-3"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
  electores">Circunscripción</a></th>
-										<th class="col-lg-3">Partido1</th>
-										<th class="col-lg-3">Partido2</th>
+										<th class="col-lg-3" >Partido1</th>
 										<th class="col-lg-3">Escaños</th>
 									</tr>
 								</thead>
@@ -125,7 +124,6 @@
 	                                    <tr>
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
 	 											electores"><c:out value="${provincia}"/></a>
-											<th> <input type='text' class='form-control'></th>
 											<th> <input type='text' class='form-control'></th>
 											<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 										</tr>
@@ -144,7 +142,7 @@
 								<tr>
 									<th scope="row"><h5>SimulacioXX</h5></th>
 									<th><input type='text' class='form-control' placeholder="1.000.000"></th>
-									<th> <input type='text' class='form-control' placeholder="54"></th>
+									<th> <input type='text' class='form-control' placeholder="52"></th>
 									<th> <input type='text' class='form-control ' placeholder="340"></th>
 								</tr>
 							</table>
@@ -182,11 +180,13 @@
 		cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
 		cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
 		cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
+	
+		
 	}
         
     $('[data-toggle="tooltip"]').tooltip(); 
-    
 
+    
 </script>
 
 </body>
