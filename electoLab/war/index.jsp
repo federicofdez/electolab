@@ -15,7 +15,7 @@
 	</header>
 	<main>        
 	<div class="container">
-        <%@ include file="templates/main.html" %>
+        <%@ include file="templates/main.jsp" %>
 			<div class="container-fluid" id="main-content">
                 <div class="panel panel-info col-lg-12" style="min-height:150px; text-align:center">
   <div class="panel-heading">

@@ -17,7 +17,7 @@
 
 	<main>
 		<div class="container">
-			 <%@ include file="templates/main.html" %>
+			 <%@ include file="templates/main.jsp" %>
 			<div class="container-fluid" id="main-content">
 				<h2>Introduzca los parámetros del escenario a simular</h2>
 				<div class="panel-group" id="accordion">
