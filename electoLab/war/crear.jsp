@@ -36,16 +36,16 @@
 											<th class="col-lg-3">Siglas</th>
 											<th class="col-lg-3">Nombre</th>
 											<th class="col-lg-3">Color</th>
-											<th class="col-lg-3">N. CCAA</th>
+											<th class="col-lg-3">Provincias</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach items="${partidos}" var="partido">
 	                                    <tr>
-											<th scope="row"><c:out value="${partido[0]}"/></th>
+											<th scope="row"> <img src="${partido[2]}" style="height: 40px;"> <c:out value="${partido[0]}"/></th>
 											<td><c:out value="${partido[1]}"/></td>
 											<td>
-												<select class="colorselector" id="color${partido[2]}">
+												<select class="colorselector" id="color${partido[3]}">
 													<option value="1" data-color="#02CFF7">Azul claro</option>
 													<option value="2" data-color="#FF0000">Rojo</option>
 													<option value="3" data-color="#742DA1">Morado</option>
@@ -69,8 +69,8 @@
 												</select>
 											</td>
 											<c:choose>
-    											<c:when test="${fn:length(partido) > 3}">
-													<td><h5><c:out value="${partido[3]}"/></h5></td>
+    											<c:when test="${fn:length(partido) > 4}">
+													<td><h5><c:out value="${partido[4]}"/></h5></td>
    												</c:when>    
    												<c:otherwise>
 													<td><h5>Todas</h5></td>
@@ -78,12 +78,13 @@
 											</c:choose>
 										</tr>
 										<script>
-										var val = ${partido[2]};
-										$('#color'+${partido[2]}).val(val.toString());</script>
+										var val = ${partido[3]};
+										$('#color'+${partido[3]}).val(val.toString());</script>
 									</c:forEach>
 									</tbody>
 								</table>
-								<button onclick="addPartido()" type="button" class="btn btn-default center-block">Añadir partido</button>
+								<!-- Boton comentado de momento -->
+								<!--<button onclick="addPartido()" type="button" class="btn btn-default center-block">Añadir partido</button>-->
 								<div style="padding: 5px;"></div>
 							</div>
 						</div>

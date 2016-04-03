@@ -32,20 +32,20 @@ public class crearServlet extends HttpServlet {
          	"105.453","509.333","1.893.225","421.369","913.244","155.512","714.370"};
 	 List<String[]> partidos = new ArrayList<String[]>();
 	 {
-	     partidos.add(new String[]{"PP","Partido Popular","1"});
-	     partidos.add(new String[]{"PSOE","Partido Socialista","2"});
-	     partidos.add(new String[]{"PODEMOS","Podemos","3"});
-	     partidos.add(new String[]{"C's","Ciudadanos","4"});
-	     partidos.add(new String[]{"EN COMÚ","En comú Podem","5","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","6","Alicante,Castellón,Valencia"});
-	     partidos.add(new String[]{"ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","7","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"DL","Democràcia i Llibertat","8","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-En Marea-ANOVA-EU","En Marea","9","A Coruña,Lugo,Orense,Pontevedra"});
-	     partidos.add(new String[]{"IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","10"});
-	     partidos.add(new String[]{"EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","11","Álava,Guipúzcoa,Vizcaya"});
-	     partidos.add(new String[]{"CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","12","Las Palmas,Santa Cruz de Tenerife"});
-	     partidos.add(new String[]{"UPN","Unión del Pueblo Navarro","13","Navarra"});
-	     partidos.add(new String[]{"FAC","Foro Asturias","14","Asturias"});
+	     partidos.add(new String[]{"PP","Partido Popular","img/logos/pp.png","1"});
+	     partidos.add(new String[]{"PSOE","Partido Socialista","img/logos/psoe.png","2"});
+	     partidos.add(new String[]{"PODEMOS","Podemos","img/logos/podemos.png","3"});
+	     partidos.add(new String[]{"C's","Ciudadanos","img/logos/ciudadanos.png","4"});
+	     partidos.add(new String[]{"EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Alicante,Castellón,Valencia"});
+	     partidos.add(new String[]{"ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"DL","Democràcia i Llibertat","img/logos/dl.png","8","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9","A Coruña,Lugo,Orense,Pontevedra"});
+	     partidos.add(new String[]{"IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10"});
+	     partidos.add(new String[]{"EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11","Álava,Guipúzcoa,Vizcaya"});
+	     partidos.add(new String[]{"CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12","Las Palmas,Santa Cruz de Tenerife"});
+	     partidos.add(new String[]{"UPN","Unión del Pueblo Navarro","img/logos/upn.png","13","Navarra"});
+	     partidos.add(new String[]{"FAC","Foro Asturias","img/logos/foro.jpg","14","Asturias"});
 	 }
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
