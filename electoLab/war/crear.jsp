@@ -40,23 +40,44 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row"><input type='text' class='form-control'></th>
-											<td><input type='text' class='form-control'></td>
+									<c:forEach items="${partidos}" var="partido">
+	                                    <tr>
+											<th scope="row"><c:out value="${partido[0]}"/></th>
+											<td><c:out value="${partido[1]}"/></td>
 											<td>
-												<select id="colorselector">
-													<option value="87" data-color="#FF4500">orangered</option>
-													<option value="78" data-color="#8000FF">purple</option>
-													<option value="78" data-color="#2E64FE">darkblue</option>
-													<option value="78" data-color="#FF0000">red</option>
-													<option value="78" data-color="#01DF01">green</option>
-													<option value="78" data-color="#FFFF00">yellow</option>
-													<option value="78" data-color="#FE2EF7">pink</option>
-													<option value="78" data-color="#151515">black</option>
+												<select class="colorselector">
+													<option value="1" data-color="#02CFF7">Azul claro</option>
+													<option value="2" data-color="#FF0000" selected="selected">Rojo</option>
+													<option value="3" data-color="#742DA1">Morado</option>
+													<option value="4" data-color="#F7771B">Naranja</option>
+													<option value="5" data-color="#FFCC00">Amarillo</option>
+													<option value="6" data-color="#0F178A">Azul oscuro</option>
+													<option value="7" data-color="#C2F095">Verde claro</option>
+													<option value="8" data-color="#54A106">Verde oscuro</option>
+													<option value="9" data-color="#F7199B">Rosa</option>
+													<option value="10" data-color="#151515">Negro</option>
+													<option value="11" data-color="#FFFFFF">Blanco</option>
+													<option value="12" data-color="#A19D9F">Gris</option>
+													<option value="13" data-color="#2CF1F5">Cian</option>
+													<option value="14" data-color="#151515">Negro</option>
+													<option value="15" data-color="#151515">Negro</option>
+													<option value="16" data-color="#151515">Negro</option>
+													<option value="17" data-color="#151515">Negro</option>
+													<option value="18" data-color="#151515">Negro</option>
+													<option value="19" data-color="#151515">Negro</option>
+													<option value="20" data-color="#151515">Negro</option>		
 												</select>
 											</td>
-											<td><h5>Todas</h5></td>
+											<c:choose>
+    											<c:when test="${fn:length(partido) > 2}">
+													<td><h5><c:out value="${partido[2]}"/></h5></td>
+   												</c:when>    
+   												<c:otherwise>
+													<td><h5>Todas</h5></td>
+    											</c:otherwise>
+											</c:choose>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 								<button onclick="addPartido()" type="button" class="btn btn-default center-block">Añadir partido</button>
@@ -115,7 +136,9 @@
 									<tr>
 										<th class="col-lg-3"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
  electores">Circunscripción</a></th>
-										<th class="col-lg-3" >Partido1</th>
+										<c:forEach items="${partidos}" var="partido">
+											<th class="col-lg-3" ><c:out value="${partido[0]}"/></th>
+										</c:forEach>
 										<th class="col-lg-3">Escaños</th>
 									</tr>
 								</thead>
@@ -124,7 +147,9 @@
 	                                    <tr>
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
 	 											electores"><c:out value="${provincia}"/></a>
-											<th> <input type='text' class='form-control'></th>
+	 										<c:forEach var="i" begin="1" end="${fn:length(partidos)}">
+												<th> <input type='text' class='form-control' placeholder='0'></th>
+											</c:forEach>	
 											<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 										</tr>
 									</c:forEach>
@@ -168,22 +193,21 @@
 
 
 	<script>
-	$('#colorselector').colorselector();
+	$('.colorselector').colorselector();
 	function addPartido() {
-		var table = document.getElementById("partidosTable");
-		var row = table.insertRow();
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		var cell4 = row.insertCell(3);
-		cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
-		cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
-		cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
-		cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
-	
-		
+		//var table = document.getElementById("partidosTable");
+		//var row = table.insertRow();
+		//var cell1 = row.insertCell(0);
+		//var cell2 = row.insertCell(1);
+		//var cell3 = row.insertCell(2);
+		//var cell4 = row.insertCell(3);
+		//cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
+		//cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
+		//cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
+		//cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
+		// $('.p1').removeClass("hidden");
 	}
-        
+	   
     $('[data-toggle="tooltip"]').tooltip(); 
 
     
