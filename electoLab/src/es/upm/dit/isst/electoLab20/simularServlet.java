@@ -11,7 +11,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 public class simularServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		UserService userService = UserServiceFactory.getUserService();
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
@@ -24,8 +24,12 @@ public class simularServlet extends HttpServlet {
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
+		String alba = req.getParameter("1Albacete");
+		System.out.println(alba);
+		
 		resp.sendRedirect("/simular.jsp");
 
+		
 	}
 
 }

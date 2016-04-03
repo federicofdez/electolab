@@ -18,6 +18,7 @@
 	<main>
 		<div class="container">
 			 <%@ include file="templates/main.jsp" %>
+		<form action="/simular" method="post">
 			<div class="container-fluid" id="main-content">
 				<h2>Introduzca los parámetros del escenario a simular</h2>
 				<div class="panel-group" id="accordion">
@@ -27,6 +28,7 @@
 								<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Partidos políticos</a>
 							</h4>
 						</div>
+					
 						<div id="collapse1" class="panel-collapse collapse in">
 							<div class="panel-body">Introduzca los partidos políticos que se presentan a la elecciones</div>
 							<div>
@@ -152,7 +154,7 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
 	 											electores"><c:out value="${provincia}"/></a>
 	 										<c:forEach var="i" begin="1" end="${fn:length(partidos)}">
-												<th> <input type='text' class='form-control' placeholder='0'></th>
+												<th> <input type='text' class='form-control'name="${i}${provincia}" placeholder='0'></th>
 											</c:forEach>	
 											<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 										</tr>
@@ -178,9 +180,10 @@
 						</div>
 					</div>
 				</div>
-				<a href="/simular" class="btn btn-info center-block" role="button">Simular escenario</a>
+				<input type="submit" value="Submit" class="btn btn-info center-block" role="button">Simular escenario/>
 				<div style="padding: 40px;"></div>
 			</div>
+		</form>	
 		</div>
 	</main>
 
