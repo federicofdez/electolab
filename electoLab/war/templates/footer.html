@@ -4,5 +4,5 @@
 <script>
     //Script para cambiar a clase active en el navegador
     	    $('.nav li').removeClass('active');
-    	    $('nav a[href^="/' + location.pathname.split("/")[1] + '"]').parent().addClass('active');
+    	    $('nav a[href^="/' + location.pathname.split("/")[1].split(".")[0] + '"]').parent().addClass('active');
 </script>

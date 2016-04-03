@@ -48,9 +48,7 @@ public class crearServlet extends HttpServlet {
 		
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
 		req.getSession().setAttribute("provincias", provincias);
-		req.getSession().setAttribute("electores", electores);
-
-		
+		req.getSession().setAttribute("electores", electores);		
 		resp.sendRedirect("/crear.jsp");
 	}
 

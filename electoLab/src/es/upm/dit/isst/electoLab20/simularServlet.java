@@ -24,7 +24,6 @@ public class simularServlet extends HttpServlet {
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
-		
 		resp.sendRedirect("/simular.jsp");
 
 	}

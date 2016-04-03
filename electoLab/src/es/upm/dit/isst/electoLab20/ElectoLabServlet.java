@@ -28,6 +28,7 @@ public class ElectoLabServlet extends HttpServlet {
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
+		System.out.println("index");
 		resp.sendRedirect("/index.jsp");
 
 		
