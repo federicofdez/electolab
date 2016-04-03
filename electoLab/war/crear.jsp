@@ -134,12 +134,12 @@
 							<table class="table table-hover" id="votosTable">
 								<thead>
 									<tr>
-										<th class="col-lg-3"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
+										<th style="min-width:100px;"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
  electores">Circunscripción</a></th>
 										<c:forEach items="${partidos}" var="partido">
-											<th class="col-lg-3" ><c:out value="${partido[0]}"/></th>
+											<th style="min-width:100px;"><c:out value="${partido[0]}"/></th>
 										</c:forEach>
-										<th class="col-lg-3">Escaños</th>
+										<th style="min-width:100px;" >Escaños</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -207,7 +207,10 @@
 		//cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
 		// $('.p1').removeClass("hidden");
 	}
-	   
+	$('#votosTable').DataTable( {
+        "scrollX": true,
+        "ordering": false, 
+    } );  
     $('[data-toggle="tooltip"]').tooltip(); 
 
     
