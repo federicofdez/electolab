@@ -45,9 +45,9 @@
 											<th scope="row"><c:out value="${partido[0]}"/></th>
 											<td><c:out value="${partido[1]}"/></td>
 											<td>
-												<select class="colorselector">
+												<select class="colorselector" id="color${partido[2]}">
 													<option value="1" data-color="#02CFF7">Azul claro</option>
-													<option value="2" data-color="#FF0000" selected="selected">Rojo</option>
+													<option value="2" data-color="#FF0000">Rojo</option>
 													<option value="3" data-color="#742DA1">Morado</option>
 													<option value="4" data-color="#F7771B">Naranja</option>
 													<option value="5" data-color="#FFCC00">Amarillo</option>
@@ -69,14 +69,17 @@
 												</select>
 											</td>
 											<c:choose>
-    											<c:when test="${fn:length(partido) > 2}">
-													<td><h5><c:out value="${partido[2]}"/></h5></td>
+    											<c:when test="${fn:length(partido) > 3}">
+													<td><h5><c:out value="${partido[3]}"/></h5></td>
    												</c:when>    
    												<c:otherwise>
 													<td><h5>Todas</h5></td>
     											</c:otherwise>
 											</c:choose>
 										</tr>
+										<script>
+										var val = ${partido[2]};
+										$('#color'+${partido[2]}).val(val.toString());</script>
 									</c:forEach>
 									</tbody>
 								</table>

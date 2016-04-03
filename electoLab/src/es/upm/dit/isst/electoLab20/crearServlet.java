@@ -32,20 +32,20 @@ public class crearServlet extends HttpServlet {
          	"105.453","509.333","1.893.225","421.369","913.244","155.512","714.370"};
 	 List<String[]> partidos = new ArrayList<String[]>();
 	 {
-	     partidos.add(new String[]{"PP","Partido Popular"});
-	     partidos.add(new String[]{"PSOE","Partido Socialista"});
-	     partidos.add(new String[]{"PODEMOS","Podemos"});
-	     partidos.add(new String[]{"C's","Ciudadanos"});
-	     partidos.add(new String[]{"EN COMÚ","En comú Podem","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","Alicante,Castellón,Valencia"});
-	     partidos.add(new String[]{"ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"DL","Democràcia i Llibertat","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-En Marea-ANOVA-EU","En Marea","A Coruña,Lugo,Orense,Pontevedra"});
-	     partidos.add(new String[]{"IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común"});
-	     partidos.add(new String[]{"EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","Álava,Guipúzcoa,Vizcaya"});
-	     partidos.add(new String[]{"CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","Las Palmas,Santa Cruz de Tenerife"});
-	     partidos.add(new String[]{"UPN","Unión del Pueblo Navarro","Navarra"});
-	     partidos.add(new String[]{"FAC","Foro Asturias","Asturias"});
+	     partidos.add(new String[]{"PP","Partido Popular","1"});
+	     partidos.add(new String[]{"PSOE","Partido Socialista","2"});
+	     partidos.add(new String[]{"PODEMOS","Podemos","3"});
+	     partidos.add(new String[]{"C's","Ciudadanos","4"});
+	     partidos.add(new String[]{"EN COMÚ","En comú Podem","5","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","6","Alicante,Castellón,Valencia"});
+	     partidos.add(new String[]{"ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","7","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"DL","Democràcia i Llibertat","8","Barcelona,Tarragona,Lérida,Gerona"});
+	     partidos.add(new String[]{"PODEMOS-En Marea-ANOVA-EU","En Marea","9","A Coruña,Lugo,Orense,Pontevedra"});
+	     partidos.add(new String[]{"IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","10"});
+	     partidos.add(new String[]{"EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","11","Álava,Guipúzcoa,Vizcaya"});
+	     partidos.add(new String[]{"CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","12","Las Palmas,Santa Cruz de Tenerife"});
+	     partidos.add(new String[]{"UPN","Unión del Pueblo Navarro","13","Navarra"});
+	     partidos.add(new String[]{"FAC","Foro Asturias","14","Asturias"});
 	 }
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
