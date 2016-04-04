@@ -1,16 +1,14 @@
 package es.upm.dit.isst.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
-import es.upm.dit.isst.model.Escenario;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import es.upm.dit.isst.model.Partido;
 
 public class electoLabDAOImpl implements electoLabDAO {
 	private static electoLabDAOImpl instance;
-
-	public electoLabDAOImpl() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public static electoLabDAOImpl getInstance(){
 		if(instance == null)
@@ -19,22 +17,38 @@ public class electoLabDAOImpl implements electoLabDAO {
 	}
 
 	@Override
-	public Escenario create(String autor, HashMap<String, String[]> partidos, HashMap<String, int[]> votos,
-			String sistema, String circunscripciones, int escanos) {
-		// TODO Auto-generated method stub
-		return null;
+	public Partido create(String siglas, String nombre, String imagen, int color, String provincias) {
+		Partido partido = null;
+		EntityManager em = EMFService.get().createEntityManager();
+		partido = new Partido(siglas,nombre,color,provincias);
+		em.persist(partido);
+		em.close();
+		return partido;
 	}
 
 	@Override
-	public void delete(String autor) {
-		// TODO Auto-generated method stub
-
+	public List<Partido> read() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select m from Partido m");
+		List<Partido> res = q.getResultList();
+		em.close();
+		return res;
 	}
 
 	@Override
-	public List<Escenario> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(String siglas) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Partido partidoBorrar = em.find(Partido.class, siglas);
+			em.remove(partidoBorrar);
+		}
+		finally {
+			em.close();	
+		}
 	}
+
+
+
+	
 
 }

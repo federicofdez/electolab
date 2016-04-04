@@ -16,6 +16,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
+import es.upm.dit.isst.model.Partido;
 
 @SuppressWarnings("serial")
 public class crearServlet extends HttpServlet {
@@ -68,7 +69,11 @@ public class crearServlet extends HttpServlet {
 		req.getSession().setAttribute("provincias", provincias);
 		req.getSession().setAttribute("electores", electores);
 		req.getSession().setAttribute("partidos", partidos);
+		dao.create("PP", "Partido Popular","img/logos/pp.png", 1, "Todas");
+		dao.create("PSOE","Partido Socialista","img/logos/psoe.png",2,"Todas");
 
+		//dao.delete("PP");
+		System.out.println(dao.read());
 		
 		resp.sendRedirect("/crear.jsp");
 	}
