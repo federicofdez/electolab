@@ -2,6 +2,10 @@ package es.upm.dit.isst.electoLab20;
 
 import java.io.IOException;
 
+
+
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +28,13 @@ public class simularServlet extends HttpServlet {
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
-		String alba = req.getParameter("1Albacete");
-		System.out.println(alba);
-		
+		//String alba = req.getParameter("C'sSanta Cruz de Tenerife");
+		//System.out.println(alba);
+		Enumeration em= req.getParameterNames();
+		while(em.hasMoreElements()){
+			String paraName = (String) em.nextElement();
+			System.out.println(paraName + "=" + req.getParameter(paraName) );
+		}
 		resp.sendRedirect("/simular.jsp");
 
 		

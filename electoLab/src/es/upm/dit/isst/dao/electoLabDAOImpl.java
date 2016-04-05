@@ -66,7 +66,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 	public Provincia create_provincia(String nombre, int escaños, int votos){
 		Provincia provincia = null;
 		EntityManager em = EMFService.get().createEntityManager();
-		provincia = new Provincia(nombre, escaños, votos);
+		provincia = new Provincia(nombre, escaños);
 		em.persist(provincia);
 		em.close();
 		return provincia;		

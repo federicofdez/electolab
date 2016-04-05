@@ -106,8 +106,8 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a class="dhont" href="#">D'Hondt</a></li>
-										<li><a class="sainte" href="#">Sainte-Lagüe</a></li>
+										<li><a class="dhont"><input name="sistema" value="d" type=hidden>D'Hondt</a></li>
+										<li><a class="sainte"><input name="sistema" value="s" type=hidden >Sainte-Lagüe</a></li>
 									</ul>
 								</div>
 								<div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
@@ -153,8 +153,9 @@
 	                                    <tr>
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
 	 											electores"><c:out value="${provincia}"/></a>
-	 										<c:forEach var="i" begin="1" end="${fn:length(partidos)}">
-												<th> <input type='text' class='form-control'name="${i}${provincia}" placeholder='0'></th>
+	 										<c:forEach items="${partidos}" var="partido">
+												<th> <input type='text' class='form-control'name="${partido[0]}${provincia}" placeholder='0'></th>
+												<script>console.log("${partido[0]}${provincia}");</script>
 											</c:forEach>	
 											<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
 										</tr>
@@ -172,9 +173,9 @@
 								<tbody>
 								<tr>
 									<th scope="row"><h5>SimulacioXX</h5></th>
-									<th><input type='text' class='form-control' placeholder="1.000.000"></th>
-									<th> <input type='text' class='form-control' placeholder="52"></th>
-									<th> <input type='text' class='form-control ' placeholder="340"></th>
+									<th><input type='text' class='form-control' name="votos_totales" placeholder="1.000.000"></th>
+									<th> <input type='text' class='form-control' name="total_circuns" placeholder="52"></th>
+									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340"></th>
 								</tr>
 							</table>
 						</div>

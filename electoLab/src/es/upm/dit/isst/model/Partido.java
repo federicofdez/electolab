@@ -13,21 +13,22 @@ public class Partido implements Serializable {
 	private String nombre;
 	private String imagen;
 	private int color;
-	private String provincias;
+	private String comunidad;
 	private int id_escenario;
+	private int votos;
 
 
 
-	public Partido(String siglas, String nombre, int color, String provincias) {
+	public Partido(String siglas, String nombre, int color, String comunidad) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
 		this.color = color;
-		this.provincias = provincias;
+		this.comunidad = comunidad;
 	}
 	@Override
 	public String toString() {
-		return "Partidos [siglas=" + siglas + ", nombre=" + nombre + ", color=" + color + ", provincias=" + provincias
+		return "Partidos [siglas=" + siglas + ", nombre=" + nombre + ", color=" + color + ", comunidad=" + comunidad
 				+ "]";
 	}
 
@@ -68,13 +69,13 @@ public class Partido implements Serializable {
 	}
 
 
-	public String getProvincias() {
-		return provincias;
+	public String getComunidad() {
+		return comunidad;
 	}
 
 
-	public void setProvincias(String provincias) {
-		this.provincias = provincias;
+	public void setComunidad(String comunidad) {
+		this.comunidad = comunidad;
 	}
 
 

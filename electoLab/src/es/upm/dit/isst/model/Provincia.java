@@ -9,21 +9,20 @@ public class Provincia implements Serializable {
 	@Id
 	private String nombre;
 	private int escaños;
-	private int votos;
 	private String comunidad;
 	private int id_escenario;
 	
 	@Override
 	public String toString() {
 		return "Provincia [nombre=" + nombre + ", escaños=" + escaños
-				+ ", votos=" + votos + "]";
+				+ "]";
 	}
 
 	
-	public Provincia(String nombre, int escaños, int votos) {
+	public Provincia(String nombre, int escaños) {
 		this.nombre = nombre;
 		this.escaños = escaños;
-		this.votos = votos;
+		
 	}
 
 	public String getNombre() {
@@ -42,13 +41,7 @@ public class Provincia implements Serializable {
 		this.escaños = escaños;
 	}
 
-	public int getVotos() {
-		return votos;
-	}
-
-	public void setVotos(int votos) {
-		this.votos = votos;
-	}
+	
 	
 	
 }
