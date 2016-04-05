@@ -13,8 +13,6 @@ public class Escenario implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private int id;
-	//private List<Partido> partidos;
-	//private List<Provincia> provincias;
 	private int votos_totales;
 	private String sistema;
 	private String circunscripciones;

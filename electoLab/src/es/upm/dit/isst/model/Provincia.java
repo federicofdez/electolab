@@ -10,6 +10,8 @@ public class Provincia implements Serializable {
 	private String nombre;
 	private int escaños;
 	private int votos;
+	private String comunidad;
+	private int id_escenario;
 	
 	@Override
 	public String toString() {

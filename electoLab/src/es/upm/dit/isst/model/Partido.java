@@ -14,6 +14,7 @@ public class Partido implements Serializable {
 	private String imagen;
 	private int color;
 	private String provincias;
+	private int id_escenario;
 
 
 
