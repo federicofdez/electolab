@@ -145,7 +145,8 @@
 										<c:forEach items="${partidos}" var="partido">
 											<th style="min-width:100px;"><c:out value="${partido[0]}"/></th>
 										</c:forEach>
-										<th style="min-width:100px;" >Escaños</th>
+										<th style="min-width:100px;">Votos a repartir</th>
+										<th style="min-width:100px;">Escaños</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -154,10 +155,11 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
 	 											electores"><c:out value="${provincia}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='text' class='form-control'name="${partido[0]}${provincia}" placeholder='0'></th>
+												<th> <input type='text' class='form-control'name="${partido[0]}${provincia}" placeholder='0%' min-value=0 max-value=100></th>
 												<script>console.log("${partido[0]}${provincia}");</script>
-											</c:forEach>	
-											<th class='form-group'><input type="number" class="form-control"max="350" min="0" placeholder="0"></th>
+											</c:forEach>
+											<th class='form-group'><input type="number" name="votos ${provincia}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
+											<th class='form-group'><input type="number" name="escaños ${provincia}" class="form-control"max="350" min="0" placeholder="0"></th>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -175,7 +177,7 @@
 									<th scope="row"><h5>SimulacioXX</h5></th>
 									<th><input type='text' class='form-control' name="votos_totales" placeholder="1.000.000"></th>
 									<th> <input type='text' class='form-control' name="total_circuns" placeholder="52"><c:out value="${total_votos}"/></th>
-									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340" required></th>
+									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340"></th>
 								</tr>
 							</table>
 						</div>

@@ -35,7 +35,7 @@ public class crearServlet extends HttpServlet {
 	 {
 	     partidos.add(new String[]{"PP","Partido Popular","img/logos/pp.png","1"});
 	     partidos.add(new String[]{"PSOE","Partido Socialista","img/logos/psoe.png","2"});
-	     partidos.add(new String[]{"PODEMOS","Podemos","img/logos/podemos.png","3"});
+	     partidos.add(new String[]{"PODEMOS T","Podemos","img/logos/podemos.png","3"});
 	     partidos.add(new String[]{"C's","Ciudadanos","img/logos/ciudadanos.png","4"});
 	     partidos.add(new String[]{"EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Barcelona,Tarragona,Lérida,Gerona"});
 	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Alicante,Castellón,Valencia"});
