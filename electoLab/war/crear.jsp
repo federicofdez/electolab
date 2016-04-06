@@ -106,8 +106,8 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a class="dhont"><input name="sistema" value="d" type=hidden>D'Hondt</a></li>
-										<li><a class="sainte"><input name="sistema" value="s" type=hidden >Sainte-Lagüe</a></li>
+										<li><a class="dhont"><input name="sistema"  type=hidden>D'Hondt</a></li>
+										<li><a class="sainte"><input name="sistema"  type=hidden >Sainte-Lagüe</a></li>
 									</ul>
 								</div>
 								<div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
@@ -174,8 +174,8 @@
 								<tr>
 									<th scope="row"><h5>SimulacioXX</h5></th>
 									<th><input type='text' class='form-control' name="votos_totales" placeholder="1.000.000"></th>
-									<th> <input type='text' class='form-control' name="total_circuns" placeholder="52"></th>
-									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340"></th>
+									<th> <input type='text' class='form-control' name="total_circuns" placeholder="52"><c:out value="${total_votos}"/></th>
+									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340" required></th>
 								</tr>
 							</table>
 						</div>

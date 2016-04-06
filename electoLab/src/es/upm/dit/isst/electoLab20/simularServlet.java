@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.upm.dit.isst.logica.calculos;
+
 public class simularServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -31,12 +33,25 @@ public class simularServlet extends HttpServlet {
 		//String alba = req.getParameter("C'sSanta Cruz de Tenerife");
 		//System.out.println(alba);
 		Enumeration em= req.getParameterNames();
+		//int total_votos=0;
+		int i = 0;
+		String[] votos2 = new String[300]; 
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
-			System.out.println(paraName + "=" + req.getParameter(paraName) );
+			//total_votos = calculos.total_votos(req.getParameterNames(), req.getParameter(paraName));
+			// if(req.getParameter(paraName) != "" && paraName.indexOf("PP") != -1 ){				
+				// total_votos += Integer.parseInt(req.getParameter(paraName));
+			//System.out.println(paraName + "=" + req.getParameter(paraName) );
+			votos2[i] = req.getParameter(paraName);
+				System.out.println(votos2[i]);
+			i++;
+			//req.setAttribute("total_votos", total_votos);
+			//}
 		}
+		String votos = String.valueOf(calculos.total_votos(req.getParameterNames(), votos2));
+		System.out.println("votos totales del PP = " +  votos);
 		resp.sendRedirect("/simular.jsp");
-
+		
 		
 	}
 
