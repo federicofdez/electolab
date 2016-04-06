@@ -37,24 +37,29 @@ public class simularServlet extends HttpServlet {
 		Enumeration em= req.getParameterNames();
 		//int total_votos=0;
 		int i = 0;
-		String[] votos2 = new String[600]; 
+		String[] datos2 = new String[600]; 
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			//total_votos = calculos.total_votos(req.getParameterNames(), req.getParameter(paraName));
 			// if(req.getParameter(paraName) != "" && paraName.indexOf("PP") != -1 ){				
 				// total_votos += Integer.parseInt(req.getParameter(paraName));
 			//System.out.println(paraName + "=" + req.getParameter(paraName) );
-			votos2[i] = req.getParameter(paraName);
-				//System.out.println(paraName + votos2[i]);
+			datos2[i] = req.getParameter(paraName);
+				//System.out.println(paraName + datos2[i]);
 			i++;
 			//req.setAttribute("total_votos", total_votos);
 			//}
 		}
 		
 		calculos calc = calculos.getInstance();
+		if(calc.porcentaje_correctos(req.getParameterNames(), datos2)){
+			System.out.println("Porcentajes correctos");
+		}else{
+			System.out.println("Cuidado porcentajes mal ajustados");
+		}
 
-		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), votos2));
-		System.out.println("votos totales del PP = " +  votos);
+		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), datos2));
+		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
 		
 		
