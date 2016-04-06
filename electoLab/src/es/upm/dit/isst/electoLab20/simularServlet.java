@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.upm.dit.isst.dao.electoLabDAO;
+import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
 
 public class simularServlet extends HttpServlet {
@@ -48,7 +50,10 @@ public class simularServlet extends HttpServlet {
 			//req.setAttribute("total_votos", total_votos);
 			//}
 		}
-		String votos = String.valueOf(calculos.total_votos(req.getParameterNames(), votos2));
+		
+		calculos calc = calculos.getInstance();
+
+		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), votos2));
 		System.out.println("votos totales del PP = " +  votos);
 		resp.sendRedirect("/simular.jsp");
 		
