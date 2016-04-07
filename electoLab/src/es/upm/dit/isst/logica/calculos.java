@@ -22,7 +22,7 @@ public class calculos {
 	     prov.add(new String[]{"Cádiz","cadiz","Andalucía","5","968.097"});
 	     prov.add(new String[]{"Cantabria","cantabria","Cantabría","5","464.081"});
 	     prov.add(new String[]{"Castellón","castellon","Comunidad Valenciana","5","409.474"});
-	     prov.add(new String[]{"Ceuta","ceuta","","5","59.213"});
+	     prov.add(new String[]{"Ceuta","ceuta","Ceuta","5","59.213"});
 	     prov.add(new String[]{"Ciudad Real","ciudadreal","Castilla La Mancha","5","396.293"});
 	     prov.add(new String[]{"Córdoba","cordoba","Andalucía","5","635.086"});
 	     prov.add(new String[]{"Cuenca","cuenca","Castilla La Mancha","5","156.088"});
@@ -38,6 +38,29 @@ public class calculos {
 	     prov.add(new String[]{"La Rioja","larioja","La Rioja","5","233.087"});
 	     prov.add(new String[]{"Las Palmas","laspalmas","Islas Canarias","5","798.145"});
 	     prov.add(new String[]{"León","leon","Castilla León","5","398.416"});
+	     prov.add(new String[]{"Lérida","lerida","Cataluña","5","299.069"});
+	     prov.add(new String[]{"Lugo","lugo","Galicia","5","286.315"});
+	     prov.add(new String[]{"Madrid","madrid","Comunidad de Madrid","5","4.658.397"});
+	     prov.add(new String[]{"Málaga","malaga","Andalucía","5","1.113.952"});
+	     prov.add(new String[]{"Melilla","melilla","Melilla","5","53.257"});
+	     prov.add(new String[]{"Murcia","murcia","Murcia","5","1.003.799"});
+	     prov.add(new String[]{"Navarra","navarra","Navarra","5","478.330"});
+	     prov.add(new String[]{"Orense","orense","Galicia","5","267.704"});
+	     prov.add(new String[]{"Palencia","palencia","Castilla León","5","137.517"});
+	     prov.add(new String[]{"Pontevedra","pontevedra","Galicia","5","774.937"});
+	     prov.add(new String[]{"Santa Cruz de Tenerife","tenerife","Islas Canarias","5","280.762"});
+	     prov.add(new String[]{"Salamanca","salamanca","Castilla León","5","733.362"});
+	     prov.add(new String[]{"Segovia","segovia","Castilla León","5","118.502"});
+	     prov.add(new String[]{"Sevilla","sevilla","Andalucía","5","1.501.271"});
+	     prov.add(new String[]{"Soria","soria","Castilla León","5","70.718"});
+	     prov.add(new String[]{"Tarragona","tarragona","Cataluña","5","547.971"});
+	     prov.add(new String[]{"Teruel","teruel","Aragón","5","105.453"});
+	     prov.add(new String[]{"Toledo","toledo","Castilla La Mancha","5","509.333"});
+	     prov.add(new String[]{"Valencia","valencia","Valencia","5","1.893.225"});
+	     prov.add(new String[]{"Valladolid","valladolid","Castilla León","5","421.369"});
+	     prov.add(new String[]{"Vizcaya","vizcaya","País Vasco","5","913.244"});
+	     prov.add(new String[]{"Zamora","zamora","Castilla León","5","155.512"});
+	     prov.add(new String[]{"Zaragoza","zaragoza","Aragón","5","714.370"});
 
 
 	 }
