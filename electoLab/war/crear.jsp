@@ -102,8 +102,8 @@
 							<div class="row">
 								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad </div>
 								<div class="dropdown col-lg-2">
-								<input type="radio" name="sistema" value="d" checked>D'Hondt<br>
-  								<input type="radio" name="sistema" value="s">Sainte-Lagüe<br>
+								<input type="radio" name="sistema" value="dhont" checked>D'Hondt<br>
+  								<input type="radio" name="sistema" value="sainte">Sainte-Lagüe<br>
 								</div>
 								<div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
 								<div class="dropdown col-lg-2">
@@ -145,16 +145,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${provincias}" var="provincia" varStatus="status">
+									<c:forEach items="${provincias}" var="provincia">
 	                                    <tr>
-											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${electores[status.index]}"/>
-	 											electores"><c:out value="${provincia}"/></a>
+											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia[4]}"/>
+	 											electores"><c:out value="${provincia[0]}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='text' class='form-control'name="${partido[0]}${provincia}" placeholder='0%' min-value=0 max-value=100></th>
+												<th> <input type='number' class='form-control'name="${partido[0]}${provincia[1]}" placeholder='0%' min-value=0 max-value=100></th>
 												<script>console.log("${partido[0]}${provincia}");</script>
 											</c:forEach>
-											<th class='form-group'><input type="number" name="votos ${provincia}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
-											<th class='form-group'><input type="number" name="escaños ${provincia}" class="form-control"max="350" min="0" placeholder="0"></th>
+											<th class='form-group'><input type="number" name="votos ${provincia[1]}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
+											<th class='form-group'><input type="number" name="escaños ${provincia[1]}" class="form-control"max="350" min="0" value="${provincia[3]}"></th>
 										</tr>
 									</c:forEach>
 								</tbody>

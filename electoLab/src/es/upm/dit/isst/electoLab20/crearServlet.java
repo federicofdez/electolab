@@ -42,11 +42,10 @@ public class crearServlet extends HttpServlet {
 		calculos calc = calculos.getInstance();
 
 		req.getSession().setAttribute("provincias", calc.getProvincias());
-		req.getSession().setAttribute("electores", calc.getElectores());
 		req.getSession().setAttribute("partidos", calc.getPartidos());
-		dao.create("PP", "Partido Popular","img/logos/pp.png", 1, "Todas");
-		dao.create("PSOE","Partido Socialista","img/logos/psoe.png",2,"Todas");
-		dao.create_provincia("Segovia", 100 , 100);
+		//dao.create("PP", "Partido Popular","img/logos/pp.png", 1, "Todas");
+		//dao.create("PSOE","Partido Socialista","img/logos/psoe.png",2,"Todas");
+		//dao.create_provincia("Segovia", 100 , 100);
 		//dao.create_escenario(100, "D'hont", "provincias", 50, 100, 1);
 
 		//dao.delete("PP");
