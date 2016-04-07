@@ -5,6 +5,7 @@ import java.io.IOException;
 
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +63,9 @@ public class simularServlet extends HttpServlet {
 		}
 
 		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), datos2));
-		calc.calculaVotos(req.getParameterNames(), datos2);
+		List<String[]> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
+		req.getSession().setAttribute("votos", votosTabla);
+
 		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
 		

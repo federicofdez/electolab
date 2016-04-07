@@ -228,8 +228,9 @@ public class calculos {
 		}
 	}
 	
-	public void calculaVotos(Enumeration em, String[] datos){
+	public List<String[]> calculaVotos(Enumeration em, String[] datos){
 		int i = 0;
+		List<String[]> votosTabla = new ArrayList<String[]>();
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			Iterator<String[]> provinciasIterator = provincias.iterator();
@@ -243,8 +244,9 @@ public class calculos {
 						String partido = partidosIterator.next()[0];
 						if(datos[i] != "" && paraName.indexOf(partido) != -1 ){
 						double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
-						int votos = (int) votosDouble;
+						String votos = String.valueOf((int) votosDouble);
 						System.out.println("Provincia: " + provincia + ", partido: " + partido + ", votos: "+ votos);
+						votosTabla.add(new String[]{provincia,partido,votos});
 					}
 				}
 			}
@@ -252,6 +254,7 @@ public class calculos {
 			i++;
 
 	}
+		return votosTabla;
 }
 }
 

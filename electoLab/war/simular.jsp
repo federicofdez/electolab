@@ -109,6 +109,18 @@
 				<div class="col-lg-12" style="padding-bottom: 40px;">
 					<button class="btn btn-info center-block" data-toggle="modal" data-target="#popupInforme">Generar informe</button>
 				</div>
+				<table class="table table-hover" id="votosTable">
+								<tbody>
+									<c:forEach items="${votos}" var="voto">
+	                                    <tr>
+											<th scope="row"><c:out value="${voto[0]}"/>
+											<th scope="row"><c:out value="${voto[1]}"/>
+											<th scope="row"><c:out value="${voto[2]}"/>
+											
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 			</div>
 				<div style="padding: 20px;"></div>
 			</div>
@@ -153,5 +165,11 @@
 <script type="text/javascript" src="./js/dropdown.js"></script>
 	<script type="text/javascript" src="./js/bootstrap-colorselector.js"></script>
 	<script type="text/javascript" src="./js/cambiarsimulacio.js"></script>
+	<script>
+	$('#votosTable').DataTable( {
+        "scrollX": true,
+        "ordering": false, 
+    } );  
+	</script>
 </body>
 </html>
