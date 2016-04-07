@@ -125,7 +125,7 @@ public class calculos {
 			}
 			i++;
 		}
-		if(porcentaje_total != 100){
+		if(porcentaje_total > 100){
 			return false;
 		}else {
 			return true;
