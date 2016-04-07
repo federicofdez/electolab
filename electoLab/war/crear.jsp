@@ -102,13 +102,8 @@
 							<div class="row">
 								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad </div>
 								<div class="dropdown col-lg-2">
-									<button class="btn btn-default dropdown-toggle sistema" type="button" data-toggle="dropdown">D'Hondt
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a class="dhont"><input name="sistema"  type=hidden>D'Hondt</a></li>
-										<li><a class="sainte"><input name="sistema"  type=hidden >Sainte-Lagüe</a></li>
-									</ul>
+								<input type="radio" name="sistema" value="d" checked>D'Hondt<br>
+  								<input type="radio" name="sistema" value="s">Sainte-Lagüe<br>
 								</div>
 								<div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
 								<div class="dropdown col-lg-2">

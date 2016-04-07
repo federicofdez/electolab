@@ -140,7 +140,7 @@ public class calculos {
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			
-			if(datos[i] != "" && paraName.indexOf("votos") != -1 ){	
+			if(datos[i] != "" && paraName.indexOf("votos ") != -1 ){	
 				System.out.println(paraName);
 				total_votos += Integer.parseInt(datos[i]);
 			}

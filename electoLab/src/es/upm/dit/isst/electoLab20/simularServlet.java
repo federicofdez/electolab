@@ -45,6 +45,9 @@ public class simularServlet extends HttpServlet {
 				// total_votos += Integer.parseInt(req.getParameter(paraName));
 			//System.out.println(paraName + "=" + req.getParameter(paraName) );
 			datos2[i] = req.getParameter(paraName);
+			if(paraName.indexOf("sistema") != -1){
+				System.out.println(req.getParameter(paraName));
+			}
 				//System.out.println(paraName + datos2[i]);
 			i++;
 			//req.setAttribute("total_votos", total_votos);
