@@ -7,6 +7,41 @@ import java.util.List;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
 public class calculos {
+	 List<String[]> prov = new ArrayList<String[]>();
+	 { //Nombre, identificado, comunidad autónoma, escaños, electores
+	     prov.add(new String[]{"Álava","alava","País Vasco","5","248.456"});
+	     prov.add(new String[]{"Albacete","albacete","Castilla La Mancha","5","304.089"});
+	     prov.add(new String[]{"Alicante","alicante","Comunidad Valenciana","5","1.220.005"});
+	     prov.add(new String[]{"Almería","almeria","Andalucía","5","452.589"});
+	     prov.add(new String[]{"Asturias","asturias","Asturias","5","876.171"});
+	     prov.add(new String[]{"Ávila","avila","Castilla León","5","132.575"});
+	     prov.add(new String[]{"Badajoz","badajoz","Extremadura","5","548.707"});
+	     prov.add(new String[]{"Barcelona","barcelona","Cataluña","5","3.974.408"});
+	     prov.add(new String[]{"Burgos","burgos","Castilla León","5","284.916"});
+	     prov.add(new String[]{"Cáceres","caceres","Extremadura","5","335.845"});
+	     prov.add(new String[]{"Cádiz","cadiz","Andalucía","5","968.097"});
+	     prov.add(new String[]{"Cantabria","cantabria","Cantabría","5","464.081"});
+	     prov.add(new String[]{"Castellón","castellon","Comunidad Valenciana","5","409.474"});
+	     prov.add(new String[]{"Ceuta","ceuta","","5","59.213"});
+	     prov.add(new String[]{"Ciudad Real","ciudadreal","Castilla La Mancha","5","396.293"});
+	     prov.add(new String[]{"Córdoba","cordoba","Andalucía","5","635.086"});
+	     prov.add(new String[]{"Cuenca","cuenca","Castilla La Mancha","5","156.088"});
+	     prov.add(new String[]{"Gerona","gerona","Cataluña","5","496.127"});
+	     prov.add(new String[]{"Granada","granada","Andalucía","5","702.887"});
+	     prov.add(new String[]{"Guadalajara","guadalajara","Castilla La Mancha","5","178.749"});
+	     prov.add(new String[]{"Guipúzcoa","guipuzcoa","País Vasco","5","555.417"});
+	     prov.add(new String[]{"Huelva","huelva","Andalucía","5","389.811"});
+	     prov.add(new String[]{"Huesca","huesca","Aragón","5","167.331"});
+	     prov.add(new String[]{"Islas Baleares","islasbaleares","Islas Baleares","5","748.577"});
+	     prov.add(new String[]{"Jaén","jaen","Andalucía","5","522.173"});
+	     prov.add(new String[]{"La Coruña","lacoruña","Galicia","5","936.602"});
+	     prov.add(new String[]{"La Rioja","larioja","La Rioja","5","233.087"});
+	     prov.add(new String[]{"Las Palmas","laspalmas","Islas Canarias","5","798.145"});
+	     prov.add(new String[]{"León","leon","Castilla León","5","398.416"});
+
+
+	 }
+
 	
 	private String[] provincias = {"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
         	"Cádiz","Cantabria","Castellón","Ceuta","Ciudad Real","Córdoba","Cuenca","Gerona","Granada","Guadalajara",
@@ -24,7 +59,7 @@ public class calculos {
 	 {
 	     partidos.add(new String[]{"PP","Partido Popular","img/logos/pp.png","1"});
 	     partidos.add(new String[]{"PSOE","Partido Socialista","img/logos/psoe.png","2"});
-	     partidos.add(new String[]{"PODEMOS T","Podemos","img/logos/podemos.png","3"});
+	     partidos.add(new String[]{"PODEMOS","Podemos","img/logos/podemos.png","3"});
 	     partidos.add(new String[]{"C's","Ciudadanos","img/logos/ciudadanos.png","4"});
 	     partidos.add(new String[]{"EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Barcelona,Tarragona,Lérida,Gerona"});
 	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Alicante,Castellón,Valencia"});
@@ -82,7 +117,8 @@ public class calculos {
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			
-			if(datos[i] != "" && paraName.indexOf("votos ") != -1 ){	
+			if(datos[i] != "" && paraName.indexOf("votos") != -1 ){	
+				System.out.println(paraName);
 				total_votos += Integer.parseInt(datos[i]);
 			}
 			
@@ -126,7 +162,7 @@ public class calculos {
 					return false; 
 				}
 			}
-			if(datos[i] != "" && paraName.indexOf("PODEMOS T") != -1 ){
+			if(datos[i] != "" && paraName.indexOf("PODEMOS") != -1 ){
 				porcentaje_total += Integer.parseInt(datos[i]);
 				if(porcentaje_total > 100){
 					return false; 
@@ -207,7 +243,7 @@ total_votos += Integer.parseInt(votos[i]);
 if(votos[i] != "" && paraName.indexOf("EN COMÚ") != -1 ){
 total_votos += Integer.parseInt(votos[i]);
 }
-if(votos[i] != "" && paraName.indexOf("PODEMOS T") != -1 ){
+if(votos[i] != "" && paraName.indexOf("PODEMOS") != -1 ){
 total_votos += Integer.parseInt(votos[i]);
 }
 if(votos[i] != "" && paraName.indexOf("CCa-PNC") != -1 ){
