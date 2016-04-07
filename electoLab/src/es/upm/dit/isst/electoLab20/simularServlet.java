@@ -37,7 +37,7 @@ public class simularServlet extends HttpServlet {
 		Enumeration em= req.getParameterNames();
 		//int total_votos=0;
 		int i = 0;
-		String[] datos2 = new String[600]; 
+		String[] datos2 = new String[1000]; 
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			//total_votos = calculos.total_votos(req.getParameterNames(), req.getParameter(paraName));
@@ -62,6 +62,7 @@ public class simularServlet extends HttpServlet {
 		}
 
 		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), datos2));
+		calc.calculaVotos(req.getParameterNames(), datos2);
 		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
 		
