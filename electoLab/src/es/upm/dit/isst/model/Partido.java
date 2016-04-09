@@ -13,36 +13,35 @@ public class Partido implements Serializable {
 	private String nombre;
 	private String imagen;
 	private String color;
-	private String comunidad;
+	private String provincia;
 	private int id_escenario;
 	private int votos;
 
 
 
 	
-	public Partido(String siglas, String nombre, String imagen, String color, String comunidad, int id_escenario,
+	public Partido(String siglas, String nombre, String imagen, String color, String provincia, int id_escenario,
 			int votos) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.color = color;
-		this.comunidad = comunidad;
+		this.provincia = provincia;
 		this.id_escenario = id_escenario;
 		this.votos = votos;
 	}
 
-	@Override
-	public String toString() {
-		return "Partidos [siglas=" + siglas + ", nombre=" + nombre + ", color=" + color + ", comunidad=" + comunidad
-				+ "]";
-	}
+
+
 
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public String toString() {
+		return "Partido [siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen + ", color=" + color
+				+ ", provincia=" + provincia + ", id_escenario=" + id_escenario + ", votos=" + votos + "]";
 	}
+
+
 
 
 	public String getSiglas() {
@@ -50,9 +49,13 @@ public class Partido implements Serializable {
 	}
 
 
+
+
 	public void setSiglas(String siglas) {
 		this.siglas = siglas;
 	}
+
+
 
 
 	public String getNombre() {
@@ -60,9 +63,27 @@ public class Partido implements Serializable {
 	}
 
 
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 
 
 	public String getColor() {
@@ -70,45 +91,61 @@ public class Partido implements Serializable {
 	}
 
 
-	public String getImagen() {
-		return imagen;
-	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
-	public int getId_escenario() {
-		return id_escenario;
-	}
-
-	public void setId_escenario(int id_escenario) {
-		this.id_escenario = id_escenario;
-	}
-
-	public int getVotos() {
-		return votos;
-	}
-
-	public void setVotos(int votos) {
-		this.votos = votos;
-	}
 
 	public void setColor(String color) {
 		this.color = color;
 	}
 
 
-	public String getComunidad() {
-		return comunidad;
+
+
+	public String getprovincia() {
+		return provincia;
 	}
 
 
-	public void setComunidad(String comunidad) {
-		this.comunidad = comunidad;
+
+
+	public void setprovincia(String provincia) {
+		this.provincia = provincia;
 	}
 
 
 
+
+	public int getId_escenario() {
+		return id_escenario;
+	}
+
+
+
+
+	public void setId_escenario(int id_escenario) {
+		this.id_escenario = id_escenario;
+	}
+
+
+
+
+	public int getVotos() {
+		return votos;
+	}
+
+
+
+
+	public void setVotos(int votos) {
+		this.votos = votos;
+	}
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 }
 
