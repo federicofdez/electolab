@@ -17,7 +17,7 @@ public class calculos {
 	 { //Nombre, identificado, comunidad autónoma, escaños, electores
 	     provincias.add(new Provincia("Álava","alava","País Vasco",5,248456,0));
 	     provincias.add(new Provincia("Albacete","albacete","Castilla La Mancha",5,304089,0));
-	     provincias.add(new Provincia("Alicante","alicante","Comunidad Valenciana",5,1220005,0));
+	    /* provincias.add(new Provincia("Alicante","alicante","Comunidad Valenciana",5,1220005,0));
 	     provincias.add(new Provincia("Almería","almeria","Andalucía",5,452589,0));
 	     provincias.add(new Provincia("Asturias","asturias","Asturias",5,876171,0));
 	     provincias.add(new Provincia("Ávila","avila","Castilla León",5,132575,0));
@@ -66,7 +66,7 @@ public class calculos {
 	     provincias.add(new Provincia("Valladolid","valladolid","Castilla León",5,421369,0));
 	     provincias.add(new Provincia("Vizcaya","vizcaya","País Vasco",5,913244,0));
 	     provincias.add(new Provincia("Zamora","zamora","Castilla León",5,155512,0));
-	     provincias.add(new Provincia("Zaragoza","zaragoza","Aragón",5,714370,0));
+	     provincias.add(new Provincia("Zaragoza","zaragoza","Aragón",5,714370,0));*/
 
 
 	 }
@@ -75,7 +75,7 @@ public class calculos {
 	 {
 	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","1",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","2",new ArrayList<String>(),new ArrayList<Double>(),0));
-	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3",new ArrayList<String>(),new ArrayList<Double>(),0));
+	    /* partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","4",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","5",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6",new ArrayList<String>(),new ArrayList<Double>(),0));
@@ -87,7 +87,7 @@ public class calculos {
 	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","13",new ArrayList<String>(),new ArrayList<Double>(),0));
 	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","14",new ArrayList<String>(),new ArrayList<Double>(),0));
-	 }
+	*/ }
 
 
 
@@ -233,39 +233,57 @@ public class calculos {
 		}
 	}
 	
-	public List<Partido> calculaVotos(Enumeration em, String[] datos){
+	public List<Partido> calculaVotos(Enumeration em1, String[] datos){
 		int i = 0;
+		//Variables de resultados finales
 		List<Partido> votosTabla = new ArrayList<Partido>();
 		List<Partido> votosTablaOrder = new ArrayList<Partido>();
-		/*while(em.hasMoreElements()){
-			String paraName = (String) em.nextElement();
-			Iterator<String[]> provinciasIterator = provincias.iterator();
-			while (provinciasIterator.hasNext()) {
-				String[] arrayProvincia = provinciasIterator.next();
-				String provincia = arrayProvincia[1];
-				String electores = arrayProvincia[4];
-				if(paraName.indexOf(provincia) != -1){
-					Iterator<Partido> partidosIterator = partidos.iterator();
-					List<Double> votosList = new ArrayList<Double>();
-					while (partidosIterator.hasNext()) {
-						Partido partido = partidosIterator.next();
-						String siglas = partido.getSiglas();
-						if(datos[i] != "" && paraName.indexOf(siglas) != -1 ){
-						Double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
-						Double votos = (double) Math.round(votosDouble);
-						votosList.add(votos);
+			//Lista para guardar los votos de un partido en las distintas provincias
+			List<Double> votosList = new ArrayList<Double>();
+			//Iterador de partidos
+			Iterator<Partido> partidosIterator = partidos.iterator();
+			while (partidosIterator.hasNext()) {
+				//Variable de un partido, siglas
+				Partido partido = partidosIterator.next();
+				String siglas = partido.getSiglas();
+					//Lista para guardar las provincias de un mismo partido
+					List<String> provinciasList = new ArrayList<String>();
+					//Fijamos el valor de los votos
+					Iterator<Provincia> provinciasIterator = provincias.iterator();
+					while (provinciasIterator.hasNext()) {
+						//Variables de una provincia, provinciaId y electores
+						Provincia arrayProvincia = provinciasIterator.next();
+						String provinciaId = arrayProvincia.getIdentificador();
+						int electores = arrayProvincia.getElectores();
+							//Bucle por los nombres de los parametros del formulario
+						Enumeration em2 = em1;
+							while(em2.hasMoreElements()){
+								String paraName = (String) em2.nextElement();
+									if(paraName.indexOf(siglas) != -1){
+										if(datos[i] != "" && paraName.indexOf(provinciaId) != -1 ){
+
+											//Calculo de votos a partir de porcentaje y electores
+											Double votosDouble = Double.parseDouble(datos[i])/100 * electores;
+											Double votos =  (double) Math.round(votosDouble);
+											//Añadimos a la lista de votos estos votos y esta provincia
+											votosList.add(votos);
+											provinciasList.add(provinciaId);
+											
 					}
-						if(!partidosIterator.hasNext()){
-							
+									}
+									i++;
+							}
+						//
+						if(!provinciasIterator.hasNext()){
+							System.out.println(provinciasList);
+							System.out.println(votosList);
+
 							//Partido party = new Partido(siglas,partido.getNombre(),partido.getImagen(),partido.getColor(),provincia,partido.getId_escenario(),votosList );
 							//votosTabla.add(party);
 
 							
 						}
-						}
-				}
-			}
-			i++;
+						}			
 	}
 		
 		//Ordenar la lista
@@ -310,7 +328,6 @@ public class calculos {
 	}
 
 	public List<Partido> getPartidos() {
-		System.out.println(partidos);
 		return partidos;
 	}
 

@@ -34,12 +34,11 @@ public class simularServlet extends HttpServlet {
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
-		//String alba = req.getParameter("C'sSanta Cruz de Tenerife");
-		//System.out.println(alba);
+
 		Enumeration em= req.getParameterNames();
 		//int total_votos=0;
 		int i = 0;
-		String[] datos2 = new String[1000]; 
+		String[] datos2 = new String[req.getContentLength()]; 
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			//total_votos = calculos.total_votos(req.getParameterNames(), req.getParameter(paraName));
@@ -64,6 +63,7 @@ public class simularServlet extends HttpServlet {
 		}
 
 		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), datos2));
+		
 		List<Partido> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
 		req.getSession().setAttribute("votos", votosTabla);
 

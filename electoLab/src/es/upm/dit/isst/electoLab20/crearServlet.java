@@ -41,17 +41,9 @@ public class crearServlet extends HttpServlet {
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
 		calculos calc = calculos.getInstance();
 
+		//Habría que hacerlo con el dao
 		req.getSession().setAttribute("provincias", calc.getProvincias());
 		req.getSession().setAttribute("partidos", calc.getPartidos());
-		//dao.create("PP", "Partido Popular","img/logos/pp.png", 1, "Todas");
-		//dao.create("PSOE","Partido Socialista","img/logos/psoe.png",2,"Todas");
-		//dao.create_provincia("Segovia", 100 , 100);
-		//dao.create_escenario(100, "D'hont", "provincias", 50, 100, 1);
-
-		//dao.delete("PP");
-		//System.out.println(dao.read());
-		//System.out.println(dao.read_provincias());
-		//System.out.println(dao.read_escenarios());
 		
 		resp.sendRedirect("/crear.jsp");
 	}
