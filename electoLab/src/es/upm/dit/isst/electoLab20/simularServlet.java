@@ -17,6 +17,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
+import es.upm.dit.isst.model.Partido;
 
 public class simularServlet extends HttpServlet {
 
@@ -63,7 +64,7 @@ public class simularServlet extends HttpServlet {
 		}
 
 		String votos = String.valueOf(calc.total_votos(req.getParameterNames(), datos2));
-		List<String[]> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
+		List<Partido> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
 		req.getSession().setAttribute("votos", votosTabla);
 
 		System.out.println("votos totales = " +  votos);

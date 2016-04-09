@@ -1,6 +1,7 @@
 package es.upm.dit.isst.logica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -225,10 +226,10 @@ public class calculos {
 		}
 	}
 	
-	public List<String[]> calculaVotos(Enumeration em, String[] datos){
+	public List<Partido> calculaVotos(Enumeration em, String[] datos){
 		int i = 0;
-		List<String[]> votosTabla = new ArrayList<String[]>();
-		List<String[]> votosTablaOrder = new ArrayList<String[]>();
+		List<Partido> votosTabla = new ArrayList<Partido>();
+		List<Partido> votosTablaOrder = new ArrayList<Partido>();
 		while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			Iterator<String[]> provinciasIterator = provincias.iterator();
@@ -239,11 +240,13 @@ public class calculos {
 				if(paraName.indexOf(provincia) != -1){
 					Iterator<Partido> partidosIterator = partidos.iterator();
 					while (partidosIterator.hasNext()) {
-						String partido = partidosIterator.next().getSiglas();
-						if(datos[i] != "" && paraName.indexOf(partido) != -1 ){
-						double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
-						String votos = String.valueOf((int) votosDouble);
-						votosTabla.add(new String[]{provincia,partido,votos});
+						Partido partido = partidosIterator.next();
+						String siglas = partido.getSiglas();
+						if(datos[i] != "" && paraName.indexOf(siglas) != -1 ){
+						Double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
+						long votos = Math.round(votosDouble);
+						Partido party = new Partido(siglas,partido.getNombre(),partido.getImagen(),partido.getColor(),provincia,partido.getId_escenario(),votos);
+						votosTabla.add(party);
 					}
 				}
 			}
@@ -255,15 +258,26 @@ public class calculos {
 		Iterator<String[]> provinciasIterator = provincias.iterator();
 		while (provinciasIterator.hasNext()) {
 			String provincia = provinciasIterator.next()[1];
-			Iterator<String[]> votosIterator = votosTabla.iterator();
-			List<String[]> temporal = new ArrayList<String[]>();
+			Iterator<Partido> votosIterator = votosTabla.iterator();
+			List<Partido> temporal = new ArrayList<Partido>();
 			while(votosIterator.hasNext()){
-				String[] parametros = votosIterator.next();
-				if(parametros[0] == provincia){
-					System.out.println("provincia: " + parametros[0] + ", partido: " + parametros[1]);
-					temporal.add(new String[]{parametros[0],parametros[1],parametros[2]});
+				Partido parametros = votosIterator.next();
+				if(parametros.getProvincia() == provincia){
+					System.out.println("provincia: " + parametros.getProvincia() + ", partido: " + parametros.getNombre());
+					temporal.add(new Partido(parametros.getSiglas(),parametros.getNombre(),parametros.getImagen(),parametros.getColor(),parametros.getProvincia(),parametros.getId_escenario(),parametros.getVotos()));
 				}
 				if(!votosIterator.hasNext()){
+					Iterator<Partido> temporalIterator = temporal.iterator();
+					while(temporalIterator.hasNext()){
+						System.out.println(temporalIterator.next().getVotos());
+					}
+					Comparator<Partido> comp = new Comparator<Partido>() {
+					      public int compare(Partido p1, Partido p2) {					    	  
+					        return Long.compare(p1.getVotos(), p2.getVotos());
+					      }
+					      };
+						    Collections.sort(temporal, comp);
+						    Collections.reverse(temporal);
 					votosTablaOrder.addAll(temporal);
 				}
 			}

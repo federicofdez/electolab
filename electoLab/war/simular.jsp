@@ -113,9 +113,9 @@
 								<tbody>
 									<c:forEach items="${votos}" var="voto">
 	                                    <tr>
-											<th scope="row"><c:out value="${voto[0]}"/>
-											<th scope="row"><c:out value="${voto[1]}"/>
-											<th scope="row"><c:out value="${voto[2]}"/>
+											<th scope="row"><c:out value="${voto.provincia}"/>
+											<th scope="row"><c:out value="${voto.siglas}"/>
+											<th scope="row"><c:out value="${voto.votos}"/>
 											
 										</tr>
 									</c:forEach>

@@ -63,7 +63,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 	}
 	
 	//Métodos de provincias
-	public Provincia create_provincia(String nombre, int escaños, int votos){
+	/*public Provincia create_provincia(String nombre, int escaños, int votos){
 		Provincia provincia = null;
 		EntityManager em = EMFService.get().createEntityManager();
 		provincia = new Provincia(nombre, escaños);
@@ -71,7 +71,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 		em.close();
 		return provincia;		
 		
-	}
+	}*/
 	public List<Provincia> read_provincias(){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select m from Provincia m");
@@ -96,7 +96,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 
 	// Métodos de escenario
 	
-	public Escenario create_escenario(int votos_totales, String sistema, String circunscripciones,
+	/*public Escenario create_escenario(int votos_totales, String sistema, String circunscripciones,
 			int mayoria_abs, int total_escaños, int total_circuns){
 		EntityManager em = EMFService.get().createEntityManager();
 		Escenario escenario = null;
@@ -105,13 +105,26 @@ public class electoLabDAOImpl implements electoLabDAO {
 		em.persist(escenario);
 		em.close();
 		return escenario;		
-	}
+	}*/
 	public List<Escenario> read_escenarios(){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select m from Escenario m");
 		List<Escenario> res = q.getResultList();
 		em.close();
 		return res;
+	}
+
+	@Override
+	public Escenario create_escenario(int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
+			int total_escaños, int total_circuns) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Provincia create_provincia(String nombre, int escaños, int votos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

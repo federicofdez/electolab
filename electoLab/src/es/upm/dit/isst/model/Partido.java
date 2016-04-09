@@ -15,13 +15,13 @@ public class Partido implements Serializable {
 	private String color;
 	private String provincia;
 	private int id_escenario;
-	private int votos;
+	private long votos;
 
 
 
 	
 	public Partido(String siglas, String nombre, String imagen, String color, String provincia, int id_escenario,
-			int votos) {
+			long votos) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
@@ -100,14 +100,14 @@ public class Partido implements Serializable {
 
 
 
-	public String getprovincia() {
+	public String getProvincia() {
 		return provincia;
 	}
 
 
 
 
-	public void setprovincia(String provincia) {
+	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
 
@@ -128,14 +128,14 @@ public class Partido implements Serializable {
 
 
 
-	public int getVotos() {
+	public long getVotos() {
 		return votos;
 	}
 
 
 
 
-	public void setVotos(int votos) {
+	public void setVotos(long votos) {
 		this.votos = votos;
 	}
 

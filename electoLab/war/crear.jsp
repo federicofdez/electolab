@@ -70,7 +70,7 @@
 													<option value="20" data-color="#151515">Negro</option>		
 												</select>
 											</td>
-											<td><h5><c:out value="${partido.comunidad}"/></h5></td>
+											<td><h5><c:out value="${partido.provincia}"/></h5></td>
 
 										</tr>
 										<script>
