@@ -9,63 +9,64 @@ import java.util.Iterator;
 import java.util.List;
 
 import es.upm.dit.isst.model.Partido;
+import es.upm.dit.isst.model.Provincia;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
 public class calculos {
-		private List<String[]> provincias = new ArrayList<String[]>();
+		private List<Provincia> provincias = new ArrayList<Provincia>();
 	 { //Nombre, identificado, comunidad autónoma, escaños, electores
-	     provincias.add(new String[]{"Álava","alava","País Vasco","5","248456"});
-	     provincias.add(new String[]{"Albacete","albacete","Castilla La Mancha","5","304089"});
-	     provincias.add(new String[]{"Alicante","alicante","Comunidad Valenciana","5","1220005"});
-	     provincias.add(new String[]{"Almería","almeria","Andalucía","5","452589"});
-	     provincias.add(new String[]{"Asturias","asturias","Asturias","5","876171"});
-	     provincias.add(new String[]{"Ávila","avila","Castilla León","5","132575"});
-	     provincias.add(new String[]{"Badajoz","badajoz","Extremadura","5","548707"});
-	     provincias.add(new String[]{"Barcelona","barcelona","Cataluña","5","3974408"});
-	     provincias.add(new String[]{"Burgos","burgos","Castilla León","5","284916"});
-	     provincias.add(new String[]{"Cáceres","caceres","Extremadura","5","335845"});
-	     provincias.add(new String[]{"Cádiz","cadiz","Andalucía","5","968097"});
-	     provincias.add(new String[]{"Cantabria","cantabria","Cantabría","5","464081"});
-	     provincias.add(new String[]{"Castellón","castellon","Comunidad Valenciana","5","409474"});
-	     provincias.add(new String[]{"Ceuta","ceuta","Ceuta","5","59.213"});
-	     provincias.add(new String[]{"Ciudad Real","ciudadreal","Castilla La Mancha","5","396293"});
-	     provincias.add(new String[]{"Córdoba","cordoba","Andalucía","5","635086"});
-	     provincias.add(new String[]{"Cuenca","cuenca","Castilla La Mancha","5","156088"});
-	     provincias.add(new String[]{"Gerona","gerona","Cataluña","5","496127"});
-	     provincias.add(new String[]{"Granada","granada","Andalucía","5","702887"});
-	     provincias.add(new String[]{"Guadalajara","guadalajara","Castilla La Mancha","5","178749"});
-	     provincias.add(new String[]{"Guipúzcoa","guipuzcoa","País Vasco","5","555417"});
-	     provincias.add(new String[]{"Huelva","huelva","Andalucía","5","389811"});
-	     provincias.add(new String[]{"Huesca","huesca","Aragón","5","167331"});
-	     provincias.add(new String[]{"Islas Baleares","islasbaleares","Islas Baleares","5","748577"});
-	     provincias.add(new String[]{"Jaén","jaen","Andalucía","5","522173"});
-	     provincias.add(new String[]{"La Coruña","lacoruña","Galicia","5","936602"});
-	     provincias.add(new String[]{"La Rioja","larioja","La Rioja","5","233087"});
-	     provincias.add(new String[]{"Las Palmas","laspalmas","Islas Canarias","5","798145"});
-	     provincias.add(new String[]{"León","leon","Castilla León","5","398416"});
-	     provincias.add(new String[]{"Lérida","lerida","Cataluña","5","299069"});
-	     provincias.add(new String[]{"Lugo","lugo","Galicia","5","286315"});
-	     provincias.add(new String[]{"Madrid","madrid","Comunidad de Madrid","5","4658397"});
-	     provincias.add(new String[]{"Málaga","malaga","Andalucía","5","1113952"});
-	     provincias.add(new String[]{"Melilla","melilla","Melilla","5","53257"});
-	     provincias.add(new String[]{"Murcia","murcia","Murcia","5","1003799"});
-	     provincias.add(new String[]{"Navarra","navarra","Navarra","5","478330"});
-	     provincias.add(new String[]{"Orense","orense","Galicia","5","267704"});
-	     provincias.add(new String[]{"Palencia","palencia","Castilla León","5","137517"});
-	     provincias.add(new String[]{"Pontevedra","pontevedra","Galicia","5","774937"});
-	     provincias.add(new String[]{"Santa Cruz de Tenerife","tenerife","Islas Canarias","5","280762"});
-	     provincias.add(new String[]{"Salamanca","salamanca","Castilla León","5","733362"});
-	     provincias.add(new String[]{"Segovia","segovia","Castilla León","5","118502"});
-	     provincias.add(new String[]{"Sevilla","sevilla","Andalucía","5","1501271"});
-	     provincias.add(new String[]{"Soria","soria","Castilla León","5","70718"});
-	     provincias.add(new String[]{"Tarragona","tarragona","Cataluña","5","547971"});
-	     provincias.add(new String[]{"Teruel","teruel","Aragón","5","105453"});
-	     provincias.add(new String[]{"Toledo","toledo","Castilla La Mancha","5","509333"});
-	     provincias.add(new String[]{"Valencia","valencia","Valencia","5","1893225"});
-	     provincias.add(new String[]{"Valladolid","valladolid","Castilla León","5","421369"});
-	     provincias.add(new String[]{"Vizcaya","vizcaya","País Vasco","5","913244"});
-	     provincias.add(new String[]{"Zamora","zamora","Castilla León","5","155512"});
-	     provincias.add(new String[]{"Zaragoza","zaragoza","Aragón","5","714370"});
+	     provincias.add(new Provincia("Álava","alava","País Vasco",5,248456,0));
+	     provincias.add(new Provincia("Albacete","albacete","Castilla La Mancha",5,304089,0));
+	     provincias.add(new Provincia("Alicante","alicante","Comunidad Valenciana",5,1220005,0));
+	     provincias.add(new Provincia("Almería","almeria","Andalucía",5,452589,0));
+	     provincias.add(new Provincia("Asturias","asturias","Asturias",5,876171,0));
+	     provincias.add(new Provincia("Ávila","avila","Castilla León",5,132575,0));
+	     provincias.add(new Provincia("Badajoz","badajoz","Extremadura",5,548707,0));
+	     provincias.add(new Provincia("Barcelona","barcelona","Cataluña",5,3974408,0));
+	     provincias.add(new Provincia("Burgos","burgos","Castilla León",5,284916,0));
+	     provincias.add(new Provincia("Cáceres","caceres","Extremadura",5,335845,0));
+	     provincias.add(new Provincia("Cádiz","cadiz","Andalucía",5,968097,0));
+	     provincias.add(new Provincia("Cantabria","cantabria","Cantabría",5,464081,0));
+	     provincias.add(new Provincia("Castellón","castellon","Comunidad Valenciana",5,409474,0));
+	     provincias.add(new Provincia("Ceuta","ceuta","Ceuta",5,59213,0));
+	     provincias.add(new Provincia("Ciudad Real","ciudadreal","Castilla La Mancha",5,396293,0));
+	     provincias.add(new Provincia("Córdoba","cordoba","Andalucía",5,635086,0));
+	     provincias.add(new Provincia("Cuenca","cuenca","Castilla La Mancha",5,156088,0));
+	     provincias.add(new Provincia("Gerona","gerona","Cataluña",5,496127,0));
+	     provincias.add(new Provincia("Granada","granada","Andalucía",5,702887,0));
+	     provincias.add(new Provincia("Guadalajara","guadalajara","Castilla La Mancha",5,178749,0));
+	     provincias.add(new Provincia("Guipúzcoa","guipuzcoa","País Vasco",5,555417,0));
+	     provincias.add(new Provincia("Huelva","huelva","Andalucía",5,389811,0));
+	     provincias.add(new Provincia("Huesca","huesca","Aragón",5,167331,0));
+	     provincias.add(new Provincia("Islas Baleares","islasbaleares","Islas Baleares",5,748577,0));
+	     provincias.add(new Provincia("Jaén","jaen","Andalucía",5,522173,0));
+	     provincias.add(new Provincia("La Coruña","lacoruña","Galicia",5,936602,0));
+	     provincias.add(new Provincia("La Rioja","larioja","La Rioja",5,233087,0));
+	     provincias.add(new Provincia("Las Palmas","laspalmas","Islas Canarias",5,798145,0));
+	     provincias.add(new Provincia("León","leon","Castilla León",5,398416,0));
+	     provincias.add(new Provincia("Lérida","lerida","Cataluña",5,299069,0));
+	     provincias.add(new Provincia("Lugo","lugo","Galicia",5,286315,0));
+	     provincias.add(new Provincia("Madrid","madrid","Comunidad de Madrid",5,4658397,0));
+	     provincias.add(new Provincia("Málaga","malaga","Andalucía",5,1113952,0));
+	     provincias.add(new Provincia("Melilla","melilla","Melilla",5,53257,0));
+	     provincias.add(new Provincia("Murcia","murcia","Murcia",5,1003799,0));
+	     provincias.add(new Provincia("Navarra","navarra","Navarra",5,478330,0));
+	     provincias.add(new Provincia("Orense","orense","Galicia",5,267704,0));
+	     provincias.add(new Provincia("Palencia","palencia","Castilla León",5,137517,0));
+	     provincias.add(new Provincia("Pontevedra","pontevedra","Galicia",5,774937,0));
+	     provincias.add(new Provincia("Santa Cruz de Tenerife","tenerife","Islas Canarias",5,280762,0));
+	     provincias.add(new Provincia("Salamanca","salamanca","Castilla León",5,733362,0));
+	     provincias.add(new Provincia("Segovia","segovia","Castilla León",5,118502,0));
+	     provincias.add(new Provincia("Sevilla","sevilla","Andalucía",5,1501271,0));
+	     provincias.add(new Provincia("Soria","soria","Castilla León",5,70718,0));
+	     provincias.add(new Provincia("Tarragona","tarragona","Cataluña",5,547971,0));
+	     provincias.add(new Provincia("Teruel","teruel","Aragón",5,105453,0));
+	     provincias.add(new Provincia("Toledo","toledo","Castilla La Mancha",5,509333,0));
+	     provincias.add(new Provincia("Valencia","valencia","Valencia",5,1893225,0));
+	     provincias.add(new Provincia("Valladolid","valladolid","Castilla León",5,421369,0));
+	     provincias.add(new Provincia("Vizcaya","vizcaya","País Vasco",5,913244,0));
+	     provincias.add(new Provincia("Zamora","zamora","Castilla León",5,155512,0));
+	     provincias.add(new Provincia("Zaragoza","zaragoza","Aragón",5,714370,0));
 
 
 	 }
@@ -92,13 +93,19 @@ public class calculos {
 
 
 
-	public List<String[]> getProvincias() {
+
+	public List<Provincia> getProvincias() {
 		return provincias;
 	}
 
-	public void setProvincias(List<String[]> provincias) {
+	public void setProvincias(List<Provincia> provincias) {
 		this.provincias = provincias;
 	}
+
+	public void setPartidos(List<Partido> partidos) {
+		this.partidos = partidos;
+	}
+
 	private static calculos instance;
 	
 	public static calculos getInstance(){
@@ -230,7 +237,7 @@ public class calculos {
 		int i = 0;
 		List<Partido> votosTabla = new ArrayList<Partido>();
 		List<Partido> votosTablaOrder = new ArrayList<Partido>();
-		while(em.hasMoreElements()){
+		/*while(em.hasMoreElements()){
 			String paraName = (String) em.nextElement();
 			Iterator<String[]> provinciasIterator = provincias.iterator();
 			while (provinciasIterator.hasNext()) {

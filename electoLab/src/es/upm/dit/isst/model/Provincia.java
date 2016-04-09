@@ -8,29 +8,80 @@ import javax.persistence.Id;
 public class Provincia implements Serializable {
 	@Id
 	private String nombre;
-	private int escanos;
+	private String identificador;
 	private String comunidad;
+	private int escanos;
+	private int electores;
 	private int id_escenario;
 	
-	public Provincia(String nombre, int escanos, String comunidad, int id_escenario) {
+
+
+
+
+
+	public Provincia(String nombre, String identificador, String comunidad, int escanos, int electores,
+			int id_escenario) {
 		super();
 		this.nombre = nombre;
-		this.escanos = escanos;
+		this.identificador = identificador;
 		this.comunidad = comunidad;
+		this.escanos = escanos;
+		this.electores = electores;
 		this.id_escenario = id_escenario;
 	}
-	
+
+
+
+	@Override
+	public String toString() {
+		return "Provincia [nombre=" + nombre + ", identificador=" + identificador + ", comunidad=" + comunidad
+				+ ", escanos=" + escanos + ", electores=" + electores + ", id_escenario=" + id_escenario + "]";
+	}
+
+
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
 
-	@Override
-	public String toString() {
-		return "Provincia [nombre=" + nombre + ", escanos=" + escanos + ", comunidad=" + comunidad + ", id_escenario="
-				+ id_escenario + "]";
+
+
+
+
+
+
+
+
+
+
+	public int getElectores() {
+		return electores;
 	}
+
+
+
+	public void setElectores(int electores) {
+		this.electores = electores;
+	}
+
+
+
+
+
 
 	public String getNombre() {
 		return nombre;

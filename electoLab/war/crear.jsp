@@ -141,14 +141,13 @@
 								<tbody>
 									<c:forEach items="${provincias}" var="provincia">
 	                                    <tr>
-											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia[4]}"/>
-	 											electores"><c:out value="${provincia[0]}"/></a>
+											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
+	 											electores"><c:out value="${provincia.nombre}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido.siglas}${provincia[1]}" placeholder='0%' min-value=0 max-value=100></th>
-												<script>console.log("${partido.siglas}${provincia}");</script>
+												<th> <input type='number' class='form-control'name="${partido.siglas}${provincia.identificador}" placeholder='0%' min-value=0 max-value=100></th>
 											</c:forEach>
-											<th class='form-group'><input type="number" name="votos ${provincia[1]}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
-											<th class='form-group'><input type="number" name="escaños ${provincia[1]}" class="form-control"max="350" min="0" value="${provincia[3]}"></th>
+											<th class='form-group'><input type="number" name="votos ${provincia.identificador}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
+											<th class='form-group'><input type="number" name="escaños ${provincia.identificador}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
 										</tr>
 									</c:forEach>
 								</tbody>
