@@ -264,7 +264,6 @@ public class calculos {
 					temporal.add(new String[]{parametros[0],parametros[1],parametros[2]});
 				}
 				if(!votosIterator.hasNext()){
-					Collections.sort(temporal);
 					votosTablaOrder.addAll(temporal);
 				}
 			}
