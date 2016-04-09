@@ -44,10 +44,10 @@
 									<tbody>
 									<c:forEach items="${partidos}" var="partido">
 	                                    <tr>
-											<th scope="row"> <img src="${partido[2]}" style="height: 40px;"> <c:out value="${partido[0]}"/></th>
-											<td><c:out value="${partido[1]}"/></td>
+											<th scope="row"> <img src="${partido.imagen}" style="height: 40px;"> <c:out value="${partido.siglas}"/></th>
+											<td><c:out value="${partido.nombre}"/></td>
 											<td>
-												<select class="colorselector" id="color${partido[3]}">
+												<select class="colorselector" id="color${partido.color}">
 													<option value="1" data-color="#02CFF7">Azul claro</option>
 													<option value="2" data-color="#FF0000">Rojo</option>
 													<option value="3" data-color="#742DA1">Morado</option>
@@ -70,18 +70,12 @@
 													<option value="20" data-color="#151515">Negro</option>		
 												</select>
 											</td>
-											<c:choose>
-    											<c:when test="${fn:length(partido) > 4}">
-													<td><h5><c:out value="${partido[4]}"/></h5></td>
-   												</c:when>    
-   												<c:otherwise>
-													<td><h5>Todas</h5></td>
-    											</c:otherwise>
-											</c:choose>
+											<td><h5><c:out value="${partido.comunidad}"/></h5></td>
+
 										</tr>
 										<script>
-										var val = ${partido[3]};
-										$('#color'+${partido[3]}).val(val.toString());</script>
+										var val = ${partido.color};
+										$('#color'+${partido.color}).val(val.toString());</script>
 									</c:forEach>
 									</tbody>
 								</table>
@@ -138,7 +132,7 @@
 										<th style="min-width:100px;"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
  electores">Circunscripción</a></th>
 										<c:forEach items="${partidos}" var="partido">
-											<th style="min-width:100px;"><c:out value="${partido[0]}"/></th>
+											<th style="min-width:100px;"><c:out value="${partido.siglas}"/></th>
 										</c:forEach>
 										<th style="min-width:100px;">Votos a repartir</th>
 										<th style="min-width:100px;">Escaños</th>
@@ -150,8 +144,8 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia[4]}"/>
 	 											electores"><c:out value="${provincia[0]}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido[0]}${provincia[1]}" placeholder='0%' min-value=0 max-value=100></th>
-												<script>console.log("${partido[0]}${provincia}");</script>
+												<th> <input type='number' class='form-control'name="${partido.siglas}${provincia[1]}" placeholder='0%' min-value=0 max-value=100></th>
+												<script>console.log("${partido.siglas}${provincia}");</script>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="votos ${provincia[1]}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
 											<th class='form-group'><input type="number" name="escaños ${provincia[1]}" class="form-control"max="350" min="0" value="${provincia[3]}"></th>

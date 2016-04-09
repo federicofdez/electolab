@@ -23,7 +23,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 	public Partido create(String siglas, String nombre, String imagen, int color, String provincias) {
 		Partido partido = null;
 		EntityManager em = EMFService.get().createEntityManager();
-		partido = new Partido(siglas,nombre,color,provincias);
+		//partido = new Partido(siglas,nombre,color,provincias);
 		em.persist(partido);
 		em.close();
 		return partido;

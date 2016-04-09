@@ -49,8 +49,8 @@ public class crearServlet extends HttpServlet {
 		//dao.create_escenario(100, "D'hont", "provincias", 50, 100, 1);
 
 		//dao.delete("PP");
-		System.out.println(dao.read());
-		System.out.println(dao.read_provincias());
+		//System.out.println(dao.read());
+		//System.out.println(dao.read_provincias());
 		//System.out.println(dao.read_escenarios());
 		
 		resp.sendRedirect("/crear.jsp");

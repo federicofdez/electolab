@@ -1,10 +1,13 @@
 package es.upm.dit.isst.logica;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
+import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
 public class calculos {
@@ -66,33 +69,27 @@ public class calculos {
 
 	 }
 	 
-	 private List<String[]> partidos = new ArrayList<String[]>();
+	 private List<Partido> partidos = new ArrayList<Partido>();
 	 {
-	     partidos.add(new String[]{"PP","Partido Popular","img/logos/pp.png","1"});
-	     partidos.add(new String[]{"PSOE","Partido Socialista","img/logos/psoe.png","2"});
-	     partidos.add(new String[]{"PODEMOS","Podemos","img/logos/podemos.png","3"});
-	     partidos.add(new String[]{"C's","Ciudadanos","img/logos/ciudadanos.png","4"});
-	     partidos.add(new String[]{"EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Alicante,Castellón,Valencia"});
-	     partidos.add(new String[]{"ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"DL","Democràcia i Llibertat","img/logos/dl.png","8","Barcelona,Tarragona,Lérida,Gerona"});
-	     partidos.add(new String[]{"PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9","A Coruña,Lugo,Orense,Pontevedra"});
-	     partidos.add(new String[]{"IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10"});
-	     partidos.add(new String[]{"EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11","Álava,Guipúzcoa,Vizcaya"});
-	     partidos.add(new String[]{"CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12","Las Palmas,Santa Cruz de Tenerife"});
-	     partidos.add(new String[]{"UPN","Unión del Pueblo Navarro","img/logos/upn.png","13","Navarra"});
-	     partidos.add(new String[]{"FAC","Foro Asturias","img/logos/foro.jpg","14","Asturias"});
+	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","1","Todas",0,0));
+	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","2","Todas",0,0));
+	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3","Todas",0,0));
+	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","4","Todas",0,0));
+	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Cataluña",0,0));
+	     partidos.add(new Partido("PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Comunidad Valenciana",0,0));
+	     partidos.add(new Partido("ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7","Cataluña",0,0));
+	     partidos.add(new Partido("DL","Democràcia i Llibertat","img/logos/dl.png","8","Barcelona,Tarragona,Lérida,Gerona",0,0));
+	     partidos.add(new Partido("PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9","A Coruña,Lugo,Orense,Pontevedra",0,0));
+	     partidos.add(new Partido("IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10","Todas",0,0));
+	     partidos.add(new Partido("EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11","Álava,Guipúzcoa,Vizcaya",0,0));
+	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12","Las Palmas,Santa Cruz de Tenerife",0,0));
+	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","13","Navarra",0,0));
+	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","14","Asturias",0,0));
 	 }
 
 
 
-	public List<String[]> getPartidos() {
-		return partidos;
-	}
 
-	public void setPartidos(List<String[]> partidos) {
-		this.partidos = partidos;
-	}
 
 	public List<String[]> getProvincias() {
 		return provincias;
@@ -240,9 +237,9 @@ public class calculos {
 				String provincia = arrayProvincia[1];
 				String electores = arrayProvincia[4];
 				if(paraName.indexOf(provincia) != -1){
-					Iterator<String[]> partidosIterator = partidos.iterator();
+					Iterator<Partido> partidosIterator = partidos.iterator();
 					while (partidosIterator.hasNext()) {
-						String partido = partidosIterator.next()[0];
+						String partido = partidosIterator.next().getSiglas();
 						if(datos[i] != "" && paraName.indexOf(partido) != -1 ){
 						double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
 						String votos = String.valueOf((int) votosDouble);
@@ -255,19 +252,41 @@ public class calculos {
 	}
 		
 		//Ordenar la lista
-		Iterator<String[]> votosIterator = votosTabla.iterator();
-		while (votosIterator.hasNext()) {
-			String[] parametros = votosIterator.next();
-			Iterator<String[]> provinciasIterator = provincias.iterator();
-			while(provinciasIterator.hasNext()){
-				String provincia = provinciasIterator.next()[1];
+		Iterator<String[]> provinciasIterator = provincias.iterator();
+		while (provinciasIterator.hasNext()) {
+			String provincia = provinciasIterator.next()[1];
+			Iterator<String[]> votosIterator = votosTabla.iterator();
+			List<String[]> temporal = new ArrayList<String[]>();
+			while(votosIterator.hasNext()){
+				String[] parametros = votosIterator.next();
 				if(parametros[0] == provincia){
-					votosTablaOrder.add(new String[]{parametros[0],parametros[1],parametros[2]});
+					System.out.println("provincia: " + parametros[0] + ", partido: " + parametros[1]);
+					temporal.add(new String[]{parametros[0],parametros[1],parametros[2]});
+				}
+				if(!votosIterator.hasNext()){
+					Collections.sort(temporal);
+					votosTablaOrder.addAll(temporal);
 				}
 			}
 		}
 		return votosTablaOrder;
 }
+	
+	
+	public List<String[]> calculaEscanos(List<String[]> votos){
+		
+		
+		
+		return votos;
+		
+		
+	}
+
+	public List<Partido> getPartidos() {
+		System.out.println(partidos);
+		return partidos;
+	}
+
 }
 
 

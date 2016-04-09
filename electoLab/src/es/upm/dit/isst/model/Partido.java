@@ -12,20 +12,26 @@ public class Partido implements Serializable {
 	private String siglas;
 	private String nombre;
 	private String imagen;
-	private int color;
+	private String color;
 	private String comunidad;
 	private int id_escenario;
 	private int votos;
 
 
 
-	public Partido(String siglas, String nombre, int color, String comunidad) {
+	
+	public Partido(String siglas, String nombre, String imagen, String color, String comunidad, int id_escenario,
+			int votos) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
+		this.imagen = imagen;
 		this.color = color;
 		this.comunidad = comunidad;
+		this.id_escenario = id_escenario;
+		this.votos = votos;
 	}
+
 	@Override
 	public String toString() {
 		return "Partidos [siglas=" + siglas + ", nombre=" + nombre + ", color=" + color + ", comunidad=" + comunidad
@@ -59,12 +65,36 @@ public class Partido implements Serializable {
 	}
 
 
-	public int getColor() {
+	public String getColor() {
 		return color;
 	}
 
 
-	public void setColor(int color) {
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public int getId_escenario() {
+		return id_escenario;
+	}
+
+	public void setId_escenario(int id_escenario) {
+		this.id_escenario = id_escenario;
+	}
+
+	public int getVotos() {
+		return votos;
+	}
+
+	public void setVotos(int votos) {
+		this.votos = votos;
+	}
+
+	public void setColor(String color) {
 		this.color = color;
 	}
 
