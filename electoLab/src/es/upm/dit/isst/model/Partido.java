@@ -1,6 +1,9 @@
 package es.upm.dit.isst.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,22 +16,50 @@ public class Partido implements Serializable {
 	private String nombre;
 	private String imagen;
 	private String color;
-	private String provincia;
+	private ArrayList<String> provincia;
+	private ArrayList<Double> votos;
 	private int id_escenario;
-	private long votos;
 
 
 
-	
-	public Partido(String siglas, String nombre, String imagen, String color, String provincia, int id_escenario,
-			long votos) {
+
+
+
+	public Partido(String siglas, String nombre, String imagen, String color, ArrayList<String> provincia,
+			ArrayList<Double> votos, int id_escenario) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.color = color;
 		this.provincia = provincia;
+		this.votos = votos;
 		this.id_escenario = id_escenario;
+	}
+
+
+	public List<String> getProvincia() {
+		return provincia;
+	}
+
+
+
+
+	public void setProvincia(ArrayList<String> provincia) {
+		this.provincia = provincia;
+	}
+
+
+
+
+	public List<Double> getVotos() {
+		return votos;
+	}
+
+
+
+
+	public void setVotos(ArrayList<Double> votos) {
 		this.votos = votos;
 	}
 
@@ -37,11 +68,9 @@ public class Partido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Partido [siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen + ", color=" + color
-				+ ", provincia=" + provincia + ", id_escenario=" + id_escenario + ", votos=" + votos + "]";
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
-
-
 
 
 	public String getSiglas() {
@@ -100,16 +129,11 @@ public class Partido implements Serializable {
 
 
 
-	public String getProvincia() {
-		return provincia;
-	}
 
 
 
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
+
 
 
 
@@ -123,20 +147,6 @@ public class Partido implements Serializable {
 
 	public void setId_escenario(int id_escenario) {
 		this.id_escenario = id_escenario;
-	}
-
-
-
-
-	public long getVotos() {
-		return votos;
-	}
-
-
-
-
-	public void setVotos(long votos) {
-		this.votos = votos;
 	}
 
 

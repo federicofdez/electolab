@@ -72,20 +72,20 @@ public class calculos {
 	 
 	 private List<Partido> partidos = new ArrayList<Partido>();
 	 {
-	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","1","Todas",0,0));
-	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","2","Todas",0,0));
-	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3","Todas",0,0));
-	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","4","Todas",0,0));
-	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","5","Cataluña",0,0));
-	     partidos.add(new Partido("PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6","Comunidad Valenciana",0,0));
-	     partidos.add(new Partido("ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7","Cataluña",0,0));
-	     partidos.add(new Partido("DL","Democràcia i Llibertat","img/logos/dl.png","8","Barcelona,Tarragona,Lérida,Gerona",0,0));
-	     partidos.add(new Partido("PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9","A Coruña,Lugo,Orense,Pontevedra",0,0));
-	     partidos.add(new Partido("IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10","Todas",0,0));
-	     partidos.add(new Partido("EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11","Álava,Guipúzcoa,Vizcaya",0,0));
-	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12","Las Palmas,Santa Cruz de Tenerife",0,0));
-	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","13","Navarra",0,0));
-	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","14","Asturias",0,0));
+	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","1",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","2",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","4",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","5",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("DL","Democràcia i Llibertat","img/logos/dl.png","8",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","13",new ArrayList<String>(),new ArrayList<Double>(),0));
+	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","14",new ArrayList<String>(),new ArrayList<Double>(),0));
 	 }
 
 
@@ -239,23 +239,30 @@ public class calculos {
 				String electores = arrayProvincia[4];
 				if(paraName.indexOf(provincia) != -1){
 					Iterator<Partido> partidosIterator = partidos.iterator();
+					List<Double> votosList = new ArrayList<Double>();
 					while (partidosIterator.hasNext()) {
 						Partido partido = partidosIterator.next();
 						String siglas = partido.getSiglas();
 						if(datos[i] != "" && paraName.indexOf(siglas) != -1 ){
 						Double votosDouble = Double.parseDouble(datos[i])/100 * Double.parseDouble(electores);
-						long votos = Math.round(votosDouble);
-						Partido party = new Partido(siglas,partido.getNombre(),partido.getImagen(),partido.getColor(),provincia,partido.getId_escenario(),votos);
-						votosTabla.add(party);
+						Double votos = (double) Math.round(votosDouble);
+						votosList.add(votos);
 					}
+						if(!partidosIterator.hasNext()){
+							
+							//Partido party = new Partido(siglas,partido.getNombre(),partido.getImagen(),partido.getColor(),provincia,partido.getId_escenario(),votosList );
+							//votosTabla.add(party);
+
+							
+						}
+						}
 				}
 			}
-				}
 			i++;
 	}
 		
 		//Ordenar la lista
-		Iterator<String[]> provinciasIterator = provincias.iterator();
+		/*Iterator<String[]> provinciasIterator = provincias.iterator();
 		while (provinciasIterator.hasNext()) {
 			String provincia = provinciasIterator.next()[1];
 			Iterator<Partido> votosIterator = votosTabla.iterator();
@@ -281,7 +288,7 @@ public class calculos {
 					votosTablaOrder.addAll(temporal);
 				}
 			}
-		}
+		}*/
 		return votosTablaOrder;
 }
 	
