@@ -262,8 +262,7 @@ public class calculos {
 						int index = paramNames.indexOf(siglas+""+provinciaId);
 						//System.out.println("index: " + index + ", id: " + siglas+""+provinciaId + ", valorDatos: " + datos[index]);
 						if(index != -1){
-							if(datos[index] == ""){
-								
+							if(datos[index] == ""){		
 							}
 							else{
 							Double votosDouble = Double.parseDouble(datos[index])/100 * electores;

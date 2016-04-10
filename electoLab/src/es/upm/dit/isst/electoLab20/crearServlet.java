@@ -18,6 +18,7 @@ import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
 import es.upm.dit.isst.model.Partido;
+import es.upm.dit.isst.model.Provincia;
 
 @SuppressWarnings("serial")
 public class crearServlet extends HttpServlet {
@@ -37,9 +38,24 @@ public class crearServlet extends HttpServlet {
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		
 		
-		
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
 		calculos calc = calculos.getInstance();
+		
+		//localhost:8888/_ah/admin
+		//Prueba db Partido
+		/*List<String> provincias2 = new ArrayList<String>();
+		 { 
+		     provincias2.add(new String("Álava"));
+		     provincias2.add(new String("Albacete"));
+		 }
+		 List<Double> votos2 = new ArrayList<Double>();
+		 {
+		     votos2.add(new Double(1212212));		     
+		 }
+		dao.create_partido("PPSOEPRUEBA","Partido Probador de todos","img/logos/psoe.png","2",provincias2,votos2,0);
+		//System.out.println("leer" + dao.read_partidos());
+		dao.delete("PPSOEPRUEBA");
+		*/
 
 		//Habría que hacerlo con el dao
 		req.getSession().setAttribute("provincias", calc.getProvincias());

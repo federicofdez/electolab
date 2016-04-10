@@ -16,8 +16,8 @@ public class Partido implements Serializable {
 	private String nombre;
 	private String imagen;
 	private String color;
-	private ArrayList<String> provincia;
-	private ArrayList<Double> votos;
+	private List<String> provincia;
+	private List<Double> votos;
 	private int id_escenario;
 
 
@@ -25,8 +25,8 @@ public class Partido implements Serializable {
 
 
 
-	public Partido(String siglas, String nombre, String imagen, String color, ArrayList<String> provincia,
-			ArrayList<Double> votos, int id_escenario) {
+	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
+			List<Double> votos, int id_escenario) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
@@ -38,44 +38,26 @@ public class Partido implements Serializable {
 	}
 
 
-	public List<String> getProvincia() {
-		return provincia;
-	}
-
-
-
-
-	public void setProvincia(ArrayList<String> provincia) {
-		this.provincia = provincia;
-	}
-
-
-
-
-	public List<Double> getVotos() {
-		return votos;
-	}
-
-
-
-
-	public void setVotos(ArrayList<Double> votos) {
-		this.votos = votos;
-	}
-
+	
 
 
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "Partido [siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen + ", color=" + color
+				+ ", provincia=" + provincia + ", votos=" + votos + ", id_escenario=" + id_escenario + "]";
 	}
+
+
+
+
 
 
 	public String getSiglas() {
 		return siglas;
 	}
+
+
 
 
 
@@ -87,9 +69,13 @@ public class Partido implements Serializable {
 
 
 
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
 
 
 
@@ -101,9 +87,13 @@ public class Partido implements Serializable {
 
 
 
+
+
 	public String getImagen() {
 		return imagen;
 	}
+
+
 
 
 
@@ -115,9 +105,13 @@ public class Partido implements Serializable {
 
 
 
+
+
 	public String getColor() {
 		return color;
 	}
+
+
 
 
 
@@ -131,7 +125,36 @@ public class Partido implements Serializable {
 
 
 
+	public List<String> getProvincia() {
+		return provincia;
+	}
 
+
+
+
+
+
+	public void setProvincia(List<String> provincia) {
+		this.provincia = provincia;
+	}
+
+
+
+
+
+
+	public List<Double> getVotos() {
+		return votos;
+	}
+
+
+
+
+
+
+	public void setVotos(List<Double> votos) {
+		this.votos = votos;
+	}
 
 
 
@@ -145,9 +168,13 @@ public class Partido implements Serializable {
 
 
 
+
+
 	public void setId_escenario(int id_escenario) {
 		this.id_escenario = id_escenario;
 	}
+
+
 
 
 

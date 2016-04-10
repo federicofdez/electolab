@@ -19,6 +19,20 @@ public class Escenario implements Serializable {
 	private int mayoria_abs;
 	private int total_escaños;
 	private int total_circuns;
+	
+	
+	
+	public Escenario(int id, int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
+			int total_escaños, int total_circuns) {
+		super();
+		this.id = id;
+		this.votos_totales = votos_totales;
+		this.sistema = sistema;
+		this.circunscripciones = circunscripciones;
+		this.mayoria_abs = mayoria_abs;
+		this.total_escaños = total_escaños;
+		this.total_circuns = total_circuns;
+	}
 	public int getId() {
 		return id;
 	}
