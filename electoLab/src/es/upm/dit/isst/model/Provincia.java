@@ -3,10 +3,15 @@ package es.upm.dit.isst.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 	@Entity
 public class Provincia implements Serializable {
-	@Id
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	private long id_partido;
 	private String identificador;
 	private String nombre;
 	private String comunidad;
@@ -17,9 +22,7 @@ public class Provincia implements Serializable {
 
 
 
-
-
-	public Provincia(String identificador,String nombre, String comunidad, int escanos, int electores,
+	public Provincia(String identificador, String nombre, String comunidad, int escanos, int electores,
 			long id_escenario) {
 		super();
 		this.identificador = identificador;
@@ -34,13 +37,22 @@ public class Provincia implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Provincia [identificador=" + identificador + ", nombre=" + nombre + ", comunidad=" + comunidad
-				+ ", escanos=" + escanos + ", electores=" + electores + ", id_escenario=" + id_escenario + "]";
+		return "Provincia [id_partido=" + id_partido + ", identificador=" + identificador + ", nombre=" + nombre
+				+ ", comunidad=" + comunidad + ", escanos=" + escanos + ", electores=" + electores + ", id_escenario="
+				+ id_escenario + "]";
 	}
 
 
 
+	public long getId_partido() {
+		return id_partido;
+	}
 
+
+
+	public void setId_partido(long id_partido) {
+		this.id_partido = id_partido;
+	}
 
 
 

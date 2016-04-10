@@ -11,7 +11,7 @@ import javax.persistence.Id;
 	@Entity
 public class Escenario implements Serializable {
 	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
 	private Long id;
 	private int votos_totales;
 	private String sistema;
@@ -22,10 +22,9 @@ public class Escenario implements Serializable {
 	
 	
 
-	public Escenario(Long id, int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
+	public Escenario( int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
 			int total_escaños, int total_circuns) {
 		super();
-		this.id = id;
 		this.votos_totales = votos_totales;
 		this.sistema = sistema;
 		this.circunscripciones = circunscripciones;

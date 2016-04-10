@@ -43,7 +43,7 @@ public class crearServlet extends HttpServlet {
 		
 		//localhost:8888/_ah/admin
 		//Prueba db Partido
-		/*List<String> provincias2 = new ArrayList<String>();
+		List<String> provincias2 = new ArrayList<String>();
 		 { 
 		     provincias2.add(new String("Álava"));
 		     provincias2.add(new String("Albacete"));
@@ -54,16 +54,18 @@ public class crearServlet extends HttpServlet {
 		 }
 		dao.create_partido("PPSOEPRUEBA","Partido Probador de todos","img/logos/psoe.png","2",provincias2,votos2,0);
 		//System.out.println("leer" + dao.read_partidos());
-		dao.delete("PPSOEPRUEBA");
-		*/
+		dao.delete_partido("PPSOEPRUEBA",0);
 		
-		//Prueba db Partido
-		/*dao.create_provincia("LostCity","Ciudad perdida","Perdida",3, 1,1);
-		System.out.println(dao.read_provincia("LostCity"));
-		System.out.println(dao.read_provincias());
-		dao.delete_provincia("LostCity");
-		System.out.println(dao.read_provincia("LostCity"));
-		*/
+		
+		//Prueba db Provincia
+		//dao.create_provincia("LostCity","Ciudad perdida","Perdida",3, 1,1);
+		//dao.create_provincia("LostCity","Ciudad perdida","Perdida",3, 1,2);
+
+		//System.out.println(dao.read_provincia("LostCity"));
+		//System.out.println(dao.read_provincias());
+		//dao.delete_provincia("LostCity",1);
+		//System.out.println(dao.read_provincia("LostCity"));
+		
 		
 		//Prueba db Escenario
 		/*dao.create_escenario(1, 5, "DHont1", "provincias", 5, 5, 99);

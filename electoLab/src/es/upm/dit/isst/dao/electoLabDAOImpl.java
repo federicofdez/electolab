@@ -43,17 +43,24 @@ public class electoLabDAOImpl implements electoLabDAO {
 	}
 
 	@Override
-	public void delete_partido(String siglas, int id_escenario) {
+	public void delete_partido(String siglas, long id_escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
-		try {
-			Partido partidoBorrar = em.find(Partido.class, siglas);
-			em.remove(partidoBorrar);
-		}
-		finally {
-			em.close();	
-		}
-	}
+		Query q = em.createQuery("select t from Partido t where t.siglas = :siglas");
+		q.setParameter("siglas",siglas);
+		//q.setParameter("id_escenario",id_escenario);
+		System.out.println(siglas);
+		Partido res = null;
 
+			List<Partido> partidos = q.getResultList();
+			System.out.println(partidos);
+			if(partidos.size()>0){
+				res = (Partido) (q.getResultList().get(0)); 
+				em.remove(res);
+			}
+			em.close();	
+
+		}
+	
 	public Partido read_siglas(String siglas){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from Partido t where t.siglas = :siglas");
@@ -62,8 +69,8 @@ public class electoLabDAOImpl implements electoLabDAO {
 		List<Partido> partidos = q.getResultList();
 		if(partidos.size()>0)
 			res = (Partido) (q.getResultList().get(0)); 
-			em.close();
-			return res;				
+		em.close();
+		return res;				
 	}
 	
 	//Métodos de provincias
@@ -80,7 +87,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 	}
 	
 	@Override
-	public void delete_provincia(String id) {
+	public void delete_provincia(String id, long id_escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
 			Partido provinciaBorrar = em.find(Partido.class, id);
@@ -119,7 +126,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 			int total_escaños, int total_circuns){
 		EntityManager em = EMFService.get().createEntityManager();
 		Escenario escenario = null;
-		escenario = new Escenario(id, votos_totales, sistema, circunscripciones,
+		escenario = new Escenario(votos_totales, sistema, circunscripciones,
 				mayoria_abs, total_escaños, total_circuns);
 		em.persist(escenario);
 		em.close();

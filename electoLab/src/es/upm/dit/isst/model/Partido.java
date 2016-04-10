@@ -6,12 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Partido implements Serializable {
 	
-	@Id
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	private long id_partido;
 	private String siglas;
 	private String nombre;
 	private String imagen;
@@ -19,6 +23,30 @@ public class Partido implements Serializable {
 	private List<String> provincia;
 	private List<Double> votos;
 	private long id_escenario;
+
+
+
+	public long getId_partido() {
+		return id_partido;
+	}
+
+
+
+	public void setId_partido(long id_partido) {
+		this.id_partido = id_partido;
+	}
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Partido [id_partido=" + id_partido + ", siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen
+				+ ", color=" + color + ", provincia=" + provincia + ", votos=" + votos + ", id_escenario="
+				+ id_escenario + "]";
+	}
 
 
 
@@ -38,15 +66,7 @@ public class Partido implements Serializable {
 	}
 
 
-	
 
-
-
-	@Override
-	public String toString() {
-		return "Partido [siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen + ", color=" + color
-				+ ", provincia=" + provincia + ", votos=" + votos + ", id_escenario=" + id_escenario + "]";
-	}
 
 
 
