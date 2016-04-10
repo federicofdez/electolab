@@ -18,7 +18,7 @@ public class Partido implements Serializable {
 	private String color;
 	private List<String> provincia;
 	private List<Double> votos;
-	private int id_escenario;
+	private long id_escenario;
 
 
 
@@ -26,7 +26,7 @@ public class Partido implements Serializable {
 
 
 	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, int id_escenario) {
+			List<Double> votos, long id_escenario) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
@@ -161,7 +161,7 @@ public class Partido implements Serializable {
 
 
 
-	public int getId_escenario() {
+	public long getId_escenario() {
 		return id_escenario;
 	}
 
@@ -170,7 +170,7 @@ public class Partido implements Serializable {
 
 
 
-	public void setId_escenario(int id_escenario) {
+	public void setId_escenario(long id_escenario) {
 		this.id_escenario = id_escenario;
 	}
 

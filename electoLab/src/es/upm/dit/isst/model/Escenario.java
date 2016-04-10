@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Escenario implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private int id;
+	private Long id;
 	private int votos_totales;
 	private String sistema;
 	private String circunscripciones;
@@ -21,8 +21,8 @@ public class Escenario implements Serializable {
 	private int total_circuns;
 	
 	
-	
-	public Escenario(int id, int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
+
+	public Escenario(Long id, int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
 			int total_escaños, int total_circuns) {
 		super();
 		this.id = id;
@@ -33,10 +33,16 @@ public class Escenario implements Serializable {
 		this.total_escaños = total_escaños;
 		this.total_circuns = total_circuns;
 	}
-	public int getId() {
+	@Override
+	public String toString() {
+		return "Escenario [id=" + id + ", votos_totales=" + votos_totales + ", sistema=" + sistema
+				+ ", circunscripciones=" + circunscripciones + ", mayoria_abs=" + mayoria_abs + ", total_escaños="
+				+ total_escaños + ", total_circuns=" + total_circuns + "]";
+	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public int getVotos_totales() {
@@ -75,12 +81,7 @@ public class Escenario implements Serializable {
 	public void setTotal_circuns(int total_circuns) {
 		this.total_circuns = total_circuns;
 	}
-	@Override
-	public String toString() {
-		return "Escenario [id=" + id + ", votos_totales=" + votos_totales + ", sistema=" + sistema
-				+ ", circunscripciones=" + circunscripciones + ", mayoria_abs=" + mayoria_abs + ", total_escaños="
-				+ total_escaños + ", total_circuns=" + total_circuns + "]";
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub

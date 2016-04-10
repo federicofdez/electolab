@@ -7,23 +7,23 @@ import javax.persistence.Id;
 	@Entity
 public class Provincia implements Serializable {
 	@Id
-	private String nombre;
 	private String identificador;
+	private String nombre;
 	private String comunidad;
 	private int escanos;
 	private int electores;
-	private int id_escenario;
+	private long id_escenario;
 	
 
 
 
 
 
-	public Provincia(String nombre, String identificador, String comunidad, int escanos, int electores,
-			int id_escenario) {
+	public Provincia(String identificador,String nombre, String comunidad, int escanos, int electores,
+			long id_escenario) {
 		super();
-		this.nombre = nombre;
 		this.identificador = identificador;
+		this.nombre = nombre;
 		this.comunidad = comunidad;
 		this.escanos = escanos;
 		this.electores = electores;
@@ -34,9 +34,13 @@ public class Provincia implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Provincia [nombre=" + nombre + ", identificador=" + identificador + ", comunidad=" + comunidad
+		return "Provincia [identificador=" + identificador + ", nombre=" + nombre + ", comunidad=" + comunidad
 				+ ", escanos=" + escanos + ", electores=" + electores + ", id_escenario=" + id_escenario + "]";
 	}
+
+
+
+
 
 
 
@@ -107,11 +111,11 @@ public class Provincia implements Serializable {
 		this.comunidad = comunidad;
 	}
 
-	public int getId_escenario() {
+	public long getId_escenario() {
 		return id_escenario;
 	}
 
-	public void setId_escenario(int id_escenario) {
+	public void setId_escenario(long id_escenario) {
 		this.id_escenario = id_escenario;
 	}
 

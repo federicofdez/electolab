@@ -56,6 +56,23 @@ public class crearServlet extends HttpServlet {
 		//System.out.println("leer" + dao.read_partidos());
 		dao.delete("PPSOEPRUEBA");
 		*/
+		
+		//Prueba db Partido
+		/*dao.create_provincia("LostCity","Ciudad perdida","Perdida",3, 1,1);
+		System.out.println(dao.read_provincia("LostCity"));
+		System.out.println(dao.read_provincias());
+		dao.delete_provincia("LostCity");
+		System.out.println(dao.read_provincia("LostCity"));
+		*/
+		
+		//Prueba db Escenario
+		/*dao.create_escenario(1, 5, "DHont1", "provincias", 5, 5, 99);
+		System.out.println(dao.read_escenario(1));
+		System.out.println(dao.read_escenarios());
+		dao.delete_escenario(1);
+		System.out.println(dao.read_escenarios());
+		*/
+		
 
 		//Habría que hacerlo con el dao
 		req.getSession().setAttribute("provincias", calc.getProvincias());
