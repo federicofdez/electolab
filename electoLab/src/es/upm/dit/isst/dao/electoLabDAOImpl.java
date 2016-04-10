@@ -45,19 +45,16 @@ public class electoLabDAOImpl implements electoLabDAO {
 	@Override
 	public void delete_partido(String siglas, long id_escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select t from Partido t where t.siglas = :siglas");
+		Query q = em.createQuery("select t from Partido t where t.siglas = :siglas AND t.id_escenario = :id_escenario");
 		q.setParameter("siglas",siglas);
-		//q.setParameter("id_escenario",id_escenario);
-		System.out.println(siglas);
+		q.setParameter("id_escenario",id_escenario);
 		Partido res = null;
-
-			List<Partido> partidos = q.getResultList();
-			System.out.println(partidos);
-			if(partidos.size()>0){
-				res = (Partido) (q.getResultList().get(0)); 
-				em.remove(res);
-			}
-			em.close();	
+        List<Partido> partidos = q.getResultList();
+		if(partidos.size()>0){
+			res = (Partido) (q.getResultList().get(0)); 
+			em.remove(res);
+		}
+		em.close();	
 
 		}
 	
@@ -89,13 +86,17 @@ public class electoLabDAOImpl implements electoLabDAO {
 	@Override
 	public void delete_provincia(String id, long id_escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
-		try {
-			Partido provinciaBorrar = em.find(Partido.class, id);
-			em.remove(provinciaBorrar);
+		Query q = em.createQuery("select t from Provincia t where t.identificador = :id AND t.id_escenario = :id_escenario");
+		q.setParameter("id",id);
+		q.setParameter("id_escenario",id_escenario);
+		Provincia res = null;
+        List<Provincia> provincias = q.getResultList();
+		if(provincias.size()>0){
+			res = (Provincia) (q.getResultList().get(0)); 
+			em.remove(res);
 		}
-		finally {
-			em.close();	
-		}
+		em.close();	
+
 	}
 	
 	public List<Provincia> read_provincias(){
