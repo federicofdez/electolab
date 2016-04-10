@@ -112,14 +112,14 @@
 				<table class="table table-hover" id="votosTable">
 								<tbody>
 									<c:forEach items="${votos}" var="voto">
-										<c:forEach var="i" begin="0" end="${fn:length(voto.provincias)}">
-	                                    <tr>
-											<th scope="row"><c:out value="${voto.provincia[i]}"/>
-											<th scope="row"><c:out value="${voto.siglas}"/>
-											<th scope="row"><c:out value="${voto.votos[i]}"/>
-											
+									
+										<c:forEach var="i" begin="1" end="${fn:length(voto.provincia)}">
+	                                    <tr>	                                    	
+	                                    	<th scope="row"><c:out value="${voto.siglas}"/>
+										    <th scope="row"><c:out value="${voto.provincia[i-1]}"/> 
+										  	<th scope="row"><c:out value="${voto.votos[i-1]}"/>
 										</tr>
-											</c:forEach>					
+											</c:forEach>				
 									</c:forEach>
 								</tbody>
 							</table>

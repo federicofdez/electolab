@@ -157,5 +157,8 @@ public class Partido implements Serializable {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
+
+
+
 }
 
