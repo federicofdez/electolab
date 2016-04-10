@@ -11,7 +11,7 @@ public class Provincia implements Serializable {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
-	private long id_partido;
+	private Long id_partido;
 	private String identificador;
 	private String nombre;
 	private String comunidad;
@@ -44,13 +44,13 @@ public class Provincia implements Serializable {
 
 
 
-	public long getId_partido() {
+	public Long getId_partido() {
 		return id_partido;
 	}
 
 
 
-	public void setId_partido(long id_partido) {
+	public void setId_partido(Long id_partido) {
 		this.id_partido = id_partido;
 	}
 

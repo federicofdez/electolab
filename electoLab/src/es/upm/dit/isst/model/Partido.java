@@ -1,7 +1,6 @@
 package es.upm.dit.isst.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class Partido implements Serializable {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
-	private long id_partido;
+	private Long id_partido;
 	private String siglas;
 	private String nombre;
 	private String imagen;
@@ -24,15 +23,26 @@ public class Partido implements Serializable {
 	private List<Double> votos;
 	private long id_escenario;
 
+	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
+			List<Double> votos, long id_escenario) {
+		super();
+		this.siglas = siglas;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.color = color;
+		this.provincia = provincia;
+		this.votos = votos;
+		this.id_escenario = id_escenario;
+	}
 
 
-	public long getId_partido() {
+	public Long getId_partido() {
 		return id_partido;
 	}
 
 
 
-	public void setId_partido(long id_partido) {
+	public void setId_partido(Long id_partido) {
 		this.id_partido = id_partido;
 	}
 
@@ -53,32 +63,9 @@ public class Partido implements Serializable {
 
 
 
-	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, long id_escenario) {
-		super();
-		this.siglas = siglas;
-		this.nombre = nombre;
-		this.imagen = imagen;
-		this.color = color;
-		this.provincia = provincia;
-		this.votos = votos;
-		this.id_escenario = id_escenario;
-	}
-
-
-
-
-
-
-
-
-
 	public String getSiglas() {
 		return siglas;
 	}
-
-
-
 
 
 
@@ -193,9 +180,6 @@ public class Partido implements Serializable {
 	public void setId_escenario(long id_escenario) {
 		this.id_escenario = id_escenario;
 	}
-
-
-
 
 
 
