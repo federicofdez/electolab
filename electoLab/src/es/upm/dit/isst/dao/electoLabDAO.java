@@ -33,7 +33,7 @@ public interface electoLabDAO {
 	//Métodos de Usuario
 	public Usuario create_usuario(String correo);
 	public void delete_usuario(String correo);
-	public Usuario exist_usuario(String correo);
+	public boolean exist_usuario(String correo);
 	public List<Usuario> read_usuarios();
 
 }

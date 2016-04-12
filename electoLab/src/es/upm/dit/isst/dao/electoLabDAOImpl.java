@@ -196,16 +196,18 @@ public class electoLabDAOImpl implements electoLabDAO {
 
 
 	@Override
-	public Usuario exist_usuario(String correo) {
+	public boolean exist_usuario(String correo) {
+		if(correo != ""){
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select t from Uusuario t where t.correo = :correo");
+		Query q = em.createQuery("select t from Usuario t where t.correo = :correo");
 		q.setParameter("correo",correo);
-		Usuario res = null;
 		List<Usuario> usuario = q.getResultList();
-		if(usuario.size()>0)
-			res = (Usuario) (q.getResultList().get(0)); 
+		if(usuario.size()>0){
 			em.close();
-			return res;	
+			return true;
+		}
+		}
+		return false;
 	}
 
 
