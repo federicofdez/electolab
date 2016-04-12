@@ -94,30 +94,25 @@
 						<div id="collapse2" class="panel-collapse collapse">
 							<div class="panel-body">Configure el formato de sistema electoral:</div>
 							<div class="row">
-								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad </div>
+								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad:</div>
 								<div class="dropdown col-lg-2">
 								<input type="radio" name="sistema" value="dhont" checked>D'Hondt<br>
   								<input type="radio" name="sistema" value="sainte">Sainte-Lagüe<br>
 								</div>
-								<div class="col-lg-3" style="margin-top: 7px;"> Circunscripciones </div>
-								<div class="dropdown col-lg-2">
-									<button class="btn btn-default dropdown-toggle circunscripciones" type="button" data-toggle="dropdown">Provincias
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" >
-										<li><a class="provincias" href="#">Provincias</a></li>
-										<li><a class="comunidades" href="#">Comunidades autónomas</a></li>
-										<li><a class="espana" href="#">España</a></li>
-
-									</ul>
+								<div class="col-lg-2" style="margin-top: 7px;"> Circunscripciones:</div>
+								<div class="dropdown col-lg-3">
+								<input type="radio" name="circunscripciones" value="provincias" checked>Provincias<br>
+  								<input type="radio" name="circunscripciones" value="comunidades">Comunidades autónomas<br>
+  								<input type="radio" name="circunscripciones" value="spain">España<br>
 								</div>
-								<div class="col-lg-3 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta </div>
+								<div class="col-lg-3 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-1 center-block">
 									<input type="number" class="form-control col-lg-1 center-block" placeholder="50" style="margin-top: 18px;">
 								</div>
 							</div>
+								
+							</div>
 						</div>
-					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
