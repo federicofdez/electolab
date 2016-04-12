@@ -6,6 +6,7 @@ import java.util.List;
 import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
+import es.upm.dit.isst.model.Usuario;
 
 public interface electoLabDAO {
 	//Métodos de Partido
@@ -22,10 +23,17 @@ public interface electoLabDAO {
 	public List<Provincia> read_provincias();
 	public Provincia read_provincia(String id);
 	
-	//Métodos de escenario
+	//Métodos de Escenario
 	public Escenario create_escenario(long id, int votos_totales, String sistema, String circunscripciones, int mayoria_abs,
 			int total_escaños, int total_circuns);
 	public void delete_escenario(long id);
 	public List<Escenario> read_escenarios();
 	public Escenario read_escenario(long id);
+	
+	//Métodos de Usuario
+	public Usuario create_usuario(String correo);
+	public void delete_usuario(String correo);
+	public Usuario exist_usuario(String correo);
+	public List<Usuario> read_usuarios();
+
 }

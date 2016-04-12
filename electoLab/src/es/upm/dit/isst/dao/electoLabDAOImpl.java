@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
+import es.upm.dit.isst.model.Usuario;
 
 
 public class electoLabDAOImpl implements electoLabDAO {
@@ -167,6 +168,55 @@ public class electoLabDAOImpl implements electoLabDAO {
 		
 	}
 
+	
+//Métodos de Usuario
+	
+	@Override
+	public Usuario create_usuario(String correo) {
+			EntityManager em = EMFService.get().createEntityManager();
+			Usuario usuario = null;
+			usuario = new Usuario(correo);
+			em.persist(usuario);
+			em.close();
+			return usuario;
+	}
+
+
+	@Override
+	public void delete_usuario(String correo) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Escenario usuarioBorrar = em.find(Escenario.class, correo);
+			em.remove(usuarioBorrar);
+		}
+		finally {
+			em.close();	
+		}
+	}
+
+
+	@Override
+	public Usuario exist_usuario(String correo) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Uusuario t where t.correo = :correo");
+		q.setParameter("correo",correo);
+		Usuario res = null;
+		List<Usuario> usuario = q.getResultList();
+		if(usuario.size()>0)
+			res = (Usuario) (q.getResultList().get(0)); 
+			em.close();
+			return res;	
+	}
+
+
+	@Override
+	public List<Usuario> read_usuarios() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select m from Usuario m");
+		List<Usuario> res = q.getResultList();
+		em.close();
+		return res;
+	}
 
 
 
