@@ -166,7 +166,7 @@
 						</div>
 					</div>
 				</div>
-				<input type="submit" value="Submit" class="btn btn-info center-block" role="button">Simular escenario/>
+				<input type="submit" value="Simular escenario"class="btn btn-info center-block" role="button"/>
 				<div style="padding: 40px;"></div>
 			</div>
 		</form>	
