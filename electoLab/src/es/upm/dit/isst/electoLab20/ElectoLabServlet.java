@@ -26,7 +26,7 @@ public class ElectoLabServlet extends HttpServlet {
 			urlLinktext = user + " :Logout";
 		}
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
-		/*if(user != null && !dao.exist_usuario(user)){
+		/*if(user != "" && !dao.exist_usuario(user)){
 			resp.sendRedirect("/registrar.jsp");
 		}else{
 		*/

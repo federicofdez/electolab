@@ -8,7 +8,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="../index.jsp">
+					<a class="navbar-brand" href="/">
 						<img src="img/logo_electolab.png" alt="Logo" />
 						<span>ElectoLab</span>
 					</a>
