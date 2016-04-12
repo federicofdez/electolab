@@ -31,6 +31,10 @@ public class simularServlet extends HttpServlet {
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = user + " :Logout";
 		}
+		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		if(user != "" && !dao.exist_usuario(user)){
+			resp.sendRedirect("/registrar.jsp");
+		}else{
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
@@ -70,7 +74,7 @@ public class simularServlet extends HttpServlet {
 
 		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
-		
+		}
 		
 	}
 

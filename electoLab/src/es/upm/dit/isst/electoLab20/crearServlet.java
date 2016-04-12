@@ -33,12 +33,16 @@ public class crearServlet extends HttpServlet {
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = user + " :Logout";
 		}
+		electoLabDAO dao = electoLabDAOImpl.getInstance();
+
+		if(user != "" && !dao.exist_usuario(user)){
+			resp.sendRedirect("/registrar.jsp");
+		}else{
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		
 		
-		electoLabDAO dao = electoLabDAOImpl.getInstance();
 		calculos calc = calculos.getInstance();
 		
 		//localhost:8888/_ah/admin
@@ -63,7 +67,7 @@ public class crearServlet extends HttpServlet {
 
 		//System.out.println(dao.read_provincia("LostCity"));
 		//System.out.println(dao.read_provincias());
-		dao.delete_provincia("LossstCity",1);
+		//dao.delete_provincia("LossstCity",1);
 		//System.out.println(dao.read_provincia("LostCity"));
 		
 		
@@ -81,6 +85,7 @@ public class crearServlet extends HttpServlet {
 		req.getSession().setAttribute("partidos", calc.getPartidos());
 		
 		resp.sendRedirect("/crear.jsp");
+		}
 	}
 
 }

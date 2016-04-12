@@ -20,9 +20,18 @@
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca su email">
+      <label for="email">Grupo:</label>
+      <input type="text" class="form-control" name="grupo" id="grupo" placeholder="Grupo de usuarios al que pertenece">
+      <label for="email">Contraseña del grupo:</label>      
+      <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña del grupo">
+      
     </div>
     <button type="submit" class="btn btn-primary">Registrarse</button>
-    <p> Recibirá un correo, con la contraseña asignada a su usuario para comenzar a escribir en foros y guardar sus simulaciones.
+    <p> Debe introducir su correo y el nobmre del grupo de usuarios que han contratado junto a la contraseña
+    proporcionada para escribir en foros y guardar sus simulaciones.</p>
+   	<c:if test="${not empty error}">
+		<p style="color: red;">${error}</p>
+	</c:if>
   </form>
 </div>
 
