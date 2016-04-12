@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.upm.dit.isst.model.Escenario;
+import es.upm.dit.isst.model.Grupo;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
 import es.upm.dit.isst.model.Usuario;
@@ -35,5 +36,11 @@ public interface electoLabDAO {
 	public void delete_usuario(String correo);
 	public boolean exist_usuario(String correo);
 	public List<Usuario> read_usuarios();
+	
+	//Métodos de Grupo
+	public Grupo create_grupo(String nombre, String password);
+	public void delete_grupo(String nombre);
+	public Grupo read_grupo(String nombre);
+	public List<Grupo> read_grupos();
 
 }

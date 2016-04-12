@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import es.upm.dit.isst.model.Escenario;
+import es.upm.dit.isst.model.Grupo;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
 import es.upm.dit.isst.model.Usuario;
@@ -186,7 +187,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 	public void delete_usuario(String correo) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
-			Escenario usuarioBorrar = em.find(Escenario.class, correo);
+			Usuario usuarioBorrar = em.find(Usuario.class, correo);
 			em.remove(usuarioBorrar);
 		}
 		finally {
@@ -216,6 +217,55 @@ public class electoLabDAOImpl implements electoLabDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select m from Usuario m");
 		List<Usuario> res = q.getResultList();
+		em.close();
+		return res;
+	}
+
+
+	//Metodos de Grupo
+	@Override
+	public Grupo create_grupo(String nombre, String password) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Grupo grupo = null;
+		grupo = new Grupo(nombre,password);
+		em.persist(grupo);
+		em.close();
+		return grupo;
+	}
+
+
+	@Override
+	public void delete_grupo(String nombre) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Grupo grupoBorrar = em.find(Grupo.class, nombre);
+			em.remove(grupoBorrar);
+		}
+		finally {
+			em.close();	
+		}		
+	}
+
+
+	@Override
+	public Grupo read_grupo(String nombre) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Grupo t where t.nombre = :nombre");
+		q.setParameter("nombre",nombre);
+		Grupo res = null;
+		List<Grupo> grupo = q.getResultList();
+		if(grupo.size()>0)
+			res = (Grupo) (q.getResultList().get(0)); 
+		em.close();
+		return res;	
+	}
+
+
+	@Override
+	public List<Grupo> read_grupos() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select m from Grupo m");
+		List<Grupo> res = q.getResultList();
 		em.close();
 		return res;
 	}

@@ -26,16 +26,16 @@ public class ElectoLabServlet extends HttpServlet {
 			urlLinktext = user + " :Logout";
 		}
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
-		/*if(user != "" && !dao.exist_usuario(user)){
+		if(user != "" && !dao.exist_usuario(user)){
 			resp.sendRedirect("/registrar.jsp");
 		}else{
-		*/
+		
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		
 		resp.sendRedirect("/index.jsp");
-		//}
+		}
 		
 	}
 }
