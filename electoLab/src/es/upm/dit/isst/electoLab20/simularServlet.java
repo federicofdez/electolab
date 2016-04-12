@@ -66,6 +66,8 @@ public class simularServlet extends HttpServlet {
 		
 		//List<Partido> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
 		//req.getSession().setAttribute("votos", votosTabla);
+		System.out.println(req.getParameter("mayoria"));
+
 		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
 		
