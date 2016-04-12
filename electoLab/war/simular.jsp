@@ -20,35 +20,24 @@
 			 <%@ include file="templates/main.jsp" %>
 			<div class="container-fluid" id="main-content">
 				<h1>Resultado de la simulación</h1>
-				<div class="row" style="margin-top: 20px;">
-					<div class="col-lg-3" style="margin-top: 7px;"> <p class="text-center">Sistema proporcionalidad</p></div>
-					<div class="dropdown col-lg-2">
-						<button class="btn btn-default dropdown-toggle sistema center-block" type="button" data-toggle="dropdown">D'Hondt
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dhont" href="#">D'Hondt</a></li>
-							<li><a class="sainte" href="#">Sainte-Lagüe</a></li>
-						</ul>
-					</div>
-					<span>
-						<div class="col-lg-2" style="margin-top: 7px;"><p class="text-center" > % Mayoria absoluta</p></div>
-						<div class="form-group col-lg-1">
-							<input type="number" class="form-control col-lg-1" placeholder="50" min="0" max="100">
-						</div>
-					</span>
-					<div class="col-lg-2"><p class="text-center">Circunscripciones</p></div>
-					<div class="dropdown col-lg-2">
-						<button class="btn btn-default dropdown-toggle circunscripciones center-block" type="button" data-toggle="dropdown">Provincias
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" >
-							<li><a class="provincias" href="#">Provincias</a></li>
-							<li><a class="comunidades" href="#">Comunidades autónomas</a></li>
-							<li><a class="espana" href="#">España</a></li>
-						</ul>
-					</div>
-				</div>
+								<HR width=95% align="center" class="btn-info" style="margin-top: 10px;margin-top: 10px;"> 
+						<div class="row" style="margin-top: 20px;">
+								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad:</div>
+								<div class="dropdown col-lg-2">
+								<input type="radio" name="sistema" value="dhont" checked>D'Hondt<br>
+  								<input type="radio" name="sistema" value="sainte">Sainte-Lagüe<br>
+								</div>
+								<div class="col-lg-2" style="margin-top: 7px;"> Circunscripciones:</div>
+								<div class="dropdown col-lg-3">
+								<input type="radio" name="circunscripciones" value="provincias" checked>Provincias<br>
+  								<input type="radio" name="circunscripciones" value="comunidades">Comunidades autónomas<br>
+  								<input type="radio" name="circunscripciones" value="spain">España<br>
+								</div>
+								<div class="col-lg-4 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
+								<div class="form-group col-lg-2 center-block">
+									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" value="50">
+								</div>
+							</div>
 				<div class="row" style="margin-top: 15px;">
 					<div class="col-lg-6">
 						<button type="button" class="btn btn-info volversimular center-block" data-toggle="modal" data-target="#volversimular">Volver a Simular</button>
@@ -57,6 +46,8 @@
 						<button type="button" class="btn btn-info center-block" id="botoncrear">Editar Simulación</button>
 					</div>
 					</div>
+				<HR width=95% align="center" class="btn-info" style="margin-top: 10px;margin-top: 10px;"> 
+					
 				<div class="col-lg-12 center-block" id="editarsimular" style="margin-top: 18px; "></div>
 				<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
