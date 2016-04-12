@@ -12,8 +12,8 @@ public class Provincia implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
 	private Long id_partido;
-	private String identificador;
 	private String nombre;
+	private String identificador;
 	private String comunidad;
 	private int escanos;
 	private int electores;
@@ -22,11 +22,11 @@ public class Provincia implements Serializable {
 
 
 
-	public Provincia(String identificador, String nombre, String comunidad, int escanos, int electores,
+	public Provincia(String nombre,String identificador, String comunidad, int escanos, int electores,
 			long id_escenario) {
 		super();
-		this.identificador = identificador;
 		this.nombre = nombre;
+		this.identificador = identificador;
 		this.comunidad = comunidad;
 		this.escanos = escanos;
 		this.electores = electores;
@@ -35,12 +35,18 @@ public class Provincia implements Serializable {
 
 
 
+
+
+
 	@Override
 	public String toString() {
-		return "Provincia [id_partido=" + id_partido + ", identificador=" + identificador + ", nombre=" + nombre
+		return "Provincia [id_partido=" + id_partido + ", nombre=" + nombre + ", identificador=" + identificador
 				+ ", comunidad=" + comunidad + ", escanos=" + escanos + ", electores=" + electores + ", id_escenario="
 				+ id_escenario + "]";
 	}
+
+
+
 
 
 
