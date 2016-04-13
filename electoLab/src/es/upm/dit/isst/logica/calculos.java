@@ -134,6 +134,75 @@ public class calculos {
 		}
 		return total_votos;
 	}
+	
+	// método calcula máximo
+	
+	public int calcula_max(double votos[]){
+		double max= votos[0];
+		int ind = 0;
+		for(int i=0; i< votos.length; i++){
+			if(votos[i] > max){
+				max=votos[i];
+				ind = i;
+			}
+		}
+	return ind;
+	}
+	
+	// Método de D'hont para calculo de escaños 
+		public int[] metodo_dhont_Avila(Enumeration em, String[] datos){
+			int i = 0;
+			int x=0;
+			double [] votos = new double[10];
+			String[] partidos = new String[10];
+			int total_esc=0;
+			int [] esca = new int[100];
+			int [] repartidor = {2,2,2,2,2,2,2,2,2,2};
+			while(em.hasMoreElements()){
+				String paraName = (String) em.nextElement();
+				if(datos[i] != "" && paraName.indexOf("avila") != -1 && paraName.indexOf("escaños") == -1) {
+				//System.out.println("datos i " + datos[i]);
+				partidos[x]= paraName;	
+				votos[x] = (Integer.parseInt(datos[i])/100.0) *132575;
+				System.out.println("Los votos son " + partidos[x] + votos[x]);
+				x++;
+				}
+				i++;
+			} 
+			for(int j=0; j < 3; j++){
+				int ind_max = calcula_max(votos);
+				System.out.println("El indice es " + Integer.toString(ind_max));
+				esca[ind_max] += 1;
+				//System.out.println("Escaños indice " + Integer.toString(esca[ind_max]));
+				votos[ind_max]= votos[ind_max]/repartidor[ind_max];	
+				repartidor[ind_max] += 1;
+				total_esc++;
+			}
+			//System.out.println("Escaños repartidos " + Integer.toString(total_esc));
+			return esca;
+	}
+
+		// Método de Saint para calculo de escaños 
+		public int[] metodo_saint(Enumeration em, String[] datos){
+			return null;	
+		}
+	
+	//Método de calculo de escaños 
+	public int calcula_esca(Enumeration em, String[] datos){
+		int i = 0;
+		while(em.hasMoreElements()){
+			String paraName = (String) em.nextElement();
+		if(paraName.indexOf("sistema") != -1 && datos[i].equals("dhont")){
+			return 10;//metodo_dhont(em, datos); 
+		}else if(paraName.indexOf("sistema") != -1 && datos[i].equals("sainte")){
+			return 4;//metodo_saint(em, datos);
+		}
+		i++;
+		}
+		return 0;
+	}
+	
+	
 	//Método para comprobar porcentajes si son correctos
 	public boolean porcentaje_correctos(Enumeration em, String[] datos){
 		int porcentaje_total= 0;

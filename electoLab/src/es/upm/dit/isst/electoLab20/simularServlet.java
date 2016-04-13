@@ -50,16 +50,24 @@ public class simularServlet extends HttpServlet {
 				// total_votos += Integer.parseInt(req.getParameter(paraName));
 			//System.out.println(paraName + "=" + req.getParameter(paraName) );
 			datos2[i] = req.getParameter(paraName);
-			//if(paraName.indexOf("sistema") != -1){
-				//System.out.println(req.getParameter(paraName));
-			//}
+			if(paraName.indexOf("sistema") != -1){
+				System.out.println(req.getParameter(paraName));
+			}
+			if(paraName.indexOf("avila") != -1){
+				System.out.println(req.getParameter(paraName));
+			}
 				//System.out.println(paraName + datos2[i]);
 			i++;
 			//req.setAttribute("total_votos", total_votos);
 			//}
 		}
-		
+	
 		calculos calc = calculos.getInstance();
+		System.out.println(calc.calcula_esca(req.getParameterNames(), datos2));
+		for(int w=0; w < 10; w++){
+		System.out.println("Total escaños " + calc.metodo_dhont_Avila(req.getParameterNames(), datos2)[w]);
+		
+		}
 		if(calc.porcentaje_correctos(req.getParameterNames(), datos2)){
 			System.out.println("Porcentajes correctos");
 		}else{
@@ -71,6 +79,7 @@ public class simularServlet extends HttpServlet {
 		//List<Partido> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
 		//req.getSession().setAttribute("votos", votosTabla);
 		System.out.println(req.getParameter("mayoria"));
+		
 
 		System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
