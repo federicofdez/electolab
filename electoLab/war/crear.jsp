@@ -115,7 +115,6 @@
 										<c:forEach items="${partidos}" var="partido">
 											<th style="min-width:100px;"><c:out value="${partido.siglas}"/></th>
 										</c:forEach>
-										<th style="min-width:100px;">Votos a repartir</th>
 										<th style="min-width:100px;">Escaños</th>
 									</tr>
 								</thead>
@@ -127,7 +126,6 @@
 	 										<c:forEach items="${partidos}" var="partido">
 												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.identificador}" placeholder='0%' min="0" max="100" value="0"></th>
 											</c:forEach>
-											<th class='form-group'><input type="number" name="votos ${provincia.identificador}" class="form-control"max="350" min="0" min-value=0 placeholder="0" value="0"></th>	
 											<th class='form-group'><input type="number" name="escaños ${provincia.identificador}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
 										</tr>
 									</c:forEach>
