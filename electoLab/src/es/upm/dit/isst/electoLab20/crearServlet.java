@@ -30,17 +30,21 @@ public class crearServlet extends HttpServlet {
 		String user = "";
 		if(req.getUserPrincipal() != null){
 			user = req.getUserPrincipal().getName();
+			System.out.println(user);
 			url = userService.createLogoutURL(req.getRequestURI());
+			System.out.println(url);
 			urlLinktext = user + " :Logout";
 		}
+		
+		req.getSession().setAttribute("user", user);
+		req.getSession().setAttribute("url", url);
+		req.getSession().setAttribute("urlLinktext", urlLinktext);
+		
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
 
 		if(user != "" && !dao.exist_usuario(user)){
 			resp.sendRedirect("/registrar.jsp");
 		}else{
-		req.getSession().setAttribute("user", user);
-		req.getSession().setAttribute("url", url);
-		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		
 		
 		calculos calc = calculos.getInstance();

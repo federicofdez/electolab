@@ -21,7 +21,6 @@ public class ElectoLabServlet extends HttpServlet {
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
 		String user = "";
-		System.out.println(req.getUserPrincipal());
 		if(req.getUserPrincipal() != null){
 			user = req.getUserPrincipal().getName();
 			System.out.println(user);
