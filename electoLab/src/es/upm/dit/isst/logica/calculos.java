@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
@@ -90,8 +92,8 @@ public class calculos {
 	 }
 
 
-
-
+	 private String[] provincias_mapa = {"alava","albacete","alicante","almeria","asturias","avila","badajoz","barcelona","burgos","caceres","cadiz","cantabria","castellon","ciudadreal","cordoba","lacoruña","cuenca","gerona","granada","guadalajara", "guipuzcoa","huelva","huesca","islasbaleares","jaen","leon","lerida","lugo","madrid","malaga","murcia","navarra","orense","palencia","laspalmas","pontevedra","larioja","salamanca","segovia","sevilla","soria","tarragona","santacruzdetenerife","teruel","toledo","valencia","valladolid","vizcaya","zamora","zaragoza"};
+	 private String[] partidos_mapa ={"PP", "PSOE", "PODEMOS", "C's", "EN COMÚ", "PODEMOS-COMPROMÍS", "ERC-CATS", "DL", "PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC", "UPN", "FAC"};
 
 
 	public List<Provincia> getProvincias() {
@@ -471,48 +473,80 @@ public class calculos {
 		return partidos;
 	}
 
+
+
+
+
+  public HashMap<String, Integer> crea_mapa(Enumeration em, String[] datos){
+	  int i = 0;
+	  HashMap<String, Integer> datos_mapa = new HashMap<String, Integer>(); 
+	  while(em.hasMoreElements()){
+			String paraName = (String) em.nextElement();
+			if(datos[i] != "" && paraName.indexOf("sistema") == -1 && paraName.indexOf("escaños") == -1 && paraName.indexOf("circunscripciones") == -1 && paraName.indexOf("votosTable") == -1  && paraName.indexOf("votos") == -1 && paraName.indexOf("mayoria") == -1){
+			 datos_mapa.put(paraName, Integer.parseInt(datos[i]));
+				
+			}
+			i++;
+	  }
+	  Iterator it= datos_mapa.keySet().iterator();
+	  while(it.hasNext()){
+		  String key = (String) it.next();
+		 // System.out.println("Clave " + key + "-> Valor: " + datos_mapa.get(key));
+	  }
+	return datos_mapa;
+	  
+  }
+  public HashMap<String, Integer> esca_map(Enumeration em, String[] datos){
+	  int i = 0;
+	  HashMap<String, Integer> esc_mapa = new HashMap<String, Integer>(); 
+	  while(em.hasMoreElements()){
+			String paraName = (String) em.nextElement();
+			if(datos[i] != "" && paraName.indexOf("escaños") != -1 ){
+			 esc_mapa.put(paraName, Integer.parseInt(datos[i]));
+				
+			}
+			i++;
+	  }
+	  Iterator it= esc_mapa.keySet().iterator();
+	  while(it.hasNext()){
+		  String key = (String) it.next();
+		  System.out.println("Clave " + key + "-> Valor: " + esc_mapa.get(key));
+	  }
+	return esc_mapa;
+	  
+  }
+  
+  public HashMap<String, Integer> calcula_esc(HashMap<String, Integer> datos_mapa){
+	  
+	  HashMap<String, Integer> resultados_provincia = new HashMap<String, Integer>();
+	 
+	 
+	  
+	 for(int i=0; i <provincias_mapa.length-1; i++){
+		 HashMap<String, Integer> datos_provincia = new HashMap<String, Integer>();
+		  for(String key : datos_mapa.keySet()){
+			  String[] partido_provincia = key.split(":");
+			  //System.out.println(key);
+			  //System.out.println("LO QUE SACAMOS: " + partido_provincia[1]);
+			  //System.out.println("MI ARRAY:"+ provincias_mapa[i]);
+			  if(partido_provincia[1].equals(provincias_mapa[i])){
+				  datos_provincia.put(partido_provincia[1], datos_mapa.get(key));
+				  System.out.println("Clave" + partido_provincia[1] + "-> Valor : " + datos_mapa.get(key));
+			  }
+	 }
+	 }
+		 
+	return resultados_provincia;
+	  
+  }
+  
+
+
+
 }
 
 
-/*if(votos[i] != "" && paraName.indexOf("PP") != -1 ){	
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("PSOE") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("C's") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("PODEMOS-COMPROMÍS") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("EN COMÚ") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("PODEMOS") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("CCa-PNC") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("DL") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("IU-UPeC") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("FAC") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("ERC-CATS") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("PODEMOS-En Marea-ANOVA-EU") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("EAJ-PNV") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}
-if(votos[i] != "" && paraName.indexOf("UPN") != -1 ){
-total_votos += Integer.parseInt(votos[i]);
-}*/
+
+
+
+

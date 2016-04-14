@@ -5,6 +5,7 @@ import java.io.IOException;
 
 
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -48,7 +49,7 @@ public class simularServlet extends HttpServlet {
 			//total_votos = calculos.total_votos(req.getParameterNames(), req.getParameter(paraName));
 			// if(req.getParameter(paraName) != "" && paraName.indexOf("PP") != -1 ){				
 				// total_votos += Integer.parseInt(req.getParameter(paraName));
-			System.out.println(paraName + "=" + req.getParameter(paraName) );
+			//System.out.println(paraName + "=" + req.getParameter(paraName) );
 			datos2[i] = req.getParameter(paraName);
 			//if(paraName.indexOf("sistema") != -1){
 				//System.out.println(req.getParameter(paraName));
@@ -79,7 +80,11 @@ public class simularServlet extends HttpServlet {
 		//List<Partido> votosTabla = calc.calculaVotos(req.getParameterNames(), datos2);
 		//req.getSession().setAttribute("votos", votosTabla);
 		//System.out.println(req.getParameter("mayoria"));
-		calc.calculaVotos(em, datos2);
+		
+		
+		calc.calcula_esc(calc.crea_mapa(req.getParameterNames(), datos2));
+		//calc.crea_mapa(req.getParameterNames(), datos2);
+		//calc.esca_map(req.getParameterNames(), datos2);
 
 		//System.out.println("votos totales = " +  votos);
 		resp.sendRedirect("/simular.jsp");
