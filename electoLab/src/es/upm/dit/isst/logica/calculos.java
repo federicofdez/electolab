@@ -310,39 +310,56 @@ public class calculos {
 		List<Partido> votosTabla = new ArrayList<Partido>();
 		List<Partido> votosTablaOrder = new ArrayList<Partido>();
 				
-		//Pasar enumeracion a lista para conservar los datos
+		//Pasar enumeracion a lista para conservar los nombres de los datos
 		while(em.hasMoreElements()){
 			paramNames.add((String) em.nextElement());
 		}
-			Iterator<Partido> partidosIterator = partidos.iterator();
-			//Bucle de partidos
-			while (partidosIterator.hasNext()) {
+		//Iterator de partidos	
+		Iterator<Partido> partidosIterator = partidos.iterator();
+		//Bucle de partidos si hay siguiente elemento
+		while (partidosIterator.hasNext()) {
+				//Lista de Doubles para guardar los votos en cada iteracion
 				ArrayList<Double> votosList = new ArrayList<Double>();
+				//Siguiente elemento del iterator(NO hacer dos veces en la misma iteracion)
 				Partido partido = partidosIterator.next();
+				//Cogemos las siglas del partido iterado
 				String siglas = partido.getSiglas();
+				//Creamos la lista de provincias
 				ArrayList<String> provinciasList = new ArrayList<String>();
 
-				//Bucle de provincias
+				//Iterator de provincias
 				Iterator<Provincia> provinciasIterator = provincias.iterator();
+				//Bucle de provincias
 				while (provinciasIterator.hasNext()) {
-					Provincia arrayProvincia = provinciasIterator.next();
-					String provinciaId = arrayProvincia.getIdentificador();
-					int electores = arrayProvincia.getElectores();
+					//Cogemos el siguiente elemento del iterator de provincias(NO hacer dos veces en el mismo bucle)
+					//Primero cogemos un array del siguiente elemento y de el cogemos el identificador
+					Provincia elementoProvincia = provinciasIterator.next();
+					//Cogemos el id de la provicia y sus electores
+					String provinciaId = elementoProvincia.getIdentificador();
+					int electores = elementoProvincia.getElectores();
+					//Buscamos el indice que tiene las siglas y la provincia concreta que esta iterando
 						int index = paramNames.indexOf(siglas+""+provinciaId);
 						//System.out.println("index: " + index + ", id: " + siglas+""+provinciaId + ", valorDatos: " + datos[index]);
+						//Si esta el elemento en la lista
 						if(index != -1){
+							//Si esta en blanco no lo metemos en el array de provincias
 							if(datos[index] == ""){		
 							}
 							else{
+								//Sino, calculamos sus votos y lo metemos en las listas temporales de cada iteracion
 							Double votosDouble = Double.parseDouble(datos[index])/100 * electores;
 							Double votos =  (double) Math.round(votosDouble);
 							votosList.add(votos);
 							provinciasList.add(provinciaId);
 							}
 						}
-					
+						//Al iterar partidos por fuera, vamos a recorrer todas las provincias de un partido
+						//y vamos a guardar todos los valores de ese(por como estan inicializadas las listas)
+						//Si sabemos que estamos en la ultima provincia de la iteracion
 						if(!provinciasIterator.hasNext()){
+							///Guardamos el partido como sus parametros y las listas que tenia
 							Partido party = new Partido(siglas,partido.getNombre(),partido.getImagen(),partido.getColor(),provinciasList,votosList,partido.getId_escenario());
+							//Lo añadimos a la salida
 							votosTabla.add(party);
 							System.out.println(party);
 						}
@@ -350,6 +367,7 @@ public class calculos {
 						}
 						
 				}
+		//Esto era para despues ordenar, se puede hacer return de votosTabla directamente
 			votosTablaOrder.addAll(votosTabla);
 		
 		//Ordenar la lista
