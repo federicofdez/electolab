@@ -33,7 +33,7 @@
   								<input type="radio" name="circunscripciones" value="comunidades">Comunidades autónomas<br>
   								<input type="radio" name="circunscripciones" value="spain">España<br>
 								</div>
-								<div class="col-lg-4 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
+								<div class="col-lg-4 center-block" style="margin-top: 28px; margin-left: 12px;" min="0" max="100"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-2 center-block">
 									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" value="50">
 								</div>

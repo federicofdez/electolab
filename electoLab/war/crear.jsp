@@ -93,7 +93,7 @@
 								</div>
 								<div class="col-lg-4 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-2 center-block">
-									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" value="50">
+									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" min="0" max="100" value="50">
 								</div>
 							</div>
 								
@@ -125,7 +125,7 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
 	 											electores"><c:out value="${provincia.nombre}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.identificador}" placeholder='0%' min-value=0 max-value=100 value="0"></th>
+												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.identificador}" placeholder='0%' min="0" max="100" value="0"></th>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="votos ${provincia.identificador}" class="form-control"max="350" min="0" min-value=0 placeholder="0" value="0"></th>	
 											<th class='form-group'><input type="number" name="escaños ${provincia.identificador}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
