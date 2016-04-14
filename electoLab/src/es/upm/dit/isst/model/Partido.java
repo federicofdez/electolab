@@ -21,10 +21,11 @@ public class Partido implements Serializable {
 	private String color;
 	private List<String> provincia;
 	private List<Double> votos;
+	private List<Integer> esca;
 	private long id_escenario;
 
 	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, long id_escenario) {
+			List<Double> votos, List<Integer> esca, long id_escenario) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
@@ -32,6 +33,7 @@ public class Partido implements Serializable {
 		this.color = color;
 		this.provincia = provincia;
 		this.votos = votos;
+		this.esca = esca;
 		this.id_escenario = id_escenario;
 	}
 
@@ -53,9 +55,7 @@ public class Partido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Partido [id_partido=" + id_partido + ", siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen
-				+ ", color=" + color + ", provincia=" + provincia + ", votos=" + votos + ", id_escenario="
-				+ id_escenario + "]";
+		return "Partido [esca=" + esca + "]";
 	}
 
 
@@ -189,6 +189,17 @@ public class Partido implements Serializable {
 		return super.equals(obj);
 	}
 
+
+	public List<Integer> getEsca() {
+		return esca;
+	}
+
+
+	public void setEsca(List<Integer> esca) {
+		this.esca = esca;
+	}
+
+	
 
 
 }

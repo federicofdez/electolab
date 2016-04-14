@@ -26,10 +26,10 @@ public class electoLabDAOImpl implements electoLabDAO {
 	//Métodos de Partido
 	@Override
 	public Partido create_partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, long id_escenario) {
+			List<Double> votos, List<Integer> esca, long id_escenario) {
 		Partido partido = null;
 		EntityManager em = EMFService.get().createEntityManager();
-		partido = new Partido(siglas,nombre,imagen,color,provincia,votos,id_escenario);
+		partido = new Partido(siglas,nombre,imagen,color,provincia,votos,esca,id_escenario);
 		em.persist(partido);
 		em.close();
 		return partido;

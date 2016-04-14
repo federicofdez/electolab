@@ -139,7 +139,7 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
 	 											electores"><c:out value="${provincia.nombre}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido.siglas}${provincia.identificador}" placeholder='0%' min-value=0 max-value=100></th>
+												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.identificador}" placeholder='0%' min-value=0 max-value=100></th>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="votos ${provincia.identificador}" class="form-control"max="350" min="0" min-value=0 placeholder="0"></th>	
 											<th class='form-group'><input type="number" name="escaños ${provincia.identificador}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>

@@ -12,7 +12,7 @@ import es.upm.dit.isst.model.Usuario;
 public interface electoLabDAO {
 	//Métodos de Partido
 	public Partido create_partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, long id_escenario);
+			List<Double> votos,List<Integer> esca, long id_escenario);
 	public void delete_partido(String siglas, long id_escenario);
 	public List<Partido> read_partidos();
 	public Partido read_siglas(String siglas);
