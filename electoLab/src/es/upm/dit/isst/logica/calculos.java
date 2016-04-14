@@ -75,20 +75,21 @@ public class calculos {
 	 
 	 private List<Partido> partidos = new ArrayList<Partido>();
 	 {
-	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","1",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","2",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","3",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","4",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","5",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("PODEMOS-COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","6",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","7",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("DL","Democràcia i Llibertat","img/logos/dl.png","8",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("PODEMOS-En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","9",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","11",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","12",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","13",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
-	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","14",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("PP","Partido Popular","img/logos/pp.png","02CFF7",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("PSOE","Partido Socialista","img/logos/psoe.png","FF0000",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("PODEMOS","Podemos","img/logos/podemos.png","742DA1",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("C's","Ciudadanos","img/logos/ciudadanos.png","F7771B",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("EN COMÚ","En comú Podem","img/logos/podemosComun.png","998EEF",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("COMPROMÍS","Compromís-Podemos-És el moment","img/logos/podemosCompromis.png","4E05D3",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("ERC-CATS","Esquerra Republicana de Catalunya-Catalunya Sí","img/logos/erc.png","FFCC00",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("DL","Democràcia i Llibertat","img/logos/dl.png","0F178A",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("En Marea-ANOVA-EU","En Marea","img/logos/podemosMarea.png","C920DD",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("IU-UPeC","Unidad Popular: Izquierda Unida, Unidad Popular en Común","img/logos/iut.png","10812D",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("EAJ-PNV","Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco","img/logos/pnv.jpg","54A106",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("CCa-PNC","Coalición Canaria-Partido Nacionalista Canario","img/logos/cca.png","DAE705",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("UPN","Unión del Pueblo Navarro","img/logos/upn.png","17626A",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("NC","Nueva Canarias","img/logos/nc.png","A4FF00",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
+	     partidos.add(new Partido("FAC","Foro Asturias","img/logos/foro.jpg","626262",new ArrayList<String>(),new ArrayList<Double>(),new ArrayList<Integer>(),0));
 	 }
 
 

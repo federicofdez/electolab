@@ -8,6 +8,9 @@
 <html lang="en">
 <head>
 	<%@ include file="templates/head.html" %>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-colorpicker.min.css" />
+		<script src="./js/bootstrap-colorpicker.min.js"></script>
+	
 </head>
 
 <body>
@@ -47,35 +50,18 @@
 											<th scope="row"> <img src="${partido.imagen}" style="height: 40px;"> <c:out value="${partido.siglas}"/></th>
 											<td><c:out value="${partido.nombre}"/></td>
 											<td>
-												<select class="colorselector" id="color${partido.color}">
-													<option value="1" data-color="#02CFF7">Azul claro</option>
-													<option value="2" data-color="#FF0000">Rojo</option>
-													<option value="3" data-color="#742DA1">Morado</option>
-													<option value="4" data-color="#F7771B">Naranja</option>
-													<option value="5" data-color="#FFCC00">Amarillo</option>
-													<option value="6" data-color="#0F178A">Azul oscuro</option>
-													<option value="7" data-color="#C2F095">Verde claro</option>
-													<option value="8" data-color="#54A106">Verde oscuro</option>
-													<option value="9" data-color="#F7199B">Rosa</option>
-													<option value="10" data-color="#151515">Negro</option>
-													<option value="11" data-color="#FFFFFF">Blanco</option>
-													<option value="12" data-color="#A19D9F">Gris</option>
-													<option value="13" data-color="#2CF1F5">Cian</option>
-													<option value="14" data-color="#151515">Negro</option>
-													<option value="15" data-color="#151515">Negro</option>
-													<option value="16" data-color="#151515">Negro</option>
-													<option value="17" data-color="#151515">Negro</option>
-													<option value="18" data-color="#151515">Negro</option>
-													<option value="19" data-color="#151515">Negro</option>
-													<option value="20" data-color="#151515">Negro</option>		
-												</select>
+											<div  id="color${partido.color}" class="input-group colorpicker-component">
+    											<input disabled type="text" value="#${partido.color }" class="form-control" name="color${partido.siglas}" />
+   												<span class="input-group-addon"><i></i></span>
+											</div>	
 											</td>											
 											<td><h5><c:out value="${partido.provincia}"/></h5></td>
-
 										</tr>
 										<script>
-										var val = ${partido.color};
-										$('#color'+${partido.color}).val(val.toString());</script>
+									    $(function() {
+									        $("#color${partido.color}").colorpicker();
+									    });
+									    </script>
 									</c:forEach>
 									</tbody>
 								</table>
@@ -182,11 +168,8 @@
 	</footer>
 
 	<script type="text/javascript" src="./js/dropdown.js"></script>
-	<script src="./js/bootstrap-colorselector.js"></script>
-
-
+	
 	<script>
-	$('.colorselector').colorselector();
 	function addPartido() {
 		//var table = document.getElementById("partidosTable");
 		//var row = table.insertRow();
