@@ -47,7 +47,7 @@
 									<tbody>
 									<c:forEach items="${partidos}" var="partido">
 	                                    <tr>
-											<th scope="row"> <img src="${partido.imagen}" style="height: 40px;"> <c:out value="${partido.siglas}"/></th>
+											<th scope="row"> <img src="${partido.imagen}" style="width: 40px;"> <c:out value="${partido.siglas}"/></th>
 											<td><c:out value="${partido.nombre}"/></td>
 											<td>
 											<div  id="color${partido.color}" class="input-group colorpicker-component">
