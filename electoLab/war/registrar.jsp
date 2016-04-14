@@ -21,9 +21,9 @@
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca su email">
       <label for="email">Grupo:</label>
-      <input type="text" class="form-control" name="grupo" id="grupo" placeholder="Grupo de usuarios al que pertenece">
+      <input required type="text" class="form-control" name="grupo" id="grupo" placeholder="Grupo de usuarios al que pertenece">
       <label for="email">Contraseña del grupo:</label>      
-      <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña del grupo">
+      <input required type="password" class="form-control" name="password" id="password" placeholder="Contraseña del grupo">
       
     </div>
     <button type="submit" class="btn btn-primary">Registrarse</button>

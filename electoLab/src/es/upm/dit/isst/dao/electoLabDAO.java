@@ -42,5 +42,6 @@ public interface electoLabDAO {
 	public void delete_grupo(String nombre);
 	public Grupo read_grupo(String nombre);
 	public List<Grupo> read_grupos();
+	public boolean exist_grupo(String nombre);
 
 }

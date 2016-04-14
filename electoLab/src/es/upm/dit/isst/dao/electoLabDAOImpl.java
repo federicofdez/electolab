@@ -269,6 +269,21 @@ public class electoLabDAOImpl implements electoLabDAO {
 		em.close();
 		return res;
 	}
+	
+	@Override
+	public boolean exist_grupo(String nombre) {
+		if(nombre != ""){
+			EntityManager em = EMFService.get().createEntityManager();
+			Query q = em.createQuery("select t from Grupo t where t.nombre = :nombre");
+			q.setParameter("nombre",nombre);
+			List<Grupo> grupo = q.getResultList();
+			if(grupo.size()>0){
+				em.close();
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 
