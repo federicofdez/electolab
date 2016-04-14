@@ -77,7 +77,7 @@ glyphicon glyphicon-user "></i>
     <div style="padding: 10px;"></div>
     </div>
 			</div>
-         <div class= "license col-lg-6"> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">ElectoLab</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Rodrigo Barbado, Federico FernÃ¡ndez, Sergio GarcÃ­a, Arturo PavÃ³n, Carlos Vega</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional License</a>.</div>
+         <div class= "license col-lg-6"> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">ElectoLab</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Rodrigo Barbado, Federico Fernández, Sergio Garcí­a, Arturo Pavón, Carlos Vega</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional License</a>.</div>
 		</div>
     				<div style="padding: 40px;"></div>
 
