@@ -13,54 +13,19 @@ import javax.persistence.Id;
 public class Partido implements Serializable {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
-	private Long id_partido;
 	private String siglas;
 	private String nombre;
 	private String imagen;
 	private String color;
-	private List<String> provincia;
-	private List<Double> votos;
-	private List<Integer> esca;
-	private long id_escenario;
-
-	public Partido(String siglas, String nombre, String imagen, String color, List<String> provincia,
-			List<Double> votos, List<Integer> esca, long id_escenario) {
+	
+	
+	public Partido(String siglas, String nombre, String imagen, String color) {
 		super();
 		this.siglas = siglas;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.color = color;
-		this.provincia = provincia;
-		this.votos = votos;
-		this.esca = esca;
-		this.id_escenario = id_escenario;
 	}
-
-
-	public Long getId_partido() {
-		return id_partido;
-	}
-
-
-
-	public void setId_partido(Long id_partido) {
-		this.id_partido = id_partido;
-	}
-
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "Partido [esca=" + esca + "]";
-	}
-
-
-
-
 
 
 	public String getSiglas() {
@@ -68,14 +33,9 @@ public class Partido implements Serializable {
 	}
 
 
-
 	public void setSiglas(String siglas) {
 		this.siglas = siglas;
 	}
-
-
-
-
 
 
 	public String getNombre() {
@@ -83,17 +43,9 @@ public class Partido implements Serializable {
 	}
 
 
-
-
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
-
 
 
 	public String getImagen() {
@@ -101,17 +53,9 @@ public class Partido implements Serializable {
 	}
 
 
-
-
-
-
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-
-
-
-
 
 
 	public String getColor() {
@@ -119,68 +63,9 @@ public class Partido implements Serializable {
 	}
 
 
-
-
-
-
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-
-
-
-
-
-	public List<String> getProvincia() {
-		return provincia;
-	}
-
-
-
-
-
-
-	public void setProvincia(List<String> provincia) {
-		this.provincia = provincia;
-	}
-
-
-
-
-
-
-	public List<Double> getVotos() {
-		return votos;
-	}
-
-
-
-
-
-
-	public void setVotos(List<Double> votos) {
-		this.votos = votos;
-	}
-
-
-
-
-
-
-	public long getId_escenario() {
-		return id_escenario;
-	}
-
-
-
-
-
-
-	public void setId_escenario(long id_escenario) {
-		this.id_escenario = id_escenario;
-	}
-
 
 
 	@Override
@@ -190,17 +75,12 @@ public class Partido implements Serializable {
 	}
 
 
-	public List<Integer> getEsca() {
-		return esca;
-	}
-
-
-	public void setEsca(List<Integer> esca) {
-		this.esca = esca;
+	@Override
+	public String toString() {
+		return "Partido [siglas=" + siglas + ", nombre=" + nombre + ", imagen=" + imagen + ", color=" + color + "]";
 	}
 
 	
-
-
+	
 }
 

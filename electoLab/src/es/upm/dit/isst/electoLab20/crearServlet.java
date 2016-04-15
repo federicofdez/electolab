@@ -13,12 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.repackaged.com.google.gson.Gson;
 
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
+
+
 
 @SuppressWarnings("serial")
 public class crearServlet extends HttpServlet {
@@ -47,7 +50,7 @@ public class crearServlet extends HttpServlet {
 		}else{
 		
 		
-		calculos calc = calculos.getInstance();
+		//calculos calc = calculos.getInstance();
 		
 		//localhost:8888/_ah/admin
 		//Prueba db Partido
@@ -76,11 +79,32 @@ public class crearServlet extends HttpServlet {
 		
 		
 		//Prueba db Escenario
-		/*dao.create_escenario(1, 5, "DHont1", "provincias", 5, 5, 99);
-		System.out.println(dao.read_escenario(1));
+		/*Map<String,Integer> votos = new HashMap<String,Integer>();
+		 { 
+		     votos.put("PP:PirateBay",99999);
+		     votos.put("PODEMOS:Podemoslandia", 1);
+
+		 }
+		 Map<String,Integer> escProv = new HashMap<String,Integer>();
+		 { 
+		     escProv.put("PirateBay",5);
+		     escProv.put("Podemoslandia", 1);
+
+		 }
+		 List<String> comentarios = new ArrayList<String>();
+		 String[] array = new String[]{"Comentario1","Este escenario es una mierda enorme","Hoy"};
+	      Gson gson = new Gson();
+	      //convert java object to JSON format
+	      String json = gson.toJson(array);
+	      comentarios.add(json);
+
+	      System.out.println(json);
+		dao.create_escenario("Carlos",votos,escProv,"DHont","España",150,comentarios);
+		
+		//System.out.println(dao.read_escenario(1));
 		System.out.println(dao.read_escenarios());
-		dao.delete_escenario(1);
-		System.out.println(dao.read_escenarios());
+		//dao.delete_escenario(1);
+		//System.out.println(dao.read_escenarios());
 		*/
 		
 
