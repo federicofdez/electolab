@@ -70,6 +70,19 @@ public class electoLabDAOImpl implements electoLabDAO {
 		return res;
 
 	}
+	
+	public Escenario read_escenario(String usuario) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Escenario t where t.usuario = :usuario");
+		q.setParameter("usuario", usuario);
+		Escenario res = null;
+		List<Escenario> escenario = q.getResultList();
+		if (escenario.size() > 0)
+			res = (Escenario) (q.getResultList().get(0));
+		em.close();
+		return res;
+
+	} 
 	public boolean exist_escenario(String usuario) {
 		if (usuario != "") {
 			EntityManager em = EMFService.get().createEntityManager();
@@ -194,5 +207,7 @@ public class electoLabDAOImpl implements electoLabDAO {
 		}
 		return false;
 	}
+	
+	
 
 }

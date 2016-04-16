@@ -21,6 +21,7 @@ public interface electoLabDAO {
 	public void delete_escenario(long id);
 	public List<Escenario> read_escenarios();
 	public Escenario read_escenario(long id);
+	public Escenario read_escenario(String usuario);
 	public boolean exist_escenario(String usuario);
 
 

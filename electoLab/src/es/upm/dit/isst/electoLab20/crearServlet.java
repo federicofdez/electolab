@@ -108,8 +108,8 @@ public class crearServlet extends HttpServlet {
 		
 
 		//Habría que hacerlo con el dao
-		req.getSession().setAttribute("provincias", calc.getProvincias());
-		req.getSession().setAttribute("partidos", calc.getPartidos());
+		req.getSession().setAttribute("provincias", dao.read_escenario("admin").getProvincias());
+		req.getSession().setAttribute("partidos", dao.read_escenario("admin").getPartidos());
 		
 		resp.sendRedirect("/crear.jsp");
 		}
