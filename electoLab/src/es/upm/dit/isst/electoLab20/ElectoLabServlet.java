@@ -33,10 +33,6 @@ public class ElectoLabServlet extends HttpServlet {
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		
-		//Esto habria que hacerlo en el INIT
-		if(!dao.exist_grupo("prueba")){
-			dao.create_grupo("prueba", "prueba");
-		}
 		if(user != "" && !dao.exist_usuario(user)){
 			resp.sendRedirect("/registrar.jsp");
 		}else{
