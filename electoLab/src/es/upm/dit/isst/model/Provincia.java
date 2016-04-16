@@ -1,62 +1,63 @@
 package es.upm.dit.isst.model;
 
-import java.io.Serializable;
+import org.json.simple.JSONAware;
+import org.json.simple.JSONObject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-	@Entity
-public class Provincia implements Serializable {
-	
-	@Id 
-	private String identificador;
+public class Provincia implements JSONAware {
+
 	private String nombre;
 	private String comunidad;
+	private int escanos;
 	private int electores;
-	
-	
-	public Provincia(String identificador, String nombre, String comunidad, int electores) {
+
+	public Provincia(String nombre, String comunidad,
+			int escanos, int electores) {
 		super();
-		this.identificador = identificador;
 		this.nombre = nombre;
 		this.comunidad = comunidad;
+		this.escanos = escanos;
 		this.electores = electores;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-	@Override
-	public String toString() {
-		return "Provincia [identificador=" + identificador + ", nombre=" + nombre + ", comunidad=" + comunidad
-				+ ", electores=" + electores + "]";
-	}
-	public String getIdentificador() {
-		return identificador;
-	}
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 	public String getComunidad() {
 		return comunidad;
 	}
-	public void setComunidad(String comunidad) {
-		this.comunidad = comunidad;
+
+	public int getEscanos() {
+		return escanos;
 	}
+
 	public int getElectores() {
 		return electores;
 	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setComunidad(String comunidad) {
+		this.comunidad = comunidad;
+	}
+
+	public void setEscanos(int escanos) {
+		this.escanos = escanos;
+	}
+
 	public void setElectores(int electores) {
 		this.electores = electores;
 	}
-	
-	
+
+	@Override
+	public String toJSONString() {
+		JSONObject obj = new JSONObject();
+		obj.put("nombre", this.nombre);
+		obj.put("comunidad", this.comunidad);
+		obj.put("electores", this.electores);
+		return obj.toString();
+	}
+
 }

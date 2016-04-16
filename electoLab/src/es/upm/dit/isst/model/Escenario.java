@@ -1,102 +1,247 @@
 package es.upm.dit.isst.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-	@Entity
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+@Entity
 public class Escenario implements Serializable {
-	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String usuario;
-	private Map<String, Integer> votos;
-	private Map<String, Integer> escProv;
-	private String sistema;
-	private String circunscripciones;
+
+	private String votosJSON; // List<Votos>
+	private String provinciasJSON; // List<Provincia>
+	private String partidosJSON; // List<Partido>
+	private String comentariosJSON; // List<Comentario>
+
+	private Sistema sistema;
+	private Circunscripciones circunscripciones;
 	private int mayoria_abs;
-	private List<String> comentarios;
-	
-	
-	
-	
-	public Escenario( String usuario, Map<String, Integer> votos, Map<String, Integer> escProv, String sistema,
-			String circunscripciones, int mayoria_abs, List<String> comentarios) {
+
+	public Escenario(String usuario, String votosJSON,
+			String provinciasJSON, String partidosJSON, String comentariosJSON,
+			Sistema sistema, Circunscripciones circunscripciones,
+			int mayoria_abs) {
 		super();
 		this.usuario = usuario;
-		this.votos = votos;
-		this.escProv = escProv;
+		this.votosJSON = votosJSON;
+		this.provinciasJSON = provinciasJSON;
+		this.partidosJSON = partidosJSON;
+		this.comentariosJSON = comentariosJSON;
 		this.sistema = sistema;
 		this.circunscripciones = circunscripciones;
 		this.mayoria_abs = mayoria_abs;
-		this.comentarios = comentarios;
 	}
+	
+	public Escenario(String usuario, List<Votos> votos,
+			List<Provincia> provincias, List<Partido> partidos,
+			List<Comentario> comentarios, Sistema sistema,
+			Circunscripciones circunscripciones, int mayoria_abs) {
+		super();
+		this.usuario = usuario;
+		this.setVotos(votos);
+		this.setProvincias(provincias);
+		this.setPartidos(partidos);
+		this.setComentarios(comentarios);
+		this.sistema = sistema;
+		this.circunscripciones = circunscripciones;
+		this.mayoria_abs = mayoria_abs;
+	}
+
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+
+	public String getVotosJSON() {
+		return votosJSON;
 	}
-	public Map<String, Integer> getVotos() {
-		return votos;
+
+	public String getProvinciasJSON() {
+		return provinciasJSON;
 	}
-	public void setVotos(Map<String, Integer> votos) {
-		this.votos = votos;
+
+	public String getPartidosJSON() {
+		return partidosJSON;
 	}
-	public Map<String, Integer> getEscProv() {
-		return escProv;
+
+	public String getComentariosJSON() {
+		return comentariosJSON;
 	}
-	public void setEscProv(Map<String, Integer> escProv) {
-		this.escProv = escProv;
-	}
-	public String getSistema() {
+
+	public Sistema getSistema() {
 		return sistema;
 	}
-	public void setSistema(String sistema) {
-		this.sistema = sistema;
-	}
-	public String getCircunscripciones() {
+
+	public Circunscripciones getCircunscripciones() {
 		return circunscripciones;
 	}
-	public void setCircunscripciones(String circunscripciones) {
-		this.circunscripciones = circunscripciones;
-	}
+
 	public int getMayoria_abs() {
 		return mayoria_abs;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setVotosJSON(String votosJSON) {
+		this.votosJSON = votosJSON;
+	}
+
+	public void setProvinciasJSON(String provinciasJSON) {
+		this.provinciasJSON = provinciasJSON;
+	}
+
+	public void setPartidosJSON(String partidosJSON) {
+		this.partidosJSON = partidosJSON;
+	}
+
+	public void setComentariosJSON(String comentariosJSON) {
+		this.comentariosJSON = comentariosJSON;
+	}
+
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
+	}
+
+	public void setCircunscripciones(Circunscripciones circunscripciones) {
+		this.circunscripciones = circunscripciones;
+	}
+
 	public void setMayoria_abs(int mayoria_abs) {
 		this.mayoria_abs = mayoria_abs;
 	}
 
-	public List<String> getComentarios() {
-		return comentarios;
+	// métodos que utilizaremos desde fuera como getters y setters
+
+	public List<Votos> getVotos() {
+		JSONArray obj = (JSONArray) JSONValue.parse(this.votosJSON);
+
+		List<Votos> listaVotos = new ArrayList<Votos>();
+		for (Object o : obj) {
+			JSONObject jsonObject = (JSONObject) o;
+			String provincia = (String) jsonObject.get("provincia");
+			String partido = (String) jsonObject.get("partido");
+			int votos = ((Long) jsonObject.get("votos")).intValue();
+			listaVotos.add(new Votos(provincia, partido, votos));
+		}
+
+		return listaVotos;
 	}
-	public void setComentarios(List<String> comentarios) {
-		this.comentarios = comentarios;
+
+	public List<Provincia> getProvincias() {
+		JSONArray obj = (JSONArray) JSONValue.parse(this.provinciasJSON);
+
+		List<Provincia> listaProvincias = new ArrayList<Provincia>();
+		for (Object o : obj) {
+			JSONObject jsonObject = (JSONObject) o;
+			String nombre = (String) jsonObject.get("nombre");
+			String comunidad = (String) jsonObject.get("comunidad");
+			int escanos = ((Long) jsonObject.get("escanos")).intValue();
+			int electores = ((Long) jsonObject.get("electores")).intValue();
+			listaProvincias.add(new Provincia(nombre, comunidad, escanos,
+					electores));
+		}
+
+		return listaProvincias;
 	}
+
+	public List<Partido> getPartidos() {
+		JSONArray obj = (JSONArray) JSONValue.parse(this.partidosJSON);
+
+		List<Partido> listaPartidos = new ArrayList<Partido>();
+		for (Object o : obj) {
+			JSONObject jsonObject = (JSONObject) o;
+			String siglas = (String) jsonObject.get("siglas");
+			String nombre = (String) jsonObject.get("nombre");
+			String imagen = (String) jsonObject.get("imagen");
+			String color = (String) jsonObject.get("color");
+			listaPartidos.add(new Partido(siglas, nombre, imagen, color));
+		}
+
+		return listaPartidos;
+	}
+
+	public List<Comentario> getComentarios() {
+		JSONArray obj = (JSONArray) JSONValue.parse(this.comentariosJSON);
+
+		List<Comentario> listaComentarios = new ArrayList<Comentario>();
+		for (Object o : obj) {
+			JSONObject jsonObject = (JSONObject) o;
+			String usuario = (String) jsonObject.get("usuario");
+			String fecha = (String) jsonObject.get("fecha");
+			String texto = (String) jsonObject.get("texto");
+			listaComentarios.add(new Comentario(usuario, fecha, texto));
+		}
+
+		return listaComentarios;
+	}
+
+	public void setVotos(List<Votos> votos) {
+		JSONArray array = new JSONArray();
+		for (Votos v : votos) {
+			array.add(v);
+		}
+		this.votosJSON = array.toJSONString();
+	}
+
+	public void setProvincias(List<Provincia> provincias) {
+		JSONArray array = new JSONArray();
+		for (Provincia p : provincias) {
+			array.add(p);
+		}
+		this.provinciasJSON = array.toJSONString();
+	}
+
+	public void setPartidos(List<Partido> partidos) {
+		JSONArray array = new JSONArray();
+		for (Partido p : partidos) {
+			array.add(p);
+		}
+		this.partidosJSON = array.toJSONString();
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		JSONArray array = new JSONArray();
+		for (Comentario c : comentarios) {
+			array.add(c);
+		}
+		this.comentariosJSON = array.toJSONString();
+	}
+
 	@Override
 	public String toString() {
-		return "Escenario [id=" + id + ", usuario=" + usuario + ", votos=" + votos + ", escProv=" + escProv
-				+ ", sistema=" + sistema + ", circunscripciones=" + circunscripciones + ", mayoria_abs=" + mayoria_abs
-				+ ", comentarios=" + comentarios + "]";
+		return "Escenario ["
+				+ "id=" + id + ", "
+				+ "usuario=" + usuario + ", "
+				+ "votosJSON=" + votosJSON + ", "
+				+ "provinciasJSON=" + provinciasJSON + ", "
+				+ "partidosJSON=" + partidosJSON + ", "
+				+ "comentariosJSON=" + comentariosJSON + ", "
+				+ "sistema=" + sistema + ", "
+				+ "circunscripciones=" + circunscripciones + ", "
+				+ "mayoria_abs=" + mayoria_abs
+				+ "]";
 	}
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-	
-	
+
 }
