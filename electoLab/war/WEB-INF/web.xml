@@ -40,6 +40,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/registrar</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electoLab20.initServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	
 	<welcome-file-list>
 		<welcome-file>electolab</welcome-file>
 	</welcome-file-list>
