@@ -25,10 +25,6 @@ public class calculos {
 			instance = new calculos();
 		return instance;
 	}
-	
-	 private String[] provincias_mapa = {"alava","albacete","alicante","almeria","asturias","avila","badajoz","barcelona","burgos","caceres","cadiz","cantabria","castellon","ciudadreal","cordoba","lacoruÃ±a","cuenca","gerona","granada","guadalajara", "guipuzcoa","huelva","huesca","islasbaleares","jaen","leon","lerida","lugo","madrid","malaga","murcia","navarra","orense","palencia","laspalmas","pontevedra","larioja","salamanca","segovia","sevilla","soria","tarragona","santacruzdetenerife","teruel","toledo","valencia","valladolid","vizcaya","zamora","zaragoza"};
-	 private String[] partidos_mapa ={"PP", "PSOE", "PODEMOS", "C's", "EN COMÃš", "PODEMOS-COMPROMÃ�S", "ERC-CATS", "DL", "PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC", "UPN", "FAC"};
-
 
 	private int[] getArrayElectores(){
 		List<Integer> res_list= new ArrayList<Integer>();
@@ -80,7 +76,14 @@ public class calculos {
 		return res_Array;
 		
 	}
-		
+	
+	 private String[] provincias_mapa = {"alava","albacete","alicante","almeria","asturias","avila","badajoz","barcelona","burgos","caceres","cadiz","cantabria","castellon","ciudadreal","cordoba","lacoruÃ±a","cuenca","gerona","granada","guadalajara", "guipuzcoa","huelva","huesca","islasbaleares","jaen","leon","lerida","lugo","madrid","malaga","murcia","navarra","orense","palencia","laspalmas","pontevedra","larioja","salamanca","segovia","sevilla","soria","tarragona","santacruzdetenerife","teruel","toledo","valencia","valladolid","vizcaya","zamora","zaragoza"};
+	 private String[] partidos_mapa ={"PP", "PSOE", "PODEMOS", "C's", "EN COMÃš", "PODEMOS-COMPROMÃ�S", "ERC-CATS", "DL", "PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC", "UPN", "FAC"};
+
+
+	 
+
+	
 	/**
 	 * @param em
 	 * @param votos
@@ -215,7 +218,7 @@ public class calculos {
 				//La linea mas importante del metodo, viendo lo que nos envia el servidor, filtramos lo que no queremos
 				//asi nos quedamos solo con los partidos(el servidor envia que sistema es, los escaños/provincia,etc)
 				
-				if(datos[i] != "" && paraName.indexOf("sistema") == -1 && paraName.indexOf("escaÃ±os") == -1 && paraName.indexOf("circunscripciones") == -1 && paraName.indexOf("votosTable") == -1  && paraName.indexOf("votos") == -1 && paraName.indexOf("mayoria") == -1){
+				if(datos[i] != "" && paraName.indexOf("sistema") == -1 && paraName.indexOf("escaños") == -1 && paraName.indexOf("circunscripciones") == -1 && paraName.indexOf("votosTable") == -1  && paraName.indexOf("votos") == -1 && paraName.indexOf("mayoria") == -1){
 				 datos_mapa.put(paraName, Integer.parseInt(datos[i]));
 					
 				}
@@ -243,7 +246,7 @@ public class calculos {
 				//Al igual que antes, linea mas importante. Ahora solo queremos las lineas en las que el enumerado diga
 				//escaños
 				
-				if(datos[i] != "" && paraName.indexOf("escaÃ±os") != -1 ){
+				if(datos[i] != "" && paraName.indexOf("escaños") != -1 ){
 				 esc_mapa.put(paraName, Integer.parseInt(datos[i]));
 					
 				}
