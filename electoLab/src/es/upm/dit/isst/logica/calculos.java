@@ -13,22 +13,74 @@ import java.util.Map.Entry;
 
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
+import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
 public class calculos {
 	private static calculos instance;
-	
+	electoLabDAO dao = electoLabDAOImpl.getInstance();
+
 	public static calculos getInstance(){
 		if(instance == null)
 			instance = new calculos();
 		return instance;
 	}
-
+	
 	 private String[] provincias_mapa = {"alava","albacete","alicante","almeria","asturias","avila","badajoz","barcelona","burgos","caceres","cadiz","cantabria","castellon","ciudadreal","cordoba","lacoruÃ±a","cuenca","gerona","granada","guadalajara", "guipuzcoa","huelva","huesca","islasbaleares","jaen","leon","lerida","lugo","madrid","malaga","murcia","navarra","orense","palencia","laspalmas","pontevedra","larioja","salamanca","segovia","sevilla","soria","tarragona","santacruzdetenerife","teruel","toledo","valencia","valladolid","vizcaya","zamora","zaragoza"};
 	 private String[] partidos_mapa ={"PP", "PSOE", "PODEMOS", "C's", "EN COMÃš", "PODEMOS-COMPROMÃ�S", "ERC-CATS", "DL", "PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC", "UPN", "FAC"};
 
 
+	private int[] getArrayElectores(){
+		List<Integer> res_list= new ArrayList<Integer>();
+		List<Provincia> provincias_list = dao.read_escenario("admin").getProvincias();
+		Iterator provinciasIterator= provincias_list.iterator();
+		  while(provinciasIterator.hasNext()){
+			  Provincia provincia = (Provincia) provinciasIterator.next();
+			  res_list.add(provincia.getElectores());
+		  }
+			int[] res_Array = new int[ res_list.size() ];
+			
+			for(int i = 0; i < res_list.size(); i++)
+				res_Array[i] = res_list.get(i);
+			
+		return res_Array;
+		
+	}
 	
+	private String[] getArrayProvincias(){
+		List<String> res_list= new ArrayList<String>();
+		List<Provincia> provincias_list = dao.read_escenario("admin").getProvincias();
+		Iterator provinciasIterator= provincias_list.iterator();
+		  while(provinciasIterator.hasNext()){
+			  Provincia provincia = (Provincia) provinciasIterator.next();
+			  res_list.add(provincia.getId());
+		  }
+			String[] res_Array = new String[ res_list.size() ];
+			
+			for(int i = 0; i < res_list.size(); i++)
+				res_Array[i] = res_list.get(i);
+			
+		return res_Array;
+		
+	}
+	
+	private String[] getArrayPartidos(){
+		List<String> res_list= new ArrayList<String>();
+		List<Partido> partidos_list = dao.read_escenario("admin").getPartidos();
+		Iterator partidosIterator= partidos_list.iterator();
+		  while(partidosIterator.hasNext()){
+			  Partido partido = (Partido) partidosIterator.next();
+			  res_list.add(partido.getNombre());
+		  }
+			String[] res_Array = new String[ res_list.size() ];
+			
+			for(int i = 0; i < res_list.size(); i++)
+				res_Array[i] = res_list.get(i);
+			
+		return res_Array;
+		
+	}
+		
 	/**
 	 * @param em
 	 * @param votos

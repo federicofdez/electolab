@@ -92,6 +92,7 @@ public class simularServlet extends HttpServlet {
 		//calc.esca_map(req.getParameterNames(), datos2);
 
 		//System.out.println("votos totales = " +  votos);
+
 		resp.sendRedirect("/simular.jsp");
 		}
 		
