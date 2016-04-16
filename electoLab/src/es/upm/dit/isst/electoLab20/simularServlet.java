@@ -87,7 +87,7 @@ public class simularServlet extends HttpServlet {
 		//System.out.println(req.getParameter("mayoria"));
 		
 		
-		calc.calcula_esc(calc.crea_mapa(req.getParameterNames(), datos2));
+		//calc.calcula_esc(calc.crea_mapa(req.getParameterNames(), datos2));
 		//calc.crea_mapa(req.getParameterNames(), datos2);
 		//calc.esca_map(req.getParameterNames(), datos2);
 
