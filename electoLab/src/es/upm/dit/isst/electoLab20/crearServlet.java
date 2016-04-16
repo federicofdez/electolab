@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.appengine.repackaged.com.google.gson.Gson;
 
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
@@ -50,7 +49,7 @@ public class crearServlet extends HttpServlet {
 		}else{
 		
 		
-		//calculos calc = calculos.getInstance();
+		calculos calc = calculos.getInstance();
 		
 		//localhost:8888/_ah/admin
 		//Prueba db Partido

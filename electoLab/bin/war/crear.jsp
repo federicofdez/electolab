@@ -41,6 +41,7 @@
 											<th class="col-lg-3">Siglas</th>
 											<th class="col-lg-3">Nombre</th>
 											<th class="col-lg-3">Color</th>
+											<th class="col-lg-3">Provincias</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -54,6 +55,7 @@
    												<span class="input-group-addon"><i></i></span>
 											</div>	
 											</td>											
+											<td><h5><c:out value="${partido.provincia}"/></h5></td>
 										</tr>
 										<script>
 									    $(function() {
@@ -122,9 +124,9 @@
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
 	 											electores"><c:out value="${provincia.nombre}"/></a>
 	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="0" max="100" value="0"></th>
+												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.identificador}" placeholder='0%' min="0" max="100" value="0"></th>
 											</c:forEach>
-											<th class='form-group'><input type="number" name="escaños ${provincia.id}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
+											<th class='form-group'><input type="number" name="escaños ${provincia.identificador}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
 										</tr>
 									</c:forEach>
 								</tbody>
