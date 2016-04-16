@@ -13,6 +13,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import com.google.appengine.api.datastore.Text;
+
 @Entity
 public class Escenario implements Serializable {
 	
@@ -21,17 +23,17 @@ public class Escenario implements Serializable {
 	private Long id;
 	private String usuario;
 
-	private String votosJSON; // List<Votos>
-	private String provinciasJSON; // List<Provincia>
-	private String partidosJSON; // List<Partido>
-	private String comentariosJSON; // List<Comentario>
+	private Text votosJSON; // List<Votos>
+	private Text provinciasJSON; // List<Provincia>
+	private Text partidosJSON; // List<Partido>
+	private Text comentariosJSON; // List<Comentario>
 
 	private Sistema sistema;
 	private Circunscripciones circunscripciones;
 	private int mayoria_abs;
 
-	public Escenario(String usuario, String votosJSON,
-			String provinciasJSON, String partidosJSON, String comentariosJSON,
+	public Escenario(String usuario, Text votosJSON,
+			Text provinciasJSON, Text partidosJSON, Text comentariosJSON,
 			Sistema sistema, Circunscripciones circunscripciones,
 			int mayoria_abs) {
 		super();
@@ -69,19 +71,19 @@ public class Escenario implements Serializable {
 	}
 
 	public String getVotosJSON() {
-		return votosJSON;
+		return votosJSON.getValue();
 	}
 
 	public String getProvinciasJSON() {
-		return provinciasJSON;
+		return provinciasJSON.getValue();
 	}
 
 	public String getPartidosJSON() {
-		return partidosJSON;
+		return partidosJSON.getValue();
 	}
 
 	public String getComentariosJSON() {
-		return comentariosJSON;
+		return comentariosJSON.getValue();
 	}
 
 	public Sistema getSistema() {
@@ -105,19 +107,19 @@ public class Escenario implements Serializable {
 	}
 
 	public void setVotosJSON(String votosJSON) {
-		this.votosJSON = votosJSON;
+		this.votosJSON = new Text(votosJSON);
 	}
 
 	public void setProvinciasJSON(String provinciasJSON) {
-		this.provinciasJSON = provinciasJSON;
+		this.provinciasJSON = new Text(provinciasJSON);
 	}
 
 	public void setPartidosJSON(String partidosJSON) {
-		this.partidosJSON = partidosJSON;
+		this.partidosJSON = new Text(partidosJSON);
 	}
 
 	public void setComentariosJSON(String comentariosJSON) {
-		this.comentariosJSON = comentariosJSON;
+		this.comentariosJSON = new Text(comentariosJSON);
 	}
 
 	public void setSistema(Sistema sistema) {
@@ -135,7 +137,7 @@ public class Escenario implements Serializable {
 	// métodos que utilizaremos desde fuera como getters y setters
 
 	public List<Votos> getVotos() {
-		JSONArray obj = (JSONArray) JSONValue.parse(this.votosJSON);
+		JSONArray obj = (JSONArray) JSONValue.parse(this.votosJSON.getValue());
 
 		List<Votos> listaVotos = new ArrayList<Votos>();
 		for (Object o : obj) {
@@ -150,8 +152,7 @@ public class Escenario implements Serializable {
 	}
 
 	public List<Provincia> getProvincias() {
-		JSONArray obj = (JSONArray) JSONValue.parse(this.provinciasJSON);
-
+		JSONArray obj = (JSONArray) JSONValue.parse(this.provinciasJSON.getValue());
 		List<Provincia> listaProvincias = new ArrayList<Provincia>();
 		for (Object o : obj) {
 			JSONObject jsonObject = (JSONObject) o;
@@ -168,7 +169,7 @@ public class Escenario implements Serializable {
 	}
 
 	public List<Partido> getPartidos() {
-		JSONArray obj = (JSONArray) JSONValue.parse(this.partidosJSON);
+		JSONArray obj = (JSONArray) JSONValue.parse(this.partidosJSON.getValue());
 
 		List<Partido> listaPartidos = new ArrayList<Partido>();
 		for (Object o : obj) {
@@ -184,7 +185,7 @@ public class Escenario implements Serializable {
 	}
 
 	public List<Comentario> getComentarios() {
-		JSONArray obj = (JSONArray) JSONValue.parse(this.comentariosJSON);
+		JSONArray obj = (JSONArray) JSONValue.parse(this.comentariosJSON.getValue());
 
 		List<Comentario> listaComentarios = new ArrayList<Comentario>();
 		for (Object o : obj) {
@@ -203,7 +204,7 @@ public class Escenario implements Serializable {
 		for (Votos v : votos) {
 			array.add(v);
 		}
-		this.votosJSON = array.toJSONString();
+		this.votosJSON = new Text(array.toJSONString());
 	}
 
 	public void setProvincias(List<Provincia> provincias) {
@@ -211,7 +212,7 @@ public class Escenario implements Serializable {
 		for (Provincia p : provincias) {
 			array.add(p);
 		}
-		this.provinciasJSON = array.toJSONString();
+		this.provinciasJSON = new Text(array.toJSONString());
 	}
 
 	public void setPartidos(List<Partido> partidos) {
@@ -219,7 +220,7 @@ public class Escenario implements Serializable {
 		for (Partido p : partidos) {
 			array.add(p);
 		}
-		this.partidosJSON = array.toJSONString();
+		this.partidosJSON = new Text(array.toJSONString());
 	}
 
 	public void setComentarios(List<Comentario> comentarios) {
@@ -227,7 +228,7 @@ public class Escenario implements Serializable {
 		for (Comentario c : comentarios) {
 			array.add(c);
 		}
-		this.comentariosJSON = array.toJSONString();
+		this.comentariosJSON = new Text(array.toJSONString());
 	}
 
 	@Override

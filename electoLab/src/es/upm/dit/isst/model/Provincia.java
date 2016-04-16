@@ -69,6 +69,7 @@ public class Provincia implements JSONAware,Serializable{
 		obj.put("nombre", this.nombre);
 		obj.put("id", this.id);
 		obj.put("comunidad", this.comunidad);
+		obj.put("escanos", this.escanos);
 		obj.put("electores", this.electores);
 		return obj.toString();
 	}
