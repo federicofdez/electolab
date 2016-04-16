@@ -70,6 +70,21 @@ public class electoLabDAOImpl implements electoLabDAO {
 		return res;
 
 	}
+	public boolean exist_escenario(String usuario) {
+		if (usuario != "") {
+			EntityManager em = EMFService.get().createEntityManager();
+			Query q = em
+					.createQuery("select t from Escenario t where t.usuario = :usuario");
+			q.setParameter("usuario", usuario);
+			List<Escenario> escenario = q.getResultList();
+			if (escenario.size() > 0) {
+				em.close();
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	// Métodos de Usuario
 
