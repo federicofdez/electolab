@@ -15,8 +15,9 @@ import es.upm.dit.isst.model.Sistema;
 import es.upm.dit.isst.model.Votos;
 
 public class initServlet extends HttpServlet {
+	@Override
+	public void init() throws javax.servlet.ServletException {
 
-	public void init() {
 		electoLabDAO dao = electoLabDAOImpl.getInstance();
 		if (!dao.exist_grupo("prueba")) {
 			dao.create_grupo("prueba", "prueba");
