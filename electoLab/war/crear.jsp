@@ -21,7 +21,7 @@
 	<main>
 		<div class="container">
 			 <%@ include file="templates/main.jsp" %>
-		<form action="/simular" method="post">
+		<form action="/crear" method="post">
 		  	<input name="usuario" type="hidden" value="<c:out value='${user}'/>" />
 			<div class="container-fluid" id="main-content">
 				<h2>Introduzca los parámetros del escenario a simular</h2>
@@ -81,14 +81,14 @@
 							<div class="row">
 								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad:</div>
 								<div class="dropdown col-lg-2">
-								<input type="radio" name="sistema" value="dhont" checked>D'Hondt<br>
+								<input type="radio" name="sistema" value="DHONDT" checked>D'Hondt<br>
   								<input type="radio" name="sistema" value="sainte">Sainte-Lagüe<br>
 								</div>
 								<div class="col-lg-2" style="margin-top: 7px;"> Circunscripciones:</div>
 								<div class="dropdown col-lg-3">
-								<input type="radio" name="circunscripciones" value="provincias" checked>Provincias<br>
-  								<input type="radio" name="circunscripciones" value="comunidades">Comunidades autónomas<br>
-  								<input type="radio" name="circunscripciones" value="spain">España<br>
+								<input type="radio" name="circunscripciones" value="PROVINCIAS" checked>Provincias<br>
+  								<input type="radio" name="circunscripciones" value="COMUNIDADES">Comunidades autónomas<br>
+  								<input type="radio" name="circunscripciones" value="PAIS">España<br>
 								</div>
 								<div class="col-lg-4 center-block"  style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-2 center-block">

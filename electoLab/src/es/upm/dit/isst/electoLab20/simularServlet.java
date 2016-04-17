@@ -2,14 +2,10 @@ package es.upm.dit.isst.electoLab20;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Enumeration;
-import java.util.UUID;
-
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.cache.CacheFactory;
 import javax.cache.CacheManager;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +16,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
-import es.upm.dit.isst.logica.calculos;
 import es.upm.dit.isst.model.Escenario;
 
 public class simularServlet extends HttpServlet {
@@ -49,18 +44,21 @@ public class simularServlet extends HttpServlet {
 			return;
 		}
 		
+		Escenario escenario = null;
 		if (req.getParameterMap().containsKey("escenario")){
 			Cache cache;
 			try {
 				CacheFactory cacheFactory = CacheManager.getInstance()
 						.getCacheFactory();
 				cache = cacheFactory.createCache(Collections.emptyMap());
-				Escenario escenario = (Escenario) cache.get(req.getAttribute("escenario"));
-				req.setAttribute("escenario", escenario);
+				escenario = (Escenario) cache.get(req.getParameter("escenario"));
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
 		}
+		if (escenario == null)
+			escenario = dao.read_escenario("admin");
+		req.setAttribute("escenario", escenario);
 		req.getRequestDispatcher("simular.jsp").forward(req, resp);
 	}
 

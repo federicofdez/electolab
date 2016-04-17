@@ -1,8 +1,11 @@
 package es.upm.dit.isst.electoLab20;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.cache.Cache;
@@ -20,7 +23,13 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
+import es.upm.dit.isst.model.Circunscripciones;
+import es.upm.dit.isst.model.Comentario;
 import es.upm.dit.isst.model.Escenario;
+import es.upm.dit.isst.model.Partido;
+import es.upm.dit.isst.model.Provincia;
+import es.upm.dit.isst.model.Sistema;
+import es.upm.dit.isst.model.Votos;
 
 @SuppressWarnings("serial")
 public class crearServlet extends HttpServlet {
@@ -49,12 +58,11 @@ public class crearServlet extends HttpServlet {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
-		
-		req.getSession().setAttribute("provincias",
-				dao.read_escenario("admin").getProvincias());
-		req.getSession().setAttribute("partidos",
-				dao.read_escenario("admin").getPartidos());
-		resp.sendRedirect("/crear.jsp");
+
+		req.setAttribute("provincias", dao.read_escenario("admin")
+				.getProvincias());
+		req.setAttribute("partidos", dao.read_escenario("admin").getPartidos());
+		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -70,8 +78,7 @@ public class crearServlet extends HttpServlet {
 			i++;
 		}
 
-		calculos calc = calculos.getInstance();
-		Escenario escenario = calc.crearEscenario(em, datos);
+		Escenario escenario = this.crearEscenarioDesdeFormData(req);
 
 		Cache cache;
 		try {
@@ -84,5 +91,52 @@ public class crearServlet extends HttpServlet {
 		} catch (CacheException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Escenario crearEscenarioDesdeFormData(HttpServletRequest req) {
+		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		Enumeration datos = req.getParameterNames();
+
+		String usuario = "no registrado";
+		int mayoria_abs = Integer.parseInt(req.getParameter("mayoria"));
+
+		Sistema sistema = Sistema.valueOf(req.getParameter("sistema"));
+		Circunscripciones circunscripciones = Circunscripciones.valueOf(req
+				.getParameter("circunscripciones"));
+
+		List<Votos> votos = new ArrayList<Votos>();
+		List<Provincia> provincias = new ArrayList<Provincia>();
+		// TODO que se puedan crear partidos
+		List<Partido> partidos = dao.read_escenario("admin").getPartidos();
+		List<Comentario> comentarios = new ArrayList<Comentario>();
+
+		while (datos.hasMoreElements()) {
+			String d = (String) datos.nextElement();
+			if (!d.contains(":") && !d.contains(" "))
+				continue;
+			else if (d.contains(":")) {
+				String partido = d.split(":")[0];
+				String provincia = d.split(":")[1];
+				int num_votos = Integer.parseInt(req.getParameter(d));
+				votos.add(new Votos(provincia, partido, num_votos));
+			} else if (d.contains(" ")) {
+				String id_provincia = d.split(" ")[1];
+				Provincia pr = null;
+				for (Provincia p : dao.read_escenario("admin").getProvincias()) {
+					if (p.getId().equals(id_provincia)) {
+						pr = new Provincia(p.getNombre(), id_provincia,
+								p.getComunidad(), p.getEscanos(),
+								p.getElectores());
+						break;
+					}
+				}
+				if (!provincias.contains(pr)) {
+					provincias.add(pr);
+				}
+			}
+		}
+
+		return new Escenario(usuario, votos, provincias, partidos, comentarios,
+				sistema, circunscripciones, mayoria_abs);
 	}
 }
