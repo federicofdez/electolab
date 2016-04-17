@@ -485,7 +485,53 @@ public class calculos {
 		return escenario;
 
 	}
-		 }
+	// Con este metodo cogemos solo los votos de la provincia que queremos y hacemos dhont
+	public List<Votos> calc_es_b(Escenario escenario){
+		// Sacamos todas las provincias y votos
+		for(Provincia provincia :  escenario.getProvincias()){
+			List<Votos> votos_esc = new ArrayList<Votos>();
+			for(Votos votos : escenario.getVotos()){
+				// Comparamos para coger solo los de una provincia 
+			if(provincia.getId().equals(votos.getProvincia())){
+				votos_esc.add(votos);
+			}
+		}
+			// Una vez que tenemos la lista calculamos D'hont llamando al metodo
+						calc_dhont(votos_esc, provincia.getEscanos(), provincia.getElectores());
+		}
+		return null; // Tiene que devolver la list de votos con los escaños
+	}
+	public List<Votos> calc_dhont(List<Votos> votos_prov, int escanos, int electores){
+		// Calculo con el metodo de quitar los porcentajes los valores de los votos
+		for(Votos votos :  calc_votos(votos_prov, electores)){ // meto ese metodo para que cambie de porcentajes a votos
+			//
+			//
+			//PARA EL QUE LO HAGA, SIGUE DESDE AQUI ES SACAR EL MAXIMO Y DIVIDIR ENTRE LOS ESCAÑOS MAS UNO, 
+			//CREA LA LISTA, DEVUELVE COMO VOTOS LOS ESCAÑOS;)
+			//
+			
+			//Esto es para que veais como salen las cosas
+		System.out.println("provincias: " + votos.getProvincia() + " partido " 
+				+ votos.getPartido() + " votos " + votos.getVotos() + " electores " +
+				electores + " escaños " + escanos );
+		}
+		return votos_prov;
+	}
+	// Con este metodo cambiamos de porcentajes a votos
+	public List<Votos> calc_votos(List<Votos> porcentajes, int electores){
+		int votosb;
+		List<Votos> votos_sinporcen = new ArrayList<Votos>();
+		for(Votos votos :  porcentajes){
+			votosb = (int) (Math.floor(votos.getVotos()*electores)/100);
+			Votos votoss = new Votos(votos.getPartido(), votos.getProvincia(), votosb); 
+			votos_sinporcen.add(votoss);
+		}
+		
+		return votos_sinporcen;
+	}
+	
+	
+}
 
 
 
