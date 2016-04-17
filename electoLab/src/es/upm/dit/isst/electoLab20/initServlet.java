@@ -21,17 +21,17 @@ public class initServlet extends HttpServlet {
 		if (!dao.exist_grupo("prueba")) {
 			dao.create_grupo("prueba", "prueba");
 		}
-		String[] provincias_esc0 = { "alava", "albacete", "alicante",
-				"almeria", "asturias", "avila", "badajoz", "barcelona",
-				"burgos", "caceres", "cadiz", "cantabria", "castellon",
-				"ciudadreal", "cordoba", "lacoruña", "cuenca", "gerona",
-				"granada", "guadalajara", "guipuzcoa", "huelva", "huesca",
-				"islasbaleares", "jaen", "leon", "lerida", "lugo", "madrid",
-				"malaga", "murcia", "navarra", "orense", "palencia",
-				"laspalmas", "pontevedra", "larioja", "salamanca", "segovia",
-				"sevilla", "soria", "tarragona", "santacruzdetenerife",
-				"teruel", "toledo", "valencia", "valladolid", "vizcaya",
-				"zamora", "zaragoza" };
+		
+		String[] provincias_esc0 = {"alava","albacete","alicante","almeria","asturias",
+				"avila","badajoz","barcelona","burgos","caceres",
+	        	"cadiz","cantabria","castellón","ceuta","ciudadreal","cordoba",
+	        	"cuenca","gerona","granada","guadalajara",
+	        	"guipuzcoa","huelva","huesca","baleares","jaen","coruña","rioja","palmas",
+	        	"leon","lerida","Lugo","madrid","malaga","melilla","murcia","navarra",
+	        	"orense","palencia","pontevedra","tenerife","salamanca","segovia","sevilla",
+	        	"soria","tarragona","teruel","toledo","valencia",
+	        	"valladolid","vizcaya","zamora","zaragoza"};
+		
 		String[] partidos_esc0 = { "PP", "PSOE", "PODEMOS", "C's", "EN COMÚ",
 				"PODEMOS-COMPROMÍS", "ERC-CATS", "DL",
 				"PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC",
@@ -91,15 +91,15 @@ public class initServlet extends HttpServlet {
 					389811));
 			provincias.add(new Provincia("Huesca", "huesca", "Aragón", 3,
 					167331));
-			provincias.add(new Provincia("Islas Baleares", "islasbaleares",
+			provincias.add(new Provincia("Islas Baleares", "baleares",
 					"Islas Baleares", 8, 748577));
 			provincias
 					.add(new Provincia("Jaén", "jaen", "Andalucía", 5, 522173));
-			provincias.add(new Provincia("La Coruña", "lacoruña", "Galicia", 8,
+			provincias.add(new Provincia("La Coruña", "coruña", "Galicia", 8,
 					936602));
-			provincias.add(new Provincia("La Rioja", "larioja", "La Rioja", 4,
+			provincias.add(new Provincia("La Rioja", "rioja", "La Rioja", 4,
 					233087));
-			provincias.add(new Provincia("Las Palmas", "laspalmas",
+			provincias.add(new Provincia("Las Palmas", "palmas",
 					"Islas Canarias", 8, 798145));
 			provincias.add(new Provincia("León", "leon", "Castilla León", 5,
 					398416));
