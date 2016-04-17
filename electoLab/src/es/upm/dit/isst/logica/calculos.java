@@ -501,21 +501,31 @@ public class calculos {
 		}
 		return null; // Tiene que devolver la list de votos con los escaños
 	}
-	public List<Votos> calc_dhont(List<Votos> votos_prov, int escanos, int electores){
-		// Calculo con el metodo de quitar los porcentajes los valores de los votos
-		for(Votos votos :  calc_votos(votos_prov, electores)){ // meto ese metodo para que cambie de porcentajes a votos
-			//
-			//
-			//PARA EL QUE LO HAGA, SIGUE DESDE AQUI ES SACAR EL MAXIMO Y DIVIDIR ENTRE LOS ESCAÑOS MAS UNO, 
-			//CREA LA LISTA, DEVUELVE COMO VOTOS LOS ESCAÑOS;)
-			//
-			
-			//Esto es para que veais como salen las cosas
-		System.out.println("provincias: " + votos.getProvincia() + " partido " 
-				+ votos.getPartido() + " votos " + votos.getVotos() + " electores " +
-				electores + " escaños " + escanos );
+	public List<Votos> calc_dhont(List<Votos> votos_prov, int escanos){
+		// Lista que devolvera los escaños de cada partido en la circunscripcion
+		List<Votos> escaños = new ArrayList<Votos>();
+		//Lista de votos auxiliar con la que trabajaremos
+		List<Votos> aux = new ArrayList<Votos>();
+		for(int x = 0; x<votos_prov.size(); x++){
+			aux.add(new Votos(votos_prov.get(x).getCircunscripcion(), votos_prov.get(x).getPartido(), votos_prov.get(x).getVotos()));
 		}
-		return votos_prov;
+		for(int i= 0; i<escanos; i++){
+			//Obtenemos el indice del que mas votos tiene
+			int ind = calculaMaxVotos(aux, votos_prov);
+			//Si ese no estaba en la lista lo añadimos
+			if(!escaños.contains(votos_prov.get(ind))){
+				escaños.add(new Votos(votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),1));
+				int votos = aux.get(ind).getVotos()/2;
+				aux.set(ind,votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos);
+			}else{
+				//Sumamos un escaño al que tiene mas votos
+				escaños.set(ind, votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos_prov.get(ind).getVotos()+1);
+				int votos = aux.get(ind).getVotos()/(escaños.get(ind).getVotos()+1);
+				aux.set(ind,votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos);
+			}
+		}
+
+		return escaños;
 	}
 	// Con este metodo cambiamos de porcentajes a votos
 	public List<Votos> calc_votos(List<Votos> porcentajes, int electores){
@@ -529,7 +539,90 @@ public class calculos {
 		
 		return votos_sinporcen;
 	}
+	//Metodo que calcula que partido sera el que mas votos tiene.
+	//IMPORTANTISIMO: Se le pasa el array de votos inicial, y el actual, porque en caso
+	//de empate hay que ver los votos originales
+	public int calculaMaxVotos(List<Votos> aux, List<Votos> votos_prov){
+		//Variable que nos da el indice donde se halla el maximo
+		int indice=0;
+		//Valor incial de donde esta el maximo
+		int max = votos_prov.get(0).getVotos(); 
+		//Lista que guarda los partidos en los que hubo empate a votos
+		List<Votos> empate = new ArrayList<Votos>();
+		//Numero de vueltas que se recorrio el bucle
+		int vueltas;
+		//Indices del lugar donde se encontraban los partidos en al lista
+		int[] indices = new int[20];
+		//Variable que dice si hay empates
+		int hayEmpate=0;
+		//Numero de empates existentes
+		int empates = 0;
+		for(Votos voto : aux){
+			//Si un valor es mayor que el maximo que teniamos lo guardamos, ademas del
+			//indice en la lista
+			if(voto.getVotos() > max){
+				max = voto.getVotos();
+				indice = aux.indexOf(voto);
+			}
+		}
+		//Una vez calculado el maximo de la lista de votos, vemos si hay empates
+		for(Votos voto: aux){
+			//Si hay empate, guardamos el partido que genero el empate con sus votos totales
+			//ademas del indice en el que se encontraba. 
+			//El !=0 esta porque en la primera vuelta, comparas el primero con el primero, y eso es obviamente igual
+			if(voto.getVotos() == max){
+				empate.add(new Votos(votos_prov.get(vueltas).getCircunscripcion(), votos_prov.get(vueltas).getPartido(),votos_prov.get(vueltas).getVotos()));
+				indices[empates]= vueltas;
+				empates++;
+			}
+			vueltas++;
+			
+		}
+		//Si ha habido empates, pasamos a ver quien fue quien tenia mas votos incialmente
+		//y ademas estos empates fueron entre quiens mas votos tenian
+		//Si la lista tiene tamaño uno, quiere decir que solo habia un partido con el numero maximo
+		//y por tanto, no hubo empate
+		if((!empate.isEmpty()) && (empate.size()!=1)){
+			indice = calculaMaxEmpate(empate, indices);
+		}
 	
+		return indice;
+	}
+	
+	//Metodo que calcula a quien se le asignara el escaño en caso de empate
+	public int calculaMaxEmpate(List<Votos> empate, int[] indices){
+		//Valor del indice en el que se encuentra el partido con mas votos
+		int ind=indices[0];
+		//Numero de votos del primer partido de los que empataron
+		int max = empate.get(0).getVotos();
+		//Numero de empates que ha habido
+		int empates = 0;
+		//Array que guarda los indices de los partidos que empataron en votos iniciales
+		int []empatados = new int[20];
+		
+		for(int i =1; i<empate.size(); i++){
+			//Si un partido, tenia mas votos que el maximo lo guardamos
+			if(empate.get(i).getVotos()>max){
+				max = empate.get(i).getVotos();
+				ind = indices[i];		
+			}
+		}	
+		for( int j=0; j<empate.size();j++){	
+			//Si hubo empate, guardamos los partidos que empataron
+			if(empate.get(j).getVotos()==max){
+				empatados[empates]=indices[j];
+				empates ++;
+			}
+		}
+		//Igual que en el anterior, si solo hay un con max votos, es el que gana
+		//Sino se reparte aleatoriamente el escaño
+		if(empates!=1 ){
+			int indaux = 0 + (int)(Math.random()* (empatados.length));
+			ind = empatados[indaux];
+
+		}
+		return ind;
+	}
 	
 }
 
