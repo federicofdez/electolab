@@ -490,7 +490,6 @@ public class calculos {
 	//a partir de (provincia,partido, porcentaje)
 	public List<Votos> votosPorCircunscripcion(Escenario escenario){
 		Circunscripciones circunscripciones = escenario.getCircunscripciones();
-		System.out.println(circunscripciones);
 		if(circunscripciones == Circunscripciones.PROVINCIAS){
 			
 			List<Votos> votosProvinciasAbsolutos= new ArrayList<Votos>();
@@ -523,9 +522,7 @@ public class calculos {
 					votosMap.put(partido.getSiglas() + comunidad.toString(),0);
 				}
 			}
-			
-			
-			
+						
 			//Actualizo el diccionario
 			for(Votos voto: escenario.getVotos()){
 				for(Provincia provincia: escenario.getProvincias()){
@@ -544,26 +541,7 @@ public class calculos {
 				}
 			}
 			
-			
-			/*
-			for(Comunidades comunidad: Comunidades.values()){
-				for(Partido partido: escenario.getPartidos()){
-					int votosPartidoComunidad = 0;
-					for(Provincia provincia: escenario.getProvincias()){
-						for(Votos voto: escenario.getVotos()){
-							if(voto.getPartido().equals(partido.getSiglas()) && voto.getCircunscripcion().equals(provincia.getId())) {
-								if(provincia.getComunidad().equals(comunidad.toString())){									
-									votosPartidoComunidad += (int)(Math.floor(voto.getVotos()*provincia.getElectores())/100);
-							
-								}
-							}
-						}
-					}
-					votosComunidadesAbsolutos.add(new Votos(comunidad.toString(), partido.getSiglas(), votosPartidoComunidad));
-				}
-			}
-			*/
-			
+			//Comprobación de que se ha hecho bien
 			for(Votos voto: votosComunidadesAbsolutos){
 				System.out.println(voto.toJSONString());
 			}
