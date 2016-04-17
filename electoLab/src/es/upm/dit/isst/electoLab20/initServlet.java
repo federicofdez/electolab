@@ -51,7 +51,7 @@ public class initServlet extends HttpServlet {
 			provincias.add(new Provincia("Albacete", "albacete",
 					"CASTILLALAMANCHA", 4, 304089));
 			provincias.add(new Provincia("Alicante", "alicante",
-					"COMUNIDADVALENCIANA", 12, 1220005));
+					"VALENCIA", 12, 1220005));
 			provincias.add(new Provincia("Almería", "almeria", "ANDALUCÍA", 6,
 					452589));
 			provincias.add(new Provincia("Asturias", "asturias", "ASTURIAS", 8,
