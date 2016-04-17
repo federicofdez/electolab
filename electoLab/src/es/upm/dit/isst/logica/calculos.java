@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 
 import es.upm.dit.isst.model.Circunscripciones;
 import es.upm.dit.isst.model.Comentario;
+import es.upm.dit.isst.model.Comunidades;
 import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
@@ -485,6 +486,67 @@ public class calculos {
 		return escenario;
 
 	}
+	//Devuelve lista de votos (circunscripcion, partido,voto) 
+	//a partir de (provincia,partido, porcentaje)
+	public List<Votos> votosPorCircunscripcion(Escenario escenario){
+		Circunscripciones circunscripciones = escenario.getCircunscripciones();
+		System.out.println(circunscripciones);
+		if(circunscripciones == Circunscripciones.PROVINCIAS){
+			
+			List<Votos> votosProvinciasAbsolutos= new ArrayList<Votos>();
+			for(Provincia provincia: escenario.getProvincias()){
+				List<Votos> votosProvincia = new ArrayList<Votos>();
+				for(Votos voto: escenario.getVotos()){
+					if(voto.getCircunscripcion().equals(provincia.getId())){
+						votosProvincia.add(voto);
+						
+					}
+				}
+				for(Votos votoAbsoluto : calc_votos(votosProvincia, provincia.getElectores())){
+					votosProvinciasAbsolutos.add(votoAbsoluto);
+					
+				}
+			}
+			for(Votos voto: votosProvinciasAbsolutos){
+				System.out.println(voto.toJSONString());
+			}
+			return(votosProvinciasAbsolutos);
+			
+		} else if(circunscripciones == Circunscripciones.COMUNIDADES){
+			List<Votos> votosComunidadesAbsolutos = new ArrayList<Votos>();
+			for(Comunidades comunidad: Comunidades.values()){
+				for(Partido partido: escenario.getPartidos()){
+					int votosPartidoComunidad = 0;
+					for(Votos voto: escenario.getVotos()){
+						for(Provincia provincia: escenario.getProvincias()){
+							if(voto.getPartido().equals(partido.getSiglas()) && voto.getCircunscripcion().equals(provincia.getId())) {
+								System.out.println(provincia.getComunidad());
+								if(provincia.getComunidad().equals(comunidad.toString())){
+									
+									votosPartidoComunidad += (int)(Math.floor(voto.getVotos()*provincia.getElectores())/100);
+							
+								}
+							}
+						}
+					}
+					votosComunidadesAbsolutos.add(new Votos(comunidad.toString(), partido.getSiglas(), votosPartidoComunidad));
+				}
+			}
+			
+			for(Votos voto: votosComunidadesAbsolutos){
+				System.out.println(voto.toJSONString());
+			}
+			
+			return(votosComunidadesAbsolutos);
+			
+		}
+		return(null);
+		
+	}
+	
+	
+	
+
 	// Con este metodo cogemos solo los votos de la provincia que queremos y hacemos dhont
 	public List<Votos> calc_es_b(Escenario escenario){
 		// Sacamos todas las provincias y votos
@@ -533,7 +595,7 @@ public class calculos {
 		List<Votos> votos_sinporcen = new ArrayList<Votos>();
 		for(Votos votos :  porcentajes){
 			votosb = (int) (Math.floor(votos.getVotos()*electores)/100);
-			Votos votoss = new Votos(votos.getPartido(), votos.getProvincia(), votosb); 
+			Votos votoss = new Votos(votos.getPartido(), votos.getCircunscripcion(), votosb); 
 			votos_sinporcen.add(votoss);
 		}
 		

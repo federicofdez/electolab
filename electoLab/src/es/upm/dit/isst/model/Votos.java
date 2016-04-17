@@ -5,19 +5,19 @@ import org.json.simple.JSONObject;
 
 public class Votos implements JSONAware {
 
-	private String provincia;
+	private String circunscripcion;
 	private String partido;
 	private int votos;
 
-	public Votos(String provincia, String partido, int votos) {
+	public Votos(String circunscripcion, String partido, int votos) {
 		super();
-		this.provincia = provincia;
+		this.circunscripcion = circunscripcion;
 		this.partido = partido;
 		this.votos = votos;
 	}
 
-	public String getProvincia() {
-		return provincia;
+	public String getCircunscripcion() {
+		return circunscripcion;
 	}
 
 	public String getPartido() {
@@ -28,8 +28,8 @@ public class Votos implements JSONAware {
 		return votos;
 	}
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setCircunscripcion(String circunscripcion) {
+		this.circunscripcion = circunscripcion;
 	}
 
 	public void setPartido(String partido) {
@@ -43,7 +43,7 @@ public class Votos implements JSONAware {
 	@Override
 	public String toJSONString() {
 		JSONObject obj = new JSONObject();
-		obj.put("provincia", this.provincia);
+		obj.put("circunscripcion", this.circunscripcion);
 		obj.put("partido", this.partido);
 		obj.put("votos", this.votos);
 		return obj.toString();
