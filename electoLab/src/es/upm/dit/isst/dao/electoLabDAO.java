@@ -18,6 +18,7 @@ public interface electoLabDAO {
 			List<Provincia> provincias, List<Partido> partidos,
 			List<Comentario> comentarios, Sistema sistema,
 			Circunscripciones circunscripciones, int mayoria_abs);
+	public Escenario create_escenario(Escenario escenario);
 	public void delete_escenario(long id);
 	public List<Escenario> read_escenarios();
 	public Escenario read_escenario(long id);

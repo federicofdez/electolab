@@ -18,6 +18,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
+import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
 
 public class simularServlet extends HttpServlet {
@@ -29,9 +30,7 @@ public class simularServlet extends HttpServlet {
 		String user = "";
 		if(req.getUserPrincipal() != null){
 			user = req.getUserPrincipal().getName();
-			System.out.println(user);
 			url = userService.createLogoutURL(req.getRequestURI());
-			System.out.println(url);
 			urlLinktext = user + " :Logout";
 		}
 		
@@ -92,7 +91,6 @@ public class simularServlet extends HttpServlet {
 		//calc.esca_map(req.getParameterNames(), datos2);
 
 		//System.out.println("votos totales = " +  votos);
-
 		resp.sendRedirect("/simular.jsp");
 		}
 		

@@ -22,6 +22,7 @@
 		<div class="container">
 			 <%@ include file="templates/main.jsp" %>
 		<form action="/simular" method="post">
+		  	<input name="usuario" type="hidden" value="<c:out value='${user}'/>" />
 			<div class="container-fluid" id="main-content">
 				<h2>Introduzca los parámetros del escenario a simular</h2>
 				<div class="panel-group" id="accordion">
@@ -89,7 +90,7 @@
   								<input type="radio" name="circunscripciones" value="comunidades">Comunidades autónomas<br>
   								<input type="radio" name="circunscripciones" value="spain">España<br>
 								</div>
-								<div class="col-lg-4 center-block" style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
+								<div class="col-lg-4 center-block"  style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-2 center-block">
 									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" min="0" max="100" value="50">
 								</div>
@@ -148,6 +149,7 @@
 						</div>
 					</div>
 				</div>
+				<input type="hidden" name="usuario" value="${user }]">
 				<input type="submit" value="Simular escenario"class="btn btn-info center-block" role="button"/>
 				<div style="padding: 40px;"></div>
 			</div>

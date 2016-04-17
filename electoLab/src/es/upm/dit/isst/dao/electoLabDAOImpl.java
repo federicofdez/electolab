@@ -38,6 +38,14 @@ public class electoLabDAOImpl implements electoLabDAO {
 		em.close();
 		return escenario;
 	}
+	
+	@Override
+	public Escenario create_escenario(Escenario escenario) {
+		EntityManager em = EMFService.get().createEntityManager();
+		em.persist(escenario);
+		em.close();
+		return escenario;
+	}
 
 	@Override
 	public void delete_escenario(long id) {

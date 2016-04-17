@@ -11,8 +11,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import es.upm.dit.isst.model.Circunscripciones;
+import es.upm.dit.isst.model.Comentario;
+import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
 import es.upm.dit.isst.model.Provincia;
+import es.upm.dit.isst.model.Sistema;
+import es.upm.dit.isst.model.Votos;
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
 
@@ -374,10 +379,113 @@ public class calculos {
 		return max;
 	}
   
+	public Escenario crearEscenario(Enumeration em, String[] datos){
+		//*************************Listas para la salida y variables**********************
+		//Lista para guardar los nombres de los parametros
+		List<String> paramNames = new ArrayList<String>();
+		//Lista de partidos, provincias
+		List<Provincia> provinciasList = new ArrayList<Provincia>();
+		List<Partido> partidosList = new ArrayList<Partido>();	
+		List<Votos> votosList = new ArrayList<Votos>();
+		
+		//Pasar enumeracion a lista para conservar los nombres de los datos
+		while(em.hasMoreElements()){
+			paramNames.add((String) em.nextElement());
+		}
+		
+		//*************************Calculo de los parametros individuales**********************
+		//Inicializacion parametros individuales
+		String usuario;
+		Sistema sistema = null;
+		Circunscripciones circunscripciones = null;
+		int mayoria;
+		
+		
+		//Calculo de los valores de los parametros individuales
+		int index = paramNames.indexOf("usuario");
+		usuario = datos[index];
+		index = paramNames.indexOf("sistema");
+		String sistemaString = datos[index];
+		if(sistemaString.equals("dhont"))
+             sistema = Sistema.DHONDT;
+        index = paramNames.indexOf("circunscripciones");
+		String circunscripcionesString = datos[index];
+		if(circunscripcionesString.equals("provincias"))
+             circunscripciones = Circunscripciones.PROVINCIAS;
+		if(circunscripcionesString.equals("comunidades"))
+             circunscripciones = Circunscripciones.COMUNIDADES;
+		if(circunscripcionesString.equals("spain"))
+          circunscripciones = Circunscripciones.PAIS;
+		index = paramNames.indexOf("mayoria");
+		mayoria = Integer.parseInt(datos[index]);
 
+//---------------------------PRUEBA------------------------------------
+//System.out.println("usuario: " + usuario + ", sistema: " + sistema + ", circunscripciones: " + circunscripciones + ", mayoria_abs: " + mayoria);
+//---------------------------------------------------------------------
+		
 
+		//*************************Calculo de provincias**********************
+		//Iterator de provincias
+		Iterator<Provincia> provinciasIterator = dao.read_escenario("admin").getProvincias().iterator();
+		//Bucle de provincias
+		while (provinciasIterator.hasNext()) {
+			Provincia provincia = provinciasIterator.next();
+			index = paramNames.indexOf("escaños " + provincia.getId());
+			int escanos = 0;
+			if(index != -1){
+				escanos = Integer.parseInt(datos[index]);
+				provincia = new Provincia(provincia.getNombre(), provincia.getId(), provincia.getComunidad(), escanos, provincia.getElectores());
+				//---------------------------PRUEBA------------------------------------
+				//System.out.println("nombre: " + provincia.getNombre() + ", id: " + provincia.getId() + ", comunidad: " + provincia.getComunidad() + ", escanos: " + provincia.getEscanos() + ", electores: " + provincia.getElectores());
+				//---------------------------------------------------------------------
+				provinciasList.add(provincia);
+				}
+		}
+		
+		//*************************Calculo de partidos y votos**********************	
+		
+		//Iterator de partidos	
+		Iterator<Partido> partidosIterator = dao.read_escenario("admin").getPartidos().iterator();
+		//Bucle de partidos si hay siguiente elemento
+		while (partidosIterator.hasNext()) {
+				Partido partido = partidosIterator.next();
+				if(!partidosList.contains(partido)){
+					//---------------------------PRUEBA------------------------------------
+					//System.out.println("siglas: " + partido.getSiglas() + ", nombre: " + partido.getNombre() + ", color: " + partido.getColor() + ", imagen: " + partido.getImagen());
+					//---------------------------------------------------------------------
+					partidosList.add(partido);
 
-}
+				//Iterator de provincias
+				Iterator<Provincia> provinciasIterator2 = dao.read_escenario("admin").getProvincias().iterator();
+				//Bucle de provincias
+				while (provinciasIterator2.hasNext()) {
+					Provincia provincia = provinciasIterator2.next();
+					//Buscamos el indice que tiene las siglas y la provincia concreta que esta iterando
+						index = paramNames.indexOf(partido.getSiglas()+":"+provincia.getId());
+						//System.out.println("index: " + index + ", id: " + partido.getSiglas()+""+provincia.getId() /*+ ", valorDatos: " + datos[index]*/);
+						if(index != -1){
+							
+							//Si es NP no lo metemos en el array de votos
+							if(datos[index] != "NP"){		
+								Votos votos = new Votos(provincia.getId(), partido.getSiglas(), Integer.parseInt(datos[index]));
+								//---------------------------PRUEBA------------------------------------
+								//System.out.println("provincia: " + votos.getProvincia()+ ", partido: " + votos.getPartido() + ", porcentajes: " + votos.getVotos());
+								//---------------------------------------------------------------------
+								votosList.add(votos);
+							}
+						}
+						}
+
+							
+						}
+						
+				}
+		List<Comentario> comentariosList = new ArrayList<Comentario>();
+		Escenario escenario = new Escenario(usuario, votosList, provinciasList, partidosList, comentariosList, sistema, circunscripciones, mayoria);
+		return escenario;
+
+	}
+		 }
 
 
 
