@@ -142,7 +142,7 @@ public class Escenario implements Serializable {
 		List<Votos> listaVotos = new ArrayList<Votos>();
 		for (Object o : obj) {
 			JSONObject jsonObject = (JSONObject) o;
-			String provincia = (String) jsonObject.get("provincia");
+			String provincia = (String) jsonObject.get("circunscripcion");
 			String partido = (String) jsonObject.get("partido");
 			int votos = ((Long) jsonObject.get("votos")).intValue();
 			listaVotos.add(new Votos(provincia, partido, votos));
