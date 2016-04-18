@@ -105,17 +105,27 @@
 						<thead>
 							<tr>
 								<th class="col-lg-3">Partido</th>
-								<th class="col-lg-3">Votos</th>
-								<th class="col-lg-3">Representación</th>
+								<th class="col-lg-3">Circunscripción</th>
+								<th class="col-lg-3">Escaños obtenidos</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row"><h5>PartidoXX</h5></th>
-								<th><input type='text' class='form-control'
-									value="1.000.0000"></th>
-								<th><input type='text' class='form-control' value="20"></th>
-							</tr>
+							<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+								<tr>
+									<th scope="row"><h5>${ r.partido }</h5></th>
+									<th><input type='text' class='form-control'
+										value="${ r.circunscripcion }"></th>
+									<th><input type='text' class='form-control' value="${r.votos }"></th>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${resultadosCongreso}" var="r">
+								<tr>
+									<th scope="row"><h5>${ r.partido }</h5></th>
+									<th><input type='text' class='form-control'
+										value="${ r.circunscripcion }"></th>
+									<th><input type='text' class='form-control' value="${r.votos }"></th>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -124,17 +134,6 @@
 				<button class="btn btn-info center-block" data-toggle="modal"
 					data-target="#popupInforme">Generar informe</button>
 			</div>
-			<table class="table table-hover" id="votosTable">
-				<tbody>
-					<c:forEach items="${escenario.votos}" var="voto">
-						<tr>
-							<th scope="row">${voto.partido}</th>
-							<th scope="row">${voto.provincia}</th>
-							<th scope="row">${voto.votos }</th>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 		</div>
 		<div style="padding: 20px;"></div>
 	</div>

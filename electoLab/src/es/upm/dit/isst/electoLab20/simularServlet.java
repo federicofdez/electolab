@@ -2,6 +2,9 @@ package es.upm.dit.isst.electoLab20;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.cache.CacheFactory;
@@ -16,7 +19,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.dao.electoLabDAO;
 import es.upm.dit.isst.dao.electoLabDAOImpl;
+import es.upm.dit.isst.logica.calculos;
 import es.upm.dit.isst.model.Escenario;
+import es.upm.dit.isst.model.Votos;
 
 public class simularServlet extends HttpServlet {
 
@@ -43,22 +48,37 @@ public class simularServlet extends HttpServlet {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
-		
+
 		Escenario escenario = null;
-		if (req.getParameterMap().containsKey("escenario")){
+		if (req.getParameterMap().containsKey("escenario")) {
 			Cache cache;
 			try {
 				CacheFactory cacheFactory = CacheManager.getInstance()
 						.getCacheFactory();
 				cache = cacheFactory.createCache(Collections.emptyMap());
-				escenario = (Escenario) cache.get(req.getParameter("escenario"));
+				escenario = (Escenario) cache
+						.get(req.getParameter("escenario"));
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
 		}
 		if (escenario == null)
 			escenario = dao.read_escenario("admin");
-		req.setAttribute("escenario", escenario);
+
+		List<Votos> votosPorCircunscripcion = calculos.getInstance()
+				.votosPorCircunscripcion(escenario);
+		HashMap<String, Integer> escanosPorCircunscripcion = calculos
+				.getInstance().escanosCircunscripciones(escenario);
+		List<Votos> resultadosPorCircunscripcion = calculos.getInstance()
+				.calcularEscanos(votosPorCircunscripcion,
+						escanosPorCircunscripcion, escenario.getSistema());
+		List<Votos> resultadosCongreso = calculos.getInstance()
+				.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+
+		req.setAttribute("resultadosPorCircunscripcion",
+				resultadosPorCircunscripcion);
+		req.setAttribute("resultadosCongreso", resultadosCongreso);
+
 		req.getRequestDispatcher("simular.jsp").forward(req, resp);
 	}
 
