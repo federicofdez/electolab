@@ -20,6 +20,7 @@ import es.upm.dit.isst.dao.electoLabDAOImpl;
 import es.upm.dit.isst.logica.calculos;
 import es.upm.dit.isst.model.Escenario;
 import es.upm.dit.isst.model.Partido;
+import es.upm.dit.isst.model.Votos;
 
 public class simularServlet extends HttpServlet {
 
@@ -91,9 +92,11 @@ public class simularServlet extends HttpServlet {
 		//calc.esca_map(req.getParameterNames(), datos2);
 
 		Escenario escenario = calc.crearEscenario(req.getParameterNames(), datos2);
-		//System.out.println(calc.votosPorCircunscripcion(escenario).toString());
+		//Obtenemos la lista de (circunscripcion, partido,votos) de cada circunscripcion
+		List<Votos> votosPorCircunscripcion = calc.votosPorCircunscripcion(escenario);
+		//Obtenemos el diccionario con escanos asignados a cada circunscripcion
 		HashMap<String, Integer> escanosCircunscripciones = calc.escanosCircunscripciones(escenario);
-		
+		List<Votos> aaa = calc.calcularEscanos(votosPorCircunscripcion, escanosCircunscripciones, escenario.getSistema());
 		//calc.calc_es_b(escenario );
 		
 		resp.sendRedirect("/simular.jsp");
