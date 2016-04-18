@@ -486,6 +486,7 @@ public class calculos {
 		return escenario;
 
 	}
+	//Metodo de adaptacion de datos para calcular los escaños
 	//Devuelve lista de votos (circunscripcion, partido,voto) 
 	//a partir de (provincia,partido, porcentaje)
 	public List<Votos> votosPorCircunscripcion(Escenario escenario){
@@ -497,16 +498,14 @@ public class calculos {
 				List<Votos> votosProvincia = new ArrayList<Votos>();
 				for(Votos voto: escenario.getVotos()){
 					if(voto.getCircunscripcion().equals(provincia.getId())){
-						votosProvincia.add(voto);
-						
+						votosProvincia.add(voto);						
 					}
 				}
 				for(Votos votoAbsoluto : calc_votos(votosProvincia, provincia.getElectores())){
-					votosProvinciasAbsolutos.add(votoAbsoluto);
-					
+					votosProvinciasAbsolutos.add(votoAbsoluto);					
 				}
 			}
-			/*
+			/* Comprobacion
 			for(Votos voto: votosProvinciasAbsolutos){
 				System.out.println(voto.toJSONString());
 			}
@@ -550,11 +549,39 @@ public class calculos {
 			
 			return(votosComunidadesAbsolutos);
 			
+		} else { //Caso circunscripción ESPAÑA
+			HashMap<String, Integer> votosMap = new HashMap();
+			List<Votos> votosEspanaAbsolutos = new ArrayList<Votos>();
+			//Inicializamos mapa auxiliar
+			for(Partido partido: escenario.getPartidos()){
+				votosMap.put(partido.getSiglas(), 0);
+			}
+			//Rellenamos el mapa sumando votos de cada partido
+			for(Votos voto: escenario.getVotos()){
+				for(Provincia provincia: escenario.getProvincias()){
+					if(voto.getCircunscripcion().equals(provincia.getId())){
+						int votos = (int)(Math.floor(voto.getVotos()*provincia.getElectores())/100);
+						votosMap.put(voto.getPartido(), votosMap.get(voto.getPartido()) + votos );
+					}
+				}				
+			}			
+			//Mapeo el diccionario a lista de Votos			
+			for(Partido partido: escenario.getPartidos()){
+				votosEspanaAbsolutos.add(new Votos("ESPAÑA", partido.getSiglas(), votosMap.get(partido.getSiglas())));
+			}
+			//Comprobación de que se ha hecho bien
+			for(Votos voto: votosEspanaAbsolutos){
+				System.out.println(voto.toJSONString());
+			}
+			
+			
 		}
 		return(null);
 		
 	}
 	
+	//A partir de un escenario, devuelve un mapa de tipo
+	//(Clave: circunscripcion, valor: escaños asignados)
 	public HashMap<String, Integer> escanosCircunscripciones(Escenario escenario){
 		Circunscripciones circunscripciones = escenario.getCircunscripciones();
 		HashMap<String,Integer> escanosAsignados = new HashMap<String, Integer>();
@@ -583,8 +610,11 @@ public class calculos {
 		}
 		
 	}
-	
-	public List<Votos> calcularEscanos(List<Votos> votos, HashMap<String, Integer> escañosProvincia, Sistema sistema){
+	// Calcula los escaños por circunscripcion a partir de 
+	// la lista de votos con datos adaptados a circunscripciones,
+	// el mapa que asigna escaños a cada circunscripción
+	// y el sistema electoral elegido
+	public List<Votos> calcularEscanos(List<Votos> votos, HashMap<String, Integer> escanosCircunscripcion, Sistema sistema){
 		//Creamos un diccionario Circunscripcion -> {Partido ->Voto}
 		//Siendo {Partido-> Voto} otro diccionario que para cada circunscripción contiene los votos de los partidos que se presentan en ella
 		HashMap<String, HashMap<String, Integer>> votosMap = new HashMap<String, HashMap<String,Integer>>();
@@ -596,16 +626,10 @@ public class calculos {
 		for(Votos voto: votos){
 			//Obtenemos el diccionario cuya clave es la comunidad
 			HashMap<String, Integer> partidoVoto = votosMap.get(voto.getCircunscripcion());
-			//System.out.println(partidoVoto);
 			//Actualizar votosMap con el nuevo partido
 			partidoVoto.put(voto.getPartido(), voto.getVotos());
 			votosMap.put(voto.getCircunscripcion(), partidoVoto);
 		}
-		/*
-		System.out.println("Calcular escanos"); 
-		
-		
-		*/
 		
 		//Lista que se devolverá con (circunscripcion, partido, escaños)
 		List<Votos> escanos = new ArrayList<Votos>();
@@ -618,39 +642,31 @@ public class calculos {
             for (String partido: partidosVotos.keySet()){
             	votosPorCircunscripcion.add(new Votos(circunscripcion, partido, partidosVotos.get(partido)));
             }
+            
+    		for(Votos voto: votosPorCircunscripcion){
+    			System.out.println(voto.toJSONString());
+    		}
+    		
+
             //AQUÍ Llamamos al calculo de escaños
+            if(sistema == Sistema.DHONDT){
+            	
+            	for(Votos escano : calc_dhont(votosPorCircunscripcion, escanosCircunscripcion.get(circunscripcion))){
+            		escanos.add(escano);
+            	}
+            	
+            } //Aquí ira else con cada sistema posible
+         
             
-            //-----------------
-            
-            //Comprobación de que se ha hecho bien
-			for(Votos voto: votosPorCircunscripcion){
-				System.out.println(voto.toJSONString());
-			}
-
-
 		}	 
+        //Comprobación de que se ha hecho bien
 		
-		return(null);
+		return(escanos);
 		
 	}
 	
 
-	// Con este metodo cogemos solo los votos de la provincia que queremos y hacemos dhont
-	public List<Votos> calc_es_b(Escenario escenario){
-		// Sacamos todas las provincias y votos
-		for(Provincia provincia :  escenario.getProvincias()){
-			List<Votos> votos_esc = new ArrayList<Votos>();
-			for(Votos votos : escenario.getVotos()){
-				// Comparamos para coger solo los de una provincia 
-			if(provincia.getId().equals(votos.getProvincia())){
-				votos_esc.add(votos);
-			}
-		}
-			// Una vez que tenemos la lista calculamos D'hont llamando al metodo
-						calc_dhont(votos_esc, provincia.getEscanos(), provincia.getElectores());
-		}
-		return null; // Tiene que devolver la list de votos con los escaños
-	}
+	
 	public List<Votos> calc_dhont(List<Votos> votos_prov, int escanos){
 		// Lista que devolvera los escaños de cada partido en la circunscripcion
 		List<Votos> escaños = new ArrayList<Votos>();
@@ -666,12 +682,12 @@ public class calculos {
 			if(!escaños.contains(votos_prov.get(ind))){
 				escaños.add(new Votos(votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),1));
 				int votos = aux.get(ind).getVotos()/2;
-				aux.set(ind,votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos);
+				aux.set(ind, new Votos(votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos));
 			}else{
 				//Sumamos un escaño al que tiene mas votos
-				escaños.set(ind, votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos_prov.get(ind).getVotos()+1);
+				escaños.set(ind, new Votos(votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos_prov.get(ind).getVotos()+1));
 				int votos = aux.get(ind).getVotos()/(escaños.get(ind).getVotos()+1);
-				aux.set(ind,votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos);
+				aux.set(ind, new Votos(votos_prov.get(ind).getCircunscripcion(), votos_prov.get(ind).getPartido(),votos));
 			}
 		}
 
@@ -700,7 +716,7 @@ public class calculos {
 		//Lista que guarda los partidos en los que hubo empate a votos
 		List<Votos> empate = new ArrayList<Votos>();
 		//Numero de vueltas que se recorrio el bucle
-		int vueltas;
+		int vueltas = 0;
 		//Indices del lugar donde se encontraban los partidos en al lista
 		int[] indices = new int[20];
 		//Variable que dice si hay empates
