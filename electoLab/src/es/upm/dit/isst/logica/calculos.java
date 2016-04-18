@@ -553,7 +553,48 @@ public class calculos {
 		
 	}
 	
+	public HashMap<String, Integer> escanosCircunscripciones(Escenario escenario){
+		Circunscripciones circunscripciones = escenario.getCircunscripciones();
+		HashMap<String,Integer> escanosAsignados = new HashMap<String, Integer>();
+		if(circunscripciones == Circunscripciones.PROVINCIAS){
+			for(Provincia provincia: escenario.getProvincias()){
+				escanosAsignados.put(provincia.getId(), provincia.getEscanos());
+			}
+			return(escanosAsignados);
+		} else if(circunscripciones == Circunscripciones.COMUNIDADES){
+			//Primero inicializo el diccionario con todos los valores a 0
+			for(Comunidades comunidad: Comunidades.values()){
+				escanosAsignados.put(comunidad.toString(), 0);
+			}
+			
+			//Después voy recorriendo provincias y añadiendo escaños por comunidades
+			for(Provincia provincia: escenario.getProvincias()){
+				escanosAsignados.put(provincia.getComunidad(), escanosAsignados.get(provincia.getComunidad()) + provincia.getEscanos());
+			}
+			for (String name: escanosAsignados.keySet()){
+
+	            String key =name.toString();
+	            String value = escanosAsignados.get(name).toString();  
+	            System.out.println(key + " " + value);  
+
+
+			}	 
+			
+			
+			return(escanosAsignados);
+		} else {
+			escanosAsignados.put("ESPAÑA", 0);
+			for(Provincia provincia: escenario.getProvincias()){
+				escanosAsignados.put("ESPAÑA", escanosAsignados.get("ESPAÑA") + provincia.getEscanos());
+			}
+			return(escanosAsignados);
+		}
+		
+	}
 	
+	public List<Votos> calcularEscaños(List<Votos> votos, HashMap<Circunscripciones, Integer> escañosProvincia){
+		
+	}
 	
 
 	// Con este metodo cogemos solo los votos de la provincia que queremos y hacemos dhont

@@ -91,7 +91,9 @@ public class simularServlet extends HttpServlet {
 		//calc.esca_map(req.getParameterNames(), datos2);
 
 		Escenario escenario = calc.crearEscenario(req.getParameterNames(), datos2);
-		System.out.println(calc.votosPorCircunscripcion(escenario).toString());
+		//System.out.println(calc.votosPorCircunscripcion(escenario).toString());
+		HashMap<String, Integer> escanosCircunscripciones = calc.escanosCircunscripciones(escenario);
+		
 		//calc.calc_es_b(escenario );
 		
 		resp.sendRedirect("/simular.jsp");
