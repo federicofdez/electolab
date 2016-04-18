@@ -1,4 +1,4 @@
-package es.upm.dit.isst.electoLab20;
+package es.upm.dit.isst.electolab;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import es.upm.dit.isst.dao.electoLabDAO;
-import es.upm.dit.isst.dao.electoLabDAOImpl;
-import es.upm.dit.isst.logica.calculos;
-import es.upm.dit.isst.model.Escenario;
-import es.upm.dit.isst.model.Votos;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
+import es.upm.dit.isst.electolab.logic.calculos;
+import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Votos;
 
-public class simularServlet extends HttpServlet {
+public class SimularServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -43,7 +43,7 @@ public class simularServlet extends HttpServlet {
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 
 		// Si ha iniciado sesión pero no pertenece a ningún grupo, redirigimos
-		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		if (user != "" && !dao.exist_usuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 			return;

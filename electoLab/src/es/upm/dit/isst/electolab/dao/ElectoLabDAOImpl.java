@@ -1,26 +1,26 @@
-package es.upm.dit.isst.dao;
+package es.upm.dit.isst.electolab.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import es.upm.dit.isst.model.Circunscripciones;
-import es.upm.dit.isst.model.Comentario;
-import es.upm.dit.isst.model.Escenario;
-import es.upm.dit.isst.model.Grupo;
-import es.upm.dit.isst.model.Partido;
-import es.upm.dit.isst.model.Provincia;
-import es.upm.dit.isst.model.Sistema;
-import es.upm.dit.isst.model.Votos;
-import es.upm.dit.isst.model.Usuario;
+import es.upm.dit.isst.electolab.model.Circunscripciones;
+import es.upm.dit.isst.electolab.model.Comentario;
+import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Grupo;
+import es.upm.dit.isst.electolab.model.Partido;
+import es.upm.dit.isst.electolab.model.Provincia;
+import es.upm.dit.isst.electolab.model.Sistema;
+import es.upm.dit.isst.electolab.model.Usuario;
+import es.upm.dit.isst.electolab.model.Votos;
 
-public class electoLabDAOImpl implements electoLabDAO {
-	private static electoLabDAOImpl instance;
+public class ElectoLabDAOImpl implements ElectoLabDAO {
+	private static ElectoLabDAOImpl instance;
 
-	public static electoLabDAOImpl getInstance() {
+	public static ElectoLabDAOImpl getInstance() {
 		if (instance == null)
-			instance = new electoLabDAOImpl();
+			instance = new ElectoLabDAOImpl();
 		return instance;
 	}
 

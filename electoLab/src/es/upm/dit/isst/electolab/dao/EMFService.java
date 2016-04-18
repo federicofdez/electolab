@@ -1,4 +1,4 @@
-package es.upm.dit.isst.dao;
+package es.upm.dit.isst.electolab.dao;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

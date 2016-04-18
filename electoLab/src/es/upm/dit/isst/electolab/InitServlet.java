@@ -1,24 +1,24 @@
-package es.upm.dit.isst.electoLab20;
+package es.upm.dit.isst.electolab;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 
-import es.upm.dit.isst.dao.electoLabDAO;
-import es.upm.dit.isst.dao.electoLabDAOImpl;
-import es.upm.dit.isst.model.Circunscripciones;
-import es.upm.dit.isst.model.Comentario;
-import es.upm.dit.isst.model.Partido;
-import es.upm.dit.isst.model.Provincia;
-import es.upm.dit.isst.model.Sistema;
-import es.upm.dit.isst.model.Votos;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
+import es.upm.dit.isst.electolab.model.Circunscripciones;
+import es.upm.dit.isst.electolab.model.Comentario;
+import es.upm.dit.isst.electolab.model.Partido;
+import es.upm.dit.isst.electolab.model.Provincia;
+import es.upm.dit.isst.electolab.model.Sistema;
+import es.upm.dit.isst.electolab.model.Votos;
 
-public class initServlet extends HttpServlet {
+public class InitServlet extends HttpServlet {
 	@Override
 	public void init() throws javax.servlet.ServletException {
 
-		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		if (!dao.exist_grupo("prueba")) {
 			dao.create_grupo("prueba", "prueba");
 		}

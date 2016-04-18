@@ -1,4 +1,4 @@
-package es.upm.dit.isst.electoLab20;
+package es.upm.dit.isst.electolab;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.upm.dit.isst.dao.electoLabDAO;
-import es.upm.dit.isst.dao.electoLabDAOImpl;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 
-public class registrarServlet extends HttpServlet {
+public class RegistrarServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		String correo = req.getParameter("email");
 		String grupo = req.getParameter("grupo");
 		String password = req.getParameter("password");

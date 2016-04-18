@@ -1,4 +1,4 @@
-package es.upm.dit.isst.electoLab20;
+package es.upm.dit.isst.electolab;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import es.upm.dit.isst.dao.electoLabDAO;
-import es.upm.dit.isst.dao.electoLabDAOImpl;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 
 @SuppressWarnings("serial")
 public class ElectoLabServlet extends HttpServlet {
@@ -17,7 +17,7 @@ public class ElectoLabServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		electoLabDAO dao = electoLabDAOImpl.getInstance();
+		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		UserService userService = UserServiceFactory.getUserService();
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";

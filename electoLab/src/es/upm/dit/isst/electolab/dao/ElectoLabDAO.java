@@ -1,18 +1,18 @@
-package es.upm.dit.isst.dao;
+package es.upm.dit.isst.electolab.dao;
 
 import java.util.List;
 
-import es.upm.dit.isst.model.Circunscripciones;
-import es.upm.dit.isst.model.Comentario;
-import es.upm.dit.isst.model.Escenario;
-import es.upm.dit.isst.model.Grupo;
-import es.upm.dit.isst.model.Partido;
-import es.upm.dit.isst.model.Provincia;
-import es.upm.dit.isst.model.Sistema;
-import es.upm.dit.isst.model.Usuario;
-import es.upm.dit.isst.model.Votos;
+import es.upm.dit.isst.electolab.model.Circunscripciones;
+import es.upm.dit.isst.electolab.model.Comentario;
+import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Grupo;
+import es.upm.dit.isst.electolab.model.Partido;
+import es.upm.dit.isst.electolab.model.Provincia;
+import es.upm.dit.isst.electolab.model.Sistema;
+import es.upm.dit.isst.electolab.model.Usuario;
+import es.upm.dit.isst.electolab.model.Votos;
 
-public interface electoLabDAO {
+public interface ElectoLabDAO {
 	// Métodos de Escenario
 	public Escenario create_escenario(String usuario, List<Votos> votos,
 			List<Provincia> provincias, List<Partido> partidos,

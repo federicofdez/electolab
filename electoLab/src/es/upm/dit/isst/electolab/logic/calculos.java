@@ -1,4 +1,4 @@
-package es.upm.dit.isst.logica;
+package es.upm.dit.isst.electolab.logic;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -8,20 +8,20 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import es.upm.dit.isst.dao.electoLabDAO;
-import es.upm.dit.isst.dao.electoLabDAOImpl;
-import es.upm.dit.isst.model.Circunscripciones;
-import es.upm.dit.isst.model.Comentario;
-import es.upm.dit.isst.model.Comunidades;
-import es.upm.dit.isst.model.Escenario;
-import es.upm.dit.isst.model.Partido;
-import es.upm.dit.isst.model.Provincia;
-import es.upm.dit.isst.model.Sistema;
-import es.upm.dit.isst.model.Votos;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
+import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
+import es.upm.dit.isst.electolab.model.Circunscripciones;
+import es.upm.dit.isst.electolab.model.Comentario;
+import es.upm.dit.isst.electolab.model.Comunidades;
+import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Partido;
+import es.upm.dit.isst.electolab.model.Provincia;
+import es.upm.dit.isst.electolab.model.Sistema;
+import es.upm.dit.isst.electolab.model.Votos;
 
 public class calculos {
 	private static calculos instance;
-	electoLabDAO dao = electoLabDAOImpl.getInstance();
+	ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 
 	public static calculos getInstance() {
 		if (instance == null)

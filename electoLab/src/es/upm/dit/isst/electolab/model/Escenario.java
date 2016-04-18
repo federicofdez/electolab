@@ -1,4 +1,4 @@
-package es.upm.dit.isst.model;
+package es.upm.dit.isst.electolab.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

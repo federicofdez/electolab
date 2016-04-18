@@ -1,4 +1,4 @@
-package es.upm.dit.isst.model;
+package es.upm.dit.isst.electolab.model;
 
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;

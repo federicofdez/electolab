@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 		<servlet-name>ElectoLab</servlet-name>
-		<servlet-class>es.upm.dit.isst.electoLab20.ElectoLabServlet</servlet-class>
+		<servlet-class>es.upm.dit.isst.electolab.ElectoLabServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ElectoLab</servlet-name>
@@ -14,35 +14,35 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>crearServlet</servlet-name>
-		<servlet-class>es.upm.dit.isst.electoLab20.crearServlet</servlet-class>
+		<servlet-name>CrearServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.CrearServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>crearServlet</servlet-name>
+		<servlet-name>CrearServlet</servlet-name>
 		<url-pattern>/crear</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>simularServlet</servlet-name>
-		<servlet-class>es.upm.dit.isst.electoLab20.simularServlet</servlet-class>
+		<servlet-name>SimularServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.SimularServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>simularServlet</servlet-name>
+		<servlet-name>SimularServlet</servlet-name>
 		<url-pattern>/simular</url-pattern>
 	</servlet-mapping>
 	
 		<servlet>
-		<servlet-name>registrarServlet</servlet-name>
-		<servlet-class>es.upm.dit.isst.electoLab20.registrarServlet</servlet-class>
+		<servlet-name>RegistrarServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.RegistrarServlet</servlet-class>
 		</servlet>
 	<servlet-mapping>
-		<servlet-name>registrarServlet</servlet-name>
+		<servlet-name>RegistrarServlet</servlet-name>
 		<url-pattern>/registrar</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>initServlet</servlet-name>
-		<servlet-class>es.upm.dit.isst.electoLab20.initServlet</servlet-class>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
