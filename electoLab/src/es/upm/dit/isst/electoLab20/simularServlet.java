@@ -96,9 +96,9 @@ public class simularServlet extends HttpServlet {
 		List<Votos> votosPorCircunscripcion = calc.votosPorCircunscripcion(escenario);
 		//Obtenemos el diccionario con escanos asignados a cada circunscripcion
 		HashMap<String, Integer> escanosCircunscripciones = calc.escanosCircunscripciones(escenario);
-		List<Votos> aaa = calc.calcularEscanos(votosPorCircunscripcion, escanosCircunscripciones, escenario.getSistema());
+		List<Votos> escanos = calc.calcularEscanos(votosPorCircunscripcion, escanosCircunscripciones, escenario.getSistema());
 		//calc.calc_es_b(escenario );
-		
+		List<Votos> escanosCongreso = calc.resultadosCongreso(escanos, escenario);
 		resp.sendRedirect("/simular.jsp");
 		}
 		
