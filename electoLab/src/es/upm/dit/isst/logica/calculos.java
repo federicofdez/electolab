@@ -675,14 +675,40 @@ public class calculos {
 
 		}
 		// Comprobación de que se ha hecho bien
+		/*
 		System.out.println("ESCAÑOOOOOOOOOOOOOOOOOOOS");
 		for (Votos escano : escanos) {
 			System.out.println(escano.toJSONString());
 		}
+		*/
 		return (escanos);
 
 	}
-
+	
+	public List<Votos> resultadosCongreso(List<Votos> resultadosCircunscripciones, Escenario escenario){
+		ArrayList<Votos> escanos = new ArrayList<Votos>();
+		HashMap<String,Integer> escanosMap = new HashMap<String,Integer>();
+		for(Partido partido : escenario.getPartidos()){
+			escanosMap.put(partido.getSiglas(), 0);
+		}
+		
+		for( Votos escano : resultadosCircunscripciones){
+			escanosMap.put(escano.getPartido(), escanosMap.get(escano.getPartido()) + escano.getVotos());
+		}
+		
+		//A partir del diccionario, creamos la lista a devolver
+		for (String partido : escanosMap.keySet()) {
+			escanos.add(new Votos("ESPAÑA", partido, escanosMap.get(partido)));
+		}
+		
+		for (Votos escano : escanos) {
+			System.out.println(escano.toJSONString());
+		}
+		return(escanos);
+	}
+	
+	
+	//Calcula escaños por metodo Dhondt para una circunscripcion
 	public List<Votos> calcularDhondt(List<Votos> votosPorCircunscripcion,
 			int numEscanos) {
 		List<Votos> escanos = new ArrayList<Votos>();
