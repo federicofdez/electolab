@@ -25,23 +25,23 @@ public class InitServlet extends HttpServlet {
 		
 		String[] provincias_esc0 = {"alava","albacete","alicante","almeria","asturias",
 				"avila","badajoz","barcelona","burgos","caceres",
-	        	"cadiz","cantabria","castellón","ceuta","ciudadreal","cordoba",
+	        	"cadiz","cantabria","castellon","ceuta","ciudadreal","cordoba",
 	        	"cuenca","gerona","granada","guadalajara",
 	        	"guipuzcoa","huelva","huesca","baleares","jaen","coruña","rioja","palmas",
-	        	"leon","lerida","Lugo","madrid","malaga","melilla","murcia","navarra",
+	        	"leon","lerida","lugo","madrid","malaga","melilla","murcia","navarra",
 	        	"orense","palencia","pontevedra","tenerife","salamanca","segovia","sevilla",
 	        	"soria","tarragona","teruel","toledo","Valencia",
 	        	"valladolid","vizcaya","zamora","zaragoza"};
 		
 		String[] partidos_esc0 = { "PP", "PSOE", "PODEMOS", "C's", "EN COMÚ",
-				"PODEMOS-COMPROMÍS", "ERC-CATS", "DL",
-				"PODEMOS-En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC",
-				"UPN", "FAC" };
+				"COMPROMÍS", "ERC-CATS", "DL",
+				"En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC",
+				"UPN","NC", "FAC" };
 
 		if (!dao.exist_escenario("admin")) {
 			List<Votos> votos = new ArrayList<Votos>();
-			for (int i = 0; i < provincias_esc0.length - 1; i++) {
-				for (int j = 0; j < partidos_esc0.length - 1; j++) {
+			for (int i = 0; i < provincias_esc0.length; i++) {
+				for (int j = 0; j < partidos_esc0.length ; j++) {
 					votos.add(new Votos(provincias_esc0[i], partidos_esc0[j], 0));
 				}
 			}
@@ -191,7 +191,7 @@ public class InitServlet extends HttpServlet {
 
 			dao.create_escenario("admin", votos, provincias, partidos,
 					comentarios, Sistema.DHONDT, Circunscripciones.PROVINCIAS,
-					176);
+					50);
 
 		}
 	}

@@ -59,9 +59,7 @@ public class CrearServlet extends HttpServlet {
 			return;
 		}
 
-		req.setAttribute("provincias", dao.read_escenario("admin")
-				.getProvincias());
-		req.setAttribute("partidos", dao.read_escenario("admin").getPartidos());
+		req.getSession().setAttribute("escenario", dao.read_escenario("admin"));
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
 

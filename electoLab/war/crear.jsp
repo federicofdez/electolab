@@ -45,7 +45,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${partidos}" var="partido">
+									<c:forEach items="${escenario.partidos}" var="partido">
 	                                    <tr>
 											<th scope="row"> <img src="${partido.imagen}" style="width: 40px;"> <c:out value="${partido.siglas}"/></th>
 											<td><c:out value="${partido.nombre}"/></td>
@@ -81,18 +81,18 @@
 							<div class="row">
 								<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;"> Sistema de proporcionalidad:</div>
 								<div class="dropdown col-lg-2">
-								<input type="radio" name="sistema" value="DHONDT" checked>D'Hondt<br>
-  								<input type="radio" name="sistema" value="sainte">Sainte-Lagüe<br>
+								<input type="radio" name="sistema" value="DHONDT"<c:if test="${escenario.sistema == 'DHONDT'}"> checked </c:if> >D'Hondt<br>
+  								<input type="radio" name="sistema" value="SAINTE"<c:if test="${escenario.sistema == 'SAINTE'}"> checked </c:if>>Sainte-Lagüe<br>
 								</div>
 								<div class="col-lg-2" style="margin-top: 7px;"> Circunscripciones:</div>
 								<div class="dropdown col-lg-3">
-								<input type="radio" name="circunscripciones" value="PROVINCIAS" checked>Provincias<br>
-  								<input type="radio" name="circunscripciones" value="COMUNIDADES">Comunidades autónomas<br>
-  								<input type="radio" name="circunscripciones" value="PAIS">España<br>
+								<input type="radio" name="circunscripciones" value="PROVINCIAS"<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}"> checked </c:if>>Provincias<br>
+  								<input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
+  								<input type="radio" name="circunscripciones" value="PAIS"<c:if test ="${escenario.circunscripciones == 'PAIS'}"> checked </c:if>>España<br>
 								</div>
 								<div class="col-lg-4 center-block"  style="margin-top: 28px; margin-left: 12px;"> % escaños para la mayoria absoluta:</div>
 								<div class="form-group col-lg-2 center-block">
-									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" min="0" max="100" value="50">
+									<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" min="0" max="100" value="${escenario.mayoria_abs }">
 								</div>
 							</div>
 								
@@ -111,19 +111,21 @@
 									<tr>
 										<th style="min-width:100px;"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
  electores">Circunscripción</a></th>
-										<c:forEach items="${partidos}" var="partido">
+										<c:forEach items="${escenario.partidos}" var="partido">
 											<th style="min-width:100px;"><c:out value="${partido.siglas}"/></th>
 										</c:forEach>
 										<th style="min-width:100px;">Escaños</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${provincias}" var="provincia">
+									<c:forEach items="${escenario.provincias}" var="provincia">
 	                                    <tr>
 											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
 	 											electores"><c:out value="${provincia.nombre}"/></a>
-	 										<c:forEach items="${partidos}" var="partido">
-												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="0" max="100" value="0"></th>
+	 										<c:forEach items="${escenario.votos}" var="voto">
+	 											<c:if test="${provincia.id == voto.circunscripcion}">
+												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="0" max="100" value="${voto.votos}"></th>
+												</c:if>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="escaños ${provincia.id}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
 										</tr>
