@@ -1,5 +1,6 @@
 package es.upm.dit.isst.electolab.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -64,6 +65,17 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 		List<Escenario> res = q.getResultList();
 		em.close();
 		return res;
+	}
+	
+	@Override
+	public List<Escenario> readEscenariosGrupo(String grupo) {
+		List<Escenario> escenarios = new ArrayList();
+		Grupo group = readGrupo(grupo);
+		Set<String> usuarios = group.getUsuarios();
+		for (String usuario : usuarios) {
+			escenarios.addAll(readEscenarios(usuario));
+		}
+		return escenarios;		
 	}
 
 	public Escenario readEscenario(long id) {
@@ -226,5 +238,6 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 				this.updateGrupo(g);
 			}
 	}
+
 
 }

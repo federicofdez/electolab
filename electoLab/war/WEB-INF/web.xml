@@ -31,13 +31,22 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/simular</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>RegistrarServlet</servlet-name>
 		<servlet-class>es.upm.dit.isst.electolab.RegistrarServlet</servlet-class>
 		</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistrarServlet</servlet-name>
 		<url-pattern>/registrar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ForoServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.ForoServlet</servlet-class>
+		</servlet>
+	<servlet-mapping>
+		<servlet-name>ForoServlet</servlet-name>
+		<url-pattern>/foro</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

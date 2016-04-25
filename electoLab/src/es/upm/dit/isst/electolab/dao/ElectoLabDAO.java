@@ -25,6 +25,7 @@ public interface ElectoLabDAO {
 	public Escenario readEscenario(long id);
 	public List<Escenario> readEscenarios();
 	public List<Escenario> readEscenarios(String usuario);
+	public List<Escenario> readEscenariosGrupo(String grupo);
 	public boolean existsEscenario(String usuario);
 	
 	// UPDATE Escenario

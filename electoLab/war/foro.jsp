@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page
+	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +16,10 @@
 	</header>
 	<main>
 		<div class="container">
-
-			<nav class="navbar">
-				<ul class="nav nav-tabs">
-					<li ><a href="crear.html">Crear escenario</a></li>
-					<li><a href="simular.html">Simular escenario</a></li>
-					<li class="active"><a href="foro.html" class="active">Foros de discusión</a></li>
-				</ul>
-			</nav>
+		<%@ include file="templates/main.jsp"%>
 			<div class="container-fluid" id="main-content">
 				<h1>Foros de tu grupo</h1>
-				<div class="col-lg-9 col-centered">
+				<div>
 					<table class="table table-hover" id="foroTable">
 						<thead>
 							<tr>
@@ -30,44 +30,14 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row"><h5><a href="ejemplosimu.html">Simulación 1</a></h5></th>
-								<td>Fede</td>
+								<c:forEach items="${escenarios}" var="escenario">
+								<th scope="row"><h5><a href=""><c:out value="${escenario.usuario}"/></a></h5></th>
+								<td><c:out value="${escenario.usuario}"/></td>
 								<td style="color: #A4A4A4;">00/00/0000</td>
+								</c:forEach>
 							</tr>
-							<tr>
-								<th scope="row"><h5><a href="ejemplosimu.html">Simulación 2</a></h5></th>
-								<td>Rodrigo</td>
-								<td style="color: #A4A4A4;">00/00/0000</td>
-							</tr>
-							<tr>
-								<th scope="row"><h5><a href="ejemplosimu.html">Simulación 3</a></h5></th>
-								<td>Arturo</td>
-								<td style="color: #A4A4A4;">00/00/0000</td>
-							</tr>
-							<tr>
-								<th scope="row"><h5><a href="ejemplosimu.html">Simulación 4</a></h5></th>
-								<td>Carlos</td>
-								<td style="color: #A4A4A4;">00/00/0000</td>
-							</tr>
-							<tr>
-								<th scope="row"><h5><a href="ejemplosimu.html">Simulación 5</a></h5></th>
-								<td>Sergio</td>
-								<td style="color: #A4A4A4;">00/00/0000</td>
-							</tr>
-
 						</tbody>
 					</table>
-					<div class="col-lg-12" style="margin-left: 280px;">
-					<ul class="pagination">
-						<li class="center-block"><a href="#"><<</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">>></a></li>
-					</ul>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -77,10 +47,11 @@
 			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
 		</div>
 				<%@ include file="templates/footer.html" %>
-		
+	
 	</footer>
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="./js/dropdown.js"></script>
+	<script>	
+	$('#foroTable').DataTable( {
+        "ordering": true, 
+    } );  </script>
 </body>
 </html>
