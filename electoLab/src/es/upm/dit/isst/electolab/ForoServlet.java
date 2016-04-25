@@ -35,13 +35,16 @@ public class ForoServlet extends HttpServlet {
 
 		// Si ha iniciado sesión pero no pertenece a ningún grupo, redirigimos
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
+		if(user == ""){
+			resp.sendRedirect("/index.jsp");
+		}
 		if (user != "" && !dao.existsUsuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
+
 		List<Escenario> escenarios = dao.readEscenariosGrupo("prueba");
 		req.setAttribute("escenarios", escenarios);
-		
 		req.getRequestDispatcher("foro.jsp").forward(req, resp);
 
 	}
