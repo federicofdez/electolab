@@ -398,7 +398,7 @@ public class calculos {
 
 		// *************************Calculo de provincias**********************
 		// Iterator de provincias
-		Iterator<Provincia> provinciasIterator = dao.read_escenario("admin")
+		Iterator<Provincia> provinciasIterator = dao.readEscenarios("admin").get(0)
 				.getProvincias().iterator();
 		// Bucle de provincias
 		while (provinciasIterator.hasNext()) {
@@ -425,7 +425,7 @@ public class calculos {
 		// votos**********************
 
 		// Iterator de partidos
-		Iterator<Partido> partidosIterator = dao.read_escenario("admin")
+		Iterator<Partido> partidosIterator = dao.readEscenarios("admin").get(0)
 				.getPartidos().iterator();
 		// Bucle de partidos si hay siguiente elemento
 		while (partidosIterator.hasNext()) {
@@ -440,7 +440,7 @@ public class calculos {
 
 				// Iterator de provincias
 				Iterator<Provincia> provinciasIterator2 = dao
-						.read_escenario("admin").getProvincias().iterator();
+						.readEscenarios("admin").get(0).getProvincias().iterator();
 				// Bucle de provincias
 				while (provinciasIterator2.hasNext()) {
 					Provincia provincia = provinciasIterator2.next();

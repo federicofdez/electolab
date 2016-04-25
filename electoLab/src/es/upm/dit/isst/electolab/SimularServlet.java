@@ -44,7 +44,7 @@ public class SimularServlet extends HttpServlet {
 
 		// Si ha iniciado sesión pero no pertenece a ningún grupo, redirigimos
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-		if (user != "" && !dao.exist_usuario(user)) {
+		if (user != "" && !dao.existsUsuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
@@ -63,7 +63,7 @@ public class SimularServlet extends HttpServlet {
 			}
 		}
 		if (escenario == null)
-			escenario = dao.read_escenario("admin");
+			escenario = dao.readEscenarios("admin").get(0);
 
 		List<Votos> votosPorCircunscripcion = calculos.getInstance()
 				.votosPorCircunscripcion(escenario);

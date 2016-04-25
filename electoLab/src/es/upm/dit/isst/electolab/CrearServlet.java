@@ -54,12 +54,12 @@ public class CrearServlet extends HttpServlet {
 
 		// Si ha iniciado sesión pero no pertenece a ningún grupo, redirigimos
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-		if (user != "" && !dao.exist_usuario(user)) {
+		if (user != "" && !dao.existsUsuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
 
-		req.getSession().setAttribute("escenario", dao.read_escenario("admin"));
+		req.getSession().setAttribute("escenario", dao.readEscenarios("admin").get(0));
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
 
@@ -105,7 +105,7 @@ public class CrearServlet extends HttpServlet {
 		List<Votos> votos = new ArrayList<Votos>();
 		List<Provincia> provincias = new ArrayList<Provincia>();
 		// TODO que se puedan crear partidos
-		List<Partido> partidos = dao.read_escenario("admin").getPartidos();
+		List<Partido> partidos = dao.readEscenarios("admin").get(0).getPartidos();
 		List<Comentario> comentarios = new ArrayList<Comentario>();
 
 		while (datos.hasMoreElements()) {
@@ -120,7 +120,7 @@ public class CrearServlet extends HttpServlet {
 			} else if (d.contains(" ")) {
 				String id_provincia = d.split(" ")[1];
 				Provincia pr = null;
-				for (Provincia p : dao.read_escenario("admin").getProvincias()) {
+				for (Provincia p : dao.readEscenarios("admin").get(0).getProvincias()) {
 					if (p.getId().equals(id_provincia)) {
 						pr = new Provincia(p.getNombre(), id_provincia,
 								p.getComunidad(), p.getEscanos(),

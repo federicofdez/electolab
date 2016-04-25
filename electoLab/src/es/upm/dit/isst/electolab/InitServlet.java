@@ -1,6 +1,7 @@
 package es.upm.dit.isst.electolab;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -19,8 +20,8 @@ public class InitServlet extends HttpServlet {
 	public void init() throws javax.servlet.ServletException {
 
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-		if (!dao.exist_grupo("prueba")) {
-			dao.create_grupo("prueba", "prueba");
+		if (!dao.existsGrupo("prueba")) {
+			dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		}
 		
 		String[] provincias_esc0 = {"alava","albacete","alicante","almeria","asturias",
@@ -38,7 +39,7 @@ public class InitServlet extends HttpServlet {
 				"En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC",
 				"UPN","NC", "FAC" };
 
-		if (!dao.exist_escenario("admin")) {
+		if (!dao.existsEscenario("admin")) {
 			List<Votos> votos = new ArrayList<Votos>();
 			for (int i = 0; i < provincias_esc0.length; i++) {
 				for (int j = 0; j < partidos_esc0.length ; j++) {
@@ -189,7 +190,7 @@ public class InitServlet extends HttpServlet {
 
 			List<Comentario> comentarios = new ArrayList<Comentario>();
 
-			dao.create_escenario("admin", votos, provincias, partidos,
+			dao.createEscenario("admin", votos, provincias, partidos,
 					comentarios, Sistema.DHONDT, Circunscripciones.PROVINCIAS,
 					50);
 

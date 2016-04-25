@@ -34,7 +34,7 @@ public class ElectoLabServlet extends HttpServlet {
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 
-		if (user != "" && !dao.exist_usuario(user)) {
+		if (user != "" && !dao.existsUsuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 		} else {
 			resp.sendRedirect("/index.jsp");

@@ -1,6 +1,7 @@
 package es.upm.dit.isst.electolab.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -12,7 +13,6 @@ import es.upm.dit.isst.electolab.model.Grupo;
 import es.upm.dit.isst.electolab.model.Partido;
 import es.upm.dit.isst.electolab.model.Provincia;
 import es.upm.dit.isst.electolab.model.Sistema;
-import es.upm.dit.isst.electolab.model.Usuario;
 import es.upm.dit.isst.electolab.model.Votos;
 
 public class ElectoLabDAOImpl implements ElectoLabDAO {
@@ -24,10 +24,10 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 		return instance;
 	}
 
-	// Métodos de escenario
+	// CREATE Escenario
 
 	@Override
-	public Escenario create_escenario(String usuario, List<Votos> votos,
+	public Escenario createEscenario(String usuario, List<Votos> votos,
 			List<Provincia> provincias, List<Partido> partidos,
 			List<Comentario> comentarios, Sistema sistema,
 			Circunscripciones circunscripciones, int mayoria_abs) {
@@ -40,33 +40,33 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 	}
 	
 	@Override
-	public Escenario create_escenario(Escenario escenario) {
+	public Escenario createEscenario(Escenario escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
 		em.persist(escenario);
 		em.close();
 		return escenario;
 	}
-
-	@Override
-	public void delete_escenario(long id) {
-		EntityManager em = EMFService.get().createEntityManager();
-		try {
-			Escenario escenarioBorrar = em.find(Escenario.class, id);
-			em.remove(escenarioBorrar);
-		} finally {
-			em.close();
-		}
-	}
-
-	public List<Escenario> read_escenarios() {
+	
+	// READ Escenario
+	
+	public List<Escenario> readEscenarios() {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select m from Escenario m");
 		List<Escenario> res = q.getResultList();
 		em.close();
 		return res;
 	}
+	
+	public List<Escenario> readEscenarios(String usuario) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Escenario t where t.usuario = :usuario");
+		q.setParameter("usuario", usuario);
+		List<Escenario> res = q.getResultList();
+		em.close();
+		return res;
+	}
 
-	public Escenario read_escenario(long id) {
+	public Escenario readEscenario(long id) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from Escenario t where t.id = :id");
 		q.setParameter("id", id);
@@ -76,109 +76,61 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			res = (Escenario) (q.getResultList().get(0));
 		em.close();
 		return res;
-
 	}
 	
-	public Escenario read_escenario(String usuario) {
-		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select t from Escenario t where t.usuario = :usuario");
-		q.setParameter("usuario", usuario);
-		Escenario res = null;
-		List<Escenario> escenario = q.getResultList();
-		if (escenario.size() > 0)
-			res = (Escenario) (q.getResultList().get(0));
-		em.close();
-		return res;
-
-	} 
-	public boolean exist_escenario(String usuario) {
+	public boolean existsEscenario(String usuario) {
 		if (usuario != "") {
 			EntityManager em = EMFService.get().createEntityManager();
 			Query q = em
 					.createQuery("select t from Escenario t where t.usuario = :usuario");
 			q.setParameter("usuario", usuario);
-			List<Escenario> escenario = q.getResultList();
-			if (escenario.size() > 0) {
+			List<Escenario> escenarios = q.getResultList();
+			if (escenarios.size() > 0) {
 				em.close();
 				return true;
 			}
 		}
 		return false;
 	}
-
-
-	// Métodos de Usuario
-
+	
+	// UPDATE Escenario
+	
 	@Override
-	public Usuario create_usuario(String correo) {
+	public void updateEscenario(Escenario escenario) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Usuario usuario = null;
-		usuario = new Usuario(correo);
-		em.persist(usuario);
+		em.merge(escenario);
 		em.close();
-		return usuario;
 	}
+	
+	// DELETE Escenario
 
 	@Override
-	public void delete_usuario(String correo) {
+	public void deleteEscenario(long id) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
-			Usuario usuarioBorrar = em.find(Usuario.class, correo);
-			em.remove(usuarioBorrar);
+			Escenario escenarioBorrar = em.find(Escenario.class, id);
+			em.remove(escenarioBorrar);
 		} finally {
 			em.close();
 		}
 	}
 
+	// CREATE Grupo
+	
 	@Override
-	public boolean exist_usuario(String correo) {
-		if (correo != "") {
-			EntityManager em = EMFService.get().createEntityManager();
-			Query q = em
-					.createQuery("select t from Usuario t where t.correo = :correo");
-			q.setParameter("correo", correo);
-			List<Usuario> usuario = q.getResultList();
-			if (usuario.size() > 0) {
-				em.close();
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public List<Usuario> read_usuarios() {
-		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select m from Usuario m");
-		List<Usuario> res = q.getResultList();
-		em.close();
-		return res;
-	}
-
-	// Metodos de Grupo
-	@Override
-	public Grupo create_grupo(String nombre, String password) {
+	public Grupo createGrupo(String nombre, String password, Set<String> usuarios) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Grupo grupo = null;
-		grupo = new Grupo(nombre, password);
+		grupo = new Grupo(nombre, password, usuarios);
 		em.persist(grupo);
 		em.close();
 		return grupo;
 	}
-
+	
+	// READ Grupo
+	
 	@Override
-	public void delete_grupo(String nombre) {
-		EntityManager em = EMFService.get().createEntityManager();
-		try {
-			Grupo grupoBorrar = em.find(Grupo.class, nombre);
-			em.remove(grupoBorrar);
-		} finally {
-			em.close();
-		}
-	}
-
-	@Override
-	public Grupo read_grupo(String nombre) {
+	public Grupo readGrupo(String nombre) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em
 				.createQuery("select t from Grupo t where t.nombre = :nombre");
@@ -192,7 +144,7 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 	}
 
 	@Override
-	public List<Grupo> read_grupos() {
+	public List<Grupo> readGrupos() {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select m from Grupo m");
 		List<Grupo> res = q.getResultList();
@@ -201,7 +153,7 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 	}
 
 	@Override
-	public boolean exist_grupo(String nombre) {
+	public boolean existsGrupo(String nombre) {
 		if (nombre != "") {
 			EntityManager em = EMFService.get().createEntityManager();
 			Query q = em
@@ -216,6 +168,63 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 		return false;
 	}
 	
+	// UPDATE Grupo
 	
+	@Override
+	public void updateGrupo(Grupo grupo) {
+		EntityManager em = EMFService.get().createEntityManager();
+		em.merge(grupo);
+		em.close();
+	}
+	
+	// DELETE Grupo
+
+	@Override
+	public void deleteGrupo(String nombre) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Grupo grupoBorrar = em.find(Grupo.class, nombre);
+			em.remove(grupoBorrar);
+		} finally {
+			em.close();
+		}
+	}
+
+	
+	
+	// CREATE Usuario
+	
+	@Override
+	public void createUsuario(String correo, String grupo) {
+		Grupo g = this.readGrupo(grupo);
+		Set<String> usuarios = g.getUsuarios();
+		usuarios.add(correo);
+		g.setUsuarios(usuarios);
+		this.updateGrupo(g);
+	}
+	
+	// READ Usuario
+	
+	@Override
+	public boolean existsUsuario(String correo) {
+		if (correo != "")
+			for (Grupo g : this.readGrupos())
+				if (g.getUsuarios().contains(correo))
+					return true;
+		return false;
+	}
+	
+	// DELETE Usuario
+	
+	@Override
+	public void deleteUsuario(String correo) {
+		List<Grupo> grupos = this.readGrupos();
+		for (Grupo g : grupos)
+			if (g.getUsuarios().contains(correo)){
+				Set<String> usuarios = g.getUsuarios();
+				usuarios.remove(correo);
+				this.updateGrupo(g);
+			}
+	}
 
 }
