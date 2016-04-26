@@ -31,9 +31,12 @@
 						<tbody>
 							<tr>
 								<c:forEach items="${escenarios}" var="escenario">
-								<th scope="row"><h5><a href=""><c:out value="${escenario.usuario}"/></a></h5></th>
+								<form method="get" action="/forosimular">
+								<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
+								<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
 								<td><c:out value="${escenario.usuario}"/></td>
 								<td style="color: #A4A4A4;">00/00/0000</td>
+								</form>
 								</c:forEach>
 							</tr>
 						</tbody>

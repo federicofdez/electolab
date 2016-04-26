@@ -23,7 +23,13 @@ public class InitServlet extends HttpServlet {
 		if (!dao.existsGrupo("prueba")) {
 			dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		}
-		
+		if(!dao.existsUsuario("admin")){
+			dao.createUsuario("admin", "prueba");
+		}
+			
+		if(!dao.existsUsuario("admin2")){
+			dao.createUsuario("admin2", "prueba");
+		}
 		String[] provincias_esc0 = {"alava","albacete","alicante","almeria","asturias",
 				"avila","badajoz","barcelona","burgos","caceres",
 	        	"cadiz","cantabria","castellon","ceuta","ciudadreal","cordoba",
@@ -189,8 +195,12 @@ public class InitServlet extends HttpServlet {
 					"img/logos/foro.jpg", "626262"));
 
 			List<Comentario> comentarios = new ArrayList<Comentario>();
+			comentarios.add(new Comentario( "aguililla", "hoy", "CA==NP"));
 
 			dao.createEscenario("admin", votos, provincias, partidos,
+					comentarios, Sistema.DHONDT, Circunscripciones.PROVINCIAS,
+					50);
+			dao.createEscenario("admin2", votos, provincias, partidos,
 					comentarios, Sistema.DHONDT, Circunscripciones.PROVINCIAS,
 					50);
 

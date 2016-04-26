@@ -50,6 +50,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+	    <servlet-name>ForosimularServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.ForosimularServlet</servlet-class>
+		</servlet>
+	<servlet-mapping>
+		<servlet-name>ForosimularServlet</servlet-name>
+		<url-pattern>/forosimular</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>InitServlet</servlet-name>
 		<servlet-class>es.upm.dit.isst.electolab.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
