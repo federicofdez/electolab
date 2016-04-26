@@ -22,7 +22,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
-import es.upm.dit.isst.electolab.logic.calculos;
 import es.upm.dit.isst.electolab.model.Circunscripciones;
 import es.upm.dit.isst.electolab.model.Comentario;
 import es.upm.dit.isst.electolab.model.Escenario;
@@ -112,12 +111,12 @@ public class CrearServlet extends HttpServlet {
 			String d = (String) datos.nextElement();
 			if (!d.contains(":") && !d.contains(" "))
 				continue;
-			else if (d.contains(":")) {
+			else if (d.contains(":")) { // votos
 				String partido = d.split(":")[0];
 				String provincia = d.split(":")[1];
 				int num_votos = Integer.parseInt(req.getParameter(d));
 				votos.add(new Votos(provincia, partido, num_votos));
-			} else if (d.contains(" ")) {
+			} else if (d.contains(" ")) { // provincias
 				String id_provincia = d.split(" ")[1];
 				Provincia pr = null;
 				for (Provincia p : dao.readEscenarios("admin").get(0).getProvincias()) {

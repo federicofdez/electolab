@@ -19,7 +19,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
-import es.upm.dit.isst.electolab.logic.calculos;
+import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Votos;
 
@@ -62,19 +62,23 @@ public class SimularServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		// Si no hay escenario cacheado...
 		if (escenario == null)
 			escenario = dao.readEscenarios("admin").get(0);
-
-		List<Votos> votosPorCircunscripcion = calculos.getInstance()
-				.votosPorCircunscripcion(escenario);
-		HashMap<String, Integer> escanosPorCircunscripcion = calculos
-				.getInstance().escanosCircunscripciones(escenario);
-		List<Votos> resultadosPorCircunscripcion = calculos.getInstance()
-				.calcularEscanos(votosPorCircunscripcion,
+		
+		// Simulamos el Escenario:
+		// primero, pasamos los votos de provincias a circunscripciones
+		List<Votos> votosPorCircunscripcion = LOGICA.votosPorCircunscripcion(escenario);
+		// y lo mismo con los escaños
+		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.escanosCircunscripciones(escenario);
+		// segundo, calculamos los resultados por circunscripción
+		List<Votos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
 						escanosPorCircunscripcion, escenario.getSistema());
-		List<Votos> resultadosCongreso = calculos.getInstance()
-				.resultadosCongreso(resultadosPorCircunscripcion, escenario);
-
+		// por último, agrupamos para el Congreso
+		List<Votos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+		
+		// Renderizamos vista
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);
 		req.setAttribute("resultadosCongreso", resultadosCongreso);
