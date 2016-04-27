@@ -129,7 +129,6 @@
 										<form method="post" action="/forosimular">
 											<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
 											<textarea rows="2" maxlength="350" name="comentario" class="col-lg-12" required></textarea>
-											<input type="hidden" name="fecha" id="fecha" value=""/>
 											<input type="submit" value="Añadir comentario"class="btn btn-info center-block" role="button"/>
 										</form>				
 										</div>
@@ -189,11 +188,7 @@
         "scrollX": true,
         "ordering": false, 
     } );  
-	
-	
-	var dateTime = new Date("2015-06-17 14:24:36");
-	dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
-	$('#fecha').value = dateTime;
+
 	</script>
 </body>
 </html>
