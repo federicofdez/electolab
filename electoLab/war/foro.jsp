@@ -23,22 +23,22 @@
 					<table class="table table-hover" id="foroTable">
 						<thead>
 							<tr>
-								<th class="col-lg-3">Tema</th>
-								<th class="col-lg-3">Autor</th>
-								<th class="col-lg-3">Fecha</th>
+								<th class="col-lg-4" >Tema</th>
+								<th class="col-lg-4">Autor</th>
+								<th class="col-lg-4">Fecha</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
 								<c:forEach items="${escenarios}" var="escenario">
-								<form method="get" action="/forosimular">
-								<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
-								<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
-								<td><c:out value="${escenario.usuario}"/></td>
-								<td style="color: #A4A4A4;">00/00/0000</td>
-								</form>
+									<tr>
+										<form method="get" action="/forosimular">
+											<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
+											<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
+											<td><c:out value="${escenario.usuario}"/></td>
+											<td style="color: #A4A4A4;">00/00/0000</td>
+										</form>
+									</tr>
 								</c:forEach>
-							</tr>
 						</tbody>
 					</table>
 				</div>

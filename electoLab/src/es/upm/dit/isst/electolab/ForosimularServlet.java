@@ -19,7 +19,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
-import es.upm.dit.isst.electolab.logic.calculos;
+import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Votos;
 
@@ -52,15 +52,11 @@ public class ForosimularServlet extends HttpServlet{
 		if (req.getParameter("escenarioId") != null){
 			 escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenarioId")));
 			System.out.println("TIPO DE OBJETO" + escenario.toString());
-		List<Votos> votosPorCircunscripcion = calculos.getInstance()
-				.votosPorCircunscripcion(escenario);
-		HashMap<String, Integer> escanosPorCircunscripcion = calculos
-				.getInstance().escanosCircunscripciones(escenario);
-		List<Votos> resultadosPorCircunscripcion = calculos.getInstance()
-				.calcularEscanos(votosPorCircunscripcion,
+		List<Votos> votosPorCircunscripcion = LOGICA.votosPorCircunscripcion(escenario);
+		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.escanosCircunscripciones(escenario);
+		List<Votos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
 						escanosPorCircunscripcion, escenario.getSistema());
-		List<Votos> resultadosCongreso = calculos.getInstance()
-				.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+		List<Votos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
 
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);
