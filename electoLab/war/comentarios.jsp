@@ -20,33 +20,22 @@
 	<div class="container">
 		<%@ include file="templates/main.jsp"%>
 		<div class="container-fluid" id="main-content">
-			<h1>Resultado de la simulación</h1>
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;">
-					Sistema de proporcionalidad:</div>
-				<div class="dropdown col-lg-2">
-					<input type="radio" name="sistema" value="dhont" checked>D'Hondt<br>
-				</div>
-				<div class="col-lg-2" style="margin-top: 7px;">
-					Circunscripciones:</div>
-				<div class="dropdown col-lg-3">
-					<input type="radio" name="circunscripciones" value="provincias"
-						checked>Provincias<br> 
-				</div>
-				<div class="col-lg-4 center-block"
-					style="margin-top: 28px; margin-left: 12px;" min="0" max="100">
-					% escaños para la mayoria absoluta:</div>
-				<div class="form-group col-lg-2 center-block">
-					<input type="number" name="mayoria"
-						class="form-control col-lg-2 center-block"
-						style="margin-top: 18px;" value="50">
-				</div>
-			</div>
-			</div>
-			
-
-			<div class="col-lg-12 center-block" id="editarsimular"
-				style="margin-top: 18px;"></div>
+			<h1>simulación <c:out value="${escenario.id }"/></h1>
+			<HR width=95% align="center" class="btn-info"
+				style="margin-top: 10px; margin-top: 10px;">
+										<div>
+				<h4>Parámetros de la simulación</h4>
+				<div class="col-lg-12" style="margin-top: 7px; margin-left: 12px;">
+					<h5> Sistema de proporcionalidad: <c:out value="${escenario.sistema }"/></h5> </div>
+				<div class="col-lg-12" style="margin-top: 7px; margin-left: 12px;">
+					<h5> Circunscripciones: <c:out value="${escenario.circunscripciones }"/> </h5> </div>
+				<div class="col-lg-12 center-block"
+					style="margin-top: 7px; margin-left: 12px;">
+					<h5> % escaños para la mayoria absoluta: <c:out value="${escenario.mayoria_abs }"/> </h5> </div>			
+					</div>
+			<HR width=95% align="center" class="btn-info"
+				style="margin-top: 10px; margin-top: 10px;">
+			<div class="col-lg-12 center-block" id="editarsimular" style="margin-top: 18px;"></div>
 			<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
 					<div class="col-lg-5">
@@ -128,16 +117,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<c:forEach items="${comentarios}" var="comentario">
+								<c:forEach items="${escenario.comentarios}" var="comentario">
+								<tr>
 								<th scope="row"><c:out value="${comentario.usuario}"/></th>
 								<td style="color: #A4A4A4;"><c:out value="${comentario.fecha }" /></td>
 								<td><c:out value="${comentario.texto}"/></td>
+								</tr>
 								</c:forEach>
-							</tr>
 						</tbody>
 					</table>
-				</div>
+										<form method="post" action="/forosimular">
+											<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
+											<textarea rows="2" maxlength="350" name="comentario" class="col-lg-12" required></textarea>
+											<input type="hidden" name="fecha" id="fecha" value=""/>
+											<input type="submit" value="Añadir comentario"class="btn btn-info center-block" role="button"/>
+										</form>				
+										</div>
 			</div>
 		</div>
 		</div>
@@ -194,6 +189,11 @@
         "scrollX": true,
         "ordering": false, 
     } );  
+	
+	
+	var dateTime = new Date("2015-06-17 14:24:36");
+	dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+	$('#fecha').value = dateTime;
 	</script>
 </body>
 </html>

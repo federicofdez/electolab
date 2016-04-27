@@ -230,6 +230,7 @@ public class Escenario implements Serializable {
 		}
 		this.comentariosJSON = new Text(array.toJSONString());
 	}
+	
 
 	@Override
 	public String toString() {

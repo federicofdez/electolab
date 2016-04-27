@@ -33,6 +33,10 @@ public interface ElectoLabDAO {
 	
 	// DELETE Escenario
 	public void deleteEscenario(long id);
+	
+	// CREATE Comentario
+	public Escenario createComentario(Long id, Comentario comentario);
+
 
 	// CREATE Grupo
 	public Grupo createGrupo(String nombre, String password, Set<String> usuarios);

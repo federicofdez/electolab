@@ -126,6 +126,26 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			em.close();
 		}
 	}
+	
+	// CREATE Comentario
+	public Escenario createComentario(Long id, Comentario comentario){
+		Escenario escenario = null;
+			EntityManager em = EMFService.get().createEntityManager();
+			Query q = em
+					.createQuery("select t from Escenario t where t.id = :id");
+			q.setParameter("id", id);
+			List<Escenario> escenarios = q.getResultList();
+			if (escenarios.size() > 0) {
+				escenario = escenarios.get(0);
+				List<Comentario> comentarios = escenario.getComentarios();
+				comentarios.add(comentario);
+				escenario.setComentarios(comentarios);
+				escenario = em.merge(escenario);
+				em.close();
+			}
+		return escenario;		
+	}
+
 
 	// CREATE Grupo
 	
