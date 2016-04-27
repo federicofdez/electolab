@@ -22,9 +22,10 @@
 		<div class="container-fluid" id="main-content">
 			<h1>simulación <c:out value="${escenario.id }"/></h1>
 			<HR width=95% align="center" class="btn-info"
-				style="margin-top: 10px; margin-top: 10px;">
-										<div>
-				<h4>Parámetros de la simulación</h4>
+				style="margin-top: 10px;">
+				<div class="row" style="margin-top: 15px;">
+
+				<h4 style="margin-left: 5px;">Parámetros de la simulación</h4>
 				<div class="col-lg-12" style="margin-top: 7px; margin-left: 12px;">
 					<h5> Sistema de proporcionalidad: <c:out value="${escenario.sistema }"/></h5> </div>
 				<div class="col-lg-12" style="margin-top: 7px; margin-left: 12px;">
@@ -34,7 +35,7 @@
 					<h5> % escaños para la mayoria absoluta: <c:out value="${escenario.mayoria_abs }"/> </h5> </div>			
 					</div>
 			<HR width=95% align="center" class="btn-info"
-				style="margin-top: 10px; margin-top: 10px;">
+				style="margin-top: 10px;">
 			<div class="col-lg-12 center-block" id="editarsimular" style="margin-top: 18px;"></div>
 			<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
@@ -106,7 +107,7 @@
 					data-target="#popupInforme">Generar informe</button>
 			</div>
 			<div class="container-fluid" id="main-content">
-				<h1>Comentarios de tu simulación</h1>
+				<h1>Comentarios de  simulación</h1>
 				<div>
 					<table class="table table-hover" id="foroTable">
 						<thead>

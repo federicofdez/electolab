@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -96,12 +97,9 @@ public class ForosimularServlet extends HttpServlet{
 				}
 				
 				String texto = req.getParameter("comentario");
-				//*****************FECHA
-				Calendar c1 =  Calendar.getInstance();
-			    SimpleDateFormat dformat = new SimpleDateFormat("EEEE yyyy-MM-dd HH:mm:ss a",Locale.FRANCE);
-			    System.out.println(dformat);
-				String fecha = c1.YEAR+"/"+c1.MONTH+"/"+c1.DATE+"-"+c1.HOUR_OF_DAY+":"+c1.MINUTE+":"+c1.SECOND;
-				//*****************FECHA
+				SimpleDateFormat formateador = new SimpleDateFormat( "dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
+				Date fechaDate = new Date();
+				String fecha = formateador.format(fechaDate);
 				Comentario comentario = new Comentario(user, fecha, texto);
 				Escenario escenario = dao.createComentario(Long.parseLong(req.getParameter("escenarioId")), comentario);
 				req.getSession().setAttribute("escenario", dao.readEscenarios("admin").get(0));
