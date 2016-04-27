@@ -51,6 +51,10 @@ public interface ElectoLabDAO {
 	
 	// DELETE Grupo
 	public void deleteGrupo(String nombre);
+	
+	// FIND Usuario's group
+	public Grupo findGroup (String usuario);
+
 		
 	// CREATE Usuario
 	public void createUsuario(String correo, String grupo);

@@ -14,6 +14,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Grupo;
 
 public class ForoServlet extends HttpServlet {
 	@Override
@@ -37,13 +38,14 @@ public class ForoServlet extends HttpServlet {
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		if(user == ""){
 			resp.sendRedirect("/index.jsp");
+			return;
 		}
 		if (user != "" && !dao.existsUsuario(user)) {
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
-
-		List<Escenario> escenarios = dao.readEscenariosGrupo("prueba");
+		String grupo = dao.findGroup(user).getNombre();
+		List<Escenario> escenarios = dao.readEscenariosGrupo(grupo);
 		req.setAttribute("escenarios", escenarios);
 		req.getRequestDispatcher("foro.jsp").forward(req, resp);
 

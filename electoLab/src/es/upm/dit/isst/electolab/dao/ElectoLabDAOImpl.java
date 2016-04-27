@@ -221,6 +221,17 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			em.close();
 		}
 	}
+	
+	// FIND Usuario's group
+	@Override
+	public Grupo findGroup (String usuario) {
+		Grupo grupo = null;
+		if (usuario != "")
+			for (Grupo g : this.readGrupos())
+				if (g.getUsuarios().contains(usuario))
+					grupo = g;
+		return grupo;
+	}
 
 	
 	
@@ -245,6 +256,7 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 					return true;
 		return false;
 	}
+	
 	
 	// DELETE Usuario
 	
