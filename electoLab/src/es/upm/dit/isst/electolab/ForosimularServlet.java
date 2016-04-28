@@ -9,10 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import javax.cache.Cache;
-import javax.cache.CacheException;
-import javax.cache.CacheFactory;
-import javax.cache.CacheManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +21,7 @@ import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Comentario;
+import es.upm.dit.isst.electolab.model.Escanos;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Votos;
 
@@ -56,11 +53,11 @@ public class ForosimularServlet extends HttpServlet{
 		if (req.getParameter("escenarioId") != null){
 			 escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenarioId")));
 			System.out.println("TIPO DE OBJETO" + escenario.toString());
-		List<Votos> votosPorCircunscripcion = LOGICA.votosPorCircunscripcion(escenario);
-		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.escanosCircunscripciones(escenario);
-		List<Votos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
+		List<Votos> votosPorCircunscripcion = LOGICA.calcularVotosAbsolutosPorCircunscripcion(escenario);
+		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.calcularEscanosPorCircunscripcion(escenario);
+		List<Escanos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
 						escanosPorCircunscripcion, escenario.getSistema());
-		List<Votos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+		List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
 
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);

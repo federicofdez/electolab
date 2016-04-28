@@ -87,7 +87,7 @@
 									<th scope="row"><h5>${ r.partido }</h5></th>
 									<th><input type='text' class='form-control'
 										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.votos }"></th>
+									<th><input type='text' class='form-control' value="${r.escanos }"></th>
 								</tr>
 							</c:forEach>
 							<c:forEach items="${resultadosCongreso}" var="r">
@@ -95,7 +95,7 @@
 									<th scope="row"><h5>${ r.partido }</h5></th>
 									<th><input type='text' class='form-control'
 										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.votos }"></th>
+									<th><input type='text' class='form-control' value="${r.escanos }"></th>
 								</tr>
 							</c:forEach>
 						</tbody>
