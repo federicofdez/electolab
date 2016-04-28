@@ -30,7 +30,7 @@
 						</thead>
 						<tbody>
 								<c:forEach items="${escenarios}" var="escenario">
-									<tr>
+									<tr <c:if test="${escenario.usuario == user}"> class="info" </c:if> >									
 										<form method="get" action="/forosimular">
 											<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
 											<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
