@@ -9,6 +9,29 @@
 <html lang="en">
 <head>
 <%@ include file="templates/head.html"%>
+	<link rel="stylesheet" type="text/css" href="./css/leaflet.css" />
+<style>
+#map {
+  width: 95%;
+  height: 400px;
+}
+
+svg {
+  position: relative;
+}
+
+path {
+  fill: #000;
+  fill-opacity: .2;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+path:hover {
+  fill: blue;
+  fill-opacity: .7;
+}
+</style>	
 </head>
 
 <body>
@@ -69,8 +92,8 @@
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
 					<div class="col-lg-5">
 						<h3 class="text-center">Mapa de partido ganador</h3>
-						<img class="map center-block" src="img/mapa.jpeg" width="350"
-							height="220">
+						<div id="map" style=" border: 1px solid #AAA;"></div>
+
 					</div>
 					<div class="col-lg-7">
 						<h3 class="text-center">Distribución de escaños en el
@@ -170,6 +193,41 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<!-- Modal Votos-->
+	<div class="modal fade" id="popupVotos" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"></span> </h4>
+				</div>
+				<div id="votos" class="modal-body">
+					<div class="text-center">
+					<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+					<c:if test="${r.circunscripcion == prov}">
+								<tr>
+									<th scope="row"><h5>${ r.partido }</h5></th>
+									<th><input type='text' class='form-control'
+										value="${ r.circunscripcion }"></th>
+									<th><input type='text' class='form-control' value="${r.escanos }"></th>
+								</tr>
+						</c:if>
+							</c:forEach>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 	</main>
 	<footer class="footer">
 		<div class="container">
@@ -182,6 +240,11 @@
 	<script type="text/javascript" src="./js/dropdown.js"></script>
 	<script type="text/javascript" src="./js/bootstrap-colorselector.js"></script>
 	<script type="text/javascript" src="./js/cambiarsimulacio.js"></script>
+	<script type='text/javascript' src="./js/topojson.v1.min.js"></script>
+	<script type='text/javascript'  src="./js/d3.v3.min.js"></script>
+	<script type='text/javascript' src='./js/leaflet.js'></script>	
+	<script type='text/javascript' src='./js/map.js'></script>	
+	
 	<script>
 	$('#votosTable').DataTable( {
         "scrollX": true,

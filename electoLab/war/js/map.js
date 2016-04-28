@@ -1,5 +1,5 @@
 				 $(document).ready(function(){
-				var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 6});
+				var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 5});
 				var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.png', {
 				attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
 				maxZoom: 16
@@ -32,8 +32,12 @@
 				return (d.color="green");
 
 				})	
+
 				.on('click', function (d) {
-					alert("Has pulsado: " + d.properties.name);
+					$('#popupVotos').modal('show');
+					var prov = d.properties.name;
+					console.log(d);
+					$('#prov').value = prov;
 				})
 				.on('mouseover', function (d, i) {
 						d3.select(this).style({
