@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.cache.Cache;
 import javax.cache.CacheException;
@@ -83,6 +84,17 @@ public class SimularServlet extends HttpServlet {
 		List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(
 				resultadosPorCircunscripcion, escenario);
 
+		//Envío de diccionario de colores de prueba para mapa
+		Map<String,String> colores = new HashMap<String,String>();
+		colores.put("avila","blue");
+		colores.put("madrid","red");
+		colores.put("barcelona","green");
+		colores.put("coruna", "orange");
+		colores.put("toledo", "purple");
+		colores.put("malaga", "red");
+		req.setAttribute("colores", colores);
+
+		
 		// Renderizamos vista
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);
