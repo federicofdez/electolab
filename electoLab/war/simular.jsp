@@ -5,6 +5,12 @@
 <%@ page
 	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0);
+//prevents caching at the proxy server
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,8 +213,18 @@ path:hover {
 					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"></span> </h4>
 				</div>
 				<div class="modal-body">
-					<div class="text-center" id="votos" >
-
+					<div class="text-center" >
+						<table class="table table-hover" id="partidosTable">
+						<thead>
+							<tr>
+								<th class="col-lg-3">Partido</th>
+								<th class="col-lg-3">Escaños obtenidos</th>
+							</tr>
+						</thead>
+						<tbody id="votos">
+							
+						</tbody>
+					</table>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -273,13 +289,14 @@ path:hover {
 
 		.on('click', function (d) {
 			$('#popupVotos').modal('show');
+			$('#votos').html("");
+			$('#prov').html("");
 			var prov = d.properties.name;
-			$('#prov').html = prov;
 			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-				<c:if test="${r.circunscripcion == prov}">
-						console.log("llega");
-						$('#votos').html("<tr><th scope='row'><h4>" + ${ r.partido } + "</h4></th><th><h5>" + ${ r.circunscripcion }+ "</h5></th><th><h5>" + ${r.escanos }+ "</h5></th></tr>");
-				</c:if>
+				if(prov == "${r.circunscripcion}"){
+					$('#prov').html(prov);
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");
+				}
 			</c:forEach>
 		})
 		.on('mouseover', function (d, i) {
