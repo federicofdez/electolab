@@ -206,18 +206,9 @@ path:hover {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"></span> </h4>
 				</div>
-				<div id="votos" class="modal-body">
-					<div class="text-center">
-					<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-					<c:if test="${r.circunscripcion == prov}">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th><input type='text' class='form-control'
-										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.escanos }"></th>
-								</tr>
-						</c:if>
-							</c:forEach>
+				<div class="modal-body">
+					<div class="text-center" id="votos" >
+
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -275,7 +266,6 @@ path:hover {
 			<c:forEach items="${colores}" var="color">
 			if(d.properties.name == "${color.key}"){
 				var value = "${color.value}";
-				console.log(value);
 				return (d.color = value);
 			}
 			</c:forEach>
@@ -284,8 +274,13 @@ path:hover {
 		.on('click', function (d) {
 			$('#popupVotos').modal('show');
 			var prov = d.properties.name;
-			console.log(d.properties.name);
-			$('#prov').value = prov;
+			$('#prov').html = prov;
+			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+				<c:if test="${r.circunscripcion == prov}">
+						console.log("llega");
+						$('#votos').html("<tr><th scope='row'><h4>" + ${ r.partido } + "</h4></th><th><h5>" + ${ r.circunscripcion }+ "</h5></th><th><h5>" + ${r.escanos }+ "</h5></th></tr>");
+				</c:if>
+			</c:forEach>
 		})
 		.on('mouseover', function (d, i) {
 				d3.select(this).style({
