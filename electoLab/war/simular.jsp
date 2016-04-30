@@ -17,6 +17,7 @@ response.setDateHeader ("Expires", 0);
 <%@ include file="templates/head.html"%>
 	<link rel="stylesheet" type="text/css" href="./css/leaflet.css" />
 <style>
+
 #map {
   width: 95%;
   height: 400px;
@@ -37,7 +38,11 @@ path:hover {
   fill: blue;
   fill-opacity: .7;
 }
-</style>	
+</style>
+
+
+
+	
 </head>
 
 <body>
@@ -104,8 +109,7 @@ path:hover {
 					<div class="col-lg-7">
 						<h3 class="text-center">Distribución de escaños en el
 							Congreso</h3>
-						<img class="diagram center-block" src="img/diagramaqueso.png"
-							width="350" height="220">
+						<canvas id="piechart" width="900" height="500"></canvas>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
@@ -392,7 +396,6 @@ path:hover {
 		var point = map.latLngToLayerPoint(new L.LatLng(y, x));
 		this.stream.point(point.x, point.y);
 		}
-
 		});
 		 });
 </c:if>
@@ -407,5 +410,93 @@ path:hover {
         "ordering": false, 
     } );  
 	</script>
+	<script src="./js/Chart.js"></script>
+	
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+    	var ctx = document.getElementById("piechart").getContext("2d");
+    	var resultados = [];
+    	
+    	var i = 1;
+    	<c:forEach items="${resultadosCongreso}" var="r">
+			resultados[i] = ${r.escanos};
+			
+			i++;
+		</c:forEach>
+		var data = {
+			    labels: [
+			         "", 
+			        "PP",
+			        "DL",
+			        "FAC",
+			        "ERC-CATS",
+			        "C's",
+			        "IU-UPeC",
+			        "PODEMOS",
+			        "En MArea-ANOVEA-EU",
+			        "UPN",
+			        "COMPROMIS",
+			        "NC",
+			        "EAJ-PNV",
+			        "EN COMÚ",
+			        "CCa-PNC",
+			        "PSOE"
+			    ],
+			    datasets: [
+			        {
+			            data: resultados,
+			            backgroundColor: [
+			                "#FFFFFF",
+			                "#02cff7",
+			                "#0f178a",
+			                "#626262",
+			                "#ffcc00",
+			                "#f7771b",
+			                "#10812d",
+			                "#742da1",
+			                "#c920dd",
+			                "#17626a",
+			                "#4e05d3",
+			                "#a4ff00",
+			                "#54a106",
+			                "#998eef",
+			                "#dae705",
+			                "#ff0000"
+			            ],
+			            hoverBackgroundColor: [
+			                "##FFFFFF",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FFCE56"
+			            ]			        	
+			        }]
+			};
+		var options = {
+				rotation : -1*Math.PI,
+				circumference : Math.PI,
+				animateScale : true
+		}
+		var semi = Math.PI
+		var rotation = -1*Math.PI
+    	var myPieChart = new Chart(ctx,{
+    	    type: 'doughnut',
+    	    data: data,
+    		options: options
+    	});
+      });
+    </script>
 </body>
 </html>
