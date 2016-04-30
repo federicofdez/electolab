@@ -119,10 +119,8 @@ path:hover {
 							height="220">
 					</div>
 					<div class="col-lg-7">
-						<h3 class="text-center">Gráfica votos</h3>
-						<img class="diagrama center-block" src="img/graf2.jpeg"
-							width="298" height="220">
-					</div>
+						<h3 class="text-center">Gráfica de escaños</h3>
+						<canvas id="graphicbar" width="900" height="500"></canvas>
 				</div>
 			</div>
 			<div class="panel panel-default" style="margin-top: 15px;">
@@ -415,10 +413,10 @@ path:hover {
 	<script type="text/javascript">
 
 	$(document).ready(function() {
-    	var ctx = document.getElementById("piechart").getContext("2d");
+    	var ctx = document.getElementById("graphicbar").getContext("2d");
     	var resultados = [];
     	
-    	var i = 1;
+    	var i = 0;
     	<c:forEach items="${resultadosCongreso}" var="r">
 			resultados[i] = ${r.escanos};
 			
@@ -426,7 +424,86 @@ path:hover {
 		</c:forEach>
 		var data = {
 			    labels: [
-			         "", 
+			        "PP",
+			        "DL",
+			        "FAC",
+			        "ERC-CATS",
+			        "C's",
+			        "IU-UPeC",
+			        "PODEMOS",
+			        "En MArea-ANOVEA-EU",
+			        "UPN",
+			        "COMPROMIS",
+			        "NC",
+			        "EAJ-PNV",
+			        "EN COMÚ",
+			        "CCa-PNC",
+			        "PSOE"
+			    ],
+			    datasets: [
+			        {			   
+			        	
+			        	label: "Escaños ",
+			        	data: resultados,
+			            backgroundColor: [
+			                "#02cff7",
+			                "#0f178a",
+			                "#626262",
+			                "#ffcc00",
+			                "#f7771b",
+			                "#10812d",
+			                "#742da1",
+			                "#c920dd",
+			                "#17626a",
+			                "#4e05d3",
+			                "#a4ff00",
+			                "#54a106",
+			                "#998eef",
+			                "#dae705",
+			                "#ff0000"
+			            ],
+			            hoverBackgroundColor: [
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FF6384",
+			                "#36A2EB",
+			                "#FFCE56",
+			                "#FFCE56"
+			            ]			        	
+			        }]
+			};
+    	var myBarChart = new Chart(ctx,{
+    	    type: 'bar',
+    	    data: data,
+    	    display:false,
+    	    scaleLabel:{
+    	    	display:false
+    	    }
+    	});
+      });
+    </script>
+    <script>
+    $(document).ready(function() {
+    	var ctx = document.getElementById("piechart").getContext("2d");
+    	var resultados = [];
+    	
+    	var i = 0;
+    	<c:forEach items="${resultadosCongreso}" var="r">
+			resultados[i] = ${r.escanos};
+			
+			i++;
+		</c:forEach>
+		var data = {
+			    labels: [ 
 			        "PP",
 			        "DL",
 			        "FAC",
@@ -447,7 +524,6 @@ path:hover {
 			        {
 			            data: resultados,
 			            backgroundColor: [
-			                "#FFFFFF",
 			                "#02cff7",
 			                "#0f178a",
 			                "#626262",
@@ -465,7 +541,6 @@ path:hover {
 			                "#ff0000"
 			            ],
 			            hoverBackgroundColor: [
-			                "##FFFFFF",
 			                "#36A2EB",
 			                "#FFCE56",
 			                "#FF6384",
@@ -489,8 +564,6 @@ path:hover {
 				circumference : Math.PI,
 				animateScale : true
 		}
-		var semi = Math.PI
-		var rotation = -1*Math.PI
     	var myPieChart = new Chart(ctx,{
     	    type: 'doughnut',
     	    data: data,
