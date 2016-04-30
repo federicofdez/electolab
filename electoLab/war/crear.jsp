@@ -183,10 +183,16 @@
 		//cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
 		// $('.p1').removeClass("hidden");
 	}
-	$('#votosTable').DataTable( {
+	var oTable = $('#votosTable');
+	oTable.DataTable( {
         "scrollX": true,
         "ordering": false, 
-    } );  
+        "searching": false,
+        "scrollY":        "400px",
+        "scrollCollapse": true,
+        "paging":         false
+
+    } );
     $('[data-toggle="tooltip"]').tooltip(); 
 
     
