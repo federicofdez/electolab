@@ -22,6 +22,10 @@ response.setDateHeader ("Expires", 0);
   width: 95%;
   height: 400px;
 }
+#graphicbar{
+	width: 50%;
+	heigth: 20px;
+}
 
 svg {
   position: relative;
@@ -112,16 +116,6 @@ path:hover {
 						<canvas id="piechart" width="900" height="500"></canvas>
 					</div>
 				</div>
-				<div class="row" style="margin-top: 3px; margin-top: 5px;">
-					<div class="col-lg-5">
-						<h3 class="text-center">Partido más Votado</h3>
-						<img class="center-block" src="img/graf1.jpg" width="240"
-							height="220">
-					</div>
-					<div class="col-lg-7">
-						<h3 class="text-center">Gráfica de escaños</h3>
-						<canvas id="graphicbar" width="900" height="500"></canvas>
-				</div>
 			</div>
 			<div class="panel panel-default" style="margin-top: 15px;">
 				<div class="panel-heading">
@@ -144,17 +138,15 @@ path:hover {
 							<c:forEach items="${resultadosPorCircunscripcion}" var="r">
 								<tr>
 									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th><input type='text' class='form-control'
-										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.escanos }"></th>
+									<th>${ r.circunscripcion }</th>
+									<th>${r.escanos }</th>
 								</tr>
 							</c:forEach>
 							<c:forEach items="${resultadosCongreso}" var="r">
 								<tr>
 									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th><input type='text' class='form-control'
-										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.escanos }"></th>
+									<th>${ r.circunscripcion }</th>
+									<th>${r.escanos }</th>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -206,7 +198,7 @@ path:hover {
 	<!-- Modal Votos-->
 	<div class="modal fade" id="popupVotos" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
@@ -216,6 +208,8 @@ path:hover {
 				</div>
 				<div class="modal-body">
 					<div class="text-center" >
+						<canvas id="graphicbar"></canvas>
+					
 						<table class="table table-hover" id="partidosTable">
 						<thead>
 							<tr>
@@ -263,7 +257,6 @@ path:hover {
 		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 		g = svg.append("g").attr("class", "leaflet-zoom-hide");
 		
-		<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}">
 		d3.json("./json/states_esp.topo.json", function(error, collection) {
 		if (error) throw error;
 
@@ -296,13 +289,19 @@ path:hover {
 			$('#prov').html("");
 			var id = d.id;
 			var name = d.properties.name
+	    	var resultados = [];
+	    	var i = 0;
 
 			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
 				if(id == "${r.circunscripcion}"){
 					$('#prov').html(" " + name);
-					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
+					resultados[i] = ${r.escanos};						
+						i++;
 				}
 			</c:forEach>
+			graphicbar(resultados);
+
 		})
 		.on('mouseover', function (d, i) {
 				d3.select(this).style({
@@ -340,7 +339,6 @@ path:hover {
 		}
 
 		});
-	</c:if>
 	
 	<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}">
 	d3.json("./json/communities_esp.topo.json", function(error, collection) {
@@ -411,17 +409,10 @@ path:hover {
 	<script src="./js/Chart.js"></script>
 	
 	<script type="text/javascript">
-
-	$(document).ready(function() {
-    	var ctx = document.getElementById("graphicbar").getContext("2d");
-    	var resultados = [];
-    	
-    	var i = 0;
-    	<c:forEach items="${resultadosCongreso}" var="r">
-			resultados[i] = ${r.escanos};
-			
-			i++;
-		</c:forEach>
+				
+		function graphicbar(resultados) {
+    	var ctx = document.getElementById("graphicbar").getContext("2d"); 
+    	var resultados = resultados;
 		var data = {
 			    labels: [
 			        "PP",
@@ -489,7 +480,7 @@ path:hover {
     	    	display:false
     	    }
     	});
-      });
+		};
     </script>
     <script>
     $(document).ready(function() {
