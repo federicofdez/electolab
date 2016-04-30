@@ -210,7 +210,7 @@ path:hover {
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"></span> </h4>
+					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"> </span> </h4>
 				</div>
 				<div class="modal-body">
 					<div class="text-center" >
@@ -281,7 +281,7 @@ path:hover {
 		})
 		.style("fill", function (d) {
 			<c:forEach items="${colores}" var="color">
-			if(d.properties.name == "${color.key}"){
+			if(d.id == "${color.key}"){
 				var value = "${color.value}";
 				return (d.color = value);
 			}
@@ -292,10 +292,12 @@ path:hover {
 			$('#popupVotos').modal('show');
 			$('#votos').html("");
 			$('#prov').html("");
-			var prov = d.properties.name;
+			var id = d.id;
+			var name = d.properties.name
+
 			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-				if(prov == "${r.circunscripcion}"){
-					$('#prov').html(prov);
+				if(id == "${r.circunscripcion}"){
+					$('#prov').html(" " + name);
 					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");
 				}
 			</c:forEach>
