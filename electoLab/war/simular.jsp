@@ -248,6 +248,26 @@ path:hover {
 	<script type='text/javascript' src='./js/leaflet.js'></script>	
 	<script class="mapScript">
 	$(document).ready(function(){
+		
+    	var partidos = {
+    			siglas: [],
+    			nombre: [],
+    			color: [],
+    			imagen: [],
+    	};
+		<c:forEach items="${escenario.partidos}" var="partido" varStatus="status">
+			partidos.siglas[${status.count}] = String("<c:out value='${partido.siglas}'/>");
+			partidos.nombre[${status.count}] = String("<c:out value='${partido.nombre}'/>");
+			partidos.color[${status.count}]  = "#"+String("<c:out value='${partido.color}'/>");
+			partidos.imagen[${status.count}] = String("<c:out value='${partido.imagen}'/>");
+		</c:forEach>
+		//sobra un elemento
+		partidos.siglas.splice(0,1);
+		partidos.nombre.splice(0,1);
+		partidos.color.splice(0,1);
+		partidos.imagen.splice(0,1);
+
+	
 		var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 5});
 		var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.png', {
 		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -291,7 +311,6 @@ path:hover {
 			var name = d.properties.name
 	    	var resultados = [];
 	    	var i = 0;
-
 			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
 				if(id == "${r.circunscripcion}"){
 					$('#prov').html(" " + name);
@@ -300,7 +319,7 @@ path:hover {
 						i++;
 				}
 			</c:forEach>
-			graphicbar(resultados);
+			graphicbar(resultados,partidos);
 
 		})
 		.on('mouseover', function (d, i) {
@@ -395,8 +414,9 @@ path:hover {
 		});
 		 });
 </c:if>
-	 });
+piechart(partidos);
 
+	 });
 	</script>	
 
 	
@@ -410,26 +430,28 @@ path:hover {
 	
 	<script type="text/javascript">
 				
-		function graphicbar(resultados) {
+		function graphicbar(resultados,partidos) {
     	var ctx = document.getElementById("graphicbar").getContext("2d"); 
-    	var resultados = resultados;
+
 		var data = {
-			    labels: [
-			        "PP",
-			        "DL",
-			        "FAC",
-			        "ERC-CATS",
-			        "C's",
-			        "IU-UPeC",
-			        "PODEMOS",
-			        "En MArea-ANOVEA-EU",
-			        "UPN",
-			        "COMPROMIS",
-			        "NC",
-			        "EAJ-PNV",
-			        "EN COMÚ",
-			        "CCa-PNC",
-			        "PSOE"
+			    labels: [ 
+			            partidos.siglas[0],
+			            partidos.siglas[1],
+			            partidos.siglas[2], 
+			            partidos.siglas[3],
+			            partidos.siglas[4], 
+			            partidos.siglas[5],
+			            partidos.siglas[6],
+			            partidos.siglas[7], 
+			            partidos.siglas[8], 
+			            partidos.siglas[9], 
+			            partidos.siglas[10],
+			            partidos.siglas[10], 
+			            partidos.siglas[11], 
+			            partidos.siglas[12], 
+			            partidos.siglas[13],
+			            partidos.siglas[15],
+			            partidos.siglas[16],
 			    ],
 			    datasets: [
 			        {			   
@@ -437,38 +459,43 @@ path:hover {
 			        	label: "Escaños ",
 			        	data: resultados,
 			            backgroundColor: [
-			                "#02cff7",
-			                "#0f178a",
-			                "#626262",
-			                "#ffcc00",
-			                "#f7771b",
-			                "#10812d",
-			                "#742da1",
-			                "#c920dd",
-			                "#17626a",
-			                "#4e05d3",
-			                "#a4ff00",
-			                "#54a106",
-			                "#998eef",
-			                "#dae705",
-			                "#ff0000"
+			      			partidos.color[0],
+			      			partidos.color[1],
+    			            partidos.color[2],
+    			            partidos.color[3],
+    			            partidos.color[4],
+    			            partidos.color[5],
+    			            partidos.color[6],
+    			            partidos.color[7],
+    			            partidos.color[8],
+    			            partidos.color[9],
+    			            partidos.color[10],
+    			            partidos.color[11],
+    			            partidos.color[12],
+    			            partidos.color[13],
+    			            partidos.color[14],
+    			            partidos.color[15],
+    			            partidos.color[16],
+
 			            ],
 			            hoverBackgroundColor: [
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FFCE56"
+			       			      			partidos.color[0],
+			    			      			partidos.color[1],
+			        			            partidos.color[2],
+			        			            partidos.color[3],
+			        			            partidos.color[4],
+			        			            partidos.color[5],
+			        			            partidos.color[6],
+			        			            partidos.color[7],
+			        			            partidos.color[8],
+			        			            partidos.color[9],
+			        			            partidos.color[10],
+			        			            partidos.color[11],
+			        			            partidos.color[12],
+			        			            partidos.color[13],
+			        			            partidos.color[14],
+			        			            partidos.color[15],
+			        			            partidos.color[16],
 			            ]			        	
 			        }]
 			};
@@ -483,7 +510,7 @@ path:hover {
 		};
     </script>
     <script>
-    $(document).ready(function() {
+	function piechart(partidos) {
     	var ctx = document.getElementById("piechart").getContext("2d");
     	var resultados = [];
     	
@@ -495,58 +522,64 @@ path:hover {
 		</c:forEach>
 		var data = {
 			    labels: [ 
-			        "PP",
-			        "DL",
-			        "FAC",
-			        "ERC-CATS",
-			        "C's",
-			        "IU-UPeC",
-			        "PODEMOS",
-			        "En MArea-ANOVEA-EU",
-			        "UPN",
-			        "COMPROMIS",
-			        "NC",
-			        "EAJ-PNV",
-			        "EN COMÚ",
-			        "CCa-PNC",
-			        "PSOE"
+				            partidos.siglas[0],
+				            partidos.siglas[1],
+				            partidos.siglas[2], 
+				            partidos.siglas[3],
+				            partidos.siglas[4], 
+				            partidos.siglas[5],
+				            partidos.siglas[6],
+				            partidos.siglas[7], 
+				            partidos.siglas[8], 
+				            partidos.siglas[9], 
+				            partidos.siglas[10],
+				            partidos.siglas[10], 
+				            partidos.siglas[11], 
+				            partidos.siglas[12], 
+				            partidos.siglas[13],
+				            partidos.siglas[15],
+				            partidos.siglas[16],
 			    ],
 			    datasets: [
 			        {
 			            data: resultados,
 			            backgroundColor: [
-			                "#02cff7",
-			                "#0f178a",
-			                "#626262",
-			                "#ffcc00",
-			                "#f7771b",
-			                "#10812d",
-			                "#742da1",
-			                "#c920dd",
-			                "#17626a",
-			                "#4e05d3",
-			                "#a4ff00",
-			                "#54a106",
-			                "#998eef",
-			                "#dae705",
-			                "#ff0000"
+			  			      			partidos.color[0],
+						      			partidos.color[1],
+			    			            partidos.color[2],
+			    			            partidos.color[3],
+			    			            partidos.color[4],
+			    			            partidos.color[5],
+			    			            partidos.color[6],
+			    			            partidos.color[7],
+			    			            partidos.color[8],
+			    			            partidos.color[9],
+			    			            partidos.color[10],
+			    			            partidos.color[11],
+			    			            partidos.color[12],
+			    			            partidos.color[13],
+			    			            partidos.color[14],
+			    			            partidos.color[15],
+			    			            partidos.color[16],
 			            ],
 			            hoverBackgroundColor: [
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#FFCE56"
+			       			      			partidos.color[0],
+			    			      			partidos.color[1],
+			        			            partidos.color[2],
+			        			            partidos.color[3],
+			        			            partidos.color[4],
+			        			            partidos.color[5],
+			        			            partidos.color[6],
+			        			            partidos.color[7],
+			        			            partidos.color[8],
+			        			            partidos.color[9],
+			        			            partidos.color[10],
+			        			            partidos.color[11],
+			        			            partidos.color[12],
+			        			            partidos.color[13],
+			        			            partidos.color[14],
+			        			            partidos.color[15],
+			        			            partidos.color[16],
 			            ]			        	
 			        }]
 			};
@@ -560,7 +593,7 @@ path:hover {
     	    data: data,
     		options: options
     	});
-      });
-    </script>
+	}
+		</script>
 </body>
 </html>

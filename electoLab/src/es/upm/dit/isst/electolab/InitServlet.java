@@ -41,7 +41,7 @@ public class InitServlet extends HttpServlet {
 	        	"soria","tarragona","teruel","toledo","Valencia",
 	        	"valladolid","vizcaya","zamora","zaragoza"};
 		
-		String[] partidos_esc0 = { "PP", "PSOE", "PODEMOS", "C's", "EN COMÚ",
+		String[] partidos_esc0 = { "PP", "PSOE", "PODEMOS", "Cs", "EN COMÚ",
 				"COMPROMÍS", "ERC-CATS", "DL",
 				"En Marea-ANOVA-EU", "IU-UPeC", "EAJ-PNV", "CCa-PNC",
 				"UPN","NC", "FAC" };
@@ -165,7 +165,7 @@ public class InitServlet extends HttpServlet {
 					"img/logos/psoe.png", "FF0000"));
 			partidos.add(new Partido("PODEMOS", "Podemos",
 					"img/logos/podemos.png", "742DA1"));
-			partidos.add(new Partido("C's", "Ciudadanos",
+			partidos.add(new Partido("Cs", "Ciudadanos",
 					"img/logos/ciudadanos.png", "F7771B"));
 			partidos.add(new Partido("EN COMÚ", "En comú Podem",
 					"img/logos/podemosComun.png", "998EEF"));
