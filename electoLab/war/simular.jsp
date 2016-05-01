@@ -434,69 +434,14 @@ piechart(partidos);
     	var ctx = document.getElementById("graphicbar").getContext("2d"); 
 
 		var data = {
-			    labels: [ 
-			            partidos.siglas[0],
-			            partidos.siglas[1],
-			            partidos.siglas[2], 
-			            partidos.siglas[3],
-			            partidos.siglas[4], 
-			            partidos.siglas[5],
-			            partidos.siglas[6],
-			            partidos.siglas[7], 
-			            partidos.siglas[8], 
-			            partidos.siglas[9], 
-			            partidos.siglas[10],
-			            partidos.siglas[10], 
-			            partidos.siglas[11], 
-			            partidos.siglas[12], 
-			            partidos.siglas[13],
-			            partidos.siglas[15],
-			            partidos.siglas[16],
-			    ],
+			    labels: partidos.siglas,
 			    datasets: [
 			        {			   
 			        	
 			        	label: "Escaños ",
 			        	data: resultados,
-			            backgroundColor: [
-			      			partidos.color[0],
-			      			partidos.color[1],
-    			            partidos.color[2],
-    			            partidos.color[3],
-    			            partidos.color[4],
-    			            partidos.color[5],
-    			            partidos.color[6],
-    			            partidos.color[7],
-    			            partidos.color[8],
-    			            partidos.color[9],
-    			            partidos.color[10],
-    			            partidos.color[11],
-    			            partidos.color[12],
-    			            partidos.color[13],
-    			            partidos.color[14],
-    			            partidos.color[15],
-    			            partidos.color[16],
-
-			            ],
-			            hoverBackgroundColor: [
-			       			      			partidos.color[0],
-			    			      			partidos.color[1],
-			        			            partidos.color[2],
-			        			            partidos.color[3],
-			        			            partidos.color[4],
-			        			            partidos.color[5],
-			        			            partidos.color[6],
-			        			            partidos.color[7],
-			        			            partidos.color[8],
-			        			            partidos.color[9],
-			        			            partidos.color[10],
-			        			            partidos.color[11],
-			        			            partidos.color[12],
-			        			            partidos.color[13],
-			        			            partidos.color[14],
-			        			            partidos.color[15],
-			        			            partidos.color[16],
-			            ]			        	
+			            backgroundColor: partidos.color,
+			            hoverBackgroundColor: partidos.color			        	
 			        }]
 			};
     	var myBarChart = new Chart(ctx,{
@@ -521,66 +466,12 @@ piechart(partidos);
 			i++;
 		</c:forEach>
 		var data = {
-			    labels: [ 
-				            partidos.siglas[0],
-				            partidos.siglas[1],
-				            partidos.siglas[2], 
-				            partidos.siglas[3],
-				            partidos.siglas[4], 
-				            partidos.siglas[5],
-				            partidos.siglas[6],
-				            partidos.siglas[7], 
-				            partidos.siglas[8], 
-				            partidos.siglas[9], 
-				            partidos.siglas[10],
-				            partidos.siglas[10], 
-				            partidos.siglas[11], 
-				            partidos.siglas[12], 
-				            partidos.siglas[13],
-				            partidos.siglas[15],
-				            partidos.siglas[16],
-			    ],
+			    labels: partidos.siglas,
 			    datasets: [
 			        {
 			            data: resultados,
-			            backgroundColor: [
-			  			      			partidos.color[0],
-						      			partidos.color[1],
-			    			            partidos.color[2],
-			    			            partidos.color[3],
-			    			            partidos.color[4],
-			    			            partidos.color[5],
-			    			            partidos.color[6],
-			    			            partidos.color[7],
-			    			            partidos.color[8],
-			    			            partidos.color[9],
-			    			            partidos.color[10],
-			    			            partidos.color[11],
-			    			            partidos.color[12],
-			    			            partidos.color[13],
-			    			            partidos.color[14],
-			    			            partidos.color[15],
-			    			            partidos.color[16],
-			            ],
-			            hoverBackgroundColor: [
-			       			      			partidos.color[0],
-			    			      			partidos.color[1],
-			        			            partidos.color[2],
-			        			            partidos.color[3],
-			        			            partidos.color[4],
-			        			            partidos.color[5],
-			        			            partidos.color[6],
-			        			            partidos.color[7],
-			        			            partidos.color[8],
-			        			            partidos.color[9],
-			        			            partidos.color[10],
-			        			            partidos.color[11],
-			        			            partidos.color[12],
-			        			            partidos.color[13],
-			        			            partidos.color[14],
-			        			            partidos.color[15],
-			        			            partidos.color[16],
-			            ]			        	
+			            backgroundColor: partidos.color,
+			            hoverBackgroundColor: partidos.color			        	
 			        }]
 			};
 		var options = {
