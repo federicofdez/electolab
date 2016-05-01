@@ -310,16 +310,42 @@ path:hover {
 			var id = d.id;
 			var name = d.properties.name
 	    	var resultados = [];
-	    	var i = 0;
-			<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+	    	var partidosProvincia = {
+	    			siglas: [],
+	    			nombre: [],
+	    			color: [],
+	    			imagen: [],
+	    	};
+	    	var siglas,nombre,color,imagen = "";
+	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
 				if(id == "${r.circunscripcion}"){
+					var partido = "${r.partido}";
+					var escanos =  "${r.escanos}";
 					$('#prov').html(" " + name);
 					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
-					resultados[i] = ${r.escanos};						
-						i++;
+					for( var j = 0; j< partidos.siglas.length; j++){
+						if(partidos.siglas[j] == partido){
+							 siglas = partidos.siglas[j];
+							 nombre = partidos.nombre[j];
+							 color = partidos.color[j];
+							 imagen = partidos.imagen[j];
+						}
+					}
+				}
+				if(!partidosProvincia.siglas.includes(siglas)){
+				if(siglas != null){
+					partidosProvincia.siglas.push(siglas);
+					partidosProvincia.nombre.push(nombre);
+					partidosProvincia.color.push(color);
+					partidosProvincia.imagen.push(imagen);
+					resultados.push(escanos);
+				}
 				}
 			</c:forEach>
-			graphicbar(resultados,partidos);
+			console.log(partidos);
+			console.log(partidosProvincia);
+			console.log(resultados);
+			graphicbar(resultados,partidosProvincia);
 
 		})
 		.on('mouseover', function (d, i) {
