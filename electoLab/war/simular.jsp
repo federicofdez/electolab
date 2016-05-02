@@ -208,8 +208,9 @@ path:hover {
 				</div>
 				<div class="modal-body">
 					<div class="text-center" >
+						<div id="canvasWrapper">
 						<canvas id="graphicbar"></canvas>
-					
+						</div>
 						<table class="table table-hover" id="partidosTable">
 						<thead>
 							<tr>
@@ -305,6 +306,8 @@ path:hover {
 
 		.on('click', function (d) {
 			$('#popupVotos').modal('show');
+			$('#canvasWrapper').html("");
+			$('#canvasWrapper').html("<canvas id='graphicbar'></canvas>");
 			$('#votos').html("");
 			$('#prov').html("");
 			var id = d.id;
