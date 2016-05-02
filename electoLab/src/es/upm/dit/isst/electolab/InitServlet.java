@@ -38,7 +38,7 @@ public class InitServlet extends HttpServlet {
 	        	"guipuzcoa","huelva","huesca","baleares","jaen","coruña","rioja","palmas",
 	        	"leon","lerida","lugo","madrid","malaga","melilla","murcia","navarra",
 	        	"orense","palencia","pontevedra","tenerife","salamanca","segovia","sevilla",
-	        	"soria","tarragona","teruel","toledo","Valencia",
+	        	"soria","tarragona","teruel","toledo","valencia",
 	        	"valladolid","vizcaya","zamora","zaragoza"};
 		
 		String[] partidos_esc0 = { "PP", "PSOE", "PODEMOS", "Cs", "EN COMÚ",
@@ -147,7 +147,7 @@ public class InitServlet extends HttpServlet {
 					105453));
 			provincias.add(new Provincia("Toledo", "toledo",
 					"CASTILLALAMANCHA", 5, 509333));
-			provincias.add(new Provincia("Valencia", "Valencia", "VALENCIA",
+			provincias.add(new Provincia("Valencia", "valencia", "VALENCIA",
 					15, 1893225));
 			provincias.add(new Provincia("Valladolid", "valladolid",
 					"CASTILLAYLEÓN", 5, 421369));
