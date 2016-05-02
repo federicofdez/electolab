@@ -15,6 +15,10 @@
   width: 70%;
   height: 500px;
 }
+#map {
+  width: 70%;
+  height: 500px;
+}
 
 svg {
   position: relative;
@@ -45,6 +49,7 @@ path:hover {
 			<div class="container-fluid" id="main-content">
 				<h2>Prueba del mapa</h2>
 				      <div id="map2" style=" border: 1px solid #AAA;"></div>
+				      <div id="map" style=" border: 1px solid #AAA;"></div>
 				      
 				<div style="padding: 40px;"></div>
 			</div>
@@ -147,7 +152,6 @@ $(document).ready(function(){
 
 	d3.json("./json/spain.json", function(error, collection) {
 	if (error) throw error;
-
 
 	var transform = d3.geo.transform({point: projectPoint}),
 	path = d3.geo.path().projection(transform);
