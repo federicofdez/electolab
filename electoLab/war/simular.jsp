@@ -312,12 +312,12 @@ path:hover {
 			$('#prov').html("");
 			var id = d.id;
 			var name = d.properties.name
-	    	var resultados = [];
 	    	var partidosProvincia = {
 	    			siglas: [],
 	    			nombre: [],
 	    			color: [],
 	    			imagen: [],
+	    			resultados: [],
 	    	};
 	    	var siglas,nombre,color,imagen = "";
 	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
@@ -341,14 +341,11 @@ path:hover {
 					partidosProvincia.nombre.push(nombre);
 					partidosProvincia.color.push(color);
 					partidosProvincia.imagen.push(imagen);
-					resultados.push(escanos);
+					partidosProvincia.resultados.push(escanos);
 				}
 				}
 			</c:forEach>
-			console.log(partidos);
-			console.log(partidosProvincia);
-			console.log(resultados);
-			graphicbar(resultados,partidosProvincia);
+			graphicbar(partidosProvincia.resultados,partidosProvincia);
 
 		})
 		.on('mouseover', function (d, i) {
@@ -443,7 +440,7 @@ path:hover {
 		});
 		 });
 </c:if>
-piechart(partidos);
+	piechart(partidos);
 
 	 });
 	</script>	
@@ -482,25 +479,45 @@ piechart(partidos);
     	    }
     	});
 		};
-    </script>
-    <script>
+
 	function piechart(partidos) {
-    	var ctx = document.getElementById("piechart").getContext("2d");
-    	var resultados = [];
-    	
-    	var i = 0;
+    	var partidosCongreso = {
+    			siglas: [],
+    			nombre: [],
+    			color: [],
+    			imagen: [],
+    			resultados:[],
+    	};
+    	var siglas,nombre,color,imagen = "";
     	<c:forEach items="${resultadosCongreso}" var="r">
-			resultados[i] = ${r.escanos};
-			
-			i++;
+				var partido = "${r.partido}";
+				var escanos =  "${r.escanos}";
+				for( var j = 0; j< partidos.siglas.length; j++){
+					if(partidos.siglas[j] == partido){
+						 siglas = partidos.siglas[j];
+						 nombre = partidos.nombre[j];
+						 color = partidos.color[j];
+						 imagen = partidos.imagen[j];
+					}
+				}
+			if(!partidosCongreso.siglas.includes(siglas)){
+				if(siglas != null){
+					partidosCongreso.siglas.push(siglas);
+					partidosCongreso.nombre.push(nombre);
+					partidosCongreso.color.push(color);
+					partidosCongreso.imagen.push(imagen);
+					partidosCongreso.resultados.push(escanos);
+				}
+			}
 		</c:forEach>
+    	var ctx = document.getElementById("piechart").getContext("2d");
 		var data = {
-			    labels: partidos.siglas,
+			    labels: partidosCongreso.siglas,
 			    datasets: [
 			        {
-			            data: resultados,
-			            backgroundColor: partidos.color,
-			            hoverBackgroundColor: partidos.color			        	
+			            data: partidosCongreso.resultados,
+			            backgroundColor: partidosCongreso.color,
+			            hoverBackgroundColor: partidosCongreso.color			        	
 			        }]
 			};
 		var options = {
@@ -514,6 +531,8 @@ piechart(partidos);
     		options: options
     	});
 	}
+	
+	
 		</script>
 </body>
 </html>
