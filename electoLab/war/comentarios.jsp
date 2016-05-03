@@ -5,6 +5,9 @@
 <%@ page
 	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<% if(session.getAttribute("user") == "" ) {response.sendRedirect((String) session.getAttribute("url"));} 
+	else if(session.getAttribute("escenario") == null) {response.sendRedirect("/registrar.jsp");}
+	%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

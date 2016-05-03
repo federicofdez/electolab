@@ -48,6 +48,14 @@ public class ForosimularServlet extends HttpServlet{
 			resp.sendRedirect("/registrar.jsp");
 			return;
 		}
+		if (user == "") {
+			resp.sendRedirect("/index.jsp");
+			return;
+		}
+		if (user != "" && req.getParameter("escenarioId") == null ) {
+			resp.sendRedirect("/index.jsp");
+			return;
+		}
 
 		Escenario escenario = null;
 		if (req.getParameter("escenarioId") != null){
@@ -62,7 +70,7 @@ public class ForosimularServlet extends HttpServlet{
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);
 		req.setAttribute("resultadosCongreso", resultadosCongreso);
-		req.setAttribute("escenario",
+		req.getSession().setAttribute("escenario",
 				escenario);
 		req.getRequestDispatcher("comentarios.jsp").forward(req, resp);
 		}

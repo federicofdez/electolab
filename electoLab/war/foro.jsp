@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,6 +6,9 @@
 <%@ page
 	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<% if(session.getAttribute("user") == "" ) {response.sendRedirect((String) session.getAttribute("url"));} 
+	else if(session.getAttribute("escenarios") == null) {response.sendRedirect("/registrar.jsp");}
+	%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

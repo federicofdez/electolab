@@ -46,7 +46,7 @@ public class ForoServlet extends HttpServlet {
 		}
 		String grupo = dao.findGroup(user).getNombre();
 		List<Escenario> escenarios = dao.readEscenariosGrupo(grupo);
-		req.setAttribute("escenarios", escenarios);
+		req.getSession().setAttribute("escenarios", escenarios);
 		req.getRequestDispatcher("foro.jsp").forward(req, resp);
 
 	}
