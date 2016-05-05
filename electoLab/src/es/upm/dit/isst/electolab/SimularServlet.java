@@ -89,7 +89,7 @@ public class SimularServlet extends HttpServlet {
 		colores.put("avila","blue");
 		colores.put("madrid","red");
 		colores.put("barcelona","green");
-		colores.put("coruna", "orange");
+		colores.put("coruña", "orange");
 		colores.put("toledo", "purple");
 		colores.put("malaga", "red");
 		req.setAttribute("colores", colores);
