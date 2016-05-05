@@ -15,7 +15,7 @@ response.setDateHeader ("Expires", 0);
 <head>
 	<%@ include file="templates/head.html" %>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-colorpicker.min.css" />
-		<script src="./js/bootstrap-colorpicker.min.js"></script>
+	<script src="./js/bootstrap-colorpicker.min.js"></script>
 	
 </head>
 
@@ -176,19 +176,8 @@ response.setDateHeader ("Expires", 0);
 	<script type="text/javascript" src="./js/dropdown.js"></script>
 	
 	<script>
-	function addPartido() {
-		//var table = document.getElementById("partidosTable");
-		//var row = table.insertRow();
-		//var cell1 = row.insertCell(0);
-		//var cell2 = row.insertCell(1);
-		//var cell3 = row.insertCell(2);
-		//var cell4 = row.insertCell(3);
-		//cell1.innerHTML = "<input type='text' class='form-control' placeholder='Siglas'>";
-		//cell2.innerHTML = "<input type='text' class='form-control' placeholder='Nombre'>";
-		//cell3.innerHTML = "<input type='text' class='form-control' placeholder='Color'>";
-		//cell4.innerHTML = " <div class='dropdown'><button class='btn btn-default dropdown-toggle numCA' type='button' data-toggle='dropdown'>Todas<span class='caret'></span></button><ul class='dropdown-menu'><li><a class='madrid' href='#'>Madrid</a></li><li><a class='barcelona' href='#'>Barcelona</a></li></ul></div>";
-		// $('.p1').removeClass("hidden");
-	}
+
+	//DataTable
 	var oTable = $('#votosTable');
 	oTable.DataTable( {
         "scrollX": true,
@@ -199,6 +188,8 @@ response.setDateHeader ("Expires", 0);
         "paging":         false
 
     } );
+	
+	//Etiquetas de electores
     $('[data-toggle="tooltip"]').tooltip(); 
 
     

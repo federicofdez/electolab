@@ -184,9 +184,6 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="./js/dropdown.js"></script>
-	<script type="text/javascript" src="./js/bootstrap-colorselector.js"></script>
-	<script type="text/javascript" src="./js/cambiarsimulacio.js"></script>
 	<script>
 	$('#votosTable').DataTable( {
         "scrollX": true,

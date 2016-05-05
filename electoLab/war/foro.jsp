@@ -63,14 +63,15 @@
 			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
 		</div>
 				<%@ include file="templates/footer.html" %>
-	<script type="text/javascript" src="./js/bootstrap-confirmation.js"></script>
-	
+	<script type="text/javascript" src="./js/bootstrap-confirmation.js"></script>	
 	</footer>
 	<script>	
+	//Datatable
 	$('#foroTable').DataTable( {
         "ordering": true, 
     } ); 
 	
+	//Etiqueta de confirmacion de borrado
 	$('[data-toggle="confirmation"]').confirmation({ btnOkLabel: "Sí", btnCancelLabel: "No", title:"¿Confirmar borrado de escenario?", btnOkClass:"btn btn-info", btnCancelClass:"btn btn-danger", animation:"true"});
 	
 	</script>
