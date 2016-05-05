@@ -59,6 +59,7 @@ path:hover {
 		<%@ include file="templates/main.jsp"%>
 		<div class="container-fluid" id="main-content">
 			<h1>Resultado de la simulación</h1>
+			<h3><c:out value='${escenario.titulo}'/></h3>		
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px; margin-top: 10px;">
 			<div class="row" style="margin-top: 20px;">

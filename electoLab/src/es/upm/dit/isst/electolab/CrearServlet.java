@@ -1,10 +1,13 @@
 package es.upm.dit.isst.electolab;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -94,7 +97,14 @@ public class CrearServlet extends HttpServlet {
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
 		Enumeration datos = req.getParameterNames();
 
-		String usuario = "no registrado";
+		String usuario = req.getParameter("usuario");
+		
+		String titulo = req.getParameter("titulo");
+		
+		SimpleDateFormat formateador = new SimpleDateFormat( "dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
+		Date fechaDate = new Date();
+		String fecha = formateador.format(fechaDate);
+		
 		int mayoria_abs = Integer.parseInt(req.getParameter("mayoria"));
 
 		Sistema sistema = Sistema.valueOf(req.getParameter("sistema"));
@@ -132,8 +142,7 @@ public class CrearServlet extends HttpServlet {
 				}
 			}
 		}
-
-		return new Escenario(usuario, votos, provincias, partidos, comentarios,
-				sistema, circunscripciones, mayoria_abs);
+		return new Escenario(usuario, titulo, votos, provincias, partidos, comentarios,
+				sistema, circunscripciones, mayoria_abs, fecha);
 	}
 }

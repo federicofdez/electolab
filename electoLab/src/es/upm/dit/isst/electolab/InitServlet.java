@@ -1,8 +1,11 @@
 package es.upm.dit.isst.electolab;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServlet;
 
@@ -197,9 +200,15 @@ public class InitServlet extends HttpServlet {
 
 			List<Comentario> comentarios = new ArrayList<Comentario>();
 
-			dao.createEscenario("admin", votos, provincias, partidos,
+			String titulo= "Escenario inicial";
+			
+			SimpleDateFormat formateador = new SimpleDateFormat( "dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
+			Date fechaDate = new Date();
+			String fecha = formateador.format(fechaDate);
+			
+			dao.createEscenario("admin",titulo, votos, provincias, partidos,
 					comentarios, Sistema.DHONDT, Circunscripciones.PROVINCIAS,
-					50);
+					50,fecha);
 
 		}
 	}

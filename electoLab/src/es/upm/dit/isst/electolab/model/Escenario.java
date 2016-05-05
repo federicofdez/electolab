@@ -22,6 +22,7 @@ public class Escenario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String usuario;
+	private String titulo;
 
 	private Text votosJSON; // List<Votos>
 	private Text provinciasJSON; // List<Provincia>
@@ -31,6 +32,25 @@ public class Escenario implements Serializable {
 	private Sistema sistema;
 	private Circunscripciones circunscripciones;
 	private int mayoria_abs;
+	private String fecha;
+
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 
 	public Escenario(String usuario, Text votosJSON,
 			Text provinciasJSON, Text partidosJSON, Text comentariosJSON,
@@ -47,12 +67,13 @@ public class Escenario implements Serializable {
 		this.mayoria_abs = mayoria_abs;
 	}
 	
-	public Escenario(String usuario, List<Votos> votos,
+	public Escenario(String usuario,String titulo, List<Votos> votos,
 			List<Provincia> provincias, List<Partido> partidos,
 			List<Comentario> comentarios, Sistema sistema,
-			Circunscripciones circunscripciones, int mayoria_abs) {
+			Circunscripciones circunscripciones, int mayoria_abs, String fecha) {
 		super();
 		this.usuario = usuario;
+		this.titulo = titulo;
 		this.setVotos(votos);
 		this.setProvincias(provincias);
 		this.setPartidos(partidos);
@@ -60,6 +81,8 @@ public class Escenario implements Serializable {
 		this.sistema = sistema;
 		this.circunscripciones = circunscripciones;
 		this.mayoria_abs = mayoria_abs;
+		this.fecha = fecha;
+
 	}
 
 	public Long getId() {
@@ -230,21 +253,16 @@ public class Escenario implements Serializable {
 		}
 		this.comentariosJSON = new Text(array.toJSONString());
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Escenario ["
-				+ "id=" + id + ", "
-				+ "usuario=" + usuario + ", "
-				+ "votosJSON=" + votosJSON + ", "
-				+ "provinciasJSON=" + provinciasJSON + ", "
-				+ "partidosJSON=" + partidosJSON + ", "
-				+ "comentariosJSON=" + comentariosJSON + ", "
-				+ "sistema=" + sistema + ", "
-				+ "circunscripciones=" + circunscripciones + ", "
-				+ "mayoria_abs=" + mayoria_abs
-				+ "]";
+		return "Escenario [id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", votosJSON=" + votosJSON
+				+ ", provinciasJSON=" + provinciasJSON + ", partidosJSON=" + partidosJSON + ", comentariosJSON="
+				+ comentariosJSON + ", sistema=" + sistema + ", circunscripciones=" + circunscripciones
+				+ ", mayoria_abs=" + mayoria_abs + ", fecha=" + fecha + "]";
 	}
+	
+
+
 
 }

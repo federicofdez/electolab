@@ -23,7 +23,6 @@ public class LOGICA {
 			Escenario escenario) {
 		Circunscripciones circunscripciones = escenario.getCircunscripciones();
 		if (circunscripciones == Circunscripciones.PROVINCIAS) {
-
 			List<Votos> votosProvinciasAbsolutos = new ArrayList<Votos>();
 			for (Provincia provincia : escenario.getProvincias()) {
 				List<Votos> votosProvincia = new ArrayList<Votos>();

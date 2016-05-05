@@ -15,10 +15,10 @@ import es.upm.dit.isst.electolab.model.Votos;
 public interface ElectoLabDAO {
 	
 	// CREATE Escenario
-	public Escenario createEscenario(String usuario, List<Votos> votos,
+	public Escenario createEscenario(String usuario,String titulo, List<Votos> votos,
 			List<Provincia> provincias, List<Partido> partidos,
 			List<Comentario> comentarios, Sistema sistema,
-			Circunscripciones circunscripciones, int mayoria_abs);
+			Circunscripciones circunscripciones, int mayoria_abs, String fecha);
 	public Escenario createEscenario(Escenario escenario);
 	
 	// READ Escenario

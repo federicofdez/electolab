@@ -38,9 +38,9 @@
 									<tr <c:if test="${escenario.usuario == user}"> class="info" </c:if> >									
 										<form method="get" action="/forosimular">
 											<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
-											<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
+											<th scope="row"><h5><input type="submit" value="${escenario.titulo}"/></h5></th>
 											<td><c:out value="${escenario.usuario}"/></td>
-											<td style="color: #A4A4A4;">00/00/0000</td>
+											<td style="color: #A4A4A4;"><c:out value="${escenario.fecha}"/></td>
 											<td>
 										</form>
 										<c:if test="${escenario.usuario == user}">

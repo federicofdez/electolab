@@ -28,13 +28,13 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 	// CREATE Escenario
 
 	@Override
-	public Escenario createEscenario(String usuario, List<Votos> votos,
+	public Escenario createEscenario(String usuario,String titulo, List<Votos> votos,
 			List<Provincia> provincias, List<Partido> partidos,
 			List<Comentario> comentarios, Sistema sistema,
-			Circunscripciones circunscripciones, int mayoria_abs) {
+			Circunscripciones circunscripciones, int mayoria_abs, String fecha) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Escenario escenario = new Escenario(usuario, votos, provincias,
-				partidos, comentarios, sistema, circunscripciones, mayoria_abs);
+		Escenario escenario = new Escenario(usuario,titulo, votos, provincias,
+				partidos, comentarios, sistema, circunscripciones, mayoria_abs,fecha);
 		em.persist(escenario);
 		em.close();
 		return escenario;

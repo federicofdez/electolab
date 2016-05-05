@@ -23,7 +23,7 @@
 	<div class="container">
 		<%@ include file="templates/main.jsp"%>
 		<div class="container-fluid" id="main-content">
-			<h1>simulación <c:out value="${escenario.id }"/></h1>
+			<h1>Simulación: <c:out value="${escenario.titulo }"/></h1>
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px;">
 				<div class="row" style="margin-top: 15px;">
