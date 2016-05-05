@@ -464,15 +464,25 @@ path:hover {
 			        	label: "Escaños ",
 			        	data: resultados,
 			            backgroundColor: partidos.color,
-			            hoverBackgroundColor: partidos.color			        	
+			            hoverBackgroundColor: partidos.color,
 			        }]
 			};
+		
     	var myBarChart = new Chart(ctx,{
     	    type: 'bar',
     	    data: data,
     	    display:false,
     	    scaleLabel:{
     	    	display:false
+    	    },
+    	    options: {
+    	        scales: {
+    	            yAxes: [{
+    	                ticks: {
+    	                    beginAtZero:true,
+    	                }
+    	            }]
+    	        }
     	    }
     	});
 		};
