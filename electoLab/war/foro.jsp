@@ -46,7 +46,7 @@
 										<c:if test="${escenario.usuario == user}">
 										<form method="post" action="/borrasimulacion">
 										<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
-										<input type="submit" value="Borrar simulación"/>
+										<input type="submit" class="btn btn-default" data-toggle="confirmation" data-placement="bottom" value="Borrar escenario"></n>
 										</form>
 										</c:if>
 										</td>
@@ -63,11 +63,16 @@
 			<p>Desarrollado por Grupo 20. Todos los derechos reservados.</p>
 		</div>
 				<%@ include file="templates/footer.html" %>
+	<script type="text/javascript" src="./js/bootstrap-confirmation.js"></script>
 	
 	</footer>
 	<script>	
 	$('#foroTable').DataTable( {
         "ordering": true, 
-    } );  </script>
+    } ); 
+	
+	$('[data-toggle="confirmation"]').confirmation({ btnOkLabel: "Sí", btnCancelLabel: "No", title:"¿Confirmar borrado de escenario?", btnOkClass:"btn btn-info", btnCancelClass:"btn btn-danger", animation:"true"});
+	
+	</script>
 </body>
 </html>
