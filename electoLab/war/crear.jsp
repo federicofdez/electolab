@@ -140,7 +140,7 @@ response.setDateHeader ("Expires", 0);
 							</table>
 							<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">
 								<thead> <tr>
-									<th class="col-lg-3 center-block">Computación total</th>
+									<th class="col-lg-3 center-block">Nombre de simulación</th>
 									<th class="col-lg-3 center-block">Total de Votos</th>
 									<th class="col-lg-3 center-block">Total de Circunscripciones</th>
 									<th class="col-lg-3 center-block">Total de Escaños</th>
@@ -148,10 +148,10 @@ response.setDateHeader ("Expires", 0);
 								</thead>
 								<tbody>
 								<tr>
-									<th scope="row"><h5>SimulacioXX</h5></th>
-									<th><input type='text' class='form-control' name="votos_totales" placeholder="1.000.000"></th>
-									<th> <input type='text' class='form-control' name="total_circuns" placeholder="52"><c:out value="${total_votos}"/></th>
-									<th> <input type='text' class='form-control '  name="total_escaños" placeholder="340"></th>
+									<th><input type='text' class='form-control' name="simulacion" ></th>
+									<th></th>
+									<th></th>
+									<th>350</th>
 								</tr>
 							</table>
 						</div>
@@ -171,10 +171,7 @@ response.setDateHeader ("Expires", 0);
 		</div>
 				<%@ include file="templates/footer.html" %>
 		
-	</footer>
-
-	<script type="text/javascript" src="./js/dropdown.js"></script>
-	
+	</footer>	
 	<script>
 
 	//DataTable
