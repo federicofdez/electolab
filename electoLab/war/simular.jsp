@@ -152,8 +152,15 @@ path:hover {
 				</div>
 			</div>
 			<div class="col-lg-12" style="padding-bottom: 40px;">
-				<button class="btn btn-info center-block" data-toggle="modal"
+				<div class="col-lg-6">
+								<button class="btn btn-success center-block">Guardar simulación</button>
+				</div>
+				<div class="col-lg-6">
+					<button class="btn btn-info center-block" data-toggle="modal"
 					data-target="#popupInforme">Generar informe</button>
+				</div>
+			</div>
+				
 			</div>
 		</div>
 		<div style="padding: 20px;"></div>
