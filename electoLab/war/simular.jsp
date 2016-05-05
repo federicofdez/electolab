@@ -236,14 +236,12 @@ path:hover {
 			<%@ include file="templates/footer.html"%>
 
 		</div>
-	</footer>
-
-	<script type="text/javascript" src="./js/dropdown.js"></script>
-	<script type="text/javascript" src="./js/bootstrap-colorselector.js"></script>
-	<script type="text/javascript" src="./js/cambiarsimulacio.js"></script>
 	<script type='text/javascript' src="./js/topojson.v1.min.js"></script>
 	<script type='text/javascript'  src="./js/d3.v3.min.js"></script>
-	<script type='text/javascript' src='./js/leaflet.js'></script>	
+	<script type='text/javascript' src='./js/leaflet.js'></script>
+	<script src="./js/Chart.js"></script>
+		
+	</footer>
 	<script class="mapScript">
 	$(document).ready(function(){
 		
@@ -342,7 +340,7 @@ path:hover {
 				}
 				}
 			</c:forEach>
-			graphicbar(partidosProvincia.resultados,partidosProvincia);
+			graphicbar(partidosProvincia);
 
 		})
 		.on('mouseover', function (d, i) {
@@ -382,6 +380,7 @@ path:hover {
 
 		});
 	
+		//CASO MAPA COMUNIDADES - HAY QUE INTEGRARLO EN EL ANTERIOR
 	<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}">
 	d3.json("./json/communities_esp.topo.json", function(error, collection) {
 		if (error) throw error;
@@ -437,34 +436,31 @@ path:hover {
 		});
 		 });
 </c:if>
-	piechart(partidos);
 
-	 });
-	</script>	
-
+piechart(partidos);
 	
-	<script>
+	//Datatable
 	$('#votosTable').DataTable( {
         "scrollX": true,
         "ordering": false, 
     } );  
-	</script>
-	<script src="./js/Chart.js"></script>
-	
+	 });
+	</script>	
 	<script type="text/javascript">
-				
-		function graphicbar(resultados,partidos) {
+		//Funciones de graficas
+		
+		function graphicbar(arraysPartidos) {
     	var ctx = document.getElementById("graphicbar").getContext("2d"); 
-
+		arraysPartidos = order(arraysPartidos);
 		var data = {
-			    labels: partidos.siglas,
+			    labels: arraysPartidos.siglas,
 			    datasets: [
 			        {			   
 			        	
 			        	label: "Escaños ",
-			        	data: resultados,
-			            backgroundColor: partidos.color,
-			            hoverBackgroundColor: partidos.color,
+			        	data: arraysPartidos.resultados,
+			            backgroundColor: arraysPartidos.color,
+			            hoverBackgroundColor: arraysPartidos.color,
 			        }]
 			};
 		
@@ -487,7 +483,7 @@ path:hover {
     	});
 		};
 
-	function piechart(partidos) {
+	function piechart(arrayPartidos) {
     	var partidosCongreso = {
     			siglas: [],
     			nombre: [],
@@ -499,12 +495,12 @@ path:hover {
     	<c:forEach items="${resultadosCongreso}" var="r">
 				var partido = "${r.partido}";
 				var escanos =  "${r.escanos}";
-				for( var j = 0; j< partidos.siglas.length; j++){
-					if(partidos.siglas[j] == partido){
-						 siglas = partidos.siglas[j];
-						 nombre = partidos.nombre[j];
-						 color = partidos.color[j];
-						 imagen = partidos.imagen[j];
+				for( var j = 0; j< arrayPartidos.siglas.length; j++){
+					if(arrayPartidos.siglas[j] == partido){
+						 siglas = arrayPartidos.siglas[j];
+						 nombre = arrayPartidos.nombre[j];
+						 color = arrayPartidos.color[j];
+						 imagen = arrayPartidos.imagen[j];
 					}
 				}
 			if(!partidosCongreso.siglas.includes(siglas)){
@@ -517,6 +513,7 @@ path:hover {
 				}
 			}
 		</c:forEach>
+		var partidosCongreso = order(partidosCongreso);
     	var ctx = document.getElementById("piechart").getContext("2d");
 		var data = {
 			    labels: partidosCongreso.siglas,
@@ -537,9 +534,33 @@ path:hover {
     	    data: data,
     		options: options
     	});
+		order();
 	}
-	
-	
+
+	function order(arraysPartidos){
+    	var sortable = [];
+			for (var i = 0 ; i < arraysPartidos.siglas.length ; i++){
+		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i]]);
+			}
+		      sortable.sort(function(a, b) {return a[4] - b[4]}).reverse();
+		
+		partidosOrder = {
+    			siglas: [],
+    			nombre: [],
+    			color: [],
+    			imagen: [],
+    			resultados:[],
+    	};
+		for (var i = 0; i< arraysPartidos.siglas.length; i++){
+			partidosOrder.siglas[i] = sortable[i][0];
+			partidosOrder.nombre[i] = sortable[i][1];
+			partidosOrder.color[i] = sortable[i][2];
+			partidosOrder.imagen[i] = sortable[i][3];
+			partidosOrder.resultados[i] = sortable[i][4];		
+		}
+		return partidosOrder;
+	}
+
 		</script>
 </body>
 </html>
