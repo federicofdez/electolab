@@ -27,9 +27,10 @@
 					<table class="table table-hover" id="foroTable">
 						<thead>
 							<tr>
-								<th class="col-lg-4" >Tema</th>
-								<th class="col-lg-4">Autor</th>
-								<th class="col-lg-4">Fecha</th>
+								<th class="col-lg-3" >Tema</th>
+								<th class="col-lg-3">Autor</th>
+								<th class="col-lg-3">Fecha</th>
+								<th class="col-lg-3"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,7 +41,15 @@
 											<th scope="row"><h5><input type="submit" value="${escenario.id}"/></h5></th>
 											<td><c:out value="${escenario.usuario}"/></td>
 											<td style="color: #A4A4A4;">00/00/0000</td>
+											<td>
 										</form>
+										<c:if test="${escenario.usuario == user}">
+										<form method="post" action="/borrasimulacion">
+										<input type="hidden" name="escenarioId" id="escenarioId" value="${escenario.id}"/>
+										<input type="submit" value="Borrar simulación"/>
+										</form>
+										</c:if>
+										</td>
 									</tr>
 								</c:forEach>
 						</tbody>
