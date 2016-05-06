@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
+<% if(session.getAttribute("user") != "" ) {response.sendRedirect((String) session.getAttribute("url"));} 
+	%>
 <!DOCTYPE html>
 <html>
 <head>
