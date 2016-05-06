@@ -31,5 +31,10 @@ public class Votos extends AsociacionPartidoCircunscripcion implements JSONAware
 		obj.put("votos", this.votos);
 		return obj.toString();
 	}
+	
+	@Override
+	public String toString() {
+		return this.partido + "/" + this.votos;
+	}
 
 }

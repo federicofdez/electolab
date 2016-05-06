@@ -16,9 +16,15 @@ import es.upm.dit.isst.electolab.model.Votos;
 
 public class LOGICA {
 
-	// Metodo de adaptacion de datos para calcular los escaños
-	// Devuelve lista de Votos (circunscripcion, partido,voto)
-	// a partir de (provincia, partido, porcentaje)
+	/**
+	 * A partir del objeto Escenario de entrada, obtiene una lista de votos
+	 * preparada para aplicar el sistema correspondiente.
+	 * 
+	 * @param escenario
+	 *            el objeto Escenario creado a partir de los datos de entrada
+	 * @return lista de Votos absolutos y agrupados por la circunscripción
+	 *         elegida
+	 */
 	public static List<Votos> calcularVotosAbsolutosPorCircunscripcion(
 			Escenario escenario) {
 		Circunscripciones circunscripciones = escenario.getCircunscripciones();
@@ -89,8 +95,15 @@ public class LOGICA {
 		return null;
 	}
 
-	// A partir de un escenario, devuelve un mapa de tipo
-	// (Clave: circunscripcion, valor: escaños asignados)
+	/**
+	 * A partir del objeto Escenario de entrada, obtiene un mapa con los escaños
+	 * a repartir, preparada para aplicar el sistema correspondiente
+	 * 
+	 * @param escenario
+	 *            el objeto Escenario creado a partir de los datos de entrada
+	 * @return mapa con los escaños a repartir en cada una de las
+	 *         circunscripciones que haya
+	 */
 	public static HashMap<String, Integer> calcularEscanosPorCircunscripcion(
 			Escenario escenario) {
 		Circunscripciones circunscripciones = escenario.getCircunscripciones();
@@ -118,10 +131,20 @@ public class LOGICA {
 		return escanosAsignados;
 	}
 
-	// Calcula los escaños por circunscripcion a partir de
-	// la lista de votos con datos adaptados a circunscripciones,
-	// el mapa que asigna escaños a cada circunscripción
-	// y el sistema electoral elegido
+	/**
+	 * Aplica un sistema de proporcionalidad a una lista de votos absolutos,
+	 * repartiendo un determinado número de escaños a cada circunscripción.
+	 * 
+	 * @param votos
+	 *            lista con los votos absolutos agrupados por circunscripción
+	 * @param escanosCircunscripcion
+	 *            mapa con los escaños a repartir en cada una de las
+	 *            circunscripciones que haya
+	 * @param sistema
+	 *            el sistema de proporcionalidad elegido
+	 * @return lista con los escaños que resultan del reparto, granulados por
+	 *         circunscripciones
+	 */
 	public static List<Escanos> calcularEscanos(List<Votos> votos,
 			HashMap<String, Integer> escanosCircunscripcion, Sistema sistema) {
 		// Creamos un diccionario Circunscripcion -> {Partido ->Voto}
@@ -158,17 +181,26 @@ public class LOGICA {
 						partidosVotos.get(partido)));
 
 			// AQUÍ Llamamos al calculo de escaños
-			if (sistema == Sistema.DHONDT)
-				for (Escanos escano : calcularDHondt(votosPorCircunscripcion,
-						escanosCircunscripcion.get(circunscripcion)))
-					escanos.add(escano);
-			// Aquí ira else con cada sistema posible
+			for (Escanos escano : calcularSistema(sistema,
+					votosPorCircunscripcion,
+					escanosCircunscripcion.get(circunscripcion)))
+				escanos.add(escano);
 
 		}
 		return (escanos);
 
 	}
 
+	/**
+	 * Agrupa los resultados de todas las circunscripciones para obtener los del
+	 * Congreso.
+	 * 
+	 * @param resultadosCircunscripciones
+	 *            lista con los resultados de todas las circunscripciones
+	 * @param escenario
+	 *            para obtener todos los partidos que se han presentado
+	 * @return lista con los resultados agrupados para toda España (Congreso)
+	 */
 	public static List<Escanos> resultadosCongreso(
 			List<Escanos> resultadosCircunscripciones, Escenario escenario) {
 		ArrayList<Escanos> escanos = new ArrayList<Escanos>();
@@ -187,7 +219,16 @@ public class LOGICA {
 		return (escanos);
 	}
 
-	// Con este metodo cambiamos de porcentajes a votos
+	/**
+	 * Para una circunscripción, pasa los porcentajes introducidos a datos
+	 * absolutos.
+	 * 
+	 * @param porcentajes
+	 *            lista de votos de una circunscripción en formato porcentual
+	 * @param electores
+	 *            número de votantes en la circunscripción
+	 * @return lista de votos de la circunscripción en formato absoluto
+	 */
 	private static List<Votos> calcularVotosAbsolutos(List<Votos> porcentajes,
 			int electores) {
 		int votosb;
@@ -202,8 +243,20 @@ public class LOGICA {
 		return votos_sinporcen;
 	}
 
-	// Calcula escaños por metodo Dhondt para una circunscripcion
-	private static List<Escanos> calcularDHondt(
+	/**
+	 * Aplica un sistema de proporcionalidad a los votos de una circunscripción,
+	 * para conocer el reparto de escaños resultante en la misma.
+	 * 
+	 * @param sistema
+	 *            el sistema de proporcionalidad a aplicar
+	 * @param votosPorCircunscripcion
+	 *            lista con los votos agrupados por el tipo de circunscripción
+	 *            para el que se hará el cálculo
+	 * @param numEscanos
+	 *            escaños a repartir en esa circunscripción
+	 * @return lista de escaños resultantes del reparto
+	 */
+	private static List<Escanos> calcularSistema(Sistema sistema,
 			List<Votos> votosPorCircunscripcion, int numEscanos) {
 		List<Escanos> escanos = new ArrayList<Escanos>();
 		List<Votos> votosPorCircunscripcionAux = new ArrayList<Votos>();
@@ -216,25 +269,53 @@ public class LOGICA {
 					votosPorCircunscripcion);
 			escanos = sumarEscano(escanos, ganador, votosPorCircunscripcion
 					.get(0).getCircunscripcion());
-			votosPorCircunscripcionAux = actualizarVotosDHondt(
+			votosPorCircunscripcionAux = actualizarVotos(sistema,
 					votosPorCircunscripcionAux, escanos, ganador);
 		}
 		return escanos;
 	}
 
-	private static List<Votos> actualizarVotosDHondt(List<Votos> votosAux,
-			List<Escanos> escanos, String ganador) {
+	/**
+	 * Actualiza los votos aplicando al partido ganador el cociente que
+	 * corresponda según el sistema
+	 * 
+	 * @param sistema
+	 *            determina el cociente a aplicar
+	 * @param votosAux
+	 *            lista de votos que se actualizará
+	 * @param escanos
+	 *            lista para determinar el cociente a aplicar
+	 * @param ganador
+	 *            siglas del partido que verá sus votos recalculados
+	 * @return la misma lista de entrada, pero actualizada
+	 */
+	private static List<Votos> actualizarVotos(Sistema sistema,
+			List<Votos> votosAux, List<Escanos> escanos, String ganador) {
 		for (Votos v : votosAux)
 			if (v.getPartido().equals(ganador))
 				for (Escanos e : escanos)
 					if (e.getPartido().equals(ganador)) {
-						v.setVotos(v.getVotos() * e.getEscanos()
-								/ (e.getEscanos() + 1));
+						if (sistema == Sistema.DHONDT)
+							v.setVotos(v.getVotos() * e.getEscanos()
+									/ (e.getEscanos() + 1));
+						else if (sistema == Sistema.SAINTE)
+							v.setVotos(v.getVotos() * (2 * e.getEscanos() - 1)
+									/ (2 * e.getEscanos() + 1));
 						return votosAux;
 					}
 		return null;
 	}
 
+	/**
+	 * Calcula el partido con más votos en una determinada ronda de asignación
+	 * de escaños
+	 * 
+	 * @param votos
+	 *            actualizados dependiendo de la ronda
+	 * @param votosOriginales
+	 *            para comparar en caso de empate
+	 * @return siglas del partido que gana la ronda
+	 */
 	private static String buscarMaximo(List<Votos> votos,
 			List<Votos> votosOriginales) {
 		int indiceMaximo = 0;
@@ -248,8 +329,11 @@ public class LOGICA {
 			} else if (indiceMaximo != votos.indexOf(voto)
 					&& voto.getVotos() == votos.get(indiceMaximo).getVotos()) {
 				if (!hayEmpate)
-					empatados.add(votos.get(indiceMaximo));
-				empatados.add(voto);
+					empatados.add(new Votos(votos.get(indiceMaximo)
+							.getCircunscripcion(), votos.get(indiceMaximo)
+							.getPartido(), votos.get(indiceMaximo).getVotos()));
+				empatados.add(new Votos(voto.getCircunscripcion(), voto
+						.getPartido(), voto.getVotos()));
 				hayEmpate = true;
 			}
 		}
@@ -270,10 +354,15 @@ public class LOGICA {
 					hayEmpateAbs = false;
 					empatadosAbs.clear();
 				} else if (indiceMaximoAbs != empatados.indexOf(voto)
-						&& voto.getVotos() == empatados.get(indiceMaximoAbs).getVotos()) {
+						&& voto.getVotos() == empatados.get(indiceMaximoAbs)
+								.getVotos()) {
 					if (!hayEmpateAbs)
-						empatadosAbs.add(empatados.get(indiceMaximoAbs));
-					empatadosAbs.add(voto);
+						empatadosAbs.add(new Votos(empatados.get(
+								indiceMaximoAbs).getCircunscripcion(),
+								empatados.get(indiceMaximoAbs).getPartido(),
+								empatados.get(indiceMaximoAbs).getVotos()));
+					empatadosAbs.add(new Votos(voto.getCircunscripcion(), voto
+							.getPartido(), voto.getVotos()));
 					hayEmpateAbs = true;
 				}
 			}
@@ -287,6 +376,18 @@ public class LOGICA {
 		return votos.get(indiceMaximo).getPartido();
 	}
 
+	/**
+	 * Suma un escaño al partido que ha ganado una determinada ronda de
+	 * asignación de escaños
+	 * 
+	 * @param escanos
+	 *            lista con los escaños, para sumar el nuevo
+	 * @param ganador
+	 *            siglas del partido que ha ganado la ronda
+	 * @param circunscripcion
+	 *            en la que el partido recibe el escaño
+	 * @return la misma lista de entrada, pero actualizada
+	 */
 	private static List<Escanos> sumarEscano(List<Escanos> escanos,
 			String ganador, String circunscripcion) {
 		for (Escanos e : escanos)

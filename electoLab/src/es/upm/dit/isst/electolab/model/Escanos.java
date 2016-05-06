@@ -16,4 +16,9 @@ public class Escanos extends AsociacionPartidoCircunscripcion {
 	public void setEscanos(int escanos) {
 		this.escanos = escanos;
 	}
+	
+	@Override
+	public String toString() {
+		return this.partido + "/" + this.escanos;
+	}
 }
