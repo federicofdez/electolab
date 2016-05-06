@@ -101,14 +101,38 @@ public class ForosimularServlet extends HttpServlet{
 					return;
 				}
 				
+				if (user == "") {
+					resp.sendRedirect("/index.jsp");
+					return;
+				}
+				if (user != "" && req.getParameter("escenarioId") == null ) {
+					resp.sendRedirect("/index.jsp");
+					return;
+				}
+
+				Escenario escenario = null;
+				if (req.getParameter("escenarioId") != null){
+					 escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenarioId")));
+					System.out.println("TIPO DE OBJETO" + escenario.toString());
+				List<Votos> votosPorCircunscripcion = LOGICA.calcularVotosAbsolutosPorCircunscripcion(escenario);
+				HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.calcularEscanosPorCircunscripcion(escenario);
+				List<Escanos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
+								escanosPorCircunscripcion, escenario.getSistema());
+				List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+
+				req.setAttribute("resultadosPorCircunscripcion",
+						resultadosPorCircunscripcion);
+				req.setAttribute("resultadosCongreso", resultadosCongreso);
+				req.getSession().setAttribute("escenario",
+						escenario);
+				
 				String texto = req.getParameter("comentario");
 				SimpleDateFormat formateador = new SimpleDateFormat( "dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
 				Date fechaDate = new Date();
 				String fecha = formateador.format(fechaDate);
 				Comentario comentario = new Comentario(user, fecha, texto);
-				Escenario escenario = dao.createComentario(Long.parseLong(req.getParameter("escenarioId")), comentario);
-				req.getSession().setAttribute("escenario", dao.readEscenarios("admin").get(0));
+				dao.createComentario(Long.parseLong(req.getParameter("escenarioId")), comentario);
 				req.getRequestDispatcher("comentarios.jsp").forward(req, resp);
 			}
-		
+	}
 }

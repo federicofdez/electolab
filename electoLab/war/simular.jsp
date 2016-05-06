@@ -498,7 +498,6 @@ piechart(partidos);
 				}
 			}
 		</c:forEach>
-		partidosCongreso.resultados[0] = 2;
 		function getSum(total, num) {
 		    return parseInt(total) + parseInt(num);
 		}
