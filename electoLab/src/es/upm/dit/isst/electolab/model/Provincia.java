@@ -22,6 +22,11 @@ public class Provincia implements JSONAware,Serializable{
 		this.escanos = escanos;
 		this.electores = electores;
 	}
+	
+	public Provincia(String id){
+		super();
+		this.id = id;
+	}
 
 	public String getId() {
 		return id;
@@ -73,5 +78,12 @@ public class Provincia implements JSONAware,Serializable{
 		obj.put("electores", this.electores);
 		return obj.toString();
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && ((Provincia)obj).getId().equals(this.id))
+			return true;
+		else return false;
+	}
+	
 }

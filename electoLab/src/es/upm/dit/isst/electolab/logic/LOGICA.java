@@ -27,72 +27,78 @@ public class LOGICA {
 	 */
 	public static List<Votos> calcularVotosAbsolutosPorCircunscripcion(
 			Escenario escenario) {
-		Circunscripciones circunscripciones = escenario.getCircunscripciones();
-		if (circunscripciones == Circunscripciones.PROVINCIAS) {
-			List<Votos> votosProvinciasAbsolutos = new ArrayList<Votos>();
-			for (Provincia provincia : escenario.getProvincias()) {
-				List<Votos> votosProvincia = new ArrayList<Votos>();
+		List<Votos> votosAbsolutosPorCircunscripcion = new ArrayList<Votos>();
+
+		switch (escenario.getCircunscripciones()) {
+
+		case PROVINCIAS:
+			// para cada provincia
+			for (Provincia provincia : escenario.getProvincias())
+				// buscamos sus datos de votos
 				for (Votos voto : escenario.getVotos())
-					if (voto.getCircunscripcion().equals(provincia.getId()))
-						votosProvincia.add(voto);
-				for (Votos votoAbsoluto : calcularVotosAbsolutos(
-						votosProvincia, provincia.getElectores()))
-					votosProvinciasAbsolutos.add(votoAbsoluto);
+					if (voto.getCircunscripcion().equals(provincia.getId())) {
+						// los pasamos a absoluto
+						Votos votosAbs = new Votos(voto.getCircunscripcion(),
+								voto.getPartido(),
+								(int) (Math.floor(voto.getVotos()
+										* provincia.getElectores()) / 100));
+						// y los guardamos
+						votosAbsolutosPorCircunscripcion.add(votosAbs);
+					}
+			break;
+
+		case COMUNIDADES:
+			HashMap<String, Integer> aux1 = new HashMap<String, Integer>();
+			// para cada dato de votos en una provincia
+			for (Votos voto : escenario.getVotos()) {
+				// buscamos a qué provincia pertenece
+				Provincia p = escenario.getProvincias().get(
+						escenario.getProvincias().indexOf(
+								new Provincia(voto.getCircunscripcion())));
+				// pasamos los votos a absoluto
+				int votos = (int) (Math.floor(voto.getVotos()
+						* p.getElectores()) / 100);
+				// y los guardamos en el mapa auxiliar por comunidad
+				String key = voto.getPartido() + ":" + p.getComunidad();
+				if (aux1.containsKey(key))
+					aux1.put(key, aux1.get(key) + votos);
+				else
+					aux1.put(key, votos);
 			}
-			return (votosProvinciasAbsolutos);
+			// por último, pasamos el mapa auxiliar a lista de Votos
+			for (String k : aux1.keySet()) {
+				String partido = k.split(":")[0];
+				String comunidad = k.split(":")[1];
+				votosAbsolutosPorCircunscripcion.add(new Votos(comunidad,
+						partido, aux1.get(k)));
+			}
+			break;
 
-		} else if (circunscripciones == Circunscripciones.COMUNIDADES) {
-			HashMap<String, Integer> votosMap = new HashMap();
-			List<Votos> votosComunidadesAbsolutos = new ArrayList<Votos>();
-
-			// Primero rellenamos la lista que devolveremos
-			for (Comunidades comunidad : Comunidades.values())
-				for (Partido partido : escenario.getPartidos())
-					votosMap.put(partido.getSiglas() + comunidad.toString(), 0);
-
-			// Actualizo el diccionario
-			for (Votos voto : escenario.getVotos())
-				for (Provincia provincia : escenario.getProvincias())
-					if (voto.getCircunscripcion().equals(provincia.getId())) {
-						int votos = (int) (Math.floor(voto.getVotos()
-								* provincia.getElectores()) / 100);
-						votosMap.put(
-								voto.getPartido() + provincia.getComunidad(),
-								votosMap.get(voto.getPartido()
-										+ provincia.getComunidad())
-										+ votos);
-					}
-
-			// Mapeo el diccionario a lista de Votos
-			for (Comunidades comunidad : Comunidades.values())
-				for (Partido partido : escenario.getPartidos())
-					votosComunidadesAbsolutos.add(new Votos(comunidad
-							.toString(), partido.getSiglas(), votosMap
-							.get(partido.getSiglas() + comunidad.toString())));
-			return (votosComunidadesAbsolutos);
-
-		} else { // Caso circunscripción ESPAÑA
-			HashMap<String, Integer> votosMap = new HashMap();
-			List<Votos> votosEspanaAbsolutos = new ArrayList<Votos>();
-			// Inicializamos mapa auxiliar
-			for (Partido partido : escenario.getPartidos())
-				votosMap.put(partido.getSiglas(), 0);
-
-			// Rellenamos el mapa sumando votos de cada partido
-			for (Votos voto : escenario.getVotos())
-				for (Provincia provincia : escenario.getProvincias())
-					if (voto.getCircunscripcion().equals(provincia.getId())) {
-						int votos = (int) (Math.floor(voto.getVotos()
-								* provincia.getElectores()) / 100);
-						votosMap.put(voto.getPartido(),
-								votosMap.get(voto.getPartido()) + votos);
-					}
-			// Mapeo el diccionario a lista de Votos
-			for (Partido partido : escenario.getPartidos())
-				votosEspanaAbsolutos.add(new Votos("ESPAÑA", partido
-						.getSiglas(), votosMap.get(partido.getSiglas())));
+		case PAIS:
+			HashMap<String, Integer> aux2 = new HashMap<String, Integer>();
+			// para cada dato de votos
+			for (Votos voto : escenario.getVotos()) {
+				// buscamos a qué provincia pertenece
+				Provincia p = escenario.getProvincias().get(
+						escenario.getProvincias().indexOf(
+								new Provincia(voto.getCircunscripcion())));
+				// pasamos los votos a absoluto
+				int votos = (int) (Math.floor(voto.getVotos()
+						* p.getElectores()) / 100);
+				// y los guardamos en el mapa auxiliar
+				String key = voto.getPartido();
+				if (aux2.containsKey(key))
+					aux2.put(key, aux2.get(key) + votos);
+				else
+					aux2.put(key, votos);
+			}
+			// por último, pasamos el mapa auxiliar a lista de Votos
+			for (String k : aux2.keySet())
+				votosAbsolutosPorCircunscripcion.add(new Votos("ESPAÑA", k,
+						aux2.get(k)));
+			break;
 		}
-		return null;
+		return votosAbsolutosPorCircunscripcion;
 	}
 
 	/**
@@ -106,28 +112,35 @@ public class LOGICA {
 	 */
 	public static HashMap<String, Integer> calcularEscanosPorCircunscripcion(
 			Escenario escenario) {
-		Circunscripciones circunscripciones = escenario.getCircunscripciones();
 		HashMap<String, Integer> escanosAsignados = new HashMap<String, Integer>();
-		if (circunscripciones == Circunscripciones.PROVINCIAS)
-			for (Provincia provincia : escenario.getProvincias())
-				escanosAsignados.put(provincia.getId(), provincia.getEscanos());
-		else if (circunscripciones == Circunscripciones.COMUNIDADES) {
-			// Primero inicializo el diccionario con todos los valores a 0
-			for (Comunidades comunidad : Comunidades.values())
-				escanosAsignados.put(comunidad.toString(), 0);
 
-			// Después voy recorriendo provincias y añadiendo escaños por
-			// comunidades
-			for (Provincia provincia : escenario.getProvincias())
-				escanosAsignados.put(provincia.getComunidad(),
-						escanosAsignados.get(provincia.getComunidad())
-								+ provincia.getEscanos());
-		} else {
-			escanosAsignados.put("ESPAÑA", 0);
-			for (Provincia provincia : escenario.getProvincias())
-				escanosAsignados.put("ESPAÑA", escanosAsignados.get("ESPAÑA")
-						+ provincia.getEscanos());
-		}
+		for (Provincia provincia : escenario.getProvincias())
+			switch (escenario.getCircunscripciones()) {
+
+			case PROVINCIAS:
+				escanosAsignados.put(provincia.getId(), provincia.getEscanos());
+				break;
+
+			case COMUNIDADES:
+				if (escanosAsignados.containsKey(provincia.getComunidad()))
+					escanosAsignados.put(provincia.getComunidad(),
+							escanosAsignados.get(provincia.getComunidad())
+									+ provincia.getEscanos());
+				else
+					escanosAsignados.put(provincia.getComunidad(),
+							provincia.getEscanos());
+				break;
+
+			case PAIS:
+				if (escanosAsignados.size() == 0)
+					escanosAsignados.put("ESPAÑA", provincia.getEscanos());
+				else
+					escanosAsignados.put(
+							"ESPAÑA",
+							escanosAsignados.get("ESPAÑA")
+									+ provincia.getEscanos());
+				break;
+			}
 		return escanosAsignados;
 	}
 
@@ -217,30 +230,6 @@ public class LOGICA {
 			escanos.add(new Escanos("ESPAÑA", partido, escanosMap.get(partido)));
 
 		return (escanos);
-	}
-
-	/**
-	 * Para una circunscripción, pasa los porcentajes introducidos a datos
-	 * absolutos.
-	 * 
-	 * @param porcentajes
-	 *            lista de votos de una circunscripción en formato porcentual
-	 * @param electores
-	 *            número de votantes en la circunscripción
-	 * @return lista de votos de la circunscripción en formato absoluto
-	 */
-	private static List<Votos> calcularVotosAbsolutos(List<Votos> porcentajes,
-			int electores) {
-		int votosb;
-		List<Votos> votos_sinporcen = new ArrayList<Votos>();
-		for (Votos votos : porcentajes) {
-			votosb = (int) (Math.floor(votos.getVotos() * electores) / 100);
-			Votos votoss = new Votos(votos.getCircunscripcion(),
-					votos.getPartido(), votosb);
-			votos_sinporcen.add(votoss);
-		}
-
-		return votos_sinporcen;
 	}
 
 	/**

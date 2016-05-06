@@ -61,5 +61,12 @@ public class Partido implements JSONAware, Serializable{
 		obj.put("color", this.color);
 		return obj.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && ((Partido)obj).getSiglas().equals(this.siglas))
+			return true;
+		else return false;
+	}
 
 }
