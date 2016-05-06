@@ -148,7 +148,7 @@ response.setDateHeader ("Expires", 0);
 								</thead>
 								<tbody>
 								<tr>
-									<th><input type='text' class='form-control' name="titulo" required ></th>
+									<th><input type='text' class='form-control' name="titulo"  ></th>
 									<th></th>
 									<th></th>
 									<th>350</th>

@@ -209,7 +209,7 @@ path:hover {
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Votos en la provincia:<span id="prov"> </span> </h4>
+					<h4 class="modal-title" id="myModalLabel">Votos en la circunscripción:<span id="prov"> </span> </h4>
 				</div>
 				<div class="modal-body">
 					<div class="text-center" >
@@ -281,6 +281,7 @@ path:hover {
 		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 		g = svg.append("g").attr("class", "leaflet-zoom-hide");
 		
+<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}">
 		d3.json("./json/states_esp.topo.json", function(error, collection) {
 		if (error) throw error;
 
@@ -387,6 +388,7 @@ path:hover {
 		}
 
 		});
+	</c:if>
 	
 		//CASO MAPA COMUNIDADES - HAY QUE INTEGRARLO EN EL ANTERIOR
 	<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}">
@@ -405,6 +407,58 @@ path:hover {
 		"fill-opacity" : 0.4,
 		"stroke" : "#fff",
 		"stroke-width" : "1px"
+		})		
+		.style("fill", function (d) {
+			<c:forEach items="${colores}" var="color">
+			if(d.id == "${color.key}"){
+				var value = "${color.value}";
+				return (d.color = value);
+			}
+			</c:forEach>
+		})	
+		.on('click', function (d) {
+			$('#popupVotos').modal('show');
+			$('#canvasWrapper').html("");
+			$('#canvasWrapper').html("<canvas id='graphicbar'></canvas>");
+			$('#votos').html("");
+			$('#prov').html("");
+			var id = d.properties.noml_ccaa;
+			var name = d.properties.name
+	    	var partidosProvincia = {
+	    			siglas: [],
+	    			nombre: [],
+	    			color: [],
+	    			imagen: [],
+	    			resultados: [],
+	    	};
+	    	var siglas,nombre,color,imagen = "";
+	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+				if(id == "${r.circunscripcion}"){
+					var partido = "${r.partido}";
+					var escanos =  "${r.escanos}";
+					$('#prov').html(" " + name);
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
+					for( var j = 0; j< partidos.siglas.length; j++){
+						if(partidos.siglas[j] == partido){
+							 siglas = partidos.siglas[j];
+							 nombre = partidos.nombre[j];
+							 color = partidos.color[j];
+							 imagen = partidos.imagen[j];
+						}
+					}
+				}
+				if(!partidosProvincia.siglas.includes(siglas)){
+				if(siglas != null){
+					partidosProvincia.siglas.push(siglas);
+					partidosProvincia.nombre.push(nombre);
+					partidosProvincia.color.push(color);
+					partidosProvincia.imagen.push(imagen);
+					partidosProvincia.resultados.push(escanos);
+				}
+				}
+			</c:forEach>
+			graphicbar(partidosProvincia);
+
 		})
 
 		.on('mouseover', function (d, i) {
@@ -442,8 +496,114 @@ path:hover {
 		this.stream.point(point.x, point.y);
 		}
 		});
-		 });
 </c:if>
+
+<c:if test ="${escenario.circunscripciones == 'PAIS'}">
+d3.json("./json/spain.json", function(error, collection) {
+	if (error) throw error;
+
+	var transform = d3.geo.transform({point: projectPoint}),
+	path = d3.geo.path().projection(transform);
+
+
+	var feature = g.selectAll("path")
+	.data(collection.features)
+	.enter().append("path")
+	.style({
+	"fill-opacity" : 0.4,
+	"stroke" : "#fff",
+	"stroke-width" : "1px"
+	})
+			.style("fill", function (d) {
+			<c:forEach items="${colores}" var="color">
+			if(d.id == "${color.key}"){
+				var value = "${color.value}";
+				return (d.color = value);
+			}
+			</c:forEach>
+		})	
+		.on('click', function (d) {
+			$('#popupVotos').modal('show');
+			$('#canvasWrapper').html("");
+			$('#canvasWrapper').html("<canvas id='graphicbar'></canvas>");
+			$('#votos').html("");
+			$('#prov').html("");
+			var id = d.id;
+			var name = d.properties.name;
+			console.log(id);
+	    	var partidosProvincia = {
+	    			siglas: [],
+	    			nombre: [],
+	    			color: [],
+	    			imagen: [],
+	    			resultados: [],
+	    	};
+	    	var siglas,nombre,color,imagen = "";
+	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+				if(id == "${r.circunscripcion}"){
+					var partido = "${r.partido}";
+					var escanos =  "${r.escanos}";
+					$('#prov').html(" " + name);
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
+					for( var j = 0; j< partidos.siglas.length; j++){
+						if(partidos.siglas[j] == partido){
+							 siglas = partidos.siglas[j];
+							 nombre = partidos.nombre[j];
+							 color = partidos.color[j];
+							 imagen = partidos.imagen[j];
+						}
+					}
+				}
+				if(!partidosProvincia.siglas.includes(siglas)){
+				if(siglas != null){
+					partidosProvincia.siglas.push(siglas);
+					partidosProvincia.nombre.push(nombre);
+					partidosProvincia.color.push(color);
+					partidosProvincia.imagen.push(imagen);
+					partidosProvincia.resultados.push(escanos);
+				}
+				}
+			</c:forEach>
+			graphicbar(partidosProvincia);
+
+		})
+	.on('mouseover', function (d, i) {
+			d3.select(this).style({
+				"fill-opacity" : .7
+				})
+		})
+	.on('mouseout', function (d, i) {
+				d3.selectAll('path').style({
+					"fill-opacity" : .2
+				})
+		});
+	map.on("viewreset", reset);
+	reset();
+
+	// Reposition the SVG to cover the features.
+	function reset() {
+	var bounds = path.bounds(collection),
+	topLeft = bounds[0],
+	bottomRight = bounds[1];
+
+	svg.attr("width", bottomRight[0] - topLeft[0])
+	.attr("height", bottomRight[1] - topLeft[1])
+	.style("left", topLeft[0] + "px")
+	.style("top", topLeft[1] + "px");
+
+	g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+	feature.attr("d", path);
+	}
+
+	// Use Leaflet to implement a D3 geometric transformation.
+	function projectPoint(x, y) {
+	var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+	this.stream.point(point.x, point.y);
+	}
+
+	});
+	</c:if>
 
 piechart(partidos);
 	
