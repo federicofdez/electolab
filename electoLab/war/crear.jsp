@@ -182,14 +182,24 @@ response.setDateHeader ("Expires", 0);
         "searching": false,
         "scrollY":        "400px",
         "scrollCollapse": true,
-        "paging":         false
+        "paging":         false,
+        "orderClasses": false,
+        "language": {
+            "zeroRecords": "No se ha encontrado nada - sorry",
+            "info": "Mostrando _PAGE_ de _PAGES_",
+            "infoEmpty": "No existe el escenario",
+        }
 
     } );
 	
 	//Etiquetas de electores
     $('[data-toggle="tooltip"]').tooltip(); 
 
-    
+
+
+
+	
+	
 </script>
 
 </body>

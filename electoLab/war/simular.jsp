@@ -455,11 +455,6 @@ path:hover {
 		
 piechart(partidos);
 	
-	//Datatable
-	$('#votosTable').DataTable( {
-        "scrollX": true,
-        "ordering": false, 
-    } );  
 	 });
 	</script>	
 	<script type="text/javascript">

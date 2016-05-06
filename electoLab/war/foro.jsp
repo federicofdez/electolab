@@ -69,6 +69,13 @@
 	//Datatable
 	$('#foroTable').DataTable( {
         "ordering": true, 
+        "language": {
+            "lengthMenu": "Mostrando _MENU_ entradas por página",
+            "zeroRecords": "Niguna entrada coincide con su búsqueda",
+            "info": "Mostrando _PAGE_ de _PAGES_",
+            "infoEmpty": "No existe el escenario",
+            "infoFiltered": "(filtrado de _MAX_ entradas totales)"
+        }
     } ); 
 	
 	//Etiqueta de confirmacion de borrado

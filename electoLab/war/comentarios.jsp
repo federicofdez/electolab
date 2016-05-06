@@ -148,7 +148,7 @@ path:hover {
 			<div class="container-fluid" id="main-content">
 				<h1>Comentarios de  simulación</h1>
 				<div>
-					<table class="table table-hover" id="foroTable">
+					<table class="table table-hover" id="comentarioTable">
 						<thead>
 							<tr>
 								<th class="col-lg-3">Usuario</th>
@@ -227,7 +227,7 @@ path:hover {
 						<div id="canvasWrapper">
 						<canvas id="graphicbar"></canvas>
 						</div>
-						<table class="table table-hover" id="partidosTable">
+						<table class="table table-hover" id="provinciaTable">
 						<thead>
 							<tr>
 								<th class="col-lg-3">Partido</th>
@@ -327,13 +327,43 @@ path:hover {
 		"stroke-width" : "1px"
 		})
 		.style("fill", function (d) {
-			<c:forEach items="${colores}" var="color">
-			if(d.id == "${color.key}"){
-				var value = "${color.value}";
-				return (d.color = value);
-			}
-			</c:forEach>
-		})		
+	    	var partidosColores = {
+	    			siglas: [],
+	    			nombre: [],
+	    			color: [],
+	    			imagen: [],
+	    			resultados: [],
+	    	};
+			var id = d.id;
+
+	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+				if(id == "${r.circunscripcion}"){
+					var partido = "${r.partido}";
+					var escanos =  "${r.escanos}";
+					for( var j = 0; j< partidos.siglas.length; j++){
+						if(partidos.siglas[j] == partido){
+							 siglas = partidos.siglas[j];
+							 nombre = partidos.nombre[j];
+							 color = partidos.color[j];
+							 imagen = partidos.imagen[j];
+						}
+					}
+					if(!partidosColores.siglas.includes(siglas)){
+						if(siglas != null){
+						partidosColores.siglas.push(siglas);
+						partidosColores.nombre.push(nombre);
+						partidosColores.color.push(color);
+						partidosColores.imagen.push(imagen);
+						partidosColores.resultados.push(escanos);
+						}
+					}
+				
+				}
+					</c:forEach>
+					var partidosColores = order(partidosColores);
+						return (d.color = partidosColores.color[0]);
+				
+		})			
 
 		.on('click', function (d) {
 			$('#popupVotos').modal('show');
@@ -418,11 +448,20 @@ path:hover {
 		
 piechart(partidos);
 	
-$('#votosTable').DataTable( {
-    "scrollX": true,
-    "ordering": false, 
-} );  
 	 });
+	
+
+
+	$('#comentarioTable').DataTable( {
+	    "ordering": true, 
+	    "language": {
+	        "lengthMenu": "Mostrando _MENU_ entradas por página",
+	        "zeroRecords": "Niguna entrada coincide con su búsqueda",
+	        "info": "Mostrando _PAGE_ de _PAGES_",
+	        "infoEmpty": "No existe el comentario",
+	        "infoFiltered": "(filtrado de _MAX_ entradas totales)"
+	    }
+	} ); 
 	</script>	
 	<script type="text/javascript">
 		//Funciones de graficas
