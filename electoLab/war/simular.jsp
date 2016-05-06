@@ -86,8 +86,8 @@ path:hover {
 					Circunscripciones:</div>
 				<div class="dropdown col-lg-3">
 					<input type="radio" name="circunscripciones" value="PROVINCIAS"<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}"> checked </c:if>>Provincias<br>
-  					<input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
-  					<input type="radio" name="circunscripciones" value="PAIS"<c:if test ="${escenario.circunscripciones == 'PAIS'}"> checked </c:if>>España<br>
+  					 <input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
+    				<input type="radio" name="circunscripciones" value="PAIS"<c:if test ="${escenario.circunscripciones == 'PAIS'}"> checked </c:if>>España<br>
 				</div>
 				<div class="col-lg-4 center-block"
 					style="margin-top: 28px; margin-left: 12px;" min="0" max="100">
@@ -333,12 +333,43 @@ path:hover {
 		"stroke-width" : "1px"
 		})
 		.style("fill", function (d) {
-			<c:forEach items="${colores}" var="color">
-			if(d.id == "${color.key}"){
-				var value = "${color.value}";
-				return (d.color = value);
-			}
-			</c:forEach>
+	    	var partidosColores = {
+	    			siglas: [],
+	    			nombre: [],
+	    			color: [],
+	    			imagen: [],
+	    			resultados: [],
+	    	};
+			var id = d.id;
+
+	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
+				if(id == "${r.circunscripcion}"){
+					var partido = "${r.partido}";
+					var escanos =  "${r.escanos}";
+					for( var j = 0; j< partidos.siglas.length; j++){
+						if(partidos.siglas[j] == partido){
+							 siglas = partidos.siglas[j];
+							 nombre = partidos.nombre[j];
+							 color = partidos.color[j];
+							 imagen = partidos.imagen[j];
+						}
+					}
+					if(!partidosColores.siglas.includes(siglas)){
+						console.log("entra");
+						if(siglas != null){
+						partidosColores.siglas.push(siglas);
+						partidosColores.nombre.push(nombre);
+						partidosColores.color.push(color);
+						partidosColores.imagen.push(imagen);
+						partidosColores.resultados.push(escanos);
+						}
+					}
+				
+				}
+					</c:forEach>
+					var partidosColores = order(partidosColores);
+						return (d.color = partidosColores.color[0]);
+				
 		})		
 
 		.on('click', function (d) {
