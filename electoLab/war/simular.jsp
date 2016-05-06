@@ -42,6 +42,19 @@ path:hover {
   fill: blue;
   fill-opacity: .7;
 }
+
+.donut-inner {
+   margin-top: -40px;
+   margin-bottom: 20px;
+   margin-left: 245px;
+}
+.donut-inner h5 {
+   margin-bottom: 5px;
+   margin-top: 0;
+   font-size: 30px;
+   
+}
+
 </style>
 
 
@@ -112,6 +125,9 @@ path:hover {
 						<h3 class="text-center">Distribución de escaños en el
 							Congreso</h3>
 						<canvas id="piechart" width="900" height="500"></canvas>
+						<div class="donut-inner">
+    						<h5><span id="numEsc"> </span> escaños</h5>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -482,6 +498,11 @@ piechart(partidos);
 				}
 			}
 		</c:forEach>
+		partidosCongreso.resultados[0] = 2;
+		function getSum(total, num) {
+		    return parseInt(total) + parseInt(num);
+		}
+		document.getElementById("numEsc").innerHTML = partidosCongreso.resultados.reduce(getSum);
 		var partidosCongreso = order(partidosCongreso);
     	var ctx = document.getElementById("piechart").getContext("2d");
 		var data = {
