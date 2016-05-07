@@ -93,8 +93,6 @@ public class CrearServlet extends HttpServlet {
 
 		Escenario escenario = this.crearEscenarioDesdeFormData(req);
 
-		System.out.println(escenario);
-
 		Cache cache;
 		try {
 			CacheFactory cacheFactory = CacheManager.getInstance()

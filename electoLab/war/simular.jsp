@@ -75,6 +75,7 @@ path:hover {
 			<h3><c:out value='${escenario.titulo}'/></h3>		
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px; margin-top: 10px;">
+			<form action="/simular" method="get">
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;">
 					Sistema de proporcionalidad:</div>
@@ -86,7 +87,7 @@ path:hover {
 					Circunscripciones:</div>
 				<div class="dropdown col-lg-3">
 					<input type="radio" name="circunscripciones" value="PROVINCIAS"<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}"> checked </c:if>>Provincias<br>
-  					 <input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
+  					<input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
     				<input type="radio" name="circunscripciones" value="PAIS"<c:if test ="${escenario.circunscripciones == 'PAIS'}"> checked </c:if>>España<br>
 				</div>
 				<div class="col-lg-4 center-block"
@@ -99,14 +100,17 @@ path:hover {
 			</div>
 			<div class="row" style="margin-top: 15px;">
 				<div class="col-lg-6">
-					<button type="button"
-						class="btn btn-info volversimular center-block"
-						data-toggle="modal" data-target="#volversimular">Volver a
+						<input type="hidden" name="escenario" value="${escenarioKey}" />
+						<button type="submit" class="btn btn-info volversimular center-block">Volver a
 						Simular</button>
 				</div>
+				</form>
 				<div class="col-lg-6">
-					<a href="/crear?escenario=${escenarioKey}" class="btn btn-info center-block"
-						id="botoncrear">Editar Simulación</a>
+					<form action="/crear" method="get">
+						<input type="hidden" name="escenario" value="${escenarioKey}" />
+						<button type="submit" class="btn btn-info center-block"
+						id="botoncrear">Editar Simulación</button>
+					</form>
 				</div>
 			</div>
 			<HR width=95% align="center" class="btn-info"
@@ -167,15 +171,20 @@ path:hover {
 					</table>
 				</div>
 			</div>
+			<c:if test="${not empty user}">
 			<div class="col-lg-12" style="padding-bottom: 40px;">
 				<div class="col-lg-6">
-								<button class="btn btn-success center-block">Guardar simulación</button>
+					<form action="/guardasimulacion" method="post">
+						<input type="hidden" name="escenario" value="${escenarioKey}" />
+						<button type="submit" class="btn btn-success center-block">Guardar simulación</button>
+					</form>
 				</div>
 				<div class="col-lg-6">
 					<button class="btn btn-info center-block" data-toggle="modal"
 					data-target="#popupInforme">Generar informe</button>
 				</div>
 			</div>
+			</c:if>
 				
 			</div>
 		</div>

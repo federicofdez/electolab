@@ -65,6 +65,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>BorraSimulacionServlet</servlet-name>
 		<url-pattern>/borrasimulacion</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GuardarServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.GuardarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GuardarServlet</servlet-name>
+		<url-pattern>/guardasimulacion</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>InitServlet</servlet-name>

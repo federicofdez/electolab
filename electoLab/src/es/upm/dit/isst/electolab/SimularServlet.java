@@ -21,8 +21,10 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.logic.LOGICA;
+import es.upm.dit.isst.electolab.model.Circunscripciones;
 import es.upm.dit.isst.electolab.model.Escanos;
 import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Sistema;
 import es.upm.dit.isst.electolab.model.Votos;
 
 public class SimularServlet extends HttpServlet {
@@ -60,6 +62,13 @@ public class SimularServlet extends HttpServlet {
 				cache = cacheFactory.createCache(Collections.emptyMap());
 				escenario = (Escenario) cache
 						.get(req.getParameter("escenario"));
+				
+				if (req.getParameterMap().containsKey("sistema"))
+					escenario.setSistema(Sistema.valueOf(req.getParameter("sistema")));
+				if (req.getParameterMap().containsKey("circunscripciones"))
+					escenario.setCircunscripciones(Circunscripciones.valueOf(req.getParameter("circunscripciones")));
+				if (req.getParameterMap().containsKey("mayoria"))
+					escenario.setMayoria_abs(Integer.parseInt(req.getParameter("mayoria")));
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
