@@ -188,7 +188,8 @@ response.setDateHeader ("Expires", 0);
         "searching": false,
         "scrollY":        "400px",
         "scrollCollapse": true,
-        "paging":         false,
+        "pageLength": 52,
+        "paging": false,
         "orderClasses": false,
         "language": {
             "zeroRecords": "No se ha encontrado nada - sorry",

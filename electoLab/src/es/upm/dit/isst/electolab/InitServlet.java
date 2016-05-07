@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -93,7 +94,7 @@ public class InitServlet extends HttpServlet {
 			provincias.add(new Provincia("Granada", "granada", "ANDALUCÍA", 7,
 					702887));
 			provincias.add(new Provincia("Guadalajara", "guadalajara",
-					"CASTILLALAMANCHA", 6, 178749));
+					"CASTILLALAMANCHA", 3, 178749));
 			provincias.add(new Provincia("Guipúzcoa", "guipuzcoa", "PAÍSVASCO",
 					6, 555417));
 			provincias.add(new Provincia("Huelva", "huelva", "ANDALUCÍA", 5,
@@ -146,7 +147,7 @@ public class InitServlet extends HttpServlet {
 			provincias.add(new Provincia("Teruel", "teruel", "ARAGÓN", 3,
 					105453));
 			provincias.add(new Provincia("Toledo", "toledo",
-					"CASTILLALAMANCHA", 5, 509333));
+					"CASTILLALAMANCHA", 6, 509333));
 			provincias.add(new Provincia("Valencia", "valencia", "VALENCIA",
 					15, 1893225));
 			provincias.add(new Provincia("Valladolid", "valladolid",
@@ -154,8 +155,8 @@ public class InitServlet extends HttpServlet {
 			provincias.add(new Provincia("Vizcaya", "vizcaya", "PAÍSVASCO", 8,
 					913244));
 			provincias.add(new Provincia("Zamora", "zamora", "CASTILLAYLEÓN",
-					7, 155512));
-			provincias.add(new Provincia("Zaragoza", "zaragoza", "ARAGÓN", 3,
+					3, 155512));
+			provincias.add(new Provincia("Zaragoza", "zaragoza", "ARAGÓN", 7,
 					714370));
 
 			List<Partido> partidos = new ArrayList<Partido>();
@@ -777,8 +778,8 @@ public class InitServlet extends HttpServlet {
 			dao.createEscenario("admin", titulo2015, votos2015, provincias2015,
 					partidos2015, comentarios2015, Sistema.DHONDT,
 					Circunscripciones.PROVINCIAS, 50, fecha2015);
-
 		}
+		
 	}
 
 }
