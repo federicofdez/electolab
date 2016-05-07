@@ -285,11 +285,15 @@ path:hover {
 		var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 5});
 		var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.png', {
 		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-		maxZoom: 16
+		maxZoom: 8,
+		minZoom: 4
 		}).addTo(map);
 
 		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 		g = svg.append("g").attr("class", "leaflet-zoom-hide");
+		
+        var tooltip = d3.select('#mapLabel')
+        .attr('class', 'hidden tooltip');
 		
 		<c:choose>
 	   		 <c:when test="${escenario.circunscripciones == 'PROVINCIAS'}">
@@ -333,6 +337,7 @@ path:hover {
 	    			color: [],
 	    			imagen: [],
 	    			resultados: [],
+	    			votos: []
 	    	};
 			var id = d.id;
 
@@ -340,6 +345,8 @@ path:hover {
 				if(id == "${r.circunscripcion}"){
 					var partido = "${r.partido}";
 					var escanos =  "${r.escanos}";
+					var votos =  "${r.votos}";
+
 					for( var j = 0; j< partidos.siglas.length; j++){
 						if(partidos.siglas[j] == partido){
 							 siglas = partidos.siglas[j];
@@ -355,6 +362,7 @@ path:hover {
 						partidosColores.color.push(color);
 						partidosColores.imagen.push(imagen);
 						partidosColores.resultados.push(escanos);
+						partidosColores.votos.push(votos);
 						}
 					}
 				
@@ -363,7 +371,7 @@ path:hover {
 					var partidosColores = order(partidosColores);
 						return (d.color = partidosColores.color[0]);
 				
-		})			
+		})		
 
 		.on('click', function (d) {
 			$('#popupVotos').modal('show');
@@ -379,14 +387,16 @@ path:hover {
 	    			color: [],
 	    			imagen: [],
 	    			resultados: [],
+	    			votos: []
 	    	};
 	    	var siglas,nombre,color,imagen = "";
 	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
 				if(id == "${r.circunscripcion}"){
 					var partido = "${r.partido}";
 					var escanos =  "${r.escanos}";
+					var votos = "${r.votos}";
 					$('#prov').html(" " + name);
-					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th><th><h5> ${r.votos}  </h5></th></tr>");			    	
 					for( var j = 0; j< partidos.siglas.length; j++){
 						if(partidos.siglas[j] == partido){
 							 siglas = partidos.siglas[j];
@@ -403,6 +413,7 @@ path:hover {
 					partidosProvincia.color.push(color);
 					partidosProvincia.imagen.push(imagen);
 					partidosProvincia.resultados.push(escanos);
+					partidosProvincia.votos.push(votos);
 				}
 				}
 			</c:forEach>
@@ -412,12 +423,20 @@ path:hover {
 		.on('mouseover', function (d, i) {
 				d3.select(this).style({
 					"fill-opacity" : .7
-					})
+					});
+	                var mouse = d3.mouse(svg.node()).map(function(d) {
+                        return parseInt(d);
+                    });
+                    tooltip.classed('hidden', false)
+                        .html(d.properties.name);
+
 			})
 		.on('mouseout', function (d, i) {
 					d3.selectAll('path').style({
 						"fill-opacity" : .2
-					})
+					});
+                    tooltip.classed('hidden', true);
+
 			});
 		map.on("viewreset", reset);
 		reset();
@@ -507,11 +526,13 @@ piechart(partidos);
     			color: [],
     			imagen: [],
     			resultados:[],
+    			votos:[]
     	};
     	var siglas,nombre,color,imagen = "";
     	<c:forEach items="${resultadosCongreso}" var="r">
 				var partido = "${r.partido}";
 				var escanos =  "${r.escanos}";
+				var votos =  "${r.votos}";
 				for( var j = 0; j< arrayPartidos.siglas.length; j++){
 					if(arrayPartidos.siglas[j] == partido){
 						 siglas = arrayPartidos.siglas[j];
@@ -527,6 +548,8 @@ piechart(partidos);
 					partidosCongreso.color.push(color);
 					partidosCongreso.imagen.push(imagen);
 					partidosCongreso.resultados.push(escanos);
+					partidosCongreso.votos.push(votos);
+
 				}
 			}
 		</c:forEach>
@@ -555,15 +578,14 @@ piechart(partidos);
     	    data: data,
     		options: options
     	});
-		order();
 	}
 
 	function order(arraysPartidos){
     	var sortable = [];
 			for (var i = 0 ; i < arraysPartidos.siglas.length ; i++){
-		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i]]);
+		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i], arraysPartidos.votos[i]]);
 			}
-		      sortable.sort(function(a, b) {return a[4] - b[4]}).reverse();
+		      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
 		
 		partidosOrder = {
     			siglas: [],
@@ -571,13 +593,16 @@ piechart(partidos);
     			color: [],
     			imagen: [],
     			resultados:[],
+    			votos:[]
     	};
 		for (var i = 0; i< arraysPartidos.siglas.length; i++){
 			partidosOrder.siglas[i] = sortable[i][0];
 			partidosOrder.nombre[i] = sortable[i][1];
 			partidosOrder.color[i] = sortable[i][2];
 			partidosOrder.imagen[i] = sortable[i][3];
-			partidosOrder.resultados[i] = sortable[i][4];		
+			partidosOrder.resultados[i] = sortable[i][4];	
+			partidosOrder.votos[i] = sortable[i][5];		
+
 		}
 		return partidosOrder;
 	}

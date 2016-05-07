@@ -476,7 +476,6 @@ div.tooltip {
 		topLeft = bounds[0],
 		bottomRight = bounds[1];
 
-		console.log(topLeft);
 		svg.attr("width", bottomRight[0] - topLeft[0])
 		.attr("height", bottomRight[1] - topLeft[1])
 		.style("left", topLeft[0] + "px")
@@ -595,7 +594,6 @@ piechart(partidos);
     	    data: data,
     		options: options
     	});
-		order();
 	}
 
 	function order(arraysPartidos){
