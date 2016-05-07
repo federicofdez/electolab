@@ -246,6 +246,7 @@ path:hover {
 							<tr>
 								<th class="col-lg-3">Partido</th>
 								<th class="col-lg-3">Escaños obtenidos</th>
+								<th class="col-lg-3">Votos obtenidos</th>
 							</tr>
 						</thead>
 						<tbody id="votos">
@@ -401,8 +402,9 @@ path:hover {
 				if(id == "${r.circunscripcion}"){
 					var partido = "${r.partido}";
 					var escanos =  "${r.escanos}";
+					var votos = "${r.votos}";
 					$('#prov').html(" " + name);
-					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th></tr>");			    	
+					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th><th><h5> ${r.votos}  </h5></th></tr>");			    	
 					for( var j = 0; j< partidos.siglas.length; j++){
 						if(partidos.siglas[j] == partido){
 							 siglas = partidos.siglas[j];

@@ -7,7 +7,7 @@ import java.util.Random;
 
 import es.upm.dit.isst.electolab.model.Circunscripciones;
 import es.upm.dit.isst.electolab.model.Comunidades;
-import es.upm.dit.isst.electolab.model.Escanos;
+import es.upm.dit.isst.electolab.model.Resultados;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Partido;
 import es.upm.dit.isst.electolab.model.Provincia;
@@ -158,7 +158,7 @@ public class LOGICA {
 	 * @return lista con los escaños que resultan del reparto, granulados por
 	 *         circunscripciones
 	 */
-	public static List<Escanos> calcularEscanos(List<Votos> votos,
+	public static List<Resultados> calcularEscanos(List<Votos> votos,
 			HashMap<String, Integer> escanosCircunscripcion, Sistema sistema) {
 		// Creamos un diccionario Circunscripcion -> {Partido ->Voto}
 		// Siendo {Partido-> Voto} otro diccionario que para cada
@@ -181,7 +181,7 @@ public class LOGICA {
 		}
 
 		// Lista que se devolverá con (circunscripcion, partido, escaños)
-		List<Escanos> escanos = new ArrayList<Escanos>();
+		List<Resultados> escanos = new ArrayList<Resultados>();
 		// Preparamos llamada a metodo de calculo de escaños
 		// llamando al metodo con una List<Votos> de cada circunscripcion
 		for (String circunscripcion : votosMap.keySet()) {
@@ -194,7 +194,7 @@ public class LOGICA {
 						partidosVotos.get(partido)));
 
 			// AQUÍ Llamamos al calculo de escaños
-			for (Escanos escano : calcularSistema(sistema,
+			for (Resultados escano : calcularSistema(sistema,
 					votosPorCircunscripcion,
 					escanosCircunscripcion.get(circunscripcion)))
 				escanos.add(escano);
@@ -214,20 +214,26 @@ public class LOGICA {
 	 *            para obtener todos los partidos que se han presentado
 	 * @return lista con los resultados agrupados para toda España (Congreso)
 	 */
-	public static List<Escanos> resultadosCongreso(
-			List<Escanos> resultadosCircunscripciones, Escenario escenario) {
-		ArrayList<Escanos> escanos = new ArrayList<Escanos>();
+	public static List<Resultados> resultadosCongreso(
+			List<Resultados> resultadosCircunscripciones, Escenario escenario) {
+		ArrayList<Resultados> escanos = new ArrayList<Resultados>();
 		HashMap<String, Integer> escanosMap = new HashMap<String, Integer>();
-		for (Partido partido : escenario.getPartidos())
+		HashMap<String, Integer> votosMap = new HashMap<String, Integer>();
+		for (Partido partido : escenario.getPartidos()){
 			escanosMap.put(partido.getSiglas(), 0);
+			votosMap.put(partido.getSiglas(), 0);
+		}
 
-		for (Escanos escano : resultadosCircunscripciones)
+		for (Resultados escano : resultadosCircunscripciones){
 			escanosMap.put(escano.getPartido(),
 					escanosMap.get(escano.getPartido()) + escano.getEscanos());
+			votosMap.put(escano.getPartido(),
+				votosMap.get(escano.getPartido()) + escano.getVotos());
+		}
 
 		// A partir del diccionario, creamos la lista a devolver
 		for (String partido : escanosMap.keySet())
-			escanos.add(new Escanos("ESPAÑA", partido, escanosMap.get(partido)));
+			escanos.add(new Resultados("ESPAÑA", partido, escanosMap.get(partido), votosMap.get(partido)));
 
 		return (escanos);
 	}
@@ -245,9 +251,9 @@ public class LOGICA {
 	 *            escaños a repartir en esa circunscripción
 	 * @return lista de escaños resultantes del reparto
 	 */
-	private static List<Escanos> calcularSistema(Sistema sistema,
+	private static List<Resultados> calcularSistema(Sistema sistema,
 			List<Votos> votosPorCircunscripcion, int numEscanos) {
-		List<Escanos> escanos = new ArrayList<Escanos>();
+		List<Resultados> escanos = new ArrayList<Resultados>();
 		List<Votos> votosPorCircunscripcionAux = new ArrayList<Votos>();
 		for (Votos voto : votosPorCircunscripcion) {
 			votosPorCircunscripcionAux.add(new Votos(voto.getCircunscripcion(),
@@ -257,7 +263,7 @@ public class LOGICA {
 			String ganador = buscarMaximo(votosPorCircunscripcionAux,
 					votosPorCircunscripcion);
 			escanos = sumarEscano(escanos, ganador, votosPorCircunscripcion
-					.get(0).getCircunscripcion());
+					.get(0).getCircunscripcion(), votosPorCircunscripcion);
 			votosPorCircunscripcionAux = actualizarVotos(sistema,
 					votosPorCircunscripcionAux, escanos, ganador);
 		}
@@ -279,10 +285,10 @@ public class LOGICA {
 	 * @return la misma lista de entrada, pero actualizada
 	 */
 	private static List<Votos> actualizarVotos(Sistema sistema,
-			List<Votos> votosAux, List<Escanos> escanos, String ganador) {
+			List<Votos> votosAux, List<Resultados> escanos, String ganador) {
 		for (Votos v : votosAux)
 			if (v.getPartido().equals(ganador))
-				for (Escanos e : escanos)
+				for (Resultados e : escanos)
 					if (e.getPartido().equals(ganador)) {
 						if (sistema == Sistema.DHONDT)
 							v.setVotos(v.getVotos() * e.getEscanos()
@@ -377,14 +383,16 @@ public class LOGICA {
 	 *            en la que el partido recibe el escaño
 	 * @return la misma lista de entrada, pero actualizada
 	 */
-	private static List<Escanos> sumarEscano(List<Escanos> escanos,
-			String ganador, String circunscripcion) {
-		for (Escanos e : escanos)
+	private static List<Resultados> sumarEscano(List<Resultados> escanos,
+			String ganador, String circunscripcion, List<Votos> votosPorCircunscripcion) {
+		for (Resultados e : escanos)
 			if (e.getPartido().equals(ganador)) {
 				e.setEscanos(e.getEscanos() + 1);
 				return escanos;
 			}
-		escanos.add(new Escanos(circunscripcion, ganador, 1));
+		for (Votos v : votosPorCircunscripcion)
+			if (v.getPartido().equals(ganador))
+				escanos.add(new Resultados(circunscripcion, ganador, 1, v.getVotos()));
 		return escanos;
 	}
 

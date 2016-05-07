@@ -22,7 +22,7 @@ import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Circunscripciones;
-import es.upm.dit.isst.electolab.model.Escanos;
+import es.upm.dit.isst.electolab.model.Resultados;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Sistema;
 import es.upm.dit.isst.electolab.model.Votos;
@@ -86,11 +86,11 @@ public class SimularServlet extends HttpServlet {
 		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA
 				.calcularEscanosPorCircunscripcion(escenario);
 		// segundo, calculamos los resultados por circunscripción
-		List<Escanos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(
+		List<Resultados> resultadosPorCircunscripcion = LOGICA.calcularEscanos(
 				votosPorCircunscripcion, escanosPorCircunscripcion,
 				escenario.getSistema());
 		// por último, agrupamos para el Congreso
-		List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(
+		List<Resultados> resultadosCongreso = LOGICA.resultadosCongreso(
 				resultadosPorCircunscripcion, escenario);
 
 		//Envío de diccionario de colores de prueba para mapa

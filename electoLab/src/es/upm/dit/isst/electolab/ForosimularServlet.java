@@ -21,7 +21,7 @@ import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Comentario;
-import es.upm.dit.isst.electolab.model.Escanos;
+import es.upm.dit.isst.electolab.model.Resultados;
 import es.upm.dit.isst.electolab.model.Escenario;
 import es.upm.dit.isst.electolab.model.Votos;
 
@@ -63,9 +63,9 @@ public class ForosimularServlet extends HttpServlet{
 			System.out.println("TIPO DE OBJETO" + escenario.toString());
 		List<Votos> votosPorCircunscripcion = LOGICA.calcularVotosAbsolutosPorCircunscripcion(escenario);
 		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.calcularEscanosPorCircunscripcion(escenario);
-		List<Escanos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
+		List<Resultados> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
 						escanosPorCircunscripcion, escenario.getSistema());
-		List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+		List<Resultados> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
 
 		req.setAttribute("resultadosPorCircunscripcion",
 				resultadosPorCircunscripcion);
@@ -116,9 +116,9 @@ public class ForosimularServlet extends HttpServlet{
 					System.out.println("TIPO DE OBJETO" + escenario.toString());
 				List<Votos> votosPorCircunscripcion = LOGICA.calcularVotosAbsolutosPorCircunscripcion(escenario);
 				HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.calcularEscanosPorCircunscripcion(escenario);
-				List<Escanos> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
+				List<Resultados> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,
 								escanosPorCircunscripcion, escenario.getSistema());
-				List<Escanos> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
+				List<Resultados> resultadosCongreso = LOGICA.resultadosCongreso(resultadosPorCircunscripcion, escenario);
 
 				req.setAttribute("resultadosPorCircunscripcion",
 						resultadosPorCircunscripcion);
