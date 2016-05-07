@@ -105,8 +105,8 @@ path:hover {
 						Simular</button>
 				</div>
 				<div class="col-lg-6">
-					<button type="button" class="btn btn-info center-block"
-						id="botoncrear">Editar Simulación</button>
+					<a href="/crear?escenario=${escenarioKey}" class="btn btn-info center-block"
+						id="botoncrear">Editar Simulación</a>
 				</div>
 			</div>
 			<HR width=95% align="center" class="btn-info"

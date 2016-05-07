@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 
-public class Partido implements JSONAware, Serializable{
+public class Partido implements JSONAware, Serializable {
 
 	private String siglas;
 	private String nombre;
@@ -68,5 +68,5 @@ public class Partido implements JSONAware, Serializable{
 			return true;
 		else return false;
 	}
-
+	
 }

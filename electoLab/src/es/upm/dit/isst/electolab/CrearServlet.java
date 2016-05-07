@@ -61,7 +61,20 @@ public class CrearServlet extends HttpServlet {
 			return;
 		}
 
-		req.getSession().setAttribute("escenario", dao.readEscenarios("admin").get(0));
+		Escenario escenario = dao.readEscenarios("admin").get(0);
+		if (req.getParameterMap().containsKey("escenario")) {
+			Cache cache;
+			try {
+				CacheFactory cacheFactory = CacheManager.getInstance()
+						.getCacheFactory();
+				cache = cacheFactory.createCache(Collections.emptyMap());
+				escenario = (Escenario) cache
+						.get(req.getParameter("escenario"));
+			} catch (CacheException e) {
+				e.printStackTrace();
+			}
+		}
+		req.getSession().setAttribute("escenario", escenario);
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
 
@@ -80,6 +93,8 @@ public class CrearServlet extends HttpServlet {
 
 		Escenario escenario = this.crearEscenarioDesdeFormData(req);
 
+		System.out.println(escenario);
+
 		Cache cache;
 		try {
 			CacheFactory cacheFactory = CacheManager.getInstance()
@@ -95,16 +110,15 @@ public class CrearServlet extends HttpServlet {
 
 	private Escenario crearEscenarioDesdeFormData(HttpServletRequest req) {
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-		Enumeration datos = req.getParameterNames();
 
 		String usuario = req.getParameter("usuario");
-		
 		String titulo = req.getParameter("titulo");
-		
-		SimpleDateFormat formateador = new SimpleDateFormat( "dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
+
+		SimpleDateFormat formateador = new SimpleDateFormat(
+				"dd-MM-yyyy HH:mm:ss", new Locale("es_ES"));
 		Date fechaDate = new Date();
 		String fecha = formateador.format(fechaDate);
-		
+
 		int mayoria_abs = Integer.parseInt(req.getParameter("mayoria"));
 
 		Sistema sistema = Sistema.valueOf(req.getParameter("sistema"));
@@ -114,35 +128,21 @@ public class CrearServlet extends HttpServlet {
 		List<Votos> votos = new ArrayList<Votos>();
 		List<Provincia> provincias = new ArrayList<Provincia>();
 		// TODO que se puedan crear partidos
-		List<Partido> partidos = dao.readEscenarios("admin").get(0).getPartidos();
+		List<Partido> partidos = dao.readEscenarios("admin").get(0)
+				.getPartidos();
 		List<Comentario> comentarios = new ArrayList<Comentario>();
 
-		while (datos.hasMoreElements()) {
-			String d = (String) datos.nextElement();
-			if (!d.contains(":") && !d.contains(" "))
-				continue;
-			else if (d.contains(":")) { // votos
-				String partido = d.split(":")[0];
-				String provincia = d.split(":")[1];
-				int num_votos = Integer.parseInt(req.getParameter(d));
-				votos.add(new Votos(provincia, partido, num_votos));
-			} else if (d.contains(" ")) { // provincias
-				String id_provincia = d.split(" ")[1];
-				Provincia pr = null;
-				for (Provincia p : dao.readEscenarios("admin").get(0).getProvincias()) {
-					if (p.getId().equals(id_provincia)) {
-						pr = new Provincia(p.getNombre(), id_provincia,
-								p.getComunidad(), p.getEscanos(),
-								p.getElectores());
-						break;
-					}
-				}
-				if (!provincias.contains(pr)) {
-					provincias.add(pr);
-				}
+		for (Provincia p : dao.readEscenarios("admin").get(0).getProvincias()) {
+			provincias.add(new Provincia(p.getNombre(), p.getId(), p
+					.getComunidad(), Integer.parseInt((String) req.getParameter("escaños " + p.getId())), p
+					.getElectores()));
+			for (Partido px : partidos) {
+				votos.add(new Votos(p.getId(), px.getSiglas(), Integer.parseInt((String) req
+						.getParameter(px.getSiglas() + ":" + p.getId()))));
 			}
 		}
-		return new Escenario(usuario, titulo, votos, provincias, partidos, comentarios,
-				sistema, circunscripciones, mayoria_abs, fecha);
+		
+		return new Escenario(usuario, titulo, votos, provincias, partidos,
+				comentarios, sistema, circunscripciones, mayoria_abs, fecha);
 	}
 }

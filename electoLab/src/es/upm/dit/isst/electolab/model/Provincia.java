@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 
-public class Provincia implements JSONAware,Serializable{
+public class Provincia implements JSONAware, Serializable {
 
 	private String nombre;
 	private String id;
@@ -84,6 +84,11 @@ public class Provincia implements JSONAware,Serializable{
 		if (obj != null && ((Provincia)obj).getId().equals(this.id))
 			return true;
 		else return false;
+	}
+	
+	@Override
+	public String toString() {
+		return this.id;
 	}
 	
 }

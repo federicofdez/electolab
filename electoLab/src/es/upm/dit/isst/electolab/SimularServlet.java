@@ -100,7 +100,8 @@ public class SimularServlet extends HttpServlet {
 				resultadosPorCircunscripcion);
 		req.setAttribute("resultadosCongreso", resultadosCongreso);
 		req.setAttribute("escenario", escenario);
-
+		
+		req.setAttribute("escenarioKey", req.getParameter("escenario"));
 
 		req.getRequestDispatcher("simular.jsp").forward(req, resp);
 	}
