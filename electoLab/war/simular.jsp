@@ -300,7 +300,8 @@ path:hover {
 		var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 5});
 		var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.png', {
 		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-		maxZoom: 16
+		maxZoom: 8,
+		minZoom: 4
 		}).addTo(map);
 
 		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
@@ -364,7 +365,6 @@ path:hover {
 						}
 					}
 					if(!partidosColores.siglas.includes(siglas)){
-						console.log("entra");
 						if(siglas != null){
 						partidosColores.siglas.push(siglas);
 						partidosColores.nombre.push(nombre);
