@@ -164,7 +164,7 @@ response.setDateHeader ("Expires", 0);
 					</div>
 				</div>
 				<input type="hidden" name="usuario" value="${user }]">
-				<input type="submit" value="Simular escenario"class="btn btn-info center-block" role="button"/>
+				<input type="submit" value="Simular escenario" data-loading-text="Cargando..." class="btn btn-info center-block" role="button"/>
 				<div style="padding: 40px;"></div>
 			</div>
 		</form>	

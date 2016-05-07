@@ -91,7 +91,14 @@ glyphicon glyphicon-user "></i>
 		<%@ include file="templates/footer.html" %>
 	</footer>
 	<script type="text/javascript">
-		$(document).button();
+		$( "button[data-loading-text]" ).one("click", function() {
+			$btn = $(this);
+		    $btn.button('loading');
+		    // simulating a timeout
+		    setTimeout(function () {
+		        $btn.button('reset');
+		    }, 40000);
+		});
 	</script>
 </body>
 </html>
