@@ -55,6 +55,21 @@ path:hover {
    
 }
 
+.hidden {
+    display: none;
+ }
+div.tooltip {
+   color: #ffffff;
+   background-color: #808080;
+   padding: .5em;
+   text-shadow: #f5f5f5 0 1px 0;
+   border-radius: 2px;
+   opacity: 0.9;
+   position: absolute;
+   right: 0px;
+   
+ }
+
 </style>
 
 
@@ -120,8 +135,9 @@ path:hover {
 				style="margin-top: 18px;"></div>
 			<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
-					<div class="col-lg-5">
-						<div id="map" style=" border: 1px solid #AAA;"></div>
+					<div class="col-lg-5 ">
+						<div id="map" style=" border: 1px solid #AAA;">						<div id="mapLabel"></div>
+						</div>
 
 					</div>
 					<div class="col-lg-7">
@@ -305,6 +321,9 @@ path:hover {
 		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 		g = svg.append("g").attr("class", "leaflet-zoom-hide");
 		
+        var tooltip = d3.select('#mapLabel')
+        .attr('class', 'hidden tooltip');
+		
 		<c:choose>
 	   		 <c:when test="${escenario.circunscripciones == 'PROVINCIAS'}">
 				var path = "./json/states_esp.topo.json";
@@ -378,7 +397,6 @@ path:hover {
 				
 				}
 					</c:forEach>
-					console.log(partidosColores);
 					var partidosColores = order(partidosColores);
 						return (d.color = partidosColores.color[0]);
 				
@@ -434,12 +452,20 @@ path:hover {
 		.on('mouseover', function (d, i) {
 				d3.select(this).style({
 					"fill-opacity" : .7
-					})
+					});
+	                var mouse = d3.mouse(svg.node()).map(function(d) {
+                        return parseInt(d);
+                    });
+                    tooltip.classed('hidden', false)
+                        .html(d.properties.name);
+
 			})
 		.on('mouseout', function (d, i) {
 					d3.selectAll('path').style({
 						"fill-opacity" : .2
-					})
+					});
+                    tooltip.classed('hidden', true);
+
 			});
 		map.on("viewreset", reset);
 		reset();
@@ -450,6 +476,7 @@ path:hover {
 		topLeft = bounds[0],
 		bottomRight = bounds[1];
 
+		console.log(topLeft);
 		svg.attr("width", bottomRight[0] - topLeft[0])
 		.attr("height", bottomRight[1] - topLeft[1])
 		.style("left", topLeft[0] + "px")
