@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
-<% if(session.getAttribute("user") != "" ) {response.sendRedirect((String) session.getAttribute("url"));} 
-	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +27,7 @@
       
     </div>
     <button type="submit" class="btn btn-primary">Registrarse</button>
-    <p> Debe introducir su correo y el nobmre del grupo de usuarios que han contratado junto a la contraseña
+    <p> Debe introducir su correo y el nombre del grupo de usuarios que han contratado junto a la contraseña
     proporcionada para escribir en foros y guardar sus simulaciones.</p>
    	<c:if test="${not empty error}">
 		<p style="color: red;">${error}</p>

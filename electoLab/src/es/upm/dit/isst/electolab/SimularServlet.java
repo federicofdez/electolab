@@ -40,7 +40,7 @@ public class SimularServlet extends HttpServlet {
 		if (req.getUserPrincipal() != null) {
 			user = req.getUserPrincipal().getName();
 			url = userService.createLogoutURL(req.getRequestURI());
-			urlLinktext = user + " :Logout";
+			urlLinktext = " Logout";
 		}
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);

@@ -23,19 +23,22 @@ public class RegistrarServlet extends HttpServlet {
 		String grupo = req.getParameter("grupo");
 		String password = req.getParameter("password");
 		String error = "";
-
-		if (dao.readGrupo(grupo) == null) {
-			error = "No existe un grupo con el nombre: " + grupo;
+		if(dao.existsUsuario(correo)){
+			error = "El usuario " + correo + " ya está registrado en otro grupo";
 			req.getSession().setAttribute("error", error);
-		} else {
-			if (!dao.readGrupo(grupo).getPassword().equals(password)) {
-				error = "Contraseña incorrecta, póngase en contacto con su empresa";
+		} else
+			if (dao.readGrupo(grupo) == null) {
+				error = "No existe un grupo con el nombre: " + grupo;
 				req.getSession().setAttribute("error", error);
+			} else {
+				if (!dao.readGrupo(grupo).getPassword().equals(password)) {
+					error = "Contraseña incorrecta, póngase en contacto con su empresa";
+					req.getSession().setAttribute("error", error);
+				}
 			}
-		}
-		if (error == "" && dao.readGrupo(grupo).getPassword().equals(password)) {
-			dao.createUsuario(correo, grupo);
-		}
+			if (error == "" && dao.readGrupo(grupo).getPassword().equals(password)) {
+				dao.createUsuario(correo, grupo);
+			}
 		resp.sendRedirect("/electolab");
 	}
 }
