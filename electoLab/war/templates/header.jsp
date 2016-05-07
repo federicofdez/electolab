@@ -18,9 +18,9 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<c:if test="${empty user}">
-							<li><a href="registrar.jsp"><span class="glyphicon glyphicon-user"></span>  Registrarse</a></li>
+							<li><span class="glyphicon glyphicon-user"></span><span><a href="registrar.jsp">Registrarse</a></span></li>
 						</c:if>
-						<li><a href='<c:url value="${url}"/>'><span class="glyphicon glyphicon-log-in"></span> <c:out value="${urlLinktext}"/></a></li>
+						<li><span class="glyphicon glyphicon-log-in" style="margin-left:5px;"> </span> <c:out value="${user}"/><span><a href='<c:url value="${url}"/>'> <c:out value="${urlLinktext}"/></a></span></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
