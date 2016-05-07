@@ -73,7 +73,7 @@ glyphicon glyphicon-user "></i>
                 
 <div class="buttons text-center col-lg-12">
     <a href="/crear"> <button type="submit" class="btn btn-info" data-loading-text="Cargando...">Crear escenario nuevo</button> </a>
-    <a href="/crear?escenario=2"><button type="submit" class="btn btn-info" data-loading-text="Cargando...">Cargar escenario previo</button> </a>
+    <a href="/crear?escenario=Escenario%202015"><button type="submit" class="btn btn-info" data-loading-text="Cargando...">Cargar escenario previo</button> </a>
     <div style="padding: 10px;"></div>
     </div>
 			</div>
