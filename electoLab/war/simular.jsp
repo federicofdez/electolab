@@ -121,13 +121,10 @@ path:hover {
 			<div class="container">
 				<div class="row" style="margin-top: 3px; margin-top: 5px;">
 					<div class="col-lg-5">
-						<h3 class="text-center">Mapa de partido ganador</h3>
 						<div id="map" style=" border: 1px solid #AAA;"></div>
 
 					</div>
 					<div class="col-lg-7">
-						<h3 class="text-center">Distribución de escaños en el
-							Congreso</h3>
 						<canvas id="piechart" width="900" height="500"></canvas>
 						<div class="donut-inner">
     						<h5><span id="numEsc"> </span> escaños</h5>
@@ -350,6 +347,7 @@ path:hover {
 	    			color: [],
 	    			imagen: [],
 	    			resultados: [],
+	    			votos: []
 	    	};
 			var id = d.id;
 
@@ -357,6 +355,8 @@ path:hover {
 				if(id == "${r.circunscripcion}"){
 					var partido = "${r.partido}";
 					var escanos =  "${r.escanos}";
+					var votos =  "${r.votos}";
+
 					for( var j = 0; j< partidos.siglas.length; j++){
 						if(partidos.siglas[j] == partido){
 							 siglas = partidos.siglas[j];
@@ -372,11 +372,13 @@ path:hover {
 						partidosColores.color.push(color);
 						partidosColores.imagen.push(imagen);
 						partidosColores.resultados.push(escanos);
+						partidosColores.votos.push(votos);
 						}
 					}
 				
 				}
 					</c:forEach>
+					console.log(partidosColores);
 					var partidosColores = order(partidosColores);
 						return (d.color = partidosColores.color[0]);
 				
@@ -396,6 +398,7 @@ path:hover {
 	    			color: [],
 	    			imagen: [],
 	    			resultados: [],
+	    			votos: []
 	    	};
 	    	var siglas,nombre,color,imagen = "";
 	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
@@ -421,6 +424,7 @@ path:hover {
 					partidosProvincia.color.push(color);
 					partidosProvincia.imagen.push(imagen);
 					partidosProvincia.resultados.push(escanos);
+					partidosProvincia.votos.push(votos);
 				}
 				}
 			</c:forEach>
@@ -512,11 +516,13 @@ piechart(partidos);
     			color: [],
     			imagen: [],
     			resultados:[],
+    			votos:[]
     	};
     	var siglas,nombre,color,imagen = "";
     	<c:forEach items="${resultadosCongreso}" var="r">
 				var partido = "${r.partido}";
 				var escanos =  "${r.escanos}";
+				var votos =  "${r.votos}";
 				for( var j = 0; j< arrayPartidos.siglas.length; j++){
 					if(arrayPartidos.siglas[j] == partido){
 						 siglas = arrayPartidos.siglas[j];
@@ -532,6 +538,8 @@ piechart(partidos);
 					partidosCongreso.color.push(color);
 					partidosCongreso.imagen.push(imagen);
 					partidosCongreso.resultados.push(escanos);
+					partidosCongreso.votos.push(votos);
+
 				}
 			}
 		</c:forEach>
@@ -566,9 +574,9 @@ piechart(partidos);
 	function order(arraysPartidos){
     	var sortable = [];
 			for (var i = 0 ; i < arraysPartidos.siglas.length ; i++){
-		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i]]);
+		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i], arraysPartidos.votos[i]]);
 			}
-		      sortable.sort(function(a, b) {return a[4] - b[4]}).reverse();
+		      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
 		
 		partidosOrder = {
     			siglas: [],
@@ -576,13 +584,16 @@ piechart(partidos);
     			color: [],
     			imagen: [],
     			resultados:[],
+    			votos:[]
     	};
 		for (var i = 0; i< arraysPartidos.siglas.length; i++){
 			partidosOrder.siglas[i] = sortable[i][0];
 			partidosOrder.nombre[i] = sortable[i][1];
 			partidosOrder.color[i] = sortable[i][2];
 			partidosOrder.imagen[i] = sortable[i][3];
-			partidosOrder.resultados[i] = sortable[i][4];		
+			partidosOrder.resultados[i] = sortable[i][4];	
+			partidosOrder.votos[i] = sortable[i][5];		
+
 		}
 		return partidosOrder;
 	}
