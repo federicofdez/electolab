@@ -75,7 +75,9 @@ public class CrearServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			if (escenario == null)
-				escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenario")));
+				for (Escenario e : dao.readEscenarios("admin"))
+					if (e.getTitulo().equals("Escenario 2015"))
+						escenario = e;
 		}
 		if (escenario == null)
 			escenario = dao.readEscenarios("admin").get(0);
