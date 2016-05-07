@@ -587,7 +587,7 @@ piechart(partidos);
 
 		</script>
 		<script type="text/javascript">
-		$( "button[data-loading-text]" ).one("click", function() {
+		$( "button[data-loading-text]" ).on("click", function() {
 			$btn = $(this);
 		    $btn.button('loading');
 		    // simulating a timeout

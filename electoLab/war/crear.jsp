@@ -202,10 +202,14 @@ response.setDateHeader ("Expires", 0);
 	//Etiquetas de electores
     $('[data-toggle="tooltip"]').tooltip(); 
 
-
-
-
-	
+    $( "button[data-loading-text]" ).on("click", function() {
+		$btn = $(this);
+	    $btn.button('loading');
+	    // simulating a timeout
+	    setTimeout(function () {
+	        $btn.button('reset');
+	    }, 40000);
+	});
 	
 </script>
 
