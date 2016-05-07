@@ -126,8 +126,7 @@ response.setDateHeader ("Expires", 0);
 								<tbody>
 									<c:forEach items="${escenario.provincias}" var="provincia">
 	                                    <tr>
-											<th scope="row"><a href="#" data-toggle="tooltip" data-placement="right" title="<c:out value="${provincia.electores}"/>
-	 											electores"><c:out value="${provincia.nombre}"/></a>
+											<th scope="row">${provincia.nombre}<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="${provincia.electores} electores"><i class="glyphicon glyphicon-info-sign"></i></a>
 	 										<c:forEach items="${escenario.votos}" var="voto">
 	 											<c:if test="${provincia.id == voto.circunscripcion}">
 												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="0" max="100" value="${voto.votos}"></th>
