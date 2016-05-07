@@ -73,6 +73,7 @@ public class CrearServlet extends HttpServlet {
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
+			escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenario")));
 		}
 		req.getSession().setAttribute("escenario", escenario);
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);

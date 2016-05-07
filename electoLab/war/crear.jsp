@@ -127,10 +127,17 @@ response.setDateHeader ("Expires", 0);
 									<c:forEach items="${escenario.provincias}" var="provincia">
 	                                    <tr>
 											<th scope="row">${provincia.nombre}<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="${provincia.electores} electores"><i class="glyphicon glyphicon-info-sign"></i></a>
+	 										<c:forEach items="${escenario.partidos}" var="partido">
+	 										<% boolean relleno = false; request.setAttribute("relleno", relleno); %>
 	 										<c:forEach items="${escenario.votos}" var="voto">
-	 											<c:if test="${provincia.id == voto.circunscripcion}">
-												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${voto.votos}"></th>
+	 											<c:if test="${relleno == false and provincia.id == voto.circunscripcion and partido.siglas == voto.partido}">
+	 												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${voto.votos}"></th>
+	 												<% relleno = true; %>
 												</c:if>
+											</c:forEach>
+											<c:if test="${relleno == false}" >
+													<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="-1"></th>
+											</c:if>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="escaños ${provincia.id}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
 										</tr>
