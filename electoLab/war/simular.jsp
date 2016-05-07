@@ -544,11 +544,11 @@ piechart(partidos);
     			resultados:[],
     			votos:[]
     	};
-    	var siglas,nombre,color,imagen = "";
+    	var siglas, nombre, color, imagen, partido, escanos, votos = "";
     	<c:forEach items="${resultadosCongreso}" var="r">
-				var partido = "${r.partido}";
-				var escanos =  "${r.escanos}";
-				var votos =  "${r.votos}";
+				partido = "${r.partido}";
+				escanos =  "${r.escanos}";
+				votos =  "${r.votos}";
 				for( var j = 0; j< arrayPartidos.siglas.length; j++){
 					if(arrayPartidos.siglas[j] == partido){
 						 siglas = arrayPartidos.siglas[j];
@@ -557,7 +557,7 @@ piechart(partidos);
 						 imagen = arrayPartidos.imagen[j];
 					}
 				}
-			if(!partidosCongreso.siglas.includes(siglas)){
+			if(!partidosCongreso.siglas.includes(siglas) && escanos>0){
 				if(siglas != null){
 					partidosCongreso.siglas.push(siglas);
 					partidosCongreso.nombre.push(nombre);
@@ -574,7 +574,7 @@ piechart(partidos);
 		}
 		document.getElementById("numEsc").innerHTML = partidosCongreso.resultados.reduce(getSum);
 		var partidosCongreso = order(partidosCongreso);
-    	var ctx = document.getElementById("piechart").getContext("2d");
+    	var ctx = document.getElementById("piechart");
 		var data = {
 			    labels: partidosCongreso.siglas,
 			    datasets: [
