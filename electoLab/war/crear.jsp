@@ -128,11 +128,11 @@ response.setDateHeader ("Expires", 0);
 	                                    <tr>
 											<th scope="row">${provincia.nombre}<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="${provincia.electores} electores"><i class="glyphicon glyphicon-info-sign"></i></a>
 	 										<c:forEach items="${escenario.partidos}" var="partido">
-	 										<% boolean relleno = false; request.setAttribute("relleno", relleno); %>
+	 										<% request.setAttribute("relleno", false); %>
 	 										<c:forEach items="${escenario.votos}" var="voto">
 	 											<c:if test="${relleno == false and provincia.id == voto.circunscripcion and partido.siglas == voto.partido}">
 	 												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${voto.votos}"></th>
-	 												<% relleno = true; %>
+	 												<% request.setAttribute("relleno", true); %>
 												</c:if>
 											</c:forEach>
 											<c:if test="${relleno == false}" >
