@@ -36,7 +36,7 @@ public class LOGICA {
 			for (Provincia provincia : escenario.getProvincias())
 				// buscamos sus datos de votos
 				for (Votos voto : escenario.getVotos())
-					if (voto.getCircunscripcion().equals(provincia.getId())) {
+					if (voto.getCircunscripcion().equals(provincia.getId()) && voto.getVotos() != -1) {
 						// los pasamos a absoluto
 						Votos votosAbs = new Votos(voto.getCircunscripcion(),
 								voto.getPartido(),

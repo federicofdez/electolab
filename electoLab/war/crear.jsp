@@ -111,12 +111,12 @@ response.setDateHeader ("Expires", 0);
 							</h4>
 						</div>
 						<div id="collapse3" class="panel-collapse collapse">
-							<div class="panel-body">Introduzca los votos de cada partido por circunscripción:</div>
+							<div class="panel-body"><p>En este apartado puede introducir los votos que obtiene cada partido en cada provincia. Utilice valores porcentuales (0-100), o -1 si el partido no se presenta en la provincia.</p>
+							<p>En la última columna puede modificar los escaños que posee cada provincia.</p></div>
 							<table class="table table-hover" id="votosTable">
 								<thead>
 									<tr>
-										<th style="min-width:100px;"><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784
- electores">Circunscripción</a></th>
+										<th style="min-width:100px;">Circunscripción<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="34.631.784 electores"><i class="glyphicon glyphicon-info-sign"></i></a></th>
 										<c:forEach items="${escenario.partidos}" var="partido">
 											<th style="min-width:100px;"><c:out value="${partido.siglas}"/></th>
 										</c:forEach>
@@ -129,7 +129,7 @@ response.setDateHeader ("Expires", 0);
 											<th scope="row">${provincia.nombre}<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="${provincia.electores} electores"><i class="glyphicon glyphicon-info-sign"></i></a>
 	 										<c:forEach items="${escenario.votos}" var="voto">
 	 											<c:if test="${provincia.id == voto.circunscripcion}">
-												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="0" max="100" value="${voto.votos}"></th>
+												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${voto.votos}"></th>
 												</c:if>
 											</c:forEach>
 											<th class='form-group'><input type="number" name="escaños ${provincia.id}" class="form-control"max="350" min="0" value="${provincia.escanos}"></th>
