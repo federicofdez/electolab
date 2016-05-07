@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
+<%@ page import="es.upm.dit.isst.electolab.model.Partido" %>
+<%@ page import="es.upm.dit.isst.electolab.model.Provincia" %>
 <%
 response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
 response.setHeader("Pragma","no-cache"); //HTTP 1.0
@@ -128,13 +130,15 @@ response.setDateHeader ("Expires", 0);
 	                                    <tr>
 											<th scope="row">${provincia.nombre}<span> </span><a href="#" data-toggle="tooltip" data-placement="right" title="${provincia.electores} electores"><i class="glyphicon glyphicon-info-sign"></i></a>
 	 										<c:forEach items="${escenario.partidos}" var="partido">
-	 										<% request.setAttribute("relleno", false); %>
-	 										<c:forEach items="${escenario.votos}" var="voto">
-	 											<c:if test="${relleno == false and provincia.id == voto.circunscripcion and partido.siglas == voto.partido}">
-	 												<th> <input type='number' class='form-control'name="${voto.partido}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${voto.votos}"></th>
+	 										<% request.setAttribute("relleno", false);
+	 										   Partido partido = (Partido) pageContext.getAttribute("partido");
+	 										   Provincia provincia = (Provincia) pageContext.getAttribute("provincia");
+	 										   request.setAttribute("votosMapKey", partido.getSiglas() + ":" + provincia.getId());
+	 										%>
+	 											<c:if test="${relleno == false and votosMap[votosMapKey] != null}">
 	 												<% request.setAttribute("relleno", true); %>
+	 												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${votosMap[votosMapKey]}"></th>
 												</c:if>
-											</c:forEach>
 											<c:if test="${relleno == false}" >
 													<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="-1"></th>
 											</c:if>
@@ -210,6 +214,20 @@ response.setDateHeader ("Expires", 0);
 	        $btn.button('reset');
 	    }, 40000);
 	});
+    
+    $( "input[type='number']").each(function(){
+    	if ($(this).val() == -1){
+    		$(this).css("background-color", "#F2F2F2");
+    	}
+    });
+    
+    $( "input[type='number']").change(function(){
+    	if ($(this).val() == -1){
+    		$(this).css("background-color", "#F2F2F2");
+    	} else {
+    		$(this).css("background-color", "white");
+    	}
+    });
 	
 </script>
 

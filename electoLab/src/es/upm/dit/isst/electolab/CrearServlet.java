@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -78,6 +79,12 @@ public class CrearServlet extends HttpServlet {
 		}
 		if (escenario == null)
 			escenario = dao.readEscenarios("admin").get(0);
+		
+		Map<String, Integer> votosMap = new HashMap<String, Integer>();
+		for (Votos v : escenario.getVotos())
+			votosMap.put(v.getPartido() + ":" + v.getCircunscripcion(), v.getVotos());
+		
+		req.getSession().setAttribute("votosMap", votosMap);
 		req.getSession().setAttribute("escenario", escenario);
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
