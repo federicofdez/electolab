@@ -72,8 +72,8 @@ glyphicon glyphicon-user "></i>
 </div>
                 
 <div class="buttons text-center col-lg-12">
-    <a href="/crear"> <button type="submit" class="btn btn-info">Crear escenario nuevo</button> </a>
-    <a href="/crear?escenario=2"><button type="submit" class="btn btn-info">Cargar escenario previo</button> </a>
+    <a href="/crear"> <button type="submit" class="btn btn-info" data-loading-text="Cargando...">Crear escenario nuevo</button> </a>
+    <a href="/crear?escenario=2"><button type="submit" class="btn btn-info" data-loading-text="Cargando...">Cargar escenario previo</button> </a>
     <div style="padding: 10px;"></div>
     </div>
 			</div>
@@ -90,5 +90,8 @@ glyphicon glyphicon-user "></i>
 		</div>
 		<%@ include file="templates/footer.html" %>
 	</footer>
+	<script type="text/javascript">
+		$(document).button();
+	</script>
 </body>
 </html>

@@ -109,7 +109,7 @@ path:hover {
 					<form action="/crear" method="get">
 						<input type="hidden" name="escenario" value="${escenarioKey}" />
 						<button type="submit" class="btn btn-info center-block"
-						id="botoncrear">Editar Simulación</button>
+						id="botoncrear" data-loading-text="Cargando...">Editar Simulación</button>
 					</form>
 				</div>
 			</div>
@@ -585,6 +585,9 @@ piechart(partidos);
 		return partidosOrder;
 	}
 
+		</script>
+		<script type="text/javascript">
+			$(document).button();
 		</script>
 </body>
 </html>

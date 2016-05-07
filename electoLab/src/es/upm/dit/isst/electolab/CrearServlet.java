@@ -61,7 +61,7 @@ public class CrearServlet extends HttpServlet {
 			return;
 		}
 
-		Escenario escenario = dao.readEscenarios("admin").get(0);
+		Escenario escenario = null;
 		if (req.getParameterMap().containsKey("escenario")) {
 			Cache cache;
 			try {
@@ -73,8 +73,11 @@ public class CrearServlet extends HttpServlet {
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
-			escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenario")));
+			if (escenario == null)
+				escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenario")));
 		}
+		if (escenario == null)
+			escenario = dao.readEscenarios("admin").get(0);
 		req.getSession().setAttribute("escenario", escenario);
 		req.getRequestDispatcher("crear.jsp").forward(req, resp);
 	}
