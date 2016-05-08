@@ -157,7 +157,7 @@ path:hover {
 							</tr>
 						</thead>
 						<tbody>
-								<c:forEach items="${escenario.comentarios}" var="comentario">
+								<c:forEach items="${comentarios}" var="comentario">
 								<tr <c:if test="${comentario.usuario == user}"> class="info" </c:if> >
 								<th scope="row"><c:out value="${comentario.usuario}"/></th>
 								<td style="color: #A4A4A4;"><c:out value="${comentario.fecha }" /></td>
