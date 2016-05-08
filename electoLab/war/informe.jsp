@@ -40,7 +40,7 @@ path:hover {
 .donut-inner {
    margin-top: -40px;
    margin-bottom: 20px;
-   margin-left: 245px;
+   margin-left: 320px;
 }
 .donut-inner h5 {
    margin-bottom: 5px;
@@ -49,20 +49,6 @@ path:hover {
    
 }
 
-.hidden {
-    display: none;
- }
-div.tooltip {
-   color: #ffffff;
-   background-color: #808080;
-   padding: .5em;
-   text-shadow: #f5f5f5 0 1px 0;
-   border-radius: 2px;
-   opacity: 0.9;
-   position: absolute;
-   right: 0px;
-   
- }
 
 </style>
 
@@ -106,154 +92,53 @@ div.tooltip {
 			<div class="col-lg-12 center-block" id="editarsimular"
 				style="margin-top: 18px;"></div>
 			<div class="container">
-				<div class="row" style="margin-top: 3px; margin-top: 5px;">
-					<div class="col-lg-5 ">
-						<div id="map" style=" border: 1px solid #AAA;">						<div id="mapLabel"></div>
-						</div>
-
-					</div>
-					<div class="col-lg-7">
+					<div class="col-lg-offset-1 col-lg-9">
 						<canvas id="piechart" width="900" height="500"></canvas>
 						<div class="donut-inner">
     						<h5><span id="numEsc"> </span> escaños</h5>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="panel panel-default" style="margin-top: 15px;">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse3">Resultado simulación</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
-					<div class="panel-body">Resultado</div>
-					<table class="table table-hover" id="partidosTable">
+												<div class="panel-body"><h2><center>Resultados generales</center></h2></div>
+					<table class="table table-hover" id="generalesTable">
 						<thead>
 							<tr>
 								<th class="col-lg-3">Partido</th>
-								<th class="col-lg-3">Circunscripción</th>
 								<th class="col-lg-3">Escaños obtenidos</th>
+								<th class="col-lg-3">Votos</th>							
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th>${ r.circunscripcion }</th>
-									<th>${r.escanos }</th>
-								</tr>
-							</c:forEach>
 							<c:forEach items="${resultadosCongreso}" var="r">
 								<tr>
 									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th>${ r.circunscripcion }</th>
 									<th>${r.escanos }</th>
+									<th>${r.votos }</th>
+									
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-			</div>
+
+
+
 			<c:if test="${not empty user}">
 			<div class="col-lg-12" style="padding-bottom: 40px;">
 				<div class="col-lg-6">
-					<form action="/guardasimulacion" method="post">
-						<input type="hidden" name="escenario" value="${escenarioKey}" />
-						<button type="submit" class="btn btn-success center-block">Guardar simulación</button>
-					</form>
+
 				</div>
-				<div class="col-lg-6">
-									<form action="/informe" method="get">
-						<input type="hidden" name="escenario" value="${escenarioKey}" />
-					<button class="btn btn-info center-block" >Generar informe</button>
-					</form>
-					
-																<a href="javascript:demoFromHTML()" class="button">Run Code</a>
-<div id="content">
-    <h1>  
-        We support special element handlers. Register them with jQuery-style.
-    </h1>
-</div>
 				</div>
 			</div>
 			</c:if>
 				
-			</div>
 		</div>
-		<div style="padding: 20px;"></div>
-	</div>
+		<div style="padding: 50px;"></div>
 	</div>
 
+																	<a href="javascript:demoFromHTML()" class="button">Run Code</a>
+<div id="content">
 
 
-	<!-- Modal Escenario-->
-	<div class="modal fade" id="popupInforme" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Generar informe de
-						la simulación</h4>
-				</div>
-				<div id="informe" class="modal-body">
-					<div class="text-center">
-
-						<h4>¿Qué tipo de informe desea generar?</h4>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Resumido</button>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Detallado</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!-- Modal Votos-->
-	<div class="modal fade" id="popupVotos" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Votos en la circunscripción:<span id="prov"> </span> </h4>
-				</div>
-				<div class="modal-body">
-					<div class="text-center" >
-						<div id="canvasWrapper">
-						<canvas id="graphicbar"></canvas>
-						</div>
-						<table class="table table-hover" id="partidosTable">
-						<thead>
-							<tr>
-								<th class="col-lg-3">Partido</th>
-								<th class="col-lg-3">Escaños obtenidos</th>
-								<th class="col-lg-3">Votos obtenidos</th>
-							</tr>
-						</thead>
-						<tbody id="votos">
-							
-						</tbody>
-					</table>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 	
 	</main>
@@ -295,188 +180,6 @@ div.tooltip {
 		partidos.imagen.splice(0,1);
 
 	
-		var map = new L.Map("map", {center: [39.9855, -3.7353], zoom: 5});
-		var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.png', {
-		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-		maxZoom: 8,
-		minZoom: 4
-		}).addTo(map);
-
-		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
-		g = svg.append("g").attr("class", "leaflet-zoom-hide");
-		
-        var tooltip = d3.select('#mapLabel')
-        .attr('class', 'hidden tooltip');
-		
-		<c:choose>
-	   		 <c:when test="${escenario.circunscripciones == 'PROVINCIAS'}">
-				var path = "./json/states_esp.topo.json";
-			</c:when>
-  		 <c:when test="${escenario.circunscripciones == 'COMUNIDADES'}">
- 			var path = "./json/communities_esp.topo.json";
-		</c:when>
- 		 <c:when test="${escenario.circunscripciones == 'PAIS'}">
- 			var path = "./json/spain.json";
-		</c:when>
-	    <c:otherwise>
-			var path = "./json/states_esp.topo.json";
-   		 </c:otherwise>
-   		 </c:choose>
-   		 
-	d3.json(path, function(error, collection) {
-		if (error) throw error;
-
-		var states = collection;
-	<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}">
-		var states = topojson.feature(collection, collection.objects.states);
-	</c:if>
-
-		var transform = d3.geo.transform({point: projectPoint}),
-		path = d3.geo.path().projection(transform);
-
-
-		var feature = g.selectAll("path")
-		.data(states.features)
-		.enter().append("path")
-		.style({
-		"fill-opacity" : 0.4,
-		"stroke" : "#fff",
-		"stroke-width" : "1px"
-		})
-		.style("fill", function (d) {
-	    	var partidosColores = {
-	    			siglas: [],
-	    			nombre: [],
-	    			color: [],
-	    			imagen: [],
-	    			resultados: [],
-	    			votos: []
-	    	};
-			var id = d.id;
-
-	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-				if(id == "${r.circunscripcion}"){
-					var partido = "${r.partido}";
-					var escanos =  "${r.escanos}";
-					var votos =  "${r.votos}";
-
-					for( var j = 0; j< partidos.siglas.length; j++){
-						if(partidos.siglas[j] == partido){
-							 siglas = partidos.siglas[j];
-							 nombre = partidos.nombre[j];
-							 color = partidos.color[j];
-							 imagen = partidos.imagen[j];
-						}
-					}
-					if(!partidosColores.siglas.includes(siglas)){
-						if(siglas != null){
-						partidosColores.siglas.push(siglas);
-						partidosColores.nombre.push(nombre);
-						partidosColores.color.push(color);
-						partidosColores.imagen.push(imagen);
-						partidosColores.resultados.push(escanos);
-						partidosColores.votos.push(votos);
-						}
-					}
-				
-				}
-					</c:forEach>
-					var partidosColores = order(partidosColores);
-						return (d.color = partidosColores.color[0]);
-				
-		})		
-
-		.on('click', function (d) {
-			$('#popupVotos').modal('show');
-			$('#canvasWrapper').html("");
-			$('#canvasWrapper').html("<canvas id='graphicbar'></canvas>");
-			$('#votos').html("");
-			$('#prov').html("");
-			var id = d.id;
-			var name = d.properties.name
-	    	var partidosProvincia = {
-	    			siglas: [],
-	    			nombre: [],
-	    			color: [],
-	    			imagen: [],
-	    			resultados: [],
-	    			votos: []
-	    	};
-	    	var siglas,nombre,color,imagen = "";
-	    	<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-				if(id == "${r.circunscripcion}"){
-					var partido = "${r.partido}";
-					var escanos =  "${r.escanos}";
-					var votos = "${r.votos}";
-					$('#prov').html(" " + name);
-					$('#votos').append("<tr><th scope='row'><h4> ${ r.partido } </h4></th><th><h5> ${r.escanos }  </h5></th><th><h5> ${r.votos}  </h5></th></tr>");			    	
-					for( var j = 0; j< partidos.siglas.length; j++){
-						if(partidos.siglas[j] == partido){
-							 siglas = partidos.siglas[j];
-							 nombre = partidos.nombre[j];
-							 color = partidos.color[j];
-							 imagen = partidos.imagen[j];
-						}
-					}
-				}
-				if(!partidosProvincia.siglas.includes(siglas)){
-				if(siglas != null){
-					partidosProvincia.siglas.push(siglas);
-					partidosProvincia.nombre.push(nombre);
-					partidosProvincia.color.push(color);
-					partidosProvincia.imagen.push(imagen);
-					partidosProvincia.resultados.push(escanos);
-					partidosProvincia.votos.push(votos);
-				}
-				}
-			</c:forEach>
-			graphicbar(partidosProvincia);
-
-		})
-		.on('mouseover', function (d, i) {
-				d3.select(this).style({
-					"fill-opacity" : .7
-					});
-	                var mouse = d3.mouse(svg.node()).map(function(d) {
-                        return parseInt(d);
-                    });
-                    tooltip.classed('hidden', false)
-                        .html(d.properties.name);
-
-			})
-		.on('mouseout', function (d, i) {
-					d3.selectAll('path').style({
-						"fill-opacity" : .2
-					});
-                    tooltip.classed('hidden', true);
-
-			});
-		map.on("viewreset", reset);
-		reset();
-
-		// Reposition the SVG to cover the features.
-		function reset() {
-		var bounds = path.bounds(states),
-		topLeft = bounds[0],
-		bottomRight = bounds[1];
-
-		svg.attr("width", bottomRight[0] - topLeft[0])
-		.attr("height", bottomRight[1] - topLeft[1])
-		.style("left", topLeft[0] + "px")
-		.style("top", topLeft[1] + "px");
-
-		g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-
-		feature.attr("d", path);
-		}
-
-		// Use Leaflet to implement a D3 geometric transformation.
-		function projectPoint(x, y) {
-		var point = map.latLngToLayerPoint(new L.LatLng(y, x));
-		this.stream.point(point.x, point.y);
-		}
-
-		});
 		
 piechart(partidos);
 	
@@ -607,28 +310,33 @@ piechart(partidos);
 		return partidosOrder;
 	}
 
-		</script>
-		<script type="text/javascript">
-		$( "button[data-loading-text]" ).on("click", function() {
-			$btn = $(this);
-		    $btn.button('loading');
-		    // simulating a timeout
-		    setTimeout(function () {
-		        $btn.button('reset');
-		    }, 40000);
-		});
-		</script>
-		<script>
 
     function demoFromHTML() {
-    	console.log("entra");
-    	var pdf = new jsPDF('p','pt','a4');
 
-    	pdf.addHTML(document.body,function() {
-    	    pdf.save('web.pdf');
+    	var pdf = new jsPDF('p', 'pt', 'a1');
+      	 var options = {
+      	    pagesplit: true
+      	};
 
-    	});
+      	pdf.addHTML($('body'), 0, 0, options, function(){
+      	    pdf.save("test.pdf");
+      	});
     }
+    
+	$('#generalesTable').DataTable( {
+	    "ordering": true, 
+        "order": [[ 2, "desc" ]],
+        "searching": false,
+        "pageLength": 52,
+        "paging": false,
+	    "language": {
+	        "lengthMenu": "Mostrando _MENU_ entradas por página",
+	        "zeroRecords": "Niguna entrada coincide con su búsqueda",
+	        "info": "Mostrando _PAGE_ de _PAGES_",
+	        "infoEmpty": "No existe el comentario",
+	        "infoFiltered": "(filtrado de _MAX_ entradas totales)"
+	    }
+	} ); 
 </script>
 </body>
 </html>
