@@ -145,6 +145,8 @@ path:hover {
 				<button class="btn btn-info center-block" data-toggle="modal"
 					data-target="#popupInforme">Generar informe</button>
 			</div>
+						<HR width=95% align="center" class="btn-info"
+				style="margin-top: 120px;">
 			<div class="container-fluid" id="main-content">
 				<h1>Comentarios de  simulación</h1>
 				<div>
