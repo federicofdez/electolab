@@ -69,6 +69,7 @@
 	//Datatable
 	$('#foroTable').DataTable( {
         "ordering": true, 
+        "order": [[ 2, "desc" ]],
         "language": {
             "lengthMenu": "Mostrando _MENU_ entradas por página",
             "zeroRecords": "Niguna entrada coincide con su búsqueda",

@@ -6,12 +6,6 @@
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
 <%@ page import="es.upm.dit.isst.electolab.model.Partido" %>
 <%@ page import="es.upm.dit.isst.electolab.model.Provincia" %>
-<%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.setHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0);
-//prevents caching at the proxy server
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

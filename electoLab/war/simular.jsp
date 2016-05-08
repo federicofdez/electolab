@@ -5,12 +5,6 @@
 <%@ page
 	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
-<%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.setHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0);
-//prevents caching at the proxy server
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

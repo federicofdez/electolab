@@ -473,6 +473,7 @@ piechart(partidos);
 
 	$('#comentarioTable').DataTable( {
 	    "ordering": true, 
+        "order": [[ 1, "desc" ]],
 	    "language": {
 	        "lengthMenu": "Mostrando _MENU_ entradas por página",
 	        "zeroRecords": "Niguna entrada coincide con su búsqueda",

@@ -138,10 +138,10 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			if (escenarios.size() > 0) {
 				escenario = escenarios.get(0);
 				List<Comentario> comentarios = escenario.getComentarios();
-				System.out.println("Comentario: " + comentario.toString() + "\n");
 				comentarios.add(comentario);
 				escenario.setComentarios(comentarios);
 				escenario = em.merge(escenario);
+
 				em.close();
 			}
 		return escenario;		
