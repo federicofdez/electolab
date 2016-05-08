@@ -74,6 +74,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>GuardarServlet</servlet-name>
 		<url-pattern>/guardasimulacion</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>InformeServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.electolab.InformeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InformeServlet</servlet-name>
+		<url-pattern>/informe</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>InitServlet</servlet-name>

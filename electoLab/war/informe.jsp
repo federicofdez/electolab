@@ -80,48 +80,26 @@ div.tooltip {
 	<div class="container">
 		<%@ include file="templates/main.jsp"%>
 		<div class="container-fluid" id="main-content">
-			<h1>Resultado de la simulación</h1>
+			<h1>Informe de la simulación</h1>
 			<h3><c:out value='${escenario.titulo}'/></h3>		
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px; margin-top: 10px;">
-			<form action="/simular" method="get">
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-lg-3" style="margin-top: 7px; margin-left: 12px;">
-					Sistema de proporcionalidad:</div>
-				<div class="dropdown col-lg-2">
-					<input type="radio" name="sistema" value="DHONDT"<c:if test="${escenario.sistema == 'DHONDT'}"> checked </c:if> >D'Hondt<br>
-  					<input type="radio" name="sistema" value="SAINTE"<c:if test="${escenario.sistema == 'SAINTE'}"> checked </c:if>>Sainte-Lagüe<br>
-				</div>
-				<div class="col-lg-2" style="margin-top: 7px;">
-					Circunscripciones:</div>
-				<div class="dropdown col-lg-3">
-					<input type="radio" name="circunscripciones" value="PROVINCIAS"<c:if test ="${escenario.circunscripciones == 'PROVINCIAS'}"> checked </c:if>>Provincias<br>
-  					<input type="radio" name="circunscripciones" value="COMUNIDADES"<c:if test ="${escenario.circunscripciones == 'COMUNIDADES'}"> checked </c:if>>Comunidades autónomas<br>
-    				<input type="radio" name="circunscripciones" value="PAIS"<c:if test ="${escenario.circunscripciones == 'PAIS'}"> checked </c:if>>España<br>
-				</div>
-				<div class="col-lg-4 center-block"
-					style="margin-top: 28px; margin-left: 12px;" min="0" max="100">
-					% escaños para la mayoria absoluta:</div>
-				<div class="form-group col-lg-2 center-block">
-					<input type="number" name="mayoria" class="form-control col-lg-2 center-block"  style="margin-top: 18px;" min="0" max="100" value="${escenario.mayoria_abs }">
+			<div class="row" align="center" style="margin-top: 15px;margin-left:2%; width:96%">
 
-				</div>
-			</div>
-			<div class="row" style="margin-top: 15px;">
-				<div class="col-lg-6">
-						<input type="hidden" name="escenario" value="${escenarioKey}" />
-						<button type="submit" class="btn btn-info volversimular center-block">Volver a
-						Simular</button>
-				</div>
-				</form>
-				<div class="col-lg-6">
-					<form action="/crear" method="get">
-						<input type="hidden" name="escenario" value="${escenarioKey}" />
-						<button type="submit" class="btn btn-info center-block"
-						id="botoncrear" data-loading-text="Cargando...">Editar Simulación</button>
-					</form>
-				</div>
-			</div>
+				<h4 style="margin-left: 5px;"><u>Parámetros de la simulación:</u></h4>
+				    <div class="panel panel-default col-lg-4">
+      <div class="panel-heading">Sistema de proporcionalidad</div>
+      <div class="panel-body"><c:out value="${escenario.sistema }"/></div>
+   	 </div>
+   	 				    <div class="panel panel-default col-lg-4">
+      <div class="panel-heading">Circunscripciones</div>
+      <div class="panel-body"><c:out value="${escenario.circunscripciones }"/></div>
+   	 </div>
+   	 				    <div class="panel panel-default col-lg-4">
+      <div class="panel-heading">% escaños para la mayoria absoluta</div>
+      <div class="panel-body"><c:out value="${escenario.mayoria_abs }"/></div>
+   	 </div>
+   	 </div>
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px; margin-top: 10px;">
 
@@ -191,6 +169,13 @@ div.tooltip {
 						<input type="hidden" name="escenario" value="${escenarioKey}" />
 					<button class="btn btn-info center-block" >Generar informe</button>
 					</form>
+					
+																<a href="javascript:demoFromHTML()" class="button">Run Code</a>
+<div id="content">
+    <h1>  
+        We support special element handlers. Register them with jQuery-style.
+    </h1>
+</div>
 				</div>
 			</div>
 			</c:if>
@@ -282,6 +267,8 @@ div.tooltip {
 	<script type='text/javascript'  src="./js/d3.v3.min.js"></script>
 	<script type='text/javascript' src='./js/leaflet.js'></script>
 	<script src="./js/Chart.js"></script>
+	<script type='text/javascript' src='./js/jsPDF_debug.js'></script>
+		<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 	
 	
 		
@@ -631,5 +618,17 @@ piechart(partidos);
 		    }, 40000);
 		});
 		</script>
+		<script>
+
+    function demoFromHTML() {
+    	console.log("entra");
+    	var pdf = new jsPDF('p','pt','a4');
+
+    	pdf.addHTML(document.body,function() {
+    	    pdf.save('web.pdf');
+
+    	});
+    }
+</script>
 </body>
 </html>

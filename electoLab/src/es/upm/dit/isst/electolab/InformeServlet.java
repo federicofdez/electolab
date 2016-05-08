@@ -22,16 +22,16 @@ import es.upm.dit.isst.electolab.dao.ElectoLabDAO;
 import es.upm.dit.isst.electolab.dao.ElectoLabDAOImpl;
 import es.upm.dit.isst.electolab.logic.LOGICA;
 import es.upm.dit.isst.electolab.model.Circunscripciones;
-import es.upm.dit.isst.electolab.model.Resultados;
 import es.upm.dit.isst.electolab.model.Escenario;
+import es.upm.dit.isst.electolab.model.Resultados;
 import es.upm.dit.isst.electolab.model.Sistema;
 import es.upm.dit.isst.electolab.model.Votos;
 
-public class SimularServlet extends HttpServlet {
+public class InformeServlet extends HttpServlet {
 
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
 		// Gestión de usuarios
 		UserService userService = UserServiceFactory.getUserService();
 		String url = userService.createLoginURL(req.getRequestURI());
@@ -92,7 +92,6 @@ public class SimularServlet extends HttpServlet {
 		// por último, agrupamos para el Congreso
 		List<Resultados> resultadosCongreso = LOGICA.resultadosCongreso(
 				resultadosPorCircunscripcion, escenario);
-
 		
 		// Renderizamos vista
 		req.setAttribute("resultadosPorCircunscripcion",
@@ -102,7 +101,7 @@ public class SimularServlet extends HttpServlet {
 		
 		req.setAttribute("escenarioKey", req.getParameter("escenario"));
 
-		req.getRequestDispatcher("simular.jsp").forward(req, resp);
+		req.getRequestDispatcher("informe.jsp").forward(req, resp);
 	}
 
 }
