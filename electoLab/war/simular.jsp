@@ -394,7 +394,7 @@ div.tooltip {
 				
 				}
 					</c:forEach>
-					var partidosColores = order(partidosColores);
+					var partidosColores = order(partidosColores,"votos");
 						return (d.color = partidosColores.color[0]);
 				
 		})		
@@ -500,7 +500,7 @@ piechart(partidos);
 		
 		function graphicbar(arraysPartidos) {
     	var ctx = document.getElementById("graphicbar").getContext("2d"); 
-		arraysPartidos = order(arraysPartidos);
+		arraysPartidos = order(arraysPartidos,"votos");
 		var data = {
 			    labels: arraysPartidos.siglas,
 			    datasets: [
@@ -570,7 +570,7 @@ piechart(partidos);
 		    return parseInt(total) + parseInt(num);
 		}
 		document.getElementById("numEsc").innerHTML = partidosCongreso.resultados.reduce(getSum);
-		var partidosCongreso = order(partidosCongreso);
+		var partidosCongreso = order(partidosCongreso,"escanos");
     	var ctx = document.getElementById("piechart");
 		var data = {
 			    labels: partidosCongreso.siglas,
@@ -593,12 +593,17 @@ piechart(partidos);
     	});
 	}
 
-	function order(arraysPartidos){
+	function order(arraysPartidos, parametro){
     	var sortable = [];
 			for (var i = 0 ; i < arraysPartidos.siglas.length ; i++){
 		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i], arraysPartidos.votos[i]]);
 			}
-		      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
+			if(parametro == "votos"){
+			      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
+			} 
+			else {
+			      sortable.sort(function(a, b) {return a[4] - b[4]}).reverse();
+			}
 		
 		partidosOrder = {
     			siglas: [],

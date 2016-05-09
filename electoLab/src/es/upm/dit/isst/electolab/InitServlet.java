@@ -373,9 +373,9 @@ public class InitServlet extends HttpServlet {
 			votos2015.add(new Votos("navarra", "PACMA", 0));
 			votos2015.add(new Votos("navarra", "UPYD", 0));
 			votos2015.add(new Votos("navarra", "LOS VERDES", 0));
-			votos2015.add(new Votos("albacete", "PP", 36));
+			votos2015.add(new Votos("albacete", "PP", 37));
 			votos2015.add(new Votos("albacete", "PSOE", 28));
-			votos2015.add(new Votos("albacete", "Cs", 14));
+			votos2015.add(new Votos("albacete", "Cs", 15));
 			votos2015.add(new Votos("albacete", "PODEMOS", 13));
 			votos2015.add(new Votos("albacete", "IU-UPeC", 4));
 			votos2015.add(new Votos("albacete", "PACMA", 0));
@@ -463,7 +463,7 @@ public class InitServlet extends HttpServlet {
 			votos2015.add(new Votos("zamora", "PCPE", 0));
 			votos2015.add(new Votos("rioja", "PP", 38));
 			votos2015.add(new Votos("rioja", "PSOE", 23));
-			votos2015.add(new Votos("rioja", "PODEMOS", 15));
+			votos2015.add(new Votos("rioja", "PODEMOS", 17));
 			votos2015.add(new Votos("rioja", "Cs", 15));
 			votos2015.add(new Votos("rioja", "IU-UPeC", 4));
 			votos2015.add(new Votos("rioja", "UPYD", 0));
@@ -521,7 +521,7 @@ public class InitServlet extends HttpServlet {
 			votos2015.add(new Votos("leon", "PP", 35));
 			votos2015.add(new Votos("leon", "PSOE", 25));
 			votos2015.add(new Votos("leon", "PODEMOS", 17));
-			votos2015.add(new Votos("leon", "Cs", 12));
+			votos2015.add(new Votos("leon", "Cs", 13));
 			votos2015.add(new Votos("leon", "IU-UPeC", 4));
 			votos2015.add(new Votos("leon", "UPYD", 0));
 			votos2015.add(new Votos("leon", "PACMA", 0));
@@ -578,9 +578,9 @@ public class InitServlet extends HttpServlet {
 			votos2015.add(new Votos("madrid", "PUM+J", 0));
 			votos2015.add(new Votos("madrid", "PCPE", 0));
 			votos2015.add(new Votos("almeria", "PP", 38));
-			votos2015.add(new Votos("almeria", "PSOE", 28));
+			votos2015.add(new Votos("almeria", "PSOE", 29));
 			votos2015.add(new Votos("almeria", "Cs", 14));
-			votos2015.add(new Votos("almeria", "PODEMOS", 12));
+			votos2015.add(new Votos("almeria", "PODEMOS", 13));
 			votos2015.add(new Votos("almeria", "IU-UPeC", 3));
 			votos2015.add(new Votos("almeria", "PACMA", 0));
 			votos2015.add(new Votos("almeria", "UPYD", 0));
@@ -620,7 +620,7 @@ public class InitServlet extends HttpServlet {
 			votos2015.add(new Votos("lerida", "DL", 24));
 			votos2015.add(new Votos("lerida", "ERC-CATSI", 22));
 			votos2015.add(new Votos("lerida", "EN COMÚ", 15));
-			votos2015.add(new Votos("lerida", "PSOE", 12));
+			votos2015.add(new Votos("lerida", "PSOE", 13));
 			votos2015.add(new Votos("lerida", "PP", 11));
 			votos2015.add(new Votos("lerida", "Cs", 8));
 			votos2015.add(new Votos("lerida", "unio.cat", 2));
