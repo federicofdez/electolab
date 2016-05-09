@@ -142,8 +142,10 @@ path:hover {
 				</div>
 			</div>
 			<div class="col-lg-12" style="padding-bottom: 40px;">
-				<button class="btn btn-info center-block" data-toggle="modal"
-					data-target="#popupInforme">Generar informe</button>
+					<form action="/informe" method="get">
+						<input type="hidden" name="escenarioId" value="${escenario.id}" />
+					<button class="btn btn-info center-block" >Generar informe</button>
+					</form>
 			</div>
 						<HR width=95% align="center" class="btn-info"
 				style="margin-top: 120px;">
@@ -178,41 +180,7 @@ path:hover {
 		</div>
 		</div>
 		<div style="padding: 20px;"></div>
-	</div>
-	</div>
 
-
-
-
-	<!-- Modal Escenario-->
-	<div class="modal fade" id="popupInforme" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Generar informe de
-						la simulación</h4>
-				</div>
-				<div id="informe" class="modal-body">
-					<div class="text-center">
-
-						<h4>¿Qué tipo de informe desea generar?</h4>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Resumido</button>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Detallado</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 		<!-- Modal Votos-->
 	<div class="modal fade" id="popupVotos" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -370,7 +338,7 @@ path:hover {
 				
 				}
 					</c:forEach>
-					var partidosColores = order(partidosColores);
+					var partidosColores = order(partidosColores,"votos");
 						return (d.color = partidosColores.color[0]);
 				
 		})		
@@ -490,7 +458,7 @@ piechart(partidos);
 		
 		function graphicbar(arraysPartidos) {
     	var ctx = document.getElementById("graphicbar").getContext("2d"); 
-		arraysPartidos = order(arraysPartidos);
+		arraysPartidos = order(arraysPartidos,"votos");
 		var data = {
 			    labels: arraysPartidos.siglas,
 			    datasets: [
@@ -560,7 +528,7 @@ piechart(partidos);
 		    return parseInt(total) + parseInt(num);
 		}
 		document.getElementById("numEsc").innerHTML = partidosCongreso.resultados.reduce(getSum);
-		var partidosCongreso = order(partidosCongreso);
+		var partidosCongreso = order(partidosCongreso,"escanos");
     	var ctx = document.getElementById("piechart").getContext("2d");
 		var data = {
 			    labels: partidosCongreso.siglas,
@@ -583,12 +551,17 @@ piechart(partidos);
     	});
 	}
 
-	function order(arraysPartidos){
+	function order(arraysPartidos, parametro){
     	var sortable = [];
 			for (var i = 0 ; i < arraysPartidos.siglas.length ; i++){
 		      sortable.push([arraysPartidos.siglas[i],arraysPartidos.nombre[i],arraysPartidos.color[i],arraysPartidos.imagen[i], arraysPartidos.resultados[i], arraysPartidos.votos[i]]);
 			}
-		      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
+			if(parametro == "votos"){
+			      sortable.sort(function(a, b) {return a[5] - b[5]}).reverse();
+			} 
+			else {
+			      sortable.sort(function(a, b) {return a[4] - b[4]}).reverse();
+			}
 		
 		partidosOrder = {
     			siglas: [],

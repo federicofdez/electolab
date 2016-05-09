@@ -75,6 +75,11 @@ public class InformeServlet extends HttpServlet {
 		}
 
 		// Si no hay escenario cacheado...
+		
+		if (escenario == null)
+			escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenarioId")));
+
+		
 		if (escenario == null)
 			escenario = dao.readEscenarios("admin").get(0);
 
