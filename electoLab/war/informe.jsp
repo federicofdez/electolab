@@ -66,8 +66,11 @@ path:hover {
 	<div class="container">
 		<%@ include file="templates/main.jsp"%>
 		<div class="container-fluid" id="main-content">
+		<form action="javascript:demoFromHTML()">
+    		<input type="submit" style="margin-top:10px;" class="btn btn-success center-block botonEliminar "value="Generar informe PDF">
+		</form>
 			<h1>Informe de la simulación</h1>
-			<h3><c:out value='${escenario.titulo}'/></h3>		
+			<h3><center><c:out value='${escenario.titulo}'/></center></h3>		
 			<HR width=95% align="center" class="btn-info"
 				style="margin-top: 10px; margin-top: 10px;">
 			<div class="row" align="center" style="margin-top: 15px;margin-left:2%; width:96%">
@@ -99,7 +102,7 @@ path:hover {
 						</div>
 					</div>
 				</div>
-												<div class="panel-body"><h2><center>Resultados generales</center></h2></div>
+				<div class="panel-body"><h2><center>Resultados generales</center></h2></div>
 					<table class="table table-hover" id="generalesTable">
 						<thead>
 							<tr>
@@ -119,28 +122,9 @@ path:hover {
 							</c:forEach>
 						</tbody>
 					</table>
-
-
-
-			<c:if test="${not empty user}">
-			<div class="col-lg-12" style="padding-bottom: 40px;">
-				<div class="col-lg-6">
-
-				</div>
-				</div>
-			</div>
-			</c:if>
-				
 		</div>
 		<div style="padding: 50px;"></div>
-	</div>
-
-																	<a href="javascript:demoFromHTML()" class="button">Run Code</a>
-<div id="content">
-
-
-	
-	
+	</div>	
 	</main>
 	<footer class="footer">
 		<div class="container">
@@ -313,14 +297,24 @@ piechart(partidos);
 
     function demoFromHTML() {
 
-    	var pdf = new jsPDF('p', 'pt', 'a1');
+    	ocultar();
+    	//code before the pause
+
+    	var pdf = new jsPDF('p', 'pt', 'a2');
       	 var options = {
       	    pagesplit: true
       	};
 
       	pdf.addHTML($('body'), 0, 0, options, function(){
-      	    pdf.save("test.pdf");
+      		var titulo = "<c:out value='${escenario.titulo}'/>";
+      		if(titulo == "")
+      			titulo = "informe";
+      	    pdf.save(titulo+".pdf");
       	});
+      	
+    	setTimeout(function(){
+          	mostrar();
+    	}, 2000);
     }
     
 	$('#generalesTable').DataTable( {
@@ -337,6 +331,23 @@ piechart(partidos);
 	        "infoFiltered": "(filtrado de _MAX_ entradas totales)"
 	    }
 	} ); 
+	
+	function ocultar(){
+		$('.nav-tabs').hide();
+		$('.navbar-right').hide();
+		$('.botonEliminar').hide();
+
+
+	}
+	
+	function mostrar(){
+		$('.nav-tabs').show();
+		$('.navbar-right').show();
+		$('.botonEliminar').show();
+
+
+
+	}
 </script>
 </body>
 </html>
