@@ -19,11 +19,11 @@
   <form role="form-inline" action="/registrar" method="post">
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca su email">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca su email" required>
       <label for="email">Grupo:</label>
-      <input required type="text" class="form-control" name="grupo" id="grupo" placeholder="Grupo de usuarios al que pertenece">
+      <input required type="text" class="form-control" name="grupo" id="grupo" placeholder="Grupo de usuarios al que pertenece" required>
       <label for="email">Contraseña del grupo:</label>      
-      <input required type="password" class="form-control" name="password" id="password" placeholder="Contraseña del grupo">
+      <input required type="password" class="form-control" name="password" id="password" placeholder="Contraseña del grupo" required>
       
     </div>
     <button type="submit" class="btn btn-primary">Registrarse</button>

@@ -20,7 +20,7 @@
 						<c:if test="${empty user}">
 							<li><span class="glyphicon glyphicon-user"></span><span><a href="registrar.jsp">Registrarse</a></span></li>
 						</c:if>
-						<li><span class="glyphicon glyphicon-log-in" style="margin-left:5px;"> </span> <c:out value="${user}"/><span><a href='<c:url value="${url}"/>'> <c:out value="${urlLinktext}"/></a></span></li>
+						<li><span class="glyphicon glyphicon-log-in" style="margin-left:5px;"> </span> <span id="correoUsuario"><c:out value="${user}"/></span><span><a href='<c:url value="${url}"/>'> <c:out value="${urlLinktext}"/></a></span></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->

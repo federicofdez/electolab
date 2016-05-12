@@ -183,13 +183,13 @@ div.tooltip {
 				<div class="col-lg-6">
 					<form action="/guardasimulacion" method="post">
 						<input type="hidden" name="escenario" value="${escenarioKey}" />
-						<button type="submit" class="btn btn-success center-block">Guardar simulación</button>
+						<button type="submit" class="btn btn-success center-block" id="guardarSimulacion">Guardar simulación</button>
 					</form>
 				</div>
 				<div class="col-lg-6">
 									<form action="/informe" method="get">
 						<input type="hidden" name="escenario" value="${escenarioKey}" />
-					<button class="btn btn-info center-block" >Generar informe</button>
+					<button class="btn btn-info center-block" id="generarInforme" >Generar informe</button>
 					</form>
 				</div>
 			</div>
