@@ -72,11 +72,11 @@ path:hover {
 				<h4 style="margin-left: 5px;"><u>Parámetros de la simulación:</u></h4>
 				    <div class="panel panel-default col-lg-4">
       <div class="panel-heading">Sistema de proporcionalidad</div>
-      <div class="panel-body"><c:out value="${escenario.sistema }"/></div>
+      <div class="panel-body" id="sistemaProp"><c:out value="${escenario.sistema }"/></div>
    	 </div>
    	 				    <div class="panel panel-default col-lg-4">
       <div class="panel-heading">Circunscripciones</div>
-      <div class="panel-body"><c:out value="${escenario.circunscripciones }"/></div>
+      <div class="panel-body" id="circunscripcionElegida"><c:out value="${escenario.circunscripciones }"/></div>
    	 </div>
    	 				    <div class="panel panel-default col-lg-4">
       <div class="panel-heading">% escaños para la mayoria absoluta</div>
