@@ -184,15 +184,16 @@
         "scrollX": true,
         "ordering": false, 
         "searching": false,
-        "pageLength": 10,
+        "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "Todas"]],
+        "pageLength": 5,
         "paging": true,
         "orderClasses": false,
         "language": {
+            "lengthMenu": "Mostrando _MENU_ entradas por página",
             "zeroRecords": "No se ha encontrado nada - sorry",
             "info": "Mostrando _PAGE_ de _PAGES_",
             "infoEmpty": "No existe el escenario",
         }
-
     } );
 		 
 	 
