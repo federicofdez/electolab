@@ -154,7 +154,7 @@
 								</thead>
 								<tbody>
 								<tr>
-									<th><input type='text' class='form-control' name="titulo" maxlength="23"  value="${escenario.titulo}" required></th>
+									<th><input type='text' class='form-control' name="titulo" maxlength="23"  <c:if test="${escenario.titulo != 'Escenario 2015' && escenario.titulo != 'Escenario inicial'}">value="${escenario.titulo}"</c:if> required></th>
 								</tr>
 							</table>
 						</div>
