@@ -229,6 +229,7 @@
     }
     
     $(  "input[type='number']").change(function(){
+    	if($(this).context.name.match(/escaños/) == null){
 	    var suma = parseInt($(this).val());
 	    var element = $(this).parent().siblings().children().not(':last');
     	element.each(function(e){
@@ -236,11 +237,12 @@
     	    	suma += parseInt($(this).val());
     		}
     	})
-    	console.log(suma);
     	if(suma > 100){
     		$("#myAlert").show()
     	}
+    	}
    		 });
+    
 	$("#myAlert").hide();
     $("#myAlert").click(function(){
         $("#myAlert").hide();
