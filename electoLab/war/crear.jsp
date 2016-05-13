@@ -23,7 +23,7 @@
 	<main>
 		<div class="container">
 			 <%@ include file="templates/main.jsp" %>
-		<form action="/crear" method="post">
+		<form action="/crear" method="post" onsubmit="return validateForm()">
 		  	<input name="usuario" type="hidden" value="<c:out value='${user}'/>" />
 			<div class="container-fluid" id="main-content">
 				<h2>Introduzca los parámetros del escenario a simular</h2>
@@ -184,10 +184,8 @@
         "scrollX": true,
         "ordering": false, 
         "searching": false,
-        "scrollY":        "400px",
-        "scrollCollapse": true,
-        "pageLength": 52,
-        "paging": false,
+        "pageLength": 10,
+        "paging": true,
         "orderClasses": false,
         "language": {
             "zeroRecords": "No se ha encontrado nada - sorry",
@@ -196,6 +194,8 @@
         }
 
     } );
+		 
+	 
 	
 	//Etiquetas de electores
     $('[data-toggle="tooltip"]').tooltip(); 
@@ -223,6 +223,10 @@
     	}
     });
 	
+    function validateForm(){
+	    oTable.DataTable().page.len( -1 ).draw();
+
+    }
 </script>
 
 </body>
