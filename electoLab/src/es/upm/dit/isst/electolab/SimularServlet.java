@@ -69,6 +69,7 @@ public class SimularServlet extends HttpServlet {
 					escenario.setCircunscripciones(Circunscripciones.valueOf(req.getParameter("circunscripciones")));
 				if (req.getParameterMap().containsKey("mayoria"))
 					escenario.setMayoria_abs(Integer.parseInt(req.getParameter("mayoria")));
+				cache.put(req.getParameter("escenario"), escenario);
 			} catch (CacheException e) {
 				e.printStackTrace();
 			}
