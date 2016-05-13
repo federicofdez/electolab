@@ -24,9 +24,7 @@ public class ElectoLabServlet extends HttpServlet {
 		String user = "";
 		if (req.getUserPrincipal() != null) {
 			user = req.getUserPrincipal().getName();
-			System.out.println(user);
 			url = userService.createLogoutURL(req.getRequestURI());
-			System.out.println(url);
 			urlLinktext = " Logout";
 		}
 

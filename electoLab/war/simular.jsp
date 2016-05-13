@@ -142,44 +142,8 @@ div.tooltip {
 					</div>
 				</div>
 			</div>
-			<div class="panel panel-default" style="margin-top: 15px;">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse3">Resultado simulación</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
-					<div class="panel-body">Resultado</div>
-					<table class="table table-hover" id="partidosTable">
-						<thead>
-							<tr>
-								<th class="col-lg-3">Partido</th>
-								<th class="col-lg-3">Circunscripción</th>
-								<th class="col-lg-3">Escaños obtenidos</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th>${ r.circunscripcion }</th>
-									<th>${r.escanos }</th>
-								</tr>
-							</c:forEach>
-							<c:forEach items="${resultadosCongreso}" var="r">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th>${ r.circunscripcion }</th>
-									<th>${r.escanos }</th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<c:if test="${not empty user}">
-			<div class="col-lg-12" style="padding-bottom: 40px;">
+			<c:if test="${not empty user and not empty escenarioKey}">
+			<div class="col-lg-12" style="padding-bottom: 40px; margin-top: 40px;">
 				<div class="col-lg-6">
 					<form action="/guardasimulacion" method="post">
 						<input type="hidden" name="escenario" value="${escenarioKey}" />
@@ -201,37 +165,6 @@ div.tooltip {
 	</div>
 	</div>
 
-
-
-	<!-- Modal Escenario-->
-	<div class="modal fade" id="popupInforme" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span> <span class="sr-only">Cerrar</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Generar informe de
-						la simulación</h4>
-				</div>
-				<div id="informe" class="modal-body">
-					<div class="text-center">
-
-						<h4>¿Qué tipo de informe desea generar?</h4>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Resumido</button>
-						<button type="button" class="btn btn-default" id="botonInforme"
-							onClick="#" data-dismiss="modal">Detallado</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	
 	<!-- Modal Votos-->
 	<div class="modal fade" id="popupVotos" tabindex="-1" role="dialog"

@@ -60,7 +60,6 @@ public class ForosimularServlet extends HttpServlet{
 		Escenario escenario = null;
 		if (req.getParameter("escenarioId") != null){
 			 escenario = dao.readEscenario(Long.parseLong(req.getParameter("escenarioId")));
-			System.out.println("TIPO DE OBJETO" + escenario.toString());
 		List<Votos> votosPorCircunscripcion = LOGICA.calcularVotosAbsolutosPorCircunscripcion(escenario);
 		HashMap<String, Integer> escanosPorCircunscripcion = LOGICA.calcularEscanosPorCircunscripcion(escenario);
 		List<Resultados> resultadosPorCircunscripcion = LOGICA.calcularEscanos(votosPorCircunscripcion,

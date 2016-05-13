@@ -12,6 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="./css/leaflet.css" />
 <style>
 
+#userElements{
+display: none;
+}
+
 #map {
   width: 95%;
   height: 400px;
@@ -339,7 +343,6 @@ piechart(partidos);
 	
 	function ocultar(){
 		$('.nav-tabs').hide();
-		$('.navbar-right').hide();
 		$('.botonEliminar').hide();
 
 
@@ -347,7 +350,6 @@ piechart(partidos);
 	
 	function mostrar(){
 		$('.nav-tabs').show();
-		$('.navbar-right').show();
 		$('.botonEliminar').show();
 
 

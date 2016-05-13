@@ -147,17 +147,17 @@
     							<strong>Error</strong> La fila que acabas de introducir suma más de 100%
  							 </div>
 							
-							<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">
+						</div>
+						<table class="table table-hover col-lg-5" id="partidosTable" style="margin-top: 30px;">
 								<thead> <tr>
 									<th class=" center-block" >Título de simulación</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr>
-									<th><input type='text' class='form-control' name="titulo" maxlength="23"  <c:if test="${escenario.titulo != 'Escenario 2015' && escenario.titulo != 'Escenario inicial'}">value="${escenario.titulo}"</c:if> required></th>
+									<th><input type='text' class='form-control' name="titulo" maxlength="30"  <c:if test="${escenario.titulo != 'Escenario 2015' && escenario.titulo != 'Escenario inicial'}">value="${escenario.titulo}"</c:if> required></th>
 								</tr>
 							</table>
-						</div>
 					</div>
 				</div>
 				<input type="hidden" name="usuario" value="${user }]">

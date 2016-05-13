@@ -103,48 +103,10 @@ path:hover {
 					</div>
 				</div>
 			</div>
-			<div class="panel panel-default" style="margin-top: 15px;">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse3">Resultado simulación</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
-					<div class="panel-body">Resultado</div>
-					<table class="table table-hover" id="partidosTable">
-						<thead>
-							<tr>
-								<th class="col-lg-3">Partido</th>
-								<th class="col-lg-3">Circunscripción</th>
-								<th class="col-lg-3">Escaños obtenidos</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${resultadosPorCircunscripcion}" var="r">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th><input type='text' class='form-control'
-										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.escanos }"></th>
-								</tr>
-							</c:forEach>
-							<c:forEach items="${resultadosCongreso}" var="r">
-								<tr>
-									<th scope="row"><h5>${ r.partido }</h5></th>
-									<th><input type='text' class='form-control'
-										value="${ r.circunscripcion }"></th>
-									<th><input type='text' class='form-control' value="${r.escanos }"></th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
 			<div class="col-lg-12" style="padding-bottom: 40px;">
 					<form action="/informe" method="get">
 						<input type="hidden" name="escenarioId" value="${escenario.id}" />
-					<button class="btn btn-info center-block" >Generar informe</button>
+					<button class="btn btn-info center-block" style="margin-top: 40px;" >Generar informe</button>
 					</form>
 			</div>
 						<HR width=95% align="center" class="btn-info"
