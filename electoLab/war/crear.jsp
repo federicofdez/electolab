@@ -131,7 +131,7 @@
 	 										%>
 	 											<c:if test="${relleno == false and votosMap[votosMapKey] != null}">
 	 												<% request.setAttribute("relleno", true); %>
-	 												<th> <input type='number' class='form-control cell'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${votosMap[votosMapKey]}"></th>
+	 												<th> <input type='number' class='form-control' name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${votosMap[votosMapKey]}"></th>
 												</c:if>
 											<c:if test="${relleno == false}" >
 													<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="-1"></th>
@@ -142,6 +142,11 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							 <div class="alert alert-danger" id="myAlert">
+							     <a href="#" class="close">&times;</a>
+    							<strong>Error</strong> La fila que acabas de introducir suma más de 100%
+ 							 </div>
+							
 							<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">
 								<thead> <tr>
 									<th class="col-lg-3 center-block">Nombre de simulación</th>
@@ -201,6 +206,7 @@
 	//Etiquetas de electores
     $('[data-toggle="tooltip"]').tooltip(); 
 
+
     $( "button[data-loading-text]" ).on("click", function() {
 		$btn = $(this);
 	    $btn.button('loading');
@@ -228,9 +234,9 @@
 	    oTable.DataTable().page.len( -1 ).draw();
     }
     
-    $( "input[type='number']").change(function(){
+    $(  "input[type='number']").change(function(){
 	    var suma = parseInt($(this).val());
-	    var element = $(this).parent().siblings().children();
+	    var element = $(this).parent().siblings().children().not(':last');
     	element.each(function(e){
     		if(parseInt($(this).val()) > -1 &&  !isNaN(parseInt($(this).val()))){
     	    	suma += parseInt($(this).val());
@@ -238,9 +244,14 @@
     	})
     	console.log(suma);
     	if(suma > 100){
-    		alert("Porcentaje mayor que 100");
+    		$("#myAlert").show()
     	}
    		 });
+	$("#myAlert").hide();
+    $("#myAlert").click(function(){
+        $("#myAlert").hide();
+    });
+
 
 </script>
 
