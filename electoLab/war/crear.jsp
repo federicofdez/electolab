@@ -131,7 +131,7 @@
 	 										%>
 	 											<c:if test="${relleno == false and votosMap[votosMapKey] != null}">
 	 												<% request.setAttribute("relleno", true); %>
-	 												<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${votosMap[votosMapKey]}"></th>
+	 												<th> <input type='number' class='form-control cell'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="${votosMap[votosMapKey]}"></th>
 												</c:if>
 											<c:if test="${relleno == false}" >
 													<th> <input type='number' class='form-control'name="${partido.siglas}:${provincia.id}" placeholder='0%' min="-1" max="100" value="-1"></th>
@@ -226,8 +226,22 @@
 	
     function validateForm(){
 	    oTable.DataTable().page.len( -1 ).draw();
-
     }
+    
+    $( "input[type='number']").change(function(){
+	    var suma = parseInt($(this).val());
+	    var element = $(this).parent().siblings().children();
+    	element.each(function(e){
+    		if(parseInt($(this).val()) > -1 &&  !isNaN(parseInt($(this).val()))){
+    	    	suma += parseInt($(this).val());
+    		}
+    	})
+    	console.log(suma);
+    	if(suma > 100){
+    		alert("Porcentaje mayor que 100");
+    	}
+   		 });
+
 </script>
 
 </body>
