@@ -149,18 +149,12 @@
 							
 							<table class="table table-hover" id="partidosTable" style="margin-top: 30px;">
 								<thead> <tr>
-									<th class="col-lg-3 center-block">Nombre de simulación</th>
-									<th class="col-lg-3 center-block">Total de Votos</th>
-									<th class="col-lg-3 center-block">Total de Circunscripciones</th>
-									<th class="col-lg-3 center-block">Total de Escaños</th>
+									<th class=" center-block" >Título de simulación</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr>
-									<th><input type='text' class='form-control' name="titulo"  ></th>
-									<th></th>
-									<th></th>
-									<th>350</th>
+									<th><input type='text' class='form-control' name="titulo" maxlength="23" required ></th>
 								</tr>
 							</table>
 						</div>
