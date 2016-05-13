@@ -141,7 +141,7 @@ path:hover {
 	<script type='text/javascript' src='./js/leaflet.js'></script>
 	<script src="./js/Chart.js"></script>
 	<script type='text/javascript' src='./js/jsPDF_debug.js'></script>
-		<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+		<script src="./js/html2canvas.js"></script>
 	
 	
 		
