@@ -40,15 +40,15 @@ public class Guardar {
     driver.findElement(By.name("titulo")).clear();
     driver.findElement(By.name("titulo")).sendKeys("Caso de prueba");
     driver.findElement(By.xpath("//input[@value='Simular escenario']")).click();
-    driver.findElement(By.xpath("(//input[@name='sistema'])[1]")).click();
-    driver.findElement(By.xpath("(//input[@name='circunscripciones'])[1]")).click();
+    driver.findElement(By.xpath("(//input[@name='sistema'])[2]")).click();
+    driver.findElement(By.xpath("(//input[@name='circunscripciones'])[2]")).click();
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     driver.findElement(By.id("guardarSimulacion")).click();
     driver.findElement(By.xpath("//input[@value='Caso de prueba']")).click();
     List<WebElement> sistema = driver.findElements(By.id("sistemaProp"));
     List<WebElement> circunscripcion = driver.findElements(By.id("circunscripcionElegida"));
-    assertTrue(sistema.get(0).getText().equals("DHONDT"));
-    assertTrue(circunscripcion.get(0).getText().equals("PROVINCIAS"));
+    assertTrue(sistema.get(0).getText().equals("SAINTE"));
+    assertTrue(circunscripcion.get(0).getText().equals("COMUNIDADES"));
 
   }
 
