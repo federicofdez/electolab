@@ -154,7 +154,7 @@
 								</thead>
 								<tbody>
 								<tr>
-									<th><input type='text' class='form-control' name="titulo" maxlength="23" required ></th>
+									<th><input type='text' class='form-control' name="titulo" maxlength="23"  value="${escenario.titulo}" required></th>
 								</tr>
 							</table>
 						</div>
