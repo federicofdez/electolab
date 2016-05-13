@@ -184,7 +184,7 @@
         "ordering": false, 
         "searching": false,
         "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "Todas"]],
-        "pageLength": 5,
+        "pageLength": 52,
         "paging": true,
         "orderClasses": false,
         "language": {
@@ -194,7 +194,7 @@
             "infoEmpty": "No existe el escenario",
         }
     } );
-		 
+
 	 
 	
 	//Etiquetas de electores
@@ -245,6 +245,7 @@
     $("#myAlert").click(function(){
         $("#myAlert").hide();
     });
+    oTable.DataTable().page.len( 5 ).draw();
 
 
 </script>
