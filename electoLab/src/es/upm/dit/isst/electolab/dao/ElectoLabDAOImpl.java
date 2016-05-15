@@ -268,7 +268,8 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			if (g.getUsuarios().contains(correo)){
 				Set<String> usuarios = g.getUsuarios();
 				usuarios.remove(correo);
-				this.updateGrupo(g);
+				g.setUsuarios(usuarios);
+				updateGrupo(g);
 			}
 	}
 

@@ -80,17 +80,18 @@ public class ElectoLabDAOImplTest {
 				partidos, comentarios, Sistema.DHONDT,
 				Circunscripciones.PROVINCIAS, 50, fecha);
 		//Comenzamos las pruebas 
+		assertEquals(escenario.toString(), dao.readEscenarios("usuario_pruebas").get(0).toString());
 		assertEquals(escenario.getTitulo(), "Escenario_prueba");
 		assertEquals(escenario.getFecha(), "10/05/2016");
-		assertEquals(escenario.getCircunscripciones(), "PROVINCIAS");
+		assertEquals(escenario.getCircunscripciones(), Circunscripciones.PROVINCIAS);
 		Votos comp_votos = new Votos("segovia", "PP", 39);
 		assertEquals(escenario.getVotos().get(0).toString(), comp_votos.toString());
 		Partido comp_partido = new Partido("PP", "Partido Popular",
 				"img/logos/pp.png", "02CFF7");
-		assertEquals(escenario.getPartidos().get(0).toString(), comp_partido.toString());
+		assertEquals(escenario.getPartidos().get(0), comp_partido);
 		Provincia comp_provincia = new Provincia("Madrid", "madrid", "MADRID", 36,
 				4658397);
-		assertEquals(escenario.getProvincias().get(0), comp_provincia.toString());
+		assertEquals(escenario.getProvincias().get(0), comp_provincia);
 		assertEquals(escenario.getMayoria_abs(), 50);
 		assertEquals(escenario.getUsuario(), "usuario_pruebas");
 	}
@@ -139,15 +140,15 @@ public class ElectoLabDAOImplTest {
 				//Comenzamos las pruebas 
 				assertEquals(escenario.getTitulo(), "Escenario_prueba");
 				assertEquals(escenario.getFecha(), "10/05/2016");
-				assertEquals(escenario.getCircunscripciones(), "PROVINCIAS");
+				assertEquals(escenario.getCircunscripciones(), Circunscripciones.PROVINCIAS);
 				Votos comp_votos = new Votos("segovia", "PP", 39);
 				assertEquals(escenario.getVotos().get(0).toString(), comp_votos.toString());
 				Partido comp_partido = new Partido("PP", "Partido Popular",
 						"img/logos/pp.png", "02CFF7");
-				assertEquals(escenario.getPartidos().get(0).toString(), comp_partido.toString());
+				assertEquals(escenario.getPartidos().get(0), comp_partido);
 				Provincia comp_provincia = new Provincia("Madrid", "madrid", "MADRID", 36,
 						4658397);
-				assertEquals(escenario.getProvincias().get(0), comp_provincia.toString());
+				assertEquals(escenario.getProvincias().get(0), comp_provincia);
 				assertEquals(escenario.getMayoria_abs(), 50);
 				assertEquals(escenario.getUsuario(), "usuario_pruebas");
 	}
@@ -236,7 +237,7 @@ public class ElectoLabDAOImplTest {
 				partidos, comentarios, Sistema.DHONDT,
 				Circunscripciones.PROVINCIAS, 50, fecha);
 		//Comenzamos las pruebas 
-		assertEquals(dao.readEscenarios("usuario_pruebas").toString(), escenario.toString());
+		assertEquals(dao.readEscenarios("usuario_pruebas").get(0).toString(), escenario.toString());
 	}
 
 	@Test
@@ -378,7 +379,7 @@ public class ElectoLabDAOImplTest {
 						Circunscripciones.PROVINCIAS, 50, fecha);
 			
 				//Comenzamos las pruebas 
-				assertEquals(dao.existsEscenario("usuario_prueba"), true);
+				assertTrue(dao.existsEscenario("usuario_pruebas"));
 	}
 
 	@Test
@@ -484,32 +485,22 @@ public class ElectoLabDAOImplTest {
 		// Creacción de un escenario base para realizar el conjunto de las purebas
 		//Instancia para la prueba
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
+		
 		// Lista para provincias
 		List<Provincia> provincias = new ArrayList<Provincia>();
 		provincias.add(new Provincia("Madrid", "madrid", "MADRID", 36,
 				4658397));
 		provincias.add(new Provincia("Segovia", "segovia", "CASTILLAYLEÓN",
 				3, 118502));
+		
 		// Lista para partidos
 		List<Partido> partidos = new ArrayList<Partido>();
 		partidos.add(new Partido("PP", "Partido Popular",
 				"img/logos/pp.png", "02CFF7"));
-		partidos.add(new Partido("PSOE", "Partido Socialista",
-				"img/logos/psoe.png", "FF0000"));
-		partidos.add(new Partido("PODEMOS", "Podemos",
-				"img/logos/podemos.png", "742DA1"));
-		partidos.add(new Partido("Cs", "Ciudadanos",
-				"img/logos/ciudadanos.png", "F7771B"));
 		// Lista para votos
 		List<Votos> votos = new ArrayList<Votos>();
 		votos.add(new Votos("segovia", "PP", 39));
-		votos.add(new Votos("segovia", "PSOE", 21));
-		votos.add(new Votos("segovia", "Cs", 17));
-		votos.add(new Votos("segovia", "PODEMOS", 14));
-		votos.add(new Votos("madrid", "PP", 33));
-		votos.add(new Votos("madrid", "PODEMOS", 20));
-		votos.add(new Votos("madrid", "Cs", 18));
-		votos.add(new Votos("madrid", "PSOE", 17));
+
 		//Lista para comentarios
 		List<Comentario> comentarios = new ArrayList<Comentario>();
 		// Establecemos la fecha del escenario
@@ -524,12 +515,20 @@ public class ElectoLabDAOImplTest {
 		// id del escenario
 				Long id = escenario.getId();
 		// comentario
-				Comentario comentario_prueba = new Comentario("usuario_prueba", fecha, "Esto es un comentario de prueba");
-		//Creación de un comentario
-		escenario = dao.createComentario(id, comentario_prueba);
-	
+				Comentario comentario_prueba1 = new Comentario("usuario_prueba", fecha, "Esto es un comentario de prueba");
+				Comentario comentario_prueba2 = new Comentario("usuario_prueba", fecha, "Esto es un comentario de prueba");
+
+				//Creación de un comentario
+		escenario = dao.createComentario(id, comentario_prueba1);		
+		escenario = dao.createComentario(id, comentario_prueba2);		
+
 		//Comenzamos las pruebas 
-		assertEquals(escenario.getComentarios().get(0).toString(), comentario_prueba.toString());
+		assertEquals(escenario.getComentarios().get(0).getTexto(), comentario_prueba1.getTexto());
+		assertEquals(escenario.getComentarios().get(0).getFecha(), comentario_prueba1.getFecha());
+		assertEquals(escenario.getComentarios().get(0).getUsuario(), comentario_prueba1.getUsuario());
+		assertEquals(escenario.getComentarios().get(1).getTexto(), comentario_prueba2.getTexto());
+		assertEquals(escenario.getComentarios().get(1).getFecha(), comentario_prueba2.getFecha());
+		assertEquals(escenario.getComentarios().get(1).getUsuario(), comentario_prueba2.getUsuario());
 	}
 
 	@Test
@@ -720,48 +719,13 @@ public class ElectoLabDAOImplTest {
 
 	@Test
 	public void testUpdateGrupo() {
-		// Creacción de un escenario base para realizar el conjunto de las purebas
 		//Instancia para la prueba
 		ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-		// Lista para provincias
-		List<Provincia> provincias = new ArrayList<Provincia>();
-		provincias.add(new Provincia("Madrid", "madrid", "MADRID", 36,
-				4658397));
-		provincias.add(new Provincia("Segovia", "segovia", "CASTILLAYLEÓN",
-				3, 118502));
-		// Lista para partidos
-		List<Partido> partidos = new ArrayList<Partido>();
-		partidos.add(new Partido("PP", "Partido Popular",
-				"img/logos/pp.png", "02CFF7"));
-		partidos.add(new Partido("PSOE", "Partido Socialista",
-				"img/logos/psoe.png", "FF0000"));
-		partidos.add(new Partido("PODEMOS", "Podemos",
-				"img/logos/podemos.png", "742DA1"));
-		partidos.add(new Partido("Cs", "Ciudadanos",
-				"img/logos/ciudadanos.png", "F7771B"));
-		// Lista para votos
-		List<Votos> votos = new ArrayList<Votos>();
-		votos.add(new Votos("segovia", "PP", 39));
-		votos.add(new Votos("segovia", "PSOE", 21));
-		votos.add(new Votos("segovia", "Cs", 17));
-		votos.add(new Votos("segovia", "PODEMOS", 14));
-		votos.add(new Votos("madrid", "PP", 33));
-		votos.add(new Votos("madrid", "PODEMOS", 20));
-		votos.add(new Votos("madrid", "Cs", 18));
-		votos.add(new Votos("madrid", "PSOE", 17));
-		//Lista para comentarios
-		List<Comentario> comentarios = new ArrayList<Comentario>();
-		// Establecemos la fecha del escenario
-		String fecha = "10/05/2016";
-		// Creación del grupo
+		//Creación del grupo
 		Grupo grupo_pruebas = dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		dao.createUsuario("usuario_pruebas", "prueba");
-		// Creación del escenario de pruebas
-		dao.createEscenario("usuario_pruebas", "Escenario_prueba", votos, provincias,
-				partidos, comentarios, Sistema.DHONDT,
-				Circunscripciones.PROVINCIAS, 50, fecha);
-		Grupo grupo = new Grupo("prueba", "prueba1", new HashSet<String>());
-		dao.updateGrupo(grupo);
+		grupo_pruebas.setPassword("prueba1");
+		dao.updateGrupo(grupo_pruebas);
 		//Comenzamos las pruebas 
 		assertEquals(grupo_pruebas.getPassword(), "prueba1");
 	}
@@ -816,48 +780,15 @@ public class ElectoLabDAOImplTest {
 
 	@Test
 	public void testFindGroup() {
-		// Creacción de un escenario base para realizar el conjunto de las purebas
 				//Instancia para la prueba
 				ElectoLabDAO dao = ElectoLabDAOImpl.getInstance();
-				// Lista para provincias
-				List<Provincia> provincias = new ArrayList<Provincia>();
-				provincias.add(new Provincia("Madrid", "madrid", "MADRID", 36,
-						4658397));
-				provincias.add(new Provincia("Segovia", "segovia", "CASTILLAYLEÓN",
-						3, 118502));
-				// Lista para partidos
-				List<Partido> partidos = new ArrayList<Partido>();
-				partidos.add(new Partido("PP", "Partido Popular",
-						"img/logos/pp.png", "02CFF7"));
-				partidos.add(new Partido("PSOE", "Partido Socialista",
-						"img/logos/psoe.png", "FF0000"));
-				partidos.add(new Partido("PODEMOS", "Podemos",
-						"img/logos/podemos.png", "742DA1"));
-				partidos.add(new Partido("Cs", "Ciudadanos",
-						"img/logos/ciudadanos.png", "F7771B"));
-				// Lista para votos
-				List<Votos> votos = new ArrayList<Votos>();
-				votos.add(new Votos("segovia", "PP", 39));
-				votos.add(new Votos("segovia", "PSOE", 21));
-				votos.add(new Votos("segovia", "Cs", 17));
-				votos.add(new Votos("segovia", "PODEMOS", 14));
-				votos.add(new Votos("madrid", "PP", 33));
-				votos.add(new Votos("madrid", "PODEMOS", 20));
-				votos.add(new Votos("madrid", "Cs", 18));
-				votos.add(new Votos("madrid", "PSOE", 17));
-				//Lista para comentarios
-				List<Comentario> comentarios = new ArrayList<Comentario>();
-				// Establecemos la fecha del escenario
-				String fecha = "10/05/2016";
+				
 				// Creación del grupo
 				Grupo grupo_prueba = dao.createGrupo("prueba", "prueba", new HashSet<String>());
 				dao.createUsuario("usuario_pruebas", "prueba");
-				// Creación del escenario de pruebas
-				dao.createEscenario("usuario_pruebas", "Escenario_prueba", votos, provincias,
-						partidos, comentarios, Sistema.DHONDT,
-						Circunscripciones.PROVINCIAS, 50, fecha);
+
 				//Comenzamos las pruebas 
-				assertEquals(dao.findGroup("usuario_prueba").toString(), grupo_prueba.toString());
+				assertEquals(dao.findGroup("usuario_pruebas").toString(), grupo_prueba.toString());
 	}
 
 	@Test
@@ -867,7 +798,7 @@ public class ElectoLabDAOImplTest {
 		// Creación del grupo
 		dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		dao.createUsuario("usuario_pruebas", "prueba");
-		assertEquals(dao.existsUsuario("usuario_prueba"), true);
+		assertTrue(dao.existsUsuario("usuario_pruebas"));
 	}
 
 	@Test
@@ -877,8 +808,8 @@ public class ElectoLabDAOImplTest {
 				// Creación del grupo
 				dao.createGrupo("prueba", "prueba", new HashSet<String>());
 				dao.createUsuario("usuario_pruebas", "prueba");
-				assertEquals(dao.existsUsuario("usuario_prueba"), true);
-				assertEquals(dao.existsUsuario("usuario_prueba2"), false);
+				assertTrue(dao.existsUsuario("usuario_pruebas"));
+				assertFalse(dao.existsUsuario("usuario_pruebas2"));
 				
 	}
 
@@ -890,9 +821,14 @@ public class ElectoLabDAOImplTest {
 		dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		dao.createUsuario("usuario_pruebas", "prueba");
 		dao.createUsuario("usuario_pruebas2", "prueba");
+		System.out.println(dao.existsUsuario("usuario_pruebas"));
+		System.out.println(dao.existsUsuario("usuario_pruebas2"));
 		dao.deleteUsuario("usuario_pruebas2");
-		assertEquals(dao.existsUsuario("usuario_prueba"), true);
-		assertEquals(dao.existsUsuario("usuario_prueba2"), false);
+		System.out.println(dao.existsUsuario("usuario_pruebas"));
+		System.out.println(dao.existsUsuario("usuario_pruebas2"));
+
+		assertTrue(dao.existsUsuario("usuario_pruebas"));
+		assertFalse(dao.existsUsuario("usuario_pruebas2"));
 	}
 
 }
