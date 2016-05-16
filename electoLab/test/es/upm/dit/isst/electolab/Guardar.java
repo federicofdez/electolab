@@ -47,6 +47,7 @@ public class Guardar {
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     driver.findElement(By.id("guardarSimulacion")).click();
     
+    //Comprobacion de la existencia del escenario creado
       try {
         assertEquals("Caso de prueba", driver.findElement(By.cssSelector("input[type=\"submit\"]")).getAttribute("value"));
       } catch (Error e) {
@@ -54,26 +55,28 @@ public class Guardar {
       }
       driver.findElement(By.xpath("//input[@value='Caso de prueba']")).click();
 
-
+      //Comprobacion de sistema guardado
       driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
       for (int second = 0;; second++) {
       	if (second >= 60) fail("timeout");
       	try { if ("SAINTE".equals(driver.findElement(By.id("sistemaProp")).getText())) break; } catch (Exception e) {}
       	Thread.sleep(1000);
       }
-
+      //Comprobacion de circunscripciones guardadas
       for (int second = 0;; second++) {
       	if (second >= 60) fail("timeout");
       	try { if ("COMUNIDADES".equals(driver.findElement(By.id("circunscripcionElegida")).getText())) break; } catch (Exception e) {}
       	Thread.sleep(1000);
       }
 
+      //Comprobacion de porcentaje de mayoria absoluta guardado
       for (int second = 0;; second++) {
       	if (second >= 60) fail("timeout");
       	try { if ("70".equals(driver.findElement(By.xpath("//div[@id='main-content']/div/div[3]/div[2]")).getText())) break; } catch (Exception e) {}
       	Thread.sleep(1000);
       }
     
+      //Otras comprobaciones de sistema y circunscripciones
     List<WebElement> sistema = driver.findElements(By.id("sistemaProp"));
     List<WebElement> circunscripcion = driver.findElements(By.id("circunscripcionElegida"));
     assertTrue(sistema.get(0).getText().equals("SAINTE"));
