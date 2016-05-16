@@ -201,6 +201,16 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 		return false;
 	}
 	
+	@Override
+	public Grupo findGroup (String usuario) {
+		Grupo grupo = null;
+		if (usuario != "")
+			for (Grupo g : this.readGrupos())
+				if (g.getUsuarios().contains(usuario))
+					grupo = g;
+		return grupo;
+	}
+	
 	// UPDATE Grupo
 	
 	@Override
@@ -222,18 +232,6 @@ public class ElectoLabDAOImpl implements ElectoLabDAO {
 			em.close();
 		}
 	}
-	
-	// FIND Usuario's group
-	@Override
-	public Grupo findGroup (String usuario) {
-		Grupo grupo = null;
-		if (usuario != "")
-			for (Grupo g : this.readGrupos())
-				if (g.getUsuarios().contains(usuario))
-					grupo = g;
-		return grupo;
-	}
-
 	
 	
 	// CREATE Usuario

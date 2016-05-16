@@ -45,6 +45,7 @@ public interface ElectoLabDAO {
 	public Grupo readGrupo(String nombre);
 	public List<Grupo> readGrupos();
 	public boolean existsGrupo(String nombre);
+	public Grupo findGroup (String usuario);
 	
 	//UPDATE Grupo
 	public void updateGrupo(Grupo grupo);
@@ -52,10 +53,7 @@ public interface ElectoLabDAO {
 	// DELETE Grupo
 	public void deleteGrupo(String nombre);
 	
-	// FIND Usuario's group
-	public Grupo findGroup (String usuario);
-
-		
+	
 	// CREATE Usuario
 	public void createUsuario(String correo, String grupo);
 	
