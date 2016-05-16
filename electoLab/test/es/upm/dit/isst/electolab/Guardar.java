@@ -36,19 +36,50 @@ public class Guardar {
     driver.findElement(By.id("next")).click();
     //PRUEBA DE GUARDAR
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-    driver.findElement(By.linkText("Reparto de votos y escaños")).click();
+    driver.findElement(By.linkText("Sistema de proporcionalidad y circuscripciones")).click();
     driver.findElement(By.name("titulo")).clear();
     driver.findElement(By.name("titulo")).sendKeys("Caso de prueba");
     driver.findElement(By.xpath("//input[@value='Simular escenario']")).click();
     driver.findElement(By.xpath("(//input[@name='sistema'])[2]")).click();
     driver.findElement(By.xpath("(//input[@name='circunscripciones'])[2]")).click();
+    driver.findElement(By.name("mayoria")).clear();
+    driver.findElement(By.name("mayoria")).sendKeys("70");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
     driver.findElement(By.id("guardarSimulacion")).click();
-    driver.findElement(By.xpath("//input[@value='Caso de prueba']")).click();
+    
+      try {
+        assertEquals("Caso de prueba", driver.findElement(By.cssSelector("input[type=\"submit\"]")).getAttribute("value"));
+      } catch (Error e) {
+        verificationErrors.append(e.toString());
+      }
+      driver.findElement(By.xpath("//input[@value='Caso de prueba']")).click();
+
+
+      driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+      for (int second = 0;; second++) {
+      	if (second >= 60) fail("timeout");
+      	try { if ("SAINTE".equals(driver.findElement(By.id("sistemaProp")).getText())) break; } catch (Exception e) {}
+      	Thread.sleep(1000);
+      }
+
+      for (int second = 0;; second++) {
+      	if (second >= 60) fail("timeout");
+      	try { if ("COMUNIDADES".equals(driver.findElement(By.id("circunscripcionElegida")).getText())) break; } catch (Exception e) {}
+      	Thread.sleep(1000);
+      }
+
+      for (int second = 0;; second++) {
+      	if (second >= 60) fail("timeout");
+      	try { if ("70".equals(driver.findElement(By.xpath("//div[@id='main-content']/div/div[3]/div[2]")).getText())) break; } catch (Exception e) {}
+      	Thread.sleep(1000);
+      }
+    
     List<WebElement> sistema = driver.findElements(By.id("sistemaProp"));
     List<WebElement> circunscripcion = driver.findElements(By.id("circunscripcionElegida"));
     assertTrue(sistema.get(0).getText().equals("SAINTE"));
     assertTrue(circunscripcion.get(0).getText().equals("COMUNIDADES"));
+    
+    
 
   }
 
