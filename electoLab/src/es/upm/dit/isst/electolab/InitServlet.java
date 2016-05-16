@@ -27,8 +27,8 @@ public class InitServlet extends HttpServlet {
 		if (!dao.existsGrupo("prueba")) {
 			dao.createGrupo("prueba", "prueba", new HashSet<String>());
 		}
-		if (!dao.existsGrupo("prueba2")) {
-			dao.createGrupo("prueba2", "prueba", new HashSet<String>());
+		if (!dao.existsGrupo("electolab")) {
+			dao.createGrupo("electolab", "electolab", new HashSet<String>());
 		}
 		if (!dao.existsUsuario("admin")) {
 			dao.createUsuario("admin", "prueba");
