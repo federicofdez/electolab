@@ -25,14 +25,16 @@ public class Guardar {
 
   @Test
   public void testGuardar() throws Exception {
+	String correo = "CORREO";
+	String password = "PASSWORD";
     driver.get(baseUrl);
     //USUARIO REGISTRADO YA
     driver.findElement(By.linkText("Login")).click();
     driver.findElement(By.id("Email")).clear();
-    driver.findElement(By.id("Email")).sendKeys("CORREO");
+    driver.findElement(By.id("Email")).sendKeys(correo);
     driver.findElement(By.id("next")).click();
     driver.findElement(By.id("Passwd")).clear();
-    driver.findElement(By.id("Passwd")).sendKeys("PASSWORD");
+    driver.findElement(By.id("Passwd")).sendKeys(password);
     driver.findElement(By.id("next")).click();
     //PRUEBA DE GUARDAR
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();

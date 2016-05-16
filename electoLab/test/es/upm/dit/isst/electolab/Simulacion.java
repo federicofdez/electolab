@@ -1,6 +1,7 @@
 package es.upm.dit.isst.electolab;
 
 import java.util.regex.Pattern;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -19,7 +20,7 @@ public class Simulacion {
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
     baseUrl = "http://1-dot-electolab.appspot.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
   }
 
   @Test
@@ -44,17 +45,43 @@ public class Simulacion {
     driver.findElement(By.name("Cs:alicante")).sendKeys("1");
     driver.findElement(By.name("PP:alicante")).clear();
     driver.findElement(By.name("PP:alicante")).sendKeys("10");
+    
+//Cambiamos escanos de asturias para comprobar despues que hay 2 mas
+    driver.findElement(By.cssSelector("input[name=\"escaños asturias\"]")).clear();
+    driver.findElement(By.cssSelector("input[name=\"escaños asturias\"]")).sendKeys("10");
     driver.findElement(By.linkText("3")).click();
     driver.findElement(By.name("PP:castellon")).clear();
     driver.findElement(By.name("PP:castellon")).sendKeys("10");
     driver.findElement(By.name("Cs:castellon")).clear();
     driver.findElement(By.name("Cs:castellon")).sendKeys("1");
-    driver.findElement(By.linkText("1")).click();
     driver.findElement(By.name("titulo")).clear();
     driver.findElement(By.name("titulo")).sendKeys("Caso de prueba");
     driver.findElement(By.xpath("//input[@value='Simular escenario']")).click();
-    driver.findElement(By.xpath("(//input[@name='circunscripciones'])[1]")).click();
+    
+    //Comprobamos cambio mayoria absoluta
+    try {
+      assertEquals("75", driver.findElement(By.name("mayoria")).getAttribute("value"));
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
+    }
+    driver.findElement(By.name("mayoria")).clear();
+    driver.findElement(By.name("mayoria")).sendKeys("35");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
+    
+    //Comprobamos cambio de mayoria absoluta
+    try {
+      assertEquals("35", driver.findElement(By.name("mayoria")).getAttribute("value"));
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
+    }
+    
+    
+    //Comprobamos el cambio de numero de escanos que se hizo
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if ("352 escaños".equals(driver.findElement(By.cssSelector("h5")).getText())) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
   }
 
   @After

@@ -20,20 +20,21 @@ public class Comentarios {
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
     baseUrl = "https://electolab.appspot.com";
-    driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
   }
 
   @Test
   public void testComentarios() throws Exception {
-	  
+	String correo = "CORREO";
+	String password = "PASSWORD";
     driver.get(baseUrl);
     //USUARIO REGISTRADO YA
     driver.findElement(By.linkText("Login")).click();
     driver.findElement(By.id("Email")).clear();
-    driver.findElement(By.id("Email")).sendKeys("CORREO");
+    driver.findElement(By.id("Email")).sendKeys(correo);
     driver.findElement(By.id("next")).click();
     driver.findElement(By.id("Passwd")).clear();
-    driver.findElement(By.id("Passwd")).sendKeys("PASSWORD");
+    driver.findElement(By.id("Passwd")).sendKeys(password);
     driver.findElement(By.id("next")).click();   
     driver.findElement(By.linkText("Foros de discusión")).click();
     
@@ -42,12 +43,36 @@ public class Comentarios {
     driver.findElement(By.name("comentario")).clear();
     driver.findElement(By.name("comentario")).sendKeys("Esto es un comentario para el caso de prueba");
     driver.findElement(By.xpath("//input[@value='Añadir comentario']")).click();
+    //Comprobamos comentario y autor
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if ("Esto es un comentario para el caso de prueba".equals(driver.findElement(By.xpath("//table[@id='comentarioTable']/tbody/tr/td[2]")).getText())) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if (correo.equals(driver.findElement(By.cssSelector("tr.info.odd > th")).getText())) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
+
     driver.findElement(By.name("comentario")).clear();
     driver.findElement(By.name("comentario")).sendKeys("Segundo comentario de prueba");
     driver.findElement(By.xpath("//input[@value='Añadir comentario']")).click();
+    //Comprobamos comentario
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if ("Segundo comentario de prueba".equals(driver.findElement(By.xpath("//table[@id='comentarioTable']/tbody/tr/td[2]")).getText())) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
     driver.findElement(By.name("comentario")).clear();
     driver.findElement(By.name("comentario")).sendKeys("Tercer comentario de prueba");
     driver.findElement(By.xpath("//input[@value='Añadir comentario']")).click();
+    //Comprobamos comentario
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if ("Tercer comentario de prueba".equals(driver.findElement(By.xpath("//table[@id='comentarioTable']/tbody/tr/td[2]")).getText())) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
     List<WebElement> tabla = driver.findElements(By.id("comentarioTable"));
     //Comprobacion de que hay comentarios
     assertTrue(tabla.get(0).getText() != null);
